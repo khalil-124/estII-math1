@@ -30,11 +30,21 @@ interface MoleculeViewerProps {
     height?: number;
 }
 
-// Common molecules in PDB format for 3Dmol.js
-const moleculeData: Record<string, { pdb: string; color: string; emoji: string }> = {
+// Common molecules with PDB format, formulas, and structure info
+const moleculeData: Record<string, {
+    pdb: string;
+    color: string;
+    emoji: string;
+    formula: string;
+    skeletal: string;
+    functionalGroups: string[];
+}> = {
     'serotonin': {
         color: '#8b5cf6',
         emoji: '😊',
+        formula: 'C₁₀H₁₂N₂O',
+        skeletal: 'Indole ring with ethylamine side chain',
+        functionalGroups: ['Amine (-NH₂)', 'Hydroxyl (-OH)', 'Aromatic ring'],
         pdb: `COMPND    SEROTONIN
 ATOM      1  N1  SER     1       0.000   0.000   0.000  1.00  0.00           N
 ATOM      2  C2  SER     1       1.300   0.000   0.000  1.00  0.00           C
@@ -54,6 +64,9 @@ END`
     'caffeine': {
         color: '#f59e0b',
         emoji: '☕',
+        formula: 'C₈H₁₀N₄O₂',
+        skeletal: 'Fused purine ring system (imidazole + pyrimidine)',
+        functionalGroups: ['Carbonyl (C=O)', 'Methyl groups (-CH₃)', 'Heterocyclic N'],
         pdb: `COMPND    CAFFEINE
 ATOM      1  N1  CAF     1       0.000   0.000   0.000  1.00  0.00           N
 ATOM      2  C2  CAF     1       1.300   0.000   0.000  1.00  0.00           C
@@ -74,6 +87,9 @@ END`
     'aspirin': {
         color: '#ef4444',
         emoji: '💊',
+        formula: 'C₉H₈O₄',
+        skeletal: 'Benzene ring with ester and carboxylic acid groups',
+        functionalGroups: ['Carboxylic acid (-COOH)', 'Ester (-COO-)', 'Benzene ring'],
         pdb: `COMPND    ASPIRIN
 ATOM      1  C1  ASP     1       0.000   0.000   0.000  1.00  0.00           C
 ATOM      2  C2  ASP     1       1.400   0.000   0.000  1.00  0.00           C
@@ -93,6 +109,9 @@ END`
     'menthol': {
         color: '#10b981',
         emoji: '🌿',
+        formula: 'C₁₀H₂₀O',
+        skeletal: 'Cyclohexane ring with methyl, isopropyl, and hydroxyl groups',
+        functionalGroups: ['Hydroxyl (-OH)', 'Cyclohexane ring', 'Isopropyl group'],
         pdb: `COMPND    MENTHOL
 ATOM      1  C1  MEN     1       0.000   0.000   0.000  1.00  0.00           C
 ATOM      2  C2  MEN     1       1.500   0.000   0.000  1.00  0.00           C
@@ -110,6 +129,9 @@ END`
     'vanillin': {
         color: '#d97706',
         emoji: '🍦',
+        formula: 'C₈H₈O₃',
+        skeletal: 'Benzene ring with aldehyde, methoxy, and hydroxyl groups',
+        functionalGroups: ['Aldehyde (-CHO)', 'Methoxy (-OCH₃)', 'Hydroxyl (-OH)', 'Benzene ring'],
         pdb: `COMPND    VANILLIN
 ATOM      1  C1  VAN     1       0.000   0.000   0.000  1.00  0.00           C
 ATOM      2  C2  VAN     1       1.400   0.000   0.000  1.00  0.00           C
@@ -127,6 +149,9 @@ END`
     'ethanol': {
         color: '#3b82f6',
         emoji: '🧪',
+        formula: 'C₂H₆O',
+        skeletal: 'Two-carbon chain with terminal hydroxyl group',
+        functionalGroups: ['Hydroxyl (-OH)', 'Methyl (-CH₃)'],
         pdb: `COMPND    ETHANOL
 ATOM      1  C1  ETH     1       0.000   0.000   0.000  1.00  0.00           C
 ATOM      2  C2  ETH     1       1.500   0.000   0.000  1.00  0.00           C
@@ -142,6 +167,9 @@ END`
     'methane': {
         color: '#6366f1',
         emoji: '⚛️',
+        formula: 'CH₄',
+        skeletal: 'Single carbon atom with four hydrogen atoms (tetrahedral)',
+        functionalGroups: ['None - simplest hydrocarbon'],
         pdb: `COMPND    METHANE
 ATOM      1  C   CH4     1       0.000   0.000   0.000  1.00  0.00           C
 ATOM      2  H1  CH4     1       0.629   0.629   0.629  1.00  0.00           H
@@ -153,6 +181,9 @@ END`
     'benzene': {
         color: '#ec4899',
         emoji: '⬡',
+        formula: 'C₆H₆',
+        skeletal: 'Regular hexagon with alternating double bonds (aromatic)',
+        functionalGroups: ['Aromatic ring (6π electrons)'],
         pdb: `COMPND    BENZENE
 ATOM      1  C1  BEN     1       1.400   0.000   0.000  1.00  0.00           C
 ATOM      2  C2  BEN     1       0.700   1.212   0.000  1.00  0.00           C
@@ -171,6 +202,9 @@ END`
     'limonene': {
         color: '#eab308',
         emoji: '🍋',
+        formula: 'C₁₀H₁₆',
+        skeletal: 'Cyclohexene ring with isopropenyl group (terpene)',
+        functionalGroups: ['Cyclohexene ring', 'C=C double bond', 'Isopropenyl group'],
         pdb: `COMPND    LIMONENE
 ATOM      1  C1  LIM     1       0.000   0.000   0.000  1.00  0.00           C
 ATOM      2  C2  LIM     1       1.400   0.000   0.000  1.00  0.00           C
@@ -187,6 +221,9 @@ END`
     'muscone': {
         color: '#a855f7',
         emoji: '🦌',
+        formula: 'C₁₆H₃₀O',
+        skeletal: '15-membered macrocyclic ketone ring',
+        functionalGroups: ['Ketone (C=O)', 'Large ring (macrocycle)', 'Methyl group'],
         pdb: `COMPND    MUSCONE
 ATOM      1  C1  MUS     1       0.000   0.000   0.000  1.00  0.00           C
 ATOM      2  C2  MUS     1       1.500   0.000   0.000  1.00  0.00           C
@@ -209,6 +246,9 @@ END`
     'civetone': {
         color: '#f472b6',
         emoji: '🐱',
+        formula: 'C₁₇H₃₀O',
+        skeletal: '17-membered macrocyclic ketone with cis double bond',
+        functionalGroups: ['Ketone (C=O)', 'Macrocycle', 'C=C double bond (cis)'],
         pdb: `COMPND    CIVETONE
 ATOM      1  C1  CIV     1       0.000   0.000   0.000  1.00  0.00           C
 ATOM      2  C2  CIV     1       1.500   0.000   0.000  1.00  0.00           C
@@ -233,6 +273,9 @@ END`
     'frontalin': {
         color: '#22c55e',
         emoji: '🪲',
+        formula: 'C₈H₁₄O₂',
+        skeletal: 'Bicyclic ketal (two fused rings with oxygens)',
+        functionalGroups: ['Ketal (C bonded to 2 oxygens)', 'Bicyclic ring'],
         pdb: `COMPND    FRONTALIN
 ATOM      1  C1  FRO     1       0.000   0.000   0.000  1.00  0.00           C
 ATOM      2  C2  FRO     1       1.500   0.000   0.000  1.00  0.00           C
@@ -247,6 +290,9 @@ END`
     'thioacetone': {
         color: '#fbbf24',
         emoji: '💀',
+        formula: 'C₃H₆S',
+        skeletal: 'Three-carbon with central thioketone (C=S)',
+        functionalGroups: ['Thioketone (C=S)', 'Methyl groups'],
         pdb: `COMPND    THIOACETONE
 ATOM      1  C1  THI     1       0.000   0.000   0.000  1.00  0.00           C
 ATOM      2  C2  THI     1       1.500   0.000   0.000  1.00  0.00           C
@@ -257,6 +303,9 @@ END`
     'azulene': {
         color: '#3b82f6',
         emoji: '💎',
+        formula: 'C₁₀H₈',
+        skeletal: 'Fused 5-membered and 7-membered aromatic rings (blue color!)',
+        functionalGroups: ['Non-benzenoid aromatic', 'Fused ring system'],
         pdb: `COMPND    AZULENE
 ATOM      1  C1  AZU     1       0.000   0.000   0.000  1.00  0.00           C
 ATOM      2  C2  AZU     1       1.400   0.000   0.000  1.00  0.00           C
@@ -273,6 +322,9 @@ END`
     'retinal': {
         color: '#f97316',
         emoji: '👁️',
+        formula: 'C₂₀H₂₈O',
+        skeletal: 'Conjugated polyene chain with cyclohexene ring and aldehyde',
+        functionalGroups: ['Aldehyde (-CHO)', 'Conjugated double bonds', 'Cyclohexene ring'],
         pdb: `COMPND    RETINAL
 ATOM      1  C1  RET     1       0.000   0.000   0.000  1.00  0.00           C
 ATOM      2  C2  RET     1       1.400   0.000   0.000  1.00  0.00           C
@@ -518,7 +570,7 @@ export default function MoleculeViewer({
                 }}>
                     {hasMolecule ? (
                         <>
-                            <span style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>
+                            <span style={{ fontSize: '3.5rem', marginBottom: '0.75rem' }}>
                                 {molecule.emoji}
                             </span>
                             <h4 style={{
@@ -526,16 +578,60 @@ export default function MoleculeViewer({
                                 fontSize: '1.2rem',
                                 color: 'var(--neutral-100)',
                                 fontWeight: 600,
-                                marginBottom: '0.5rem',
+                                marginBottom: '0.25rem',
                             }}>
                                 {moleculeName}
                             </h4>
+                            {/* Chemical Formula */}
+                            <div style={{
+                                fontSize: '1.1rem',
+                                fontWeight: 600,
+                                color: molecule.color,
+                                marginBottom: '0.5rem',
+                                fontFamily: 'monospace',
+                            }}>
+                                {molecule.formula}
+                            </div>
+                            {/* Skeletal Description */}
+                            <p style={{
+                                margin: '0 0 0.75rem',
+                                fontSize: '0.8rem',
+                                color: 'var(--neutral-400)',
+                                lineHeight: 1.4,
+                                textAlign: 'center',
+                            }}>
+                                📐 {molecule.skeletal}
+                            </p>
+                            {/* Functional Groups */}
+                            <div style={{
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                                gap: '6px',
+                                justifyContent: 'center',
+                                marginBottom: '1rem',
+                            }}>
+                                {molecule.functionalGroups.map((group, i) => (
+                                    <span
+                                        key={i}
+                                        style={{
+                                            background: `${molecule.color}20`,
+                                            color: molecule.color,
+                                            padding: '3px 8px',
+                                            borderRadius: '6px',
+                                            fontSize: '0.7rem',
+                                            fontWeight: 500,
+                                        }}
+                                    >
+                                        {group}
+                                    </span>
+                                ))}
+                            </div>
                             {description && (
                                 <p style={{
-                                    margin: '0 0 1rem',
-                                    fontSize: '0.85rem',
-                                    color: 'var(--neutral-400)',
-                                    lineHeight: 1.5,
+                                    margin: '0 0 0.75rem',
+                                    fontSize: '0.8rem',
+                                    color: 'var(--neutral-500)',
+                                    lineHeight: 1.4,
                                 }}>
                                     {description}
                                 </p>
@@ -615,16 +711,21 @@ export default function MoleculeViewer({
                     }}>
                         <span>{molecule?.emoji || '🧬'}</span>
                         {moleculeName}
-                    </h4>
-                    {description && (
-                        <p style={{
-                            margin: '0.25rem 0 0',
-                            fontSize: '0.85rem',
-                            color: 'var(--neutral-400)'
+                        <span style={{
+                            fontFamily: 'monospace',
+                            color: molecule?.color || 'var(--primary-400)',
+                            fontSize: '0.95rem',
                         }}>
-                            {description}
-                        </p>
-                    )}
+                            {molecule?.formula}
+                        </span>
+                    </h4>
+                    <p style={{
+                        margin: '0.25rem 0 0',
+                        fontSize: '0.8rem',
+                        color: 'var(--neutral-400)',
+                    }}>
+                        📐 {molecule?.skeletal || description}
+                    </p>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <span className="badge">3D Interactive</span>
