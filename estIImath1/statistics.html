@@ -1,0 +1,1966 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EST Math - Statistics & Data Analysis</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        :root {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --border: #334155;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --green: #10b981;
+            --blue: #3b82f6;
+            --purple: #8b5cf6;
+            --rose: #f43f5e
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh
+        }
+
+        .sidebar {
+            width: 260px;
+            background: var(--card);
+            border-right: 1px solid var(--border);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto
+        }
+
+        .main {
+            flex: 1;
+            margin-left: 260px;
+            padding: 2rem
+        }
+
+        .logo {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .logo h1 {
+            font-size: 1.4rem;
+            font-weight: 800
+        }
+
+        .logo span {
+            color: var(--green)
+        }
+
+        .nav {
+            padding: 1rem
+        }
+
+        .nav-btn {
+            width: 100%;
+            padding: .75rem 1rem;
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            font-size: .9rem;
+            text-align: left;
+            border-radius: .5rem;
+            cursor: pointer;
+            margin-bottom: .25rem;
+            transition: all .2s
+        }
+
+        .nav-btn:hover {
+            background: var(--border);
+            color: var(--text)
+        }
+
+        .nav-btn.active {
+            background: var(--green);
+            color: #fff
+        }
+
+        .nav-section {
+            font-size: .65rem;
+            font-weight: 700;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin: 1rem 0 .5rem
+        }
+
+        .timer-box {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: #0f172a;
+            border-top: 1px solid var(--border)
+        }
+
+        .timer {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: monospace;
+            text-align: center;
+            margin-bottom: .5rem
+        }
+
+        .timer-btn {
+            width: 100%;
+            padding: .5rem;
+            border: none;
+            border-radius: .5rem;
+            font-weight: 700;
+            font-size: .75rem;
+            cursor: pointer
+        }
+
+        .timer-btn.start {
+            background: var(--green);
+            color: #fff
+        }
+
+        .timer-btn.pause {
+            background: var(--rose);
+            color: #fff
+        }
+
+        .theory-header {
+            text-align: center;
+            margin-bottom: 2rem
+        }
+
+        .theory-badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, .2);
+            color: var(--green);
+            padding: .5rem 1rem;
+            border-radius: 2rem;
+            font-size: .7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem
+        }
+
+        .theory-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: .5rem
+        }
+
+        .theory-header p {
+            color: var(--muted);
+            font-size: 1.1rem
+        }
+
+        .theory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem
+        }
+
+        .theory-card {
+            background: var(--card);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border)
+        }
+
+        .theory-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem
+        }
+
+        .theory-card p {
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: .5rem
+        }
+
+        .formula {
+            background: var(--bg);
+            padding: 1rem;
+            border-radius: .5rem;
+            margin: 1rem 0;
+            text-align: center;
+            font-size: 1.1rem
+        }
+
+        .theory-full {
+            background: var(--card);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem
+        }
+
+        .theory-full h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--green)
+        }
+
+        .theory-full h3 {
+            font-size: 1.1rem;
+            margin: 1.5rem 0 .75rem;
+            color: var(--blue)
+        }
+
+        .theory-full p,
+        .theory-full li {
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: .5rem
+        }
+
+        .theory-full ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem
+        }
+
+        .example {
+            background: var(--bg);
+            padding: 1rem;
+            border-radius: .5rem;
+            margin: 1rem 0;
+            border-left: 3px solid var(--purple)
+        }
+
+        .tip {
+            background: rgba(16, 185, 129, .1);
+            padding: 1rem;
+            border-radius: .5rem;
+            margin: 1rem 0;
+            border-left: 3px solid var(--green)
+        }
+
+        .warning {
+            background: rgba(244, 63, 94, .1);
+            padding: 1rem;
+            border-radius: .5rem;
+            margin: 1rem 0;
+            border-left: 3px solid var(--rose)
+        }
+
+        .mode-toggle {
+            display: flex;
+            background: var(--bg);
+            padding: .25rem;
+            border-radius: .5rem;
+            margin-bottom: 1rem
+        }
+
+        .mode-btn {
+            flex: 1;
+            padding: .5rem;
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            font-weight: 600;
+            font-size: .85rem;
+            border-radius: .25rem;
+            cursor: pointer
+        }
+
+        .mode-btn.active {
+            background: var(--card);
+            color: var(--green)
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .quiz-header h2 {
+            font-size: 1.75rem;
+            font-weight: 800
+        }
+
+        .quiz-header p {
+            color: var(--muted)
+        }
+
+        .question-card {
+            background: var(--card);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            margin-bottom: 1.5rem
+        }
+
+        .question-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem
+        }
+
+        .question-id {
+            font-size: .75rem;
+            font-weight: 800;
+            color: var(--muted)
+        }
+
+        .question-topic {
+            font-size: .7rem;
+            font-weight: 600;
+            background: var(--bg);
+            padding: .25rem .75rem;
+            border-radius: 1rem;
+            color: var(--muted)
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            line-height: 1.6
+        }
+
+        .chart-container {
+            background: var(--bg);
+            border-radius: .5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            display: flex;
+            justify-content: center
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem
+        }
+
+        .option-btn {
+            width: 100%;
+            padding: .875rem 1rem;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text);
+            font-size: .95rem;
+            text-align: left;
+            border-radius: .75rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            transition: all .2s
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background: var(--border)
+        }
+
+        .option-btn .letter {
+            font-weight: 700;
+            font-size: .8rem;
+            color: var(--muted);
+            min-width: 20px
+        }
+
+        .option-btn.selected {
+            background: var(--border);
+            border-color: var(--text)
+        }
+
+        .option-btn.correct {
+            background: rgba(34, 197, 94, .2);
+            border-color: #22c55e;
+            color: #22c55e
+        }
+
+        .option-btn.incorrect {
+            background: rgba(239, 68, 68, .2);
+            border-color: #ef4444;
+            color: #ef4444
+        }
+
+        .option-btn.dimmed {
+            opacity: .5
+        }
+
+        .rationale {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--bg);
+            border-radius: .75rem;
+            border: 1px solid var(--border)
+        }
+
+        .rationale-label {
+            font-size: .7rem;
+            font-weight: 700;
+            color: var(--purple);
+            text-transform: uppercase;
+            margin-bottom: .5rem
+        }
+
+        .rationale-text {
+            color: var(--muted);
+            line-height: 1.6
+        }
+
+        .submit-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 1rem 2rem;
+            background: var(--green);
+            color: #fff;
+            border: none;
+            border-radius: 2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, .4);
+            z-index: 50
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, .9);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 200
+        }
+
+        .modal {
+            background: var(--card);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            text-align: center;
+            max-width: 400px;
+            width: 90%
+        }
+
+        .modal h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: .5rem
+        }
+
+        .modal p {
+            color: var(--muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .15em;
+            margin-bottom: 1.5rem
+        }
+
+        .modal button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg);
+            color: #fff;
+            border: none;
+            border-radius: .75rem;
+            font-weight: 700;
+            cursor: pointer
+        }
+
+        .hidden {
+            display: none !important
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg)
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px
+        }
+
+        .print-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 14rem;
+            padding: 1rem 1.5rem;
+            background: var(--purple);
+            color: #fff;
+            border: none;
+            border-radius: 2rem;
+            font-size: .9rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, .4);
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            gap: .5rem
+        }
+
+        /* Mobile Menu Toggle Button */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1000;
+            background: var(--green);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, .4);
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0 !important;
+                padding: 1rem;
+                padding-top: 4rem;
+            }
+
+            .theory-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .theory-card {
+                padding: 1rem;
+            }
+
+            .theory-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .theory-full {
+                padding: 1rem;
+            }
+
+            .formula {
+                font-size: 0.85rem;
+                overflow-x: auto;
+                padding: 0.75rem;
+            }
+
+            .example,
+            .tip,
+            .warning {
+                padding: 0.75rem;
+                font-size: 0.9rem;
+            }
+
+            .question-card {
+                padding: 1rem;
+            }
+
+            .options {
+                flex-direction: column;
+            }
+
+            .option-btn {
+                width: 100%;
+            }
+
+            .quiz-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .print-btn {
+                bottom: 1rem;
+                right: 1rem;
+                padding: 0.75rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .submit-btn {
+                bottom: 1rem;
+                right: 5rem;
+            }
+
+            .chart-container svg {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+
+        /* Print Styles - Makes content printable even in Google Sites iframe */
+        @media print {
+
+            /* Reset positioning and show all content */
+            * {
+                position: static !important;
+                float: none !important;
+            }
+
+            /* Hide non-essential elements */
+            .sidebar,
+            .menu-toggle,
+            .print-btn,
+            .submit-btn,
+            .timer-box,
+            .nav,
+            .mode-toggle,
+            button {
+                display: none !important;
+            }
+
+            /* Make main content full width */
+            .main {
+                margin-left: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+            }
+
+            /* Set print-friendly colors */
+            body,
+            .main,
+            .question-card,
+            .theory-card,
+            .theory-full,
+            .chart-container {
+                background: white !important;
+                color: black !important;
+            }
+
+            /* Show all questions */
+            .question-card {
+                display: block !important;
+                page-break-inside: avoid;
+                border: 1px solid #ccc !important;
+                margin-bottom: 1rem !important;
+                padding: 1rem !important;
+            }
+
+            /* Show all rationales for print */
+            .rationale {
+                display: block !important;
+                background: #f5f5f5 !important;
+                border-left: 3px solid #333 !important;
+                color: black !important;
+            }
+
+            /* Handle page breaks */
+            .theory-full {
+                page-break-before: always;
+            }
+
+            h2,
+            h3 {
+                page-break-after: avoid;
+            }
+
+            /* Make sure formulas are visible */
+            .formula {
+                background: #f0f0f0 !important;
+                color: black !important;
+            }
+
+            /* Chart colors for print */
+            .chart-container svg text {
+                fill: black !important;
+            }
+
+            /* Hidden view handling */
+            .hidden {
+                display: block !important;
+            }
+
+            #theoryView,
+            #quizView {
+                display: block !important;
+            }
+        }
+
+        /* Small mobile adjustments */
+        @media (max-width: 480px) {
+            .theory-header h1 {
+                font-size: 1.2rem;
+            }
+
+            .formula {
+                font-size: 0.8rem;
+            }
+
+            .theory-full h2 {
+                font-size: 1.1rem;
+            }
+
+            .theory-full h3 {
+                font-size: 1rem;
+            }
+
+            body {
+                font-size: 14px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: #fff !important;
+                color: #000 !important;
+                font-size: 11pt;
+            }
+
+            .sidebar,
+            .timer,
+            .mode-toggle,
+            .submit-btn,
+            .print-btn,
+            .nav,
+            .logo,
+            .progress {
+                display: none !important;
+            }
+
+            .container {
+                display: block !important;
+            }
+
+            .main-content {
+                margin-left: 0 !important;
+                padding: 0 !important;
+            }
+
+            .question-card {
+                background: #fff !important;
+                border: 1px solid #ccc !important;
+                page-break-inside: avoid;
+                margin-bottom: 1rem;
+                padding: 1rem;
+            }
+
+            .question-text,
+            .question-meta,
+            .question-id,
+            .question-topic {
+                color: #000 !important;
+            }
+
+            .option-btn {
+                background: #f5f5f5 !important;
+                color: #000 !important;
+                border: 1px solid #ccc !important;
+                padding: .5rem !important;
+                margin: .25rem 0 !important;
+            }
+
+            .rationale {
+                display: block !important;
+                background: #f9f9f9 !important;
+                border: 1px solid #ddd !important;
+                color: #333 !important;
+            }
+
+            .rationale-label {
+                color: #6b21a8 !important;
+            }
+
+            .rationale-text {
+                color: #333 !important;
+            }
+
+            .chart-container {
+                background: #fff !important;
+                border: 1px solid #ccc !important;
+            }
+
+            .chart-container svg text {
+                fill: #333 !important;
+            }
+
+            .chart-container svg line,
+            .chart-container svg rect {
+                stroke: #666 !important;
+            }
+
+            .options {
+                display: block !important;
+            }
+
+            .theoryView,
+            .modal-overlay {
+                display: none !important;
+            }
+
+            .quiz-header h2 {
+                color: #000 !important;
+                font-size: 16pt !important;
+            }
+
+            .quiz-header p {
+                color: #666 !important;
+            }
+
+            h1,
+            h2,
+            h3 {
+                color: #000 !important;
+            }
+
+            @page {
+                margin: 1.5cm;
+                size: A4;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>📊 <span>EST</span> MATH</h1>
+                <p style="font-size:.75rem;color:var(--muted);margin-top:.25rem">Statistics & Data Analysis</p>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn active" onclick="showTheory()">📚 Theory Hub</button>
+                <div class="nav-section">Practice Sections</div>
+                <button class="nav-btn" onclick="showQuiz('A')">Section A: Descriptive</button>
+                <button class="nav-btn" onclick="showQuiz('B')">Section B: Data Rep</button>
+                <button class="nav-btn" onclick="showQuiz('C')">Section C: Bivariate</button>
+                <button class="nav-btn" onclick="showQuiz('D')">Section D: Probability</button>
+                <div class="nav-section">Test Yourself</div>
+                <button class="nav-btn" onclick="showExam()" style="background:var(--orange);color:#fff">📝 Exam (10
+                    Random)</button>
+            </nav>
+            <div class="timer-box">
+                <div class="timer" id="timer">60:00</div>
+                <button class="timer-btn start" id="timerBtn" onclick="toggleTimer()">START TIMER</button>
+            </div>
+        </aside>
+        <main class="main">
+            <div id="theoryView">
+                <div class="theory-header">
+                    <div class="theory-badge">2026 Specification</div>
+                    <h1>EST Level 1 Data Analysis</h1>
+                    <p>200 Practice Questions with Detailed Explanations</p>
+                    <button class="print-btn" onclick="printTheory()"
+                        style="position:relative;bottom:auto;right:auto;margin-top:1rem">🖨️ Print Theory</button>
+                </div>
+                <div class="theory-grid">
+                    <div class="theory-card">
+                        <h3>📊 Descriptive Statistics</h3>
+                        <p><strong>Central Tendency:</strong> Mean, Median, Mode</p>
+                        <p><strong>Spread:</strong> Range, IQR, Variance, SD</p>
+                        <div class="formula">\(\bar{x} = \frac{\sum x_i}{n}\) &nbsp; \(\sigma =
+                            \sqrt{\frac{\sum(x-\bar{x})^2}{n}}\)</div>
+                    </div>
+                    <div class="theory-card">
+                        <h3>📈 Bivariate Data</h3>
+                        <p><strong>Regression:</strong> \(y = ax + b\)</p>
+                        <p><strong>Correlation:</strong> r ∈ [-1, 1]</p>
+                        <div class="formula">\(r^2\) = % variance explained</div>
+                    </div>
+                    <div class="theory-card">
+                        <h3>📉 Data Representation</h3>
+                        <p>Histograms, Box Plots, Stem-Leaf, Scatter</p>
+                        <div class="formula">Right Skew: Mean > Median</div>
+                    </div>
+                    <div class="theory-card">
+                        <h3>🎲 Probability</h3>
+                        <p>Permutations vs Combinations</p>
+                        <div class="formula">\(P_n^r = \frac{n!}{(n-r)!}\) &nbsp; \(C_n^r = \frac{n!}{r!(n-r)!}\)</div>
+                    </div>
+                </div>
+
+                <div class="theory-full">
+                    <h2>📊 Section A: Descriptive Statistics (Q1-50)</h2>
+
+                    <h3>1. Measures of Center</h3>
+                    <p><strong>Mean (Arithmetic Average):</strong> The sum of all values divided by the count.</p>
+                    <div class="formula">$$\bar{x} = \frac{\sum x_i}{n} = \frac{x_1 + x_2 + ... + x_n}{n}$$</div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> Find the mean of {4, 8, 9, 12, 17}
+                        <br>$$\bar{x} = \frac{4 + 8 + 9 + 12 + 17}{5} = \frac{50}{5} = 10$$
+                    </div>
+
+                    <p><strong>Median:</strong> The middle value when data is ordered. For even \(n\), average the two
+                        middle values.</p>
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> Find median of {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+                        <br>Middle values: 5 and 6 (even count)
+                        <br>$$\text{Median} = \frac{5 + 6}{2} = 5.5$$
+                    </div>
+
+                    <p><strong>Mode:</strong> The most frequently occurring value. A dataset can be unimodal, bimodal,
+                        or have no mode.</p>
+
+                    <div class="tip"><strong>💡 When to use which:</strong>
+                        <br>• Mean: For symmetric data without outliers
+                        <br>• Median: For skewed data or data with outliers (e.g., house prices)
+                        <br>• Mode: For categorical data or finding most common value
+                    </div>
+
+                    <h3>2. Measures of Spread</h3>
+                    <p><strong>Range:</strong> \(\text{Range} = \text{Max} - \text{Min}\)</p>
+
+                    <p><strong>Interquartile Range (IQR):</strong> The range of the middle 50% of data.</p>
+                    <div class="formula">$$IQR = Q_3 - Q_1$$</div>
+
+                    <p><strong>Variance:</strong> Average of squared deviations from the mean.</p>
+                    <div class="formula">$$\sigma^2 = \frac{\sum(x_i - \bar{x})^2}{n} \quad \text{(population)} \qquad
+                        s^2 = \frac{\sum(x_i - \bar{x})^2}{n-1} \quad \text{(sample)}$$</div>
+
+                    <p><strong>Standard Deviation:</strong> Square root of variance.</p>
+                    <div class="formula">$$\sigma = \sqrt{\sigma^2} \qquad s = \sqrt{s^2}$$</div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> If \(\sigma^2 = 16\), find \(\sigma\)
+                        <br>$$\sigma = \sqrt{16} = 4$$
+                    </div>
+
+                    <div class="warning"><strong>⚠️ Key Facts:</strong>
+                        <br>• SD = 0 means all values are identical
+                        <br>• SD can NEVER be negative
+                        <br>• SD ≤ Range always
+                    </div>
+
+                    <h3>3. Transformations</h3>
+                    <p>If \(y = ax + b\):</p>
+                    <div class="formula">$$\bar{y} = a\bar{x} + b \qquad \sigma_y = |a| \cdot \sigma_x$$</div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> Data is multiplied by 3 and then 5 is added. How do mean and
+                        SD change?
+                        <br>• Mean is multiplied by 3, then 5 is added: \(\bar{y} = 3\bar{x} + 5\)
+                        <br>• SD is only multiplied by 3 (adding doesn't change spread): \(\sigma_y = 3\sigma_x\)
+                    </div>
+
+                    <h3>4. Z-Score & Empirical Rule</h3>
+                    <p><strong>Z-Score:</strong> How many standard deviations from the mean.</p>
+                    <div class="formula">$$z = \frac{x - \mu}{\sigma}$$</div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> \(\mu = 50\), \(\sigma = 10\). Find z-score for \(x = 70\)
+                        <br>$$z = \frac{70 - 50}{10} = \frac{20}{10} = 2$$
+                        <br>This means 70 is 2 standard deviations above the mean.
+                    </div>
+
+                    <p><strong>Empirical Rule (68-95-99.7):</strong> For normal distributions:</p>
+                    <div class="formula">
+                        68% of data within \(\mu \pm 1\sigma\)<br>
+                        95% of data within \(\mu \pm 2\sigma\)<br>
+                        99.7% of data within \(\mu \pm 3\sigma\)
+                    </div>
+
+                    <h3>5. Outliers</h3>
+                    <p>Using the 1.5×IQR rule:</p>
+                    <div class="formula">
+                        $$\text{Lower Fence} = Q_1 - 1.5 \times IQR$$
+                        $$\text{Upper Fence} = Q_3 + 1.5 \times IQR$$
+                    </div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> \(Q_1 = 30\), \(Q_3 = 50\). Is 85 an outlier?
+                        <br>\(IQR = 50 - 30 = 20\)
+                        <br>\(\text{Upper Fence} = 50 + 1.5(20) = 50 + 30 = 80\)
+                        <br>Since \(85 > 80\), yes, 85 is an outlier! ✓
+                    </div>
+
+                    <h3>6. Weighted Mean</h3>
+                    <div class="formula">$$\bar{x}_w = \frac{\sum w_i x_i}{\sum w_i}$$</div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> Calculate weighted mean: 10 (weight 0.2), 20 (weight 0.8)
+                        <br>$$\bar{x}_w = 10(0.2) + 20(0.8) = 2 + 16 = 18$$
+                    </div>
+
+                    <h3>7. Coefficient of Variation</h3>
+                    <div class="formula">$$CV = \frac{\sigma}{\mu} \times 100\%$$</div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> \(\mu = 100\), \(\sigma = 5\). Find CV.
+                        <br>$$CV = \frac{5}{100} \times 100\% = 5\%$$
+                    </div>
+                </div>
+
+                <div class="theory-full">
+                    <h2>📉 Section B: Data Representation (Q51-100)</h2>
+
+                    <h3>1. Box Plots (Box-and-Whisker)</h3>
+                    <p>Shows the <strong>5-number summary</strong>: Min, Q1, Median, Q3, Max</p>
+                    <div class="formula">
+                        📊 Box Plot Structure:<br>
+                        • Line inside box = <strong>Median</strong> (NOT mean!)<br>
+                        • Box edges = Q1 and Q3<br>
+                        • Whiskers = Min and Max (or 1.5×IQR fences)<br>
+                        • Points beyond whiskers = Outliers
+                    </div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> A box plot shows whiskers from 10 to 90. What is the range?
+                        <br>$$\text{Range} = \text{Max} - \text{Min} = 90 - 10 = 80$$
+                    </div>
+
+                    <div class="tip"><strong>💡 Reading Skewness from Box Plot:</strong>
+                        <br>• Median closer to Q1 → Right (positive) skew
+                        <br>• Median closer to Q3 → Left (negative) skew
+                        <br>• Median in center → Symmetric
+                    </div>
+
+                    <div class="warning"><strong>⚠️ What Box Plots DON'T show:</strong> Mode, Mean, Sample size (n)
+                    </div>
+
+                    <h3>2. Histograms</h3>
+                    <p>For <strong>continuous (quantitative) data</strong>. Bars touch (no gaps).</p>
+                    <div class="formula">
+                        • Bar height = Frequency of that class<br>
+                        • Bar width = Class width (bin width)<br>
+                        • Bar area ∝ Frequency
+                    </div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> Classes are 0-9, 10-19, 20-29. What is the bin width?
+                        <br>$$\text{Bin Width} = 10 - 0 = 10$$
+                    </div>
+
+                    <h3>3. Skewness</h3>
+                    <div class="formula">
+                        <strong>Right Skew (Positive):</strong> Tail points right, Mean > Median<br>
+                        <strong>Left Skew (Negative):</strong> Tail points left, Mean < Median<br>
+                            <strong>Symmetric:</strong> Mean ≈ Median
+                    </div>
+
+                    <div class="tip"><strong>💡 Memory Trick:</strong> "The mean chases the tail"</div>
+
+                    <h3>4. Pie Charts</h3>
+                    <div class="formula">$$\text{Angle} = \text{Percentage} \times 360°$$</div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> A sector represents 25%. What is its angle?
+                        <br>$$\text{Angle} = 0.25 \times 360° = 90°$$
+                    </div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> 10 boys and 20 girls. What angle for boys?
+                        <br>Boys = \(\frac{10}{30} = \frac{1}{3}\)
+                        <br>$$\text{Angle} = \frac{1}{3} \times 360° = 120°$$
+                    </div>
+
+                    <h3>5. Stem-and-Leaf Plots</h3>
+                    <p>Shows individual data values while displaying distribution shape.</p>
+                    <div class="example">
+                        <strong>📝 Example:</strong> Stem 4 with leaves 1, 3, 5 represents: 41, 43, 45
+                    </div>
+
+                    <div class="tip"><strong>💡 Advantage:</strong> Preserves original data values (unlike histograms)
+                    </div>
+
+                    <h3>6. Cumulative Frequency (Ogive)</h3>
+                    <p>Y-axis = cumulative (running) frequency. Used to find median and percentiles.</p>
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> \(n = 100\). Where is the median on the ogive?
+                        <br>Median is at 50th percentile = cumulative frequency of 50
+                    </div>
+
+                    <h3>7. Other Graphs</h3>
+                    <p><strong>Bar Chart:</strong> For categorical data. Bars DON'T touch.</p>
+                    <p><strong>Line Graph:</strong> For time series data (change over time).</p>
+                    <p><strong>Scatter Plot:</strong> For showing relationship between two variables.</p>
+                    <p><strong>Dot Plot:</strong> Height of stack = frequency (mode = tallest stack).</p>
+                </div>
+
+                <div class="theory-full">
+                    <h2>📈 Section C: Bivariate Data (Q101-150)</h2>
+
+                    <h3>1. Linear Regression</h3>
+                    <div class="formula">$$\hat{y} = ax + b$$</div>
+                    <p>Where:
+                        <br>• \(a\) = slope = rate of change = \(\frac{\Delta y}{\Delta x}\)
+                        <br>• \(b\) = y-intercept = value when \(x = 0\)
+                    </p>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> Given \(\hat{y} = 2.5x + 12\). If \(x = 4\), find
+                        \(\hat{y}\)
+                        <br>$$\hat{y} = 2.5(4) + 12 = 10 + 12 = 22$$
+                    </div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> Find slope between \((1, 2)\) and \((3, 8)\)
+                        <br>$$m = \frac{y_2 - y_1}{x_2 - x_1} = \frac{8 - 2}{3 - 1} = \frac{6}{2} = 3$$
+                    </div>
+
+                    <div class="tip"><strong>💡 Slope Interpretation:</strong>
+                        <br>Slope of -3 means: For every 1 unit increase in x, y decreases by 3.
+                    </div>
+
+                    <h3>2. Correlation Coefficient (r)</h3>
+                    <div class="formula">$$-1 \leq r \leq 1$$</div>
+                    <p>
+                        • \(|r|\) = strength (closer to 1 = stronger)<br>
+                        • Sign = direction (+ = positive, - = negative)<br>
+                        • \(r = 0\) means no LINEAR relationship
+                    </p>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> Which r indicates strongest relationship: 0.8, -0.9, 0.1, 0?
+                        <br>Answer: \(r = -0.9\) because \(|-0.9| = 0.9\) is largest.
+                    </div>
+
+                    <div class="warning"><strong>⚠️ CRITICAL:</strong> Correlation ≠ Causation!<br>
+                        Example: Ice cream sales correlate with shark attacks (lurking variable: temperature)
+                    </div>
+
+                    <h3>3. Coefficient of Determination (r²)</h3>
+                    <div class="formula">$$r^2 = \text{Proportion of variance in y explained by x}$$</div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> If \(r = 0.5\), what percent of variance is explained?
+                        <br>$$r^2 = 0.5^2 = 0.25 = 25\%$$
+                    </div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> \(r^2 = 0.81\), slope is negative. Find \(r\).
+                        <br>$$r = -\sqrt{0.81} = -0.9$$
+                        <br>(Negative because slope is negative)
+                    </div>
+
+                    <h3>4. Residuals</h3>
+                    <div class="formula">$$\text{Residual} = \text{Actual} - \text{Predicted} = y - \hat{y}$$</div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> Line is \(y = x\). For point \((2, 3)\), find residual.
+                        <br>Predicted: \(\hat{y} = 2\)
+                        <br>$$\text{Residual} = 3 - 2 = 1$$
+                    </div>
+
+                    <div class="tip"><strong>💡 Key Facts:</strong>
+                        <br>• Sum of residuals = 0 (for LSRL)
+                        <br>• Positive residual = actual > predicted (underestimate)
+                        <br>• Random residual plot = good model fit
+                    </div>
+
+                    <h3>5. Interpolation vs Extrapolation</h3>
+                    <div class="formula">
+                        <strong>Interpolation:</strong> Predicting WITHIN the data range → Safe ✓<br>
+                        <strong>Extrapolation:</strong> Predicting OUTSIDE the data range → Risky ⚠️
+                    </div>
+
+                    <h3>6. Important Properties</h3>
+                    <p>• LSRL always passes through \((\bar{x}, \bar{y})\)</p>
+                    <p>• Correlation is symmetric: \(corr(x,y) = corr(y,x)\)</p>
+                    <p>• \(r\) can NEVER exceed 1 or be less than -1</p>
+                </div>
+
+                <div class="theory-full">
+                    <h2>🎲 Section D: Probability (Q151-200)</h2>
+
+                    <h3>1. Factorials</h3>
+                    <div class="formula">$$n! = n \times (n-1) \times (n-2) \times ... \times 1$$</div>
+                    <p><strong>Special case:</strong> \(0! = 1\) (by definition)</p>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> Evaluate \(5!\)
+                        <br>$$5! = 5 \times 4 \times 3 \times 2 \times 1 = 120$$
+                    </div>
+
+                    <h3>2. Permutations (Order Matters)</h3>
+                    <div class="formula">$$_nP_r = \frac{n!}{(n-r)!}$$</div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> How many ways to choose President, VP, Secretary from 10
+                        people?
+                        <br>$$_{10}P_3 = 10 \times 9 \times 8 = 720$$
+                    </div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> Arrange 5 people in a line.
+                        <br>$$5! = 120 \text{ ways}$$
+                    </div>
+
+                    <h3>3. Combinations (Order Doesn't Matter)</h3>
+                    <div class="formula">$$_nC_r = \binom{n}{r} = \frac{n!}{r!(n-r)!}$$</div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> Choose a committee of 3 from 10 people.
+                        <br>$$_{10}C_3 = \frac{10!}{3! \cdot 7!} = \frac{10 \times 9 \times 8}{3 \times 2 \times 1} =
+                        120$$
+                    </div>
+
+                    <div class="tip"><strong>💡 Key Identities:</strong>
+                        <br>• \(_nC_0 = 1\) and \(_nC_n = 1\)
+                        <br>• \(_nC_r = _nC_{n-r}\)
+                        <br>• \(_nP_1 = n\)
+                    </div>
+
+                    <h3>4. Counting with Repetition</h3>
+                    <div class="formula">$$\text{With Repetition: } n^r$$</div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> 3-digit codes using digits 1-9 (with repetition).
+                        <br>$$9 \times 9 \times 9 = 9^3 = 729$$
+                    </div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> 3-digit codes using digits 1-9 (NO repetition).
+                        <br>$$9 \times 8 \times 7 = 504$$
+                    </div>
+
+                    <h3>5. Basic Probability</h3>
+                    <div class="formula">$$P(A) = \frac{\text{Favorable outcomes}}{\text{Total outcomes}}$$</div>
+                    <div class="formula">$$P(A') = 1 - P(A) \quad \text{(Complement)}$$</div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> P(drawing an Ace from a deck)?
+                        <br>$$P(\text{Ace}) = \frac{4}{52} = \frac{1}{13}$$
+                    </div>
+
+                    <h3>6. Probability Rules</h3>
+                    <p><strong>Addition Rule:</strong></p>
+                    <div class="formula">$$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$</div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> P(Red OR King) in a deck?
+                        <br>$$P(R \cup K) = \frac{26}{52} + \frac{4}{52} - \frac{2}{52} = \frac{28}{52}$$
+                        <br>(Subtract 2 red kings to avoid double counting)
+                    </div>
+
+                    <p><strong>Multiplication Rule (Independent Events):</strong></p>
+                    <div class="formula">$$P(A \cap B) = P(A) \times P(B)$$</div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> P(Rain) = 0.2, P(Traffic) = 0.5. If independent, P(Both)?
+                        <br>$$P(R \cap T) = 0.2 \times 0.5 = 0.1$$
+                    </div>
+
+                    <p><strong>Mutually Exclusive:</strong> Events that cannot happen together.</p>
+                    <div class="formula">$$P(A \cap B) = 0$$</div>
+
+                    <h3>7. Arrangements with Repeated Items</h3>
+                    <div class="formula">$$\frac{n!}{n_1! \cdot n_2! \cdot ... \cdot n_k!}$$</div>
+
+                    <div class="example">
+                        <strong>📝 Worked Example:</strong> Arrange the letters in "LEVEL"
+                        <br>5 letters: L appears 2×, E appears 2×, V appears 1×
+                        <br>$$\frac{5!}{2! \cdot 2!} = \frac{120}{4} = 30 \text{ ways}$$
+                    </div>
+
+                    <h3>8. Common Probability Values</h3>
+                    <div class="formula">
+                        • \(P = 0\) → Impossible<br>
+                        • \(P = 1\) → Certain<br>
+                        • \(0 \leq P \leq 1\) always<br>
+                        • \(\sum P = 1\) for a distribution
+                    </div>
+                </div>
+            </div>
+
+            <div id="quizView" class="hidden">
+                <div class="quiz-header">
+                    <div>
+                        <h2 id="sectionTitle">Section A</h2>
+                        <p id="questionCount">50 Questions</p>
+                    </div>
+                    <div class="mode-toggle">
+                        <button class="mode-btn active" onclick="setMode('study')">Study</button>
+                        <button class="mode-btn" onclick="setMode('exam')">Exam</button>
+                    </div>
+                </div>
+                <div id="questionsContainer"></div>
+                <button class="submit-btn hidden" id="submitBtn" onclick="submitExam()">Submit Exam</button>
+                <button class="print-btn hidden" id="printBtn" onclick="printQuestions()">🖨️ Print PDF</button>
+            </div>
+
+            <div class="modal-overlay hidden" id="resultModal">
+                <div class="modal">
+                    <h2 id="scoreText">0%</h2>
+                    <p>Accuracy</p>
+                    <button onclick="closeModal()">Review Answers</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const Q = [
+            // A: Descriptive Stats (1-50)
+            { i: 1, s: "A", t: "Mean", q: "Find the mean: \\(\\bar{x} = \\frac{\\sum x}{n}\\) for {4,8,9,12,17}", o: ["8", "9", "10", "11", "12"], a: 2, r: "\\(\\bar{x} = \\frac{4+8+9+12+17}{5} = \\frac{50}{5} = 10\\)" },
+            { i: 2, s: "A", t: "Missing Value", q: "Scores 78, 85, 90, 92. Need average \\(\\bar{x} = 88\\). What is the fifth score?", o: ["90", "92", "95", "97", "99"], a: 2, r: "Need total = \\(88 \\times 5 = 440\\). Have \\(78+85+90+92 = 345\\). Fifth = \\(440 - 345 = 95\\)" },
+            { i: 3, s: "A", t: "SD Concept", q: "If the standard deviation (SD) of a dataset is 0, what can you conclude?", o: ["Mean is 0", "Median is 0", "All values are identical", "Only one data point", "Range is 1"], a: 2, r: "SD = 0 means no spread, so all values must be the same." },
+            { i: 4, s: "A", t: "Median", q: "The median of the set \\(\\{x, 3, 1, 8, 10\\}\\) is 5. Find \\(x\\):", o: ["2", "4", "5", "6", "7"], a: 2, r: "Ordered: 1, 3, x, 8, 10. For median to be 5, x must equal 5." },
+            { i: 5, s: "A", t: "Skewness", q: "If Mean = 50 and Median = 60, the distribution is:", o: ["Symmetric", "Left Skewed", "Right Skewed", "Bimodal", "Uniform"], a: 1, r: "Mean < Median indicates left (negative) skew." },
+            { i: 6, s: "A", t: "Range", q: "The range of \\(\\{5, 12, 9, x\\}\\) is 15. If \\(x > 12\\), find \\(x\\):", o: ["15", "17", "20", "24", "27"], a: 2, r: "Range = x - 5 = 15, so x = 20." },
+            { i: 7, s: "A", t: "Mode", q: "Find the mode of \\(\\{2, 4, 4, 6, 7, 7, 7, 9\\}\\):", o: ["4", "6", "7", "9", "5.5"], a: 2, r: "7 appears 3 times (most frequent)." },
+            { i: 8, s: "A", t: "Scaling", q: "If each data value is multiplied by 3, how does the SD change?", o: ["Stays the same", "Increases by 3", "Multiplied by 3", "Multiplied by 9", "Squared"], a: 2, r: "SD scales by the absolute value of the multiplier: new SD = 3 × old SD." },
+            { i: 9, s: "A", t: "Shifting", q: "If 5 is added to each data value, how does the range change?", o: ["Increases by 5", "Increases by 25", "Stays the same", "Multiplied by 5", "Becomes 0"], a: 2, r: "Adding a constant shifts all values equally, so range is unchanged." },
+            { i: 10, s: "A", t: "Sum", q: "If \\(\\bar{x} = 20\\) for \\(\\{a, b, c\\}\\), find \\(a + b + c\\)", o: ["20", "40", "60", "10", "Undef"], a: 2, r: "\\(\\sum x = n \\cdot \\bar{x} = 3 \\times 20 = 60\\)" },
+            { i: 11, s: "A", t: "Primes", q: "Find the mean of the first 6 primes: 2, 3, 5, 7, 11, 13", o: ["6.83", "7.0", "5.5", "9.0", "41"], a: 0, r: "\\(\\bar{x} = \\frac{2+3+5+7+11+13}{6} = \\frac{41}{6} \\approx 6.83\\)" },
+            { i: 12, s: "A", t: "Weighted Mean", q: "Find \\(\\bar{x}_w\\): Value 10 (freq 2), 20 (freq 3), 30 (freq 5)", o: ["20", "22", "23", "25", "30"], a: 2, r: "\\(\\bar{x}_w = \\frac{10(2) + 20(3) + 30(5)}{2+3+5} = \\frac{230}{10} = 23\\)" },
+            { i: 13, s: "A", t: "Outliers", q: "Which measure of center is MOST affected by outliers?", o: ["Mode", "Median", "Mean", "IQR", "Q1"], a: 2, r: "Mean uses all values, so extreme values (outliers) pull it strongly." },
+            { i: 14, s: "A", t: "Combined Mean", q: "Set A: \\(n_1=5, \\bar{x}_1=10\\). Set B: \\(n_2=10, \\bar{x}_2=25\\). Find combined mean:", o: ["17.5", "20", "15", "22.5", "30"], a: 1, r: "\\(\\bar{x} = \\frac{5(10) + 10(25)}{15} = \\frac{300}{15} = 20\\)" },
+            { i: 15, s: "A", t: "IQR", q: "\\(Q_3 - Q_1\\) is called the:", o: ["Range", "Standard Deviation", "Variance", "Interquartile Range (IQR)", "Median"], a: 3, r: "IQR = Interquartile Range = Q3 - Q1." },
+            { i: 16, s: "A", t: "Var→SD", q: "If \\(\\sigma^2 = 16\\), find \\(\\sigma\\)", o: ["256", "16", "8", "4", "2"], a: 3, r: "\\(\\sigma = \\sqrt{\\sigma^2} = \\sqrt{16} = 4\\)" },
+            { i: 17, s: "A", t: "Empirical", q: "For a normal distribution, approximately what percent of data falls within 1 standard deviation of the mean?", v: "normal", o: ["50%", "68%", "95%", "99.7%", "100%"], a: 1, r: "Empirical Rule: 68% within \\(\\mu \\pm \\sigma\\), 95% within \\(\\mu \\pm 2\\sigma\\), 99.7% within \\(\\mu \\pm 3\\sigma\\)" },
+            { i: 18, s: "A", t: "Outlier ID", q: "Which value is an outlier in \\(\\{20, 22, 25, 22, 24, 85, 23\\}\\)?", o: ["20", "25", "85", "22", "None"], a: 2, r: "85 is far from the cluster of values around 22-25." },
+            { i: 19, s: "A", t: "Algebra", q: "If the average of \\(x\\) and \\(y\\) is 10, and the average of \\(x\\), \\(y\\), and \\(z\\) is 12, find \\(z\\):", o: ["10", "12", "14", "16", "18"], a: 3, r: "\\(x + y = 20\\). \\(x + y + z = 36\\). So \\(z = 16\\)." },
+            { i: 20, s: "A", t: "Symmetry", q: "If Mean = Median, the distribution is most likely:", o: ["Right Skewed", "Left Skewed", "Symmetric", "Bimodal", "Exponential"], a: 2, r: "Mean = Median indicates a symmetric distribution." },
+            { i: 21, s: "A", t: "Test Score", q: "A student has test scores of 70, 75, and 85. What score is needed on the 4th test to have an average of 80?", o: ["80", "85", "90", "95", "100"], a: 2, r: "Need total = 80 × 4 = 320. Have 70 + 75 + 85 = 230. Need 320 - 230 = 90." },
+            { i: 22, s: "A", t: "Function Range", q: "What is the range (max - min) of the function \\(|\\sin(x)|\\)?", o: ["0", "1", "2", "π", "2π"], a: 1, r: "\\(|\\sin(x)|\\) ranges from 0 to 1, so range = 1 - 0 = 1." },
+            { i: 23, s: "A", t: "SD Sign", q: "Why can the standard deviation never be negative?", o: ["Mean is always positive", "It involves squaring", "It can be negative", "Due to central tendency", "Data must be positive"], a: 1, r: "SD is the square root of variance (sum of squared deviations), which is always non-negative." },
+            { i: 24, s: "A", t: "New Person", q: "The mean age of 4 people is 25. A 5th person joins and the new mean is 26. What is the 5th person's age?", o: ["25", "26", "29", "30", "31"], a: 3, r: "Old total = 100. New total = 130. Fifth person = 130 - 100 = 30." },
+            { i: 25, s: "A", t: "Median", q: "What is the median of the numbers 1, 2, 3, 4, 5, 6, 7, 8, 9, 10?", o: ["5", "6", "5.5", "4.5", "10"], a: 2, r: "For even n, median = average of middle two: \\(\\frac{5 + 6}{2} = 5.5\\)" },
+            { i: 26, s: "A", t: "Variance", q: "If \\(SS = 90\\) and \\(n = 10\\), find variance \\(\\sigma^2\\)", o: ["3", "9", "81", "90", "10"], a: 1, r: "\\(\\sigma^2 = \\frac{SS}{n} = \\frac{90}{10} = 9\\)" },
+            { i: 27, s: "A", t: "Consistency", q: "Dataset A has SD = 2, Dataset B has SD = 10. Which is more consistent?", o: ["A", "B", "Equal", "Cannot determine", "Need mean to decide"], a: 0, r: "Lower SD means less spread, so more consistency." },
+            { i: 28, s: "A", t: "W.Mean", q: "Find weighted mean: \\(10 \\times 0.2 + 20 \\times 0.8\\)", o: ["12", "15", "18", "16", "14"], a: 2, r: "\\(\\bar{x}_w = 10(0.2) + 20(0.8) = 2 + 16 = 18\\)" },
+            { i: 29, s: "A", t: "Housing", q: "To describe house prices in a neighborhood with one mansion, which measure is best?", o: ["Mean", "Median", "Mode", "Range", "SD"], a: 1, r: "Median is resistant to outliers like the mansion's high price." },
+            { i: 30, s: "A", t: "Arith Seq", q: "The mean of \\(x, x+2, x+4, x+6\\) is 15. Find \\(x\\):", o: ["10", "11", "12", "13", "14"], a: 2, r: "Mean of arithmetic sequence = middle value = \\(x + 3 = 15\\), so \\(x = 12\\)." },
+            { i: 31, s: "A", t: "Geo Mean", q: "Find the geometric mean of 4 and 16: \\(\\sqrt{4 \\times 16}\\)", o: ["8", "10", "12", "20", "64"], a: 0, r: "\\(GM = \\sqrt{4 \\times 16} = \\sqrt{64} = 8\\)" },
+            { i: 32, s: "A", t: "Consecutive", q: "The mean of consecutive integers from 1 to \\(n\\) is 15. Find \\(n\\):", o: ["15", "29", "30", "31", "28"], a: 1, r: "Mean = \\(\\frac{n+1}{2} = 15\\), so \\(n = 29\\)." },
+            { i: 33, s: "A", t: "SD vs Range", q: "Can the standard deviation ever be greater than the range?", o: ["Yes", "No, never", "Only with negative data", "Only if mean = 0", "Only if n is large"], a: 1, r: "No. Range is the maximum possible spread, and SD is always ≤ range." },
+            { i: 34, s: "A", t: "Max Int", q: "The average of 7 distinct positive integers is 10. What is the maximum possible value of one integer?", o: ["10", "13", "64", "49", "58"], a: 3, r: "Total = 70. Minimize 6 values: 1+2+3+4+5+6 = 21. Max = 70 - 21 = 49." },
+            { i: 35, s: "A", t: "Dispersion", q: "Which of the following is a measure of DISPERSION (spread)?", o: ["Mean", "Median", "Mode", "Variance", "Percentile"], a: 3, r: "Variance measures how spread out data is from the mean." },
+            { i: 36, s: "A", t: "Algebra", q: "Mean(x,1/x)=3. Mean(x²,1/x²)=:", o: ["9", "18", "34", "36", "17"], a: 4, r: "34/2=17." },
+            { i: 37, s: "A", t: "Median Count", q: "A dataset has n = 100 values. At most, how many values can be greater than the median?", o: ["50", "At least 50", "At most 50", "About 50", "49"], a: 2, r: "By definition, at most 50% of values are above the median." },
+            { i: 38, s: "A", t: "Zero Var", q: "If variance = 0, what is the range?", o: ["0", "1", "Undefined", "Equal to mean", "Infinity"], a: 0, r: "Variance = 0 means no spread, so range = 0." },
+            { i: 39, s: "A", t: "Mean Zero", q: "The mean of 5 numbers is 0. If the numbers are \\(\\{-2, -5, 3, 6, x\\}\\), find \\(x\\):", o: ["-2", "0", "2", "4", "8"], a: 0, r: "Sum must be 0. Currently: -2 + (-5) + 3 + 6 = 2. So x = -2." },
+            { i: 40, s: "A", t: "Mode=Min", q: "Can the mode of a dataset equal the minimum value?", o: ["Yes", "No", "Only if range = 0", "Only with negative values", "Only if mean < 0"], a: 0, r: "Yes, for example in \\(\\{1, 1, 5\\}\\), mode = 1 = minimum." },
+            { i: 41, s: "A", t: "Pop vs Sample", q: "What is the main difference between population SD and sample SD formulas?", o: ["They are the same", "Sample uses n-1 (Bessel's correction)", "Population uses n-1", "Sample SD is always larger", "No difference"], a: 1, r: "Sample SD divides by (n-1) instead of n to correct for bias." },
+            { i: 42, s: "A", t: "Z-Score", q: "\\(\\mu=50, \\sigma=10\\). Find z-score for x=70:", o: ["1", "2", "1.5", "0.5", "3"], a: 1, r: "\\(z = \\frac{x - \\mu}{\\sigma} = \\frac{70 - 50}{10} = 2\\)" },
+            { i: 43, s: "A", t: "CV", q: "If \\(\\mu = 100\\) and \\(\\sigma = 5\\), find CV (Coefficient of Variation)", o: ["5%", "20%", "0.05", "500", "2%"], a: 0, r: "\\(CV = \\frac{\\sigma}{\\mu} \\times 100\\% = \\frac{5}{100} \\times 100\\% = 5\\%\\)" },
+            { i: 44, s: "A", t: "Mean Transform", q: "If \\(y = 2x + 5\\), then \\(\\bar{y}\\) (mean of y) equals:", o: ["Mean(x)", "2·Mean(x)", "2·Mean(x) + 5", "Mean(x) + 5", "5·Mean(x)"], a: 2, r: "Linear transformation: \\(\\bar{y} = 2\\bar{x} + 5\\)." },
+            { i: 45, s: "A", t: "SD Transform", q: "If \\(y = 2x + 5\\), then SD(y) equals:", o: ["SD(x)", "2·SD(x)", "2·SD(x) + 5", "SD(x) + 5", "5·SD(x)"], a: 1, r: "SD is only affected by scaling, not shifting: SD(y) = 2·SD(x)." },
+            { i: 46, s: "A", t: "Range Rule", q: "Estimate SD using Range Rule: \\(\\sigma \\approx \\frac{Range}{?}\\)", o: ["Range/2", "Range/4", "Range/6", "Range", "Range²"], a: 1, r: "\\(\\sigma \\approx \\frac{Range}{4}\\) (Range Rule of Thumb)" },
+            { i: 47, s: "A", t: "Percentile", q: "The median corresponds to which percentile?", o: ["25th", "50th", "75th", "100th", "0th"], a: 1, r: "Median = 50th percentile (middle of the data)." },
+            { i: 48, s: "A", t: "Outlier Rule", q: "Lower fence for outliers is: \\(Q_1 - ? \\times IQR\\)", o: ["Q1-IQR", "Q1-1.5×IQR", "Q1-2×IQR", "Med-IQR", "Min-IQR"], a: 1, r: "Lower fence = \\(Q_1 - 1.5 \\times IQR\\)" },
+            { i: 49, s: "A", t: "Deviation Sum", q: "The sum of all deviations from the mean is always:", o: ["0", "1", "SD", "Variance", "n"], a: 0, r: "\\(\\sum(x_i - \\bar{x}) = 0\\) always." },
+            { i: 50, s: "A", t: "Var Units", q: "If data is in meters, what are the units of variance?", o: ["Meters", "Meters squared", "Square root of meters", "No units", "Percent"], a: 1, r: "Variance is in squared units (meters²). SD is in original units." },
+            // B: Data Rep (51-100)
+            { i: 51, s: "B", t: "Box Plot", q: "In a box-and-whisker plot, the line inside the box represents:", v: "box", o: ["Mean", "Mode", "Median", "Range", "Standard Deviation"], a: 2, r: "The line inside the box is the median (Q2)." },
+            { i: 52, s: "B", t: "IQR Calc", q: "If \\(Q_1 = 10\\) and \\(Q_3 = 30\\), find \\(IQR\\)", o: ["10", "20", "30", "40", "15"], a: 1, r: "\\(IQR = Q_3 - Q_1 = 30 - 10 = 20\\)" },
+            { i: 53, s: "B", t: "Hist Skew", q: "A histogram with a long tail extending to the right is called:", v: "hist", o: ["Symmetric", "Left Skewed", "Right Skewed", "Normal", "Uniform"], a: 2, r: "Tail direction = skew direction. Right tail → Right (positive) skew." },
+            { i: 54, s: "B", t: "Pie Angle", q: "A pie chart sector represents 25%. What is its angle?", o: ["25°", "45°", "90°", "100°", "180°"], a: 2, r: "Angle = 25% × 360° = 0.25 × 360 = 90°" },
+            { i: 55, s: "B", t: "Stem Leaf", q: "In a stem-and-leaf plot with stem 4 and leaves 1, 3, what values are represented?", v: "stem", o: ["1, 3", "41, 43", "4.1, 4.3", "14, 34", "413"], a: 1, r: "Stem|Leaf format: 4|1 = 41, 4|3 = 43" },
+            { i: 56, s: "B", t: "Hist Area", q: "In a histogram, the area of a bar is proportional to:", o: ["Data value", "Cumulative frequency", "Frequency", "Mean", "Range"], a: 2, r: "Bar area represents frequency (height × width)." },
+            { i: 57, s: "B", t: "Box Range", q: "A box plot has whiskers extending from 10 to 90. What is the range?", v: "box57", o: ["40", "60", "80", "20", "100"], a: 2, r: "Range = Max - Min = 90 - 10 = 80" },
+            { i: 58, s: "B", t: "Graph Type", q: "Which graph is best for showing relationship between two continuous variables?", o: ["Bar", "Hist", "Scatter", "Pie", "Box"], a: 2, r: "Scatterplot shows relationship between two continuous variables." },
+            { i: 59, s: "B", t: "Ogive", q: "In a cumulative frequency graph (ogive), the y-axis represents:", o: ["Frequency", "Data value", "Cumulative frequency", "Standard deviation", "Time"], a: 2, r: "An ogive shows cumulative frequency on the y-axis." },
+            { i: 60, s: "B", t: "Pie Boys", q: "In a class of 10 boys and 20 girls, what angle represents boys in a pie chart?", o: ["90°", "100°", "120°", "150°", "180°"], a: 2, r: "Boys = 10/30 = 1/3. Angle = (1/3) × 360° = 120°" },
+            { i: 61, s: "B", t: "Box Skew", q: "In a box plot, if the median line is closer to Q1 than Q3, the distribution is:", v: "box", o: ["Symmetric", "Right skewed", "Left skewed", "Normal", "Uniform"], a: 1, r: "More space on right side of median means right-skewed (positive skew)." },
+            { i: 62, s: "B", t: "Bin Width", q: "A histogram has classes 0-9, 10-19, 20-29. What is the bin width?", o: ["9", "10", "11", "19", "20"], a: 1, r: "Bin width = 10 - 0 = 10 (or 19 - 9 = 10)" },
+            { i: 63, s: "B", t: "Granularity", q: "Which data display shows every individual data value?", o: ["Histogram", "Box plot", "Stem-and-leaf plot", "Ogive", "Pie chart"], a: 2, r: "Stem-and-leaf plots show each individual value." },
+            { i: 64, s: "B", t: "Total Freq", q: "To find total frequency from a histogram, you:", o: ["Sum the bar heights", "Sum the bar widths", "Find the tallest bar area", "Multiply height × width", "Average the heights"], a: 0, r: "Add all bar heights to get total frequency." },
+            { i: 65, s: "B", t: "Outlier", q: "If Q1=30 and Q3=50, is 85 an outlier?", o: ["Yes", "No", "Only if <100", "IQR too small", "Unknown"], a: 0, r: "IQR=20. Upper fence = 50+1.5(20) = 80. Since 85>80, it's an outlier." },
+            { i: 66, s: "B", t: "Bimodal", q: "A histogram with two peaks (bimodal) suggests:", o: ["Data entry error", "Two distinct groups in the data", "Mean equals median", "SD is zero", "Small sample size"], a: 1, r: "Two peaks often indicate two subpopulations." },
+            { i: 67, s: "B", t: "Dot Plot", q: "In a dot plot, if there are 5 dots stacked above the number 12, this means:", o: ["Frequency of 12 is 5", "Value is 5", "Mean is 12", "Range is 5", "Total is 5"], a: 0, r: "Each dot represents one data point, so 5 dots = frequency of 5." },
+            { i: 68, s: "B", t: "% Inc", q: "A bar chart shows a value increasing from 20 to 30. What is the percent increase?", o: ["10%", "33%", "50%", "66%", "150%"], a: 2, r: "% increase = (30-20)/20 = 10/20 = 50%" },
+            { i: 69, s: "B", t: "Box n", q: "Can you determine the sample size (n) from a box plot?", o: ["Yes", "No", "Only outliers", "If symmetric", "From width"], a: 1, r: "Box plots don't show sample size - only 5-number summary." },
+            { i: 70, s: "B", t: "IQR %", q: "What percent of data falls between Q1 and Q3?", o: ["25%", "50%", "68%", "75%", "95%"], a: 1, r: "The IQR (Q1 to Q3) contains the middle 50% of data." },
+            { i: 71, s: "B", t: "Box Comp", q: "When comparing two box plots, a longer box indicates:", o: ["Higher mean", "More data", "Greater variability", "Higher range", "Skewness"], a: 2, r: "Longer box = larger IQR = greater variability in middle 50%." },
+            { i: 72, s: "B", t: "Venn", q: "In a Venn diagram: Set A = 40, Set B = 30, Intersection = 20. Find A \\(\\cup\\) B (union):", v: "venn72", o: ["70", "90", "50", "60", "100"], a: 2, r: "\\(A \\cup B = A + B - (A \\cap B) = 40 + 30 - 20 = 50\\)" },
+            { i: 73, s: "B", t: "Double Bin", q: "If you double the bin width of a histogram, the frequency of combined bins will:", o: ["Halve", "Roughly double", "Stay the same", "Square", "Disappear"], a: 1, r: "Combining adjacent bins adds their frequencies together." },
+            { i: 74, s: "B", t: "Freq Poly", q: "A line graph connecting the midpoints of histogram bars is called a:", o: ["Histogram", "Frequency polygon", "Ogive", "Scatterplot", "Bar chart"], a: 1, r: "A frequency polygon connects midpoints of bars with lines." },
+            { i: 75, s: "B", t: "Circle", q: "If points on a scatter plot form a circle, what is r?", o: ["1", "-1", "0", "0.5", "Undefined"], a: 2, r: "Circular pattern = no linear relationship = r ≈ 0" },
+            { i: 76, s: "B", t: "Scatter", q: "If y increases as x increases, the correlation is:", v: "scatterPos", o: ["Negative", "Positive", "Zero", "Undefined", "Quadratic"], a: 1, r: "Both increase together = Positive correlation (r > 0)." },
+            { i: 77, s: "B", t: "Cum Med", q: "In a cumulative frequency graph with n = 100, at what cumulative frequency value is the median found?", o: ["25", "50", "75", "100", "10"], a: 1, r: "Median is at the 50th percentile = 50% of 100 = 50." },
+            { i: 78, s: "B", t: "Pie Bad", q: "What is a major disadvantage of pie charts?", o: ["Use too many colors", "Must sum to 100%", "Difficult to compare slice sizes", "Cannot show negatives", "Both C and D"], a: 4, r: "Pie charts make it hard to compare areas, and cannot show negative values." },
+            { i: 79, s: "B", t: "Stem Range", q: "A stem-and-leaf shows minimum = 12 and maximum = 58. What is the range?", o: ["70", "46", "36", "58", "12"], a: 1, r: "Range = Max - Min = 58 - 12 = 46" },
+            { i: 80, s: "B", t: "Normality", q: "Which graph is best for checking if data is normally distributed?", v: "normal", o: ["Pie chart", "Histogram", "Scatterplot", "Line graph", "Bar chart"], a: 1, r: "A histogram should show a bell-shaped curve for normal data." },
+            { i: 81, s: "B", t: "Percentile", q: "If a student is at the 90th percentile with a score of 85, this means:", o: ["Got 90% correct", "90% of students scored 85 or below", "90% scored higher than 85", "Score is 85/90", "Is in top 10%"], a: 1, r: "90th percentile means 90% of values are at or below that score." },
+            { i: 82, s: "B", t: "Time Series", q: "In a time series graph, a downward trend indicates:", v: "line", o: ["Positive trend", "Decreasing values", "No change", "Cyclical", "Seasonal"], a: 1, r: "Downward slope = values decreasing over time." },
+            { i: 83, s: "B", t: "2Way", q: "A two-way table shows 50 men were surveyed, and 20 prefer blue. What percent of men prefer blue?", o: ["20%", "40%", "50%", "10%", "100%"], a: 1, r: "\\(\\frac{20}{50} = 0.4 = 40\\%\\)" },
+            { i: 84, s: "B", t: "Freq Mean", q: "Calculate the mean: Value 1 (freq 2), Value 2 (freq 5), Value 3 (freq 3)", o: ["2.0", "2.1", "2.5", "3.0", "6"], a: 1, r: "\\(\\bar{x} = \\frac{1(2) + 2(5) + 3(3)}{10} = \\frac{21}{10} = 2.1\\)" },
+            { i: 85, s: "B", t: "Categorical", q: "Which graph is best for displaying categorical data?", o: ["Hist", "Bar", "Box", "Scatter", "Line"], a: 1, r: "Bar Chart is best for categorical (qualitative) data." },
+            { i: 86, s: "B", t: "Box Data", q: "A box plot shows Q1 = 20 and Q3 = 35. What percent of data falls between them?", v: "box86", o: ["25%", "50%", "75%", "100%", "68%"], a: 1, r: "The IQR (Q1 to Q3) always contains the middle 50% of data." },
+            { i: 87, s: "B", t: "Missing", q: "Which statistic can NOT be determined from a box plot?", v: "box", o: ["Median", "Range", "Mode", "IQR", "Minimum"], a: 2, r: "Box plots show 5 number summary but NOT the mode." },
+            { i: 88, s: "B", t: "Cum Calc", q: "Cumulative frequency at x=10 is 15, at x=20 is 25. How many values are between 10 and 20?", o: ["10", "15", "25", "40", "5"], a: 0, r: "Count = 25 - 15 = 10 values in that interval." },
+            { i: 89, s: "B", t: "Gold", q: "What is the best graph for showing gold prices over a 10-year period?", v: "line", o: ["Histogram", "Line graph (time series)", "Pie chart", "Venn diagram", "Stem plot"], a: 1, r: "Line graphs are best for showing change over time (time series)." },
+            { i: 90, s: "B", t: "Scatter Out", q: "In a scatter plot, an outlier is a point that is:", o: ["High X value", "Far from the line", "At origin", "Negative Y", "At the mean"], a: 1, r: "Outlier in scatter = point far from regression line (large residual)." },
+            { i: 91, s: "B", t: "Hist vs Bar", q: "Why do histogram bars touch each other (no gaps)?", v: "hist", o: ["For aesthetics", "Data is continuous", "Data is discrete", "Sample is small", "Sample is large"], a: 1, r: "Touching bars indicate continuous data with no gaps between intervals." },
+            { i: 92, s: "B", t: "Rel Freq", q: "The sum of all relative frequencies in a distribution equals:", o: ["1 (or 100%)", "100", "n", "Mean", "0"], a: 0, r: "Relative frequencies sum to 1 (or 100%)." },
+            { i: 93, s: "B", t: "Pareto", q: "A bar chart with bars sorted in descending order of frequency is called a:", o: ["Histogram", "Pareto chart", "Ogive", "Box plot", "Pie chart"], a: 1, r: "A Pareto chart shows bars sorted from highest to lowest frequency." },
+            { i: 94, s: "B", t: "Pie Deg", q: "In a pie chart, 10% of the data equals how many degrees?", o: ["10", "36", "18", "90", "100"], a: 1, r: "10% × 360° = 36°" },
+            { i: 95, s: "B", t: "Whiskers", q: "In a standard box plot, the whiskers extend to:", v: "box", o: ["Q1 and Q3", "Minimum and Maximum", "Mean", "Standard deviation", "Outliers"], a: 1, r: "Whiskers extend to the minimum and maximum (or to 1.5×IQR fences)." },
+            { i: 96, s: "B", t: "Hist Height", q: "In a histogram, the height of each bar represents:", v: "hist", o: ["Bin width", "Frequency", "Midpoint", "Cumulative frequency", "Percentage"], a: 1, r: "Bar height = frequency of that class interval." },
+            { i: 97, s: "B", t: "Stem Key", q: "A stem-and-leaf plot has key: 4|1 = 4.1. What is the value for 5|2?", o: ["52", "5.2", "7", "502", "0.52"], a: 1, r: "Following the key pattern, 5|2 = 5.2" },
+            { i: 98, s: "B", t: "Dot Mode", q: "In a dot plot, the value with the highest stack of dots is the:", o: ["Mean", "Median", "Mode", "Range", "Outlier"], a: 2, r: "The tallest stack indicates the most frequent value = mode." },
+            { i: 99, s: "B", t: "Neg Skew", q: "In a left-skewed (negatively skewed) distribution, the tail points:", v: "histL", o: ["Left", "Right", "Up", "Down", "Center"], a: 0, r: "Left skew = tail extends to the left." },
+            { i: 100, s: "B", t: "Data Type", q: "Zip codes are classified as what type of data?", o: ["Quantitative", "Categorical", "Continuous", "Ordinal", "Ratio"], a: 1, r: "Zip codes are categorical (nominal) - they are labels, not numbers to calculate with." },
+            // C: Bivariate (101-150)
+            { i: 101, s: "C", t: "Predict", q: "\\(\\hat{y} = 2.5x + 12\\). If x=4, find \\(\\hat{y}\\)", o: ["14.5", "22", "12", "10", "2.5"], a: 1, r: "\\(\\hat{y} = 2.5(4) + 12 = 10 + 12 = 22\\)" },
+            { i: 102, s: "C", t: "Slope", q: "In the equation \\(y = -3x + 50\\), what does the slope -3 mean?", o: ["y decreases by 3 for each unit increase in x", "y is 3 less than x", "The starting value is -3", "The correlation is -3", "y increases by 3"], a: 0, r: "Slope = rate of change. For every 1 unit increase in x, y decreases by 3." },
+            { i: 103, s: "C", t: "Strength", q: "Which correlation coefficient indicates the STRONGEST linear relationship?", o: ["0.8", "-0.9", "0.1", "0", "0.5"], a: 1, r: "\\(|-0.9| = 0.9\\) is the largest absolute value. Strength is measured by |r|." },
+            { i: 104, s: "C", t: "r Range", q: "The correlation coefficient \\(r\\) is always between:", o: ["0 and 1", "-1 and 1", "-10 and 10", "-∞ and +∞", "0 and 100"], a: 1, r: "\\(-1 \\leq r \\leq 1\\)" },
+            { i: 105, s: "C", t: "r=0", q: "A correlation of \\(r = 0\\) indicates:", o: ["Perfect linear relationship", "No linear relationship", "Strong negative relationship", "An error in data", "A curved relationship"], a: 1, r: "\\(r = 0\\) means no LINEAR association (there could still be a non-linear pattern)." },
+            { i: 106, s: "C", t: "Scatter", q: "In a scatterplot, a line rising from left to right indicates what type of correlation?", v: "scatterPos", o: ["Positive", "Negative", "Zero", "Undefined", "Imaginary"], a: 0, r: "Upward slope = positive correlation (as x increases, y increases)." },
+            { i: 107, s: "C", t: "Residual", q: "The regression line is \\(y = x\\). For point \\((2, 3)\\), what is the residual?", o: ["1", "-1", "0", "5", "2"], a: 0, r: "Residual = Actual - Predicted = \\(3 - 2 = 1\\)" },
+            { i: 108, s: "C", t: "Extrap", q: "Why is extrapolation (predicting beyond data range) risky?", o: ["Calculations are hard", "The linear trend may not continue", "It gives negative numbers", "Calculators can't do it", "It changes the slope"], a: 1, r: "The relationship may change outside the observed data range." },
+            { i: 109, s: "C", t: "Centroid", q: "The least-squares regression line always passes through which point?", o: ["x-axis", "y-axis", "(\\(\\bar{x}\\), \\(\\bar{y}\\))", "Origin (0,0)", "Maximum point"], a: 2, r: "The LSRL always passes through the point of means \\((\\bar{x}, \\bar{y})\\)." },
+            { i: 110, s: "C", t: "r²", q: "\\(r^2 = 0.81\\), slope is negative. Find r:", o: ["0.9", "-0.9", "0.81", "-0.81", "0.65"], a: 1, r: "\\(r = -\\sqrt{0.81} = -0.9\\) (negative because slope is negative)" },
+            { i: 111, s: "C", t: "Direct Var", q: "Which equation represents direct variation (y = kx, through origin)?", o: ["y = 2x + 1", "y = 3x", "y = x²", "y = 5", "y = 1/x"], a: 1, r: "Direct variation: \\(y = kx\\) passes through origin. Only \\(y = 3x\\) fits." },
+            { i: 112, s: "C", t: "Causation", q: "'Correlation does not imply _______'", o: ["Association", "Causation", "Trend", "Relationship", "Calculation"], a: 1, r: "Just because two variables are correlated doesn't mean one CAUSES the other." },
+            { i: 113, s: "C", t: "Intercept", q: "In the cost equation \\(Cost = 5x + 100\\), what is the fixed cost (y-intercept)?", o: ["5", "100", "105", "500", "0"], a: 1, r: "Fixed cost = y-intercept = 100 (cost when x = 0)." },
+            { i: 114, s: "C", t: "Res Calc", q: "If actual \\(y = 10\\) and predicted \\(\\hat{y} = 12\\), what is the residual?", o: ["2", "-2", "22", "120", "1.2"], a: 1, r: "Residual = Actual - Predicted = \\(10 - 12 = -2\\)" },
+            { i: 115, s: "C", t: "Weak Neg", q: "Weak negative correlation looks like:", v: "scatterNeg", o: ["Line Up", "Cloud Down", "Line Down", "Rand", "Circ"], a: 1, r: "Loose downward scatter." },
+            { i: 116, s: "C", t: "Slope 2pts", q: "Find slope between \\((1, 2)\\) and \\((3, 8)\\): \\(m = \\frac{y_2 - y_1}{x_2 - x_1}\\)", o: ["2", "3", "4", "6", "0.3"], a: 1, r: "\\(m = \\frac{8-2}{3-1} = \\frac{6}{2} = 3\\)" },
+            { i: 117, s: "C", t: "Perfect r", q: "What is the value of \\(r\\) for a perfect positive linear relationship?", o: ["0", "0.5", "1", "-1", "100"], a: 2, r: "\\(r = 1\\) means perfect positive linear correlation." },
+            { i: 118, s: "C", t: "LSRL", q: "The Least-Squares Regression Line minimizes:", o: ["Sum of residuals", "Sum of squared residuals", "Sum of x-values", "Slope", "Intercept"], a: 1, r: "LSRL minimizes \\(\\sum(y - \\hat{y})^2\\), the sum of squared residuals." },
+            { i: 119, s: "C", t: "Indep Var", q: "In regression, the x-axis represents the:", o: ["Independent (explanatory) variable", "Dependent (response) variable", "z-score", "Title", "Legend"], a: 0, r: "x = independent variable (the predictor or explanatory variable)." },
+            { i: 120, s: "C", t: "r²", q: "If \\(r^2 = 0.5\\), this means:", o: ["r = 0.5", "50% of variation in y is explained by x", "slope = 0.5", "50% accuracy", "mean = 0.5"], a: 1, r: "\\(r^2\\) = coefficient of determination = proportion of variance explained." },
+            { i: 121, s: "C", t: "F=ma", q: "In physics, \\(F = ma\\). If mass is constant, the graph of Force vs Acceleration is:", o: ["A curve", "A straight line through the origin", "A horizontal line", "A vertical line", "A parabola"], a: 1, r: "\\(F = ma\\) is linear with slope m, passing through origin." },
+            { i: 122, s: "C", t: "Outlier", q: "If you add a point that lies exactly on the regression line, \\(r\\) will:", o: ["Get weaker (closer to 0)", "Stay the same or get stronger", "Become 0", "Become negative", "Be undefined"], a: 1, r: "Adding a point on the line reinforces the linear pattern." },
+            { i: 123, s: "C", t: "Line Eq", q: "Find the equation of the line passing through \\((2, 5)\\) and \\((4, 9)\\):", o: ["y = 2x + 1", "y = 2x + 3", "y = 4x", "y = x + 3", "y = 2x - 1"], a: 0, r: "Slope = \\(\\frac{9-5}{4-2} = 2\\). Using point (2,5): \\(5 = 2(2) + b\\), so \\(b = 1\\)." },
+            { i: 124, s: "C", t: "Slope 0", q: "If the slope of the regression line is 0, then \\(r\\) equals:", o: ["1", "-1", "0", "Undefined", "Infinity"], a: 2, r: "Slope = 0 means no linear relationship, so \\(r = 0\\)." },
+            { i: 125, s: "C", t: "Pos Corr", q: "Which pair of variables would likely have a POSITIVE correlation?", o: ["Speed and Time to destination", "Heating bill and Temperature outside", "Study time and Test grades", "Age of car and Resale value", "Absences and Grades"], a: 2, r: "More study time → higher grades (positive relationship)." },
+            { i: 126, s: "C", t: "Pred Y", q: "If predicted \\(\\hat{y} = 20\\) and residual = +5, what is the actual y-value?", o: ["15", "20", "25", "100", "4"], a: 2, r: "Residual = Actual - Predicted. So Actual = 20 + 5 = 25." },
+            { i: 127, s: "C", t: "Res Plot", q: "U-shape residual plot indicates:", v: "resid", o: ["Good", "Non-Lin", "Perf", "None", "Const"], a: 1, r: "Non-linear relationship." },
+            { i: 128, s: "C", t: "Require", q: "Linear regression requires what type of data for both variables?", o: ["Categorical", "Quantitative (numerical)", "Mixed", "Nominal", "Ordinal"], a: 1, r: "Both x and y must be quantitative (numerical) for linear regression." },
+            { i: 129, s: "C", t: "r>1", q: "Can the correlation coefficient \\(r\\) ever be greater than 1?", o: ["Yes", "No, never", "Sometimes", "Only if slope > 1", "Only if n is large"], a: 1, r: "\\(r\\) is always between -1 and 1. It can never exceed these bounds." },
+            { i: 130, s: "C", t: "Neg m", q: "y=50-2x. As x increases, y:", v: "scatterNeg", o: ["Up", "Down", "Const", "Fluc", "0"], a: 1, r: "Decreases (negative slope)." },
+            { i: 131, s: "C", t: "Interp", q: "Interpolation means predicting:", o: ["Future values", "Values WITHIN the data range", "Values outside the data range", "The mean", "The slope"], a: 1, r: "Interpolation = predicting inside the range of observed data (safer than extrapolation)." },
+            { i: 132, s: "C", t: "Symm r", q: "If \\(corr(x, y) = r\\), what is \\(corr(y, x)\\)?", o: ["1/r", "-r", "r", "1 - r", "r²"], a: 2, r: "Correlation is symmetric: \\(corr(x,y) = corr(y,x)\\)." },
+            { i: 133, s: "C", t: "Slope Std", q: "Find slope of \\(3x + 2y = 10\\)", o: ["3", "-3", "-1.5", "1.5", "5"], a: 2, r: "\\(2y = -3x + 10 \\Rightarrow y = -\\frac{3}{2}x + 5\\). Slope = \\(-1.5\\)" },
+            { i: 134, s: "C", t: "Cov", q: "If covariance is positive, then \\(r\\) is:", o: ["Positive", "Negative", "0", "Undefined", "1"], a: 0, r: "Covariance and r always have the same sign." },
+            { i: 135, s: "C", t: "Slope Form", q: "In the formula \\(b = r \\cdot \\frac{S_y}{S_x}\\), if \\(S_y\\) increases, the slope:", o: ["Increases", "Decreases", "Stays the same", "Becomes 0", "Becomes negative"], a: 0, r: "Slope is directly proportional to \\(S_y\\)." },
+            { i: 136, s: "C", t: "Y-int", q: "A line passes through \\((0, 5)\\) with slope \\(m = 2\\). What is the y-intercept?", o: ["0", "2", "5", "-5", "10"], a: 2, r: "The y-intercept is the y-value when x = 0, which is 5." },
+            { i: 137, s: "C", t: "r=.95", q: "If \\(r = 0.95\\), does the data form a perfectly straight line?", o: ["Yes", "No, there is still some scatter", "Only if n is large", "Only if slope = 1", "Only if positive"], a: 1, r: "\\(r = 0.95\\) is very strong but not perfect. Points still scatter around the line." },
+            { i: 138, s: "C", t: "Calc a", q: "Points \\((1, 2)\\) and \\((2, 4)\\) lie on the line \\(y = ax\\). Find \\(a\\):", o: ["2", "1", "0.5", "3", "4"], a: 0, r: "Using (1,2): \\(2 = a(1)\\), so \\(a = 2\\)." },
+            { i: 139, s: "C", t: "Lurking", q: "Strong correlation exists between ice cream sales and shark attacks. This is likely due to:", o: ["Ice cream causes attacks", "A lurking variable (temperature)", "Direct causation", "Calculation error", "Negative correlation"], a: 1, r: "Temperature is the lurking variable that affects both." },
+            { i: 140, s: "C", t: "Non-Lin", q: "If data shows a curved pattern, what should you use instead of linear regression?", o: ["Linear regression anyway", "Quadratic or exponential regression", "Mean", "Median", "Mode"], a: 1, r: "Use quadratic, polynomial, or exponential regression for curved data." },
+            { i: 141, s: "C", t: "Res Sum", q: "The sum of all residuals for the LSRL is always:", o: ["0", "1", "SSE", "MSE", "n"], a: 0, r: "\\(\\sum(y - \\hat{y}) = 0\\) for least-squares regression." },
+            { i: 142, s: "C", t: "Infl Pt", q: "A data point that strongly affects the regression line is called:", o: ["Outlier only", "Influential point", "Mean point", "Mode", "Residual"], a: 1, r: "Influential points have high leverage and pull the regression line toward them." },
+            { i: 143, s: "C", t: "Slope Unit", q: "If y is in dollars and x is in hours, what is the unit of the slope?", o: ["Dollars", "Hours", "Dollars per hour", "Hours per dollar", "No units"], a: 2, r: "Slope = rise/run = \\(\\frac{\\Delta y}{\\Delta x}\\) = dollars/hour." },
+            { i: 144, s: "C", t: "r Unit", q: "The correlation coefficient \\(r\\) has:", o: ["Y units", "X units", "Y/X units", "No units", "% units"], a: 3, r: "\\(r\\) is unitless (standardized measure)." },
+            { i: 145, s: "C", t: "Homosc", q: "Homoscedasticity means the residuals have:", o: ["Constant variance across all x", "Different variance at different x", "A curved pattern", "Linear pattern", "No meaning"], a: 0, r: "Equal spread of residuals for all values of x." },
+            { i: 146, s: "C", t: "Best Fit", q: "The best-fit line has overestimates and underestimates that:", o: ["Balance out (sum to 0)", "Are all positive", "Are all negative", "Sum to the mean", "Are maximized"], a: 0, r: "Residuals sum to 0; overestimates and underestimates cancel out." },
+            { i: 147, s: "C", t: "X-int", q: "For the line \\(y = 2x - 4\\), what is the x-intercept?", o: ["2", "4", "-4", "0", "-2"], a: 0, r: "Set y = 0: \\(0 = 2x - 4 \\Rightarrow x = 2\\)." },
+            { i: 148, s: "C", t: "Stat Mod", q: "Statistical models are different from deterministic models because they include:", o: ["Random error", "Fixed values only", "Certainty", "Linear terms only", "Algebraic solutions"], a: 0, r: "Statistical models include random error: \\(y = f(x) + \\epsilon\\)." },
+            { i: 149, s: "C", t: "r²%", q: "If \\(r = 0.5\\), what percent of variance is explained (\\(r^2\\)%)?", o: ["25%", "50%", "5%", "2.5%", "10%"], a: 0, r: "\\(r^2 = 0.5^2 = 0.25 = 25\\%\\)" },
+            { i: 150, s: "C", t: "Pattern", q: "If a scatterplot shows a random cloud with no pattern, what is \\(r\\)?", v: "scatter", o: ["1", "-1", "0 (approximately)", "0.5", "Infinity"], a: 2, r: "Random scatter with no linear pattern means \\(r \\approx 0\\)." },
+            // D: Probability (151-200)
+            { i: 151, s: "D", t: "Factorial", q: "Evaluate \\(5! = 5 \\times 4 \\times 3 \\times 2 \\times 1\\)", o: ["5", "20", "60", "120", "25"], a: 3, r: "\\(5! = 120\\)" },
+            { i: 152, s: "D", t: "Books", q: "How many ways to arrange 3 books? \\(n! = ?\\)", o: ["3", "6", "9", "1", "27"], a: 1, r: "\\(3! = 3 \\times 2 \\times 1 = 6\\)" },
+            { i: 153, s: "D", t: "P vs C", q: "What is the key difference between permutations and combinations?", o: ["Order matters in permutations", "Size of the set", "Number of items", "Use of factorials", "No difference"], a: 0, r: "In permutations, order matters. In combinations, order does not matter." },
+            { i: 154, s: "D", t: "5P2", q: "\\(P(5,2) = \\)", o: ["10", "20", "60", "5", "120"], a: 1, r: "\\(P(5,2) = \\frac{5!}{(5-2)!} = \\frac{5!}{3!} = 5 \\times 4 = 20\\)" },
+            { i: 155, s: "D", t: "5C2", q: "\\(\\binom{5}{2} = \\)", o: ["10", "20", "60", "5", "120"], a: 0, r: "\\(\\binom{5}{2} = \\frac{5!}{2!3!} = \\frac{120}{2 \\times 6} = 10\\)" },
+            { i: 156, s: "D", t: "Committee", q: "A committee of 3 people is to be formed from 10 candidates. How many ways? \\(_{10}C_3\\)", o: ["120", "720", "30", "1000", "90"], a: 0, r: "\\(_{10}C_3 = \\frac{10!}{3! \\cdot 7!} = 120\\)" },
+            { i: 157, s: "D", t: "Officers", q: "From 10 people, how many ways to choose President, VP, and Secretary? \\(_{10}P_3\\)", o: ["120", "720", "30", "1000", "90"], a: 1, r: "\\(_{10}P_3 = 10 \\times 9 \\times 8 = 720\\) (order matters for positions)" },
+            { i: 158, s: "D", t: "Die", q: "A fair six-sided die is rolled. What is P(rolling a 5)?", o: ["1/6", "1/5", "5/6", "1/2", "1/3"], a: 0, r: "\\(P(5) = \\frac{1}{6}\\) since there is one 5 out of 6 outcomes." },
+            { i: 159, s: "D", t: "Coins", q: "Two fair coins are flipped. What is the probability of getting two heads (HH)?", o: ["1/2", "1/4", "1/8", "3/4", "1"], a: 1, r: "Sample space: {HH, HT, TH, TT}. \\(P(HH) = \\frac{1}{4}\\)" },
+            { i: 160, s: "D", t: "Complement", q: "If \\(P(A) = 0.3\\), what is \\(P(A')\\) (complement of A)?", o: ["0.3", "0.6", "0.7", "0", "1"], a: 2, r: "\\(P(A') = 1 - P(A) = 1 - 0.3 = 0.7\\)" },
+            { i: 161, s: "D", t: "MOM", q: "In how many distinct ways can the letters M-O-M be arranged?", o: ["6", "3", "2", "9", "1"], a: 1, r: "\\(\\frac{3!}{2!} = \\frac{6}{2} = 3\\) (divide by 2! for repeated M)" },
+            { i: 162, s: "D", t: "nCn", q: "What is \\(_nC_n\\) (choosing all n items from n)?", o: ["n", "1", "0", "n!", "n²"], a: 1, r: "\\(_nC_n = 1\\) — there is only one way to choose all items." },
+            { i: 163, s: "D", t: "nP1", q: "What is \\(_nP_1\\) (arranging 1 item from n)?", o: ["n", "1", "0", "n!", "n-1"], a: 0, r: "\\(_nP_1 = n\\) — you can pick any one of n items." },
+            { i: 164, s: "D", t: "FCP", q: "You have 3 shirts and 2 pants. How many different outfits can you make?", o: ["5", "6", "9", "4", "8"], a: 1, r: "Fundamental Counting Principle: \\(3 \\times 2 = 6\\)" },
+            { i: 165, s: "D", t: "Ace", q: "What is the probability of drawing an Ace from a standard 52-card deck?", o: ["1/13", "1/52", "4/52", "1/4", "1/2"], a: 0, r: "\\(P(Ace) = \\frac{4}{52} = \\frac{1}{13}\\)" },
+            { i: 166, s: "D", t: "Mut Excl", q: "If A,B mutually exclusive, P(A∩B):", v: "venn", o: ["Sum", "Prod", "0", "1", "0.5"], a: 2, r: "Mutually exclusive events cannot happen together." },
+            { i: 167, s: "D", t: "Subsets", q: "How many subsets does the set \\(\\{a, b, c\\}\\) have?", o: ["3", "6", "8", "9", "1"], a: 2, r: "\\(2^n = 2^3 = 8\\) subsets (including empty set and full set)" },
+            { i: 168, s: "D", t: "Line", q: "In how many ways can 5 people stand in a line?", o: ["120", "24", "5", "25", "100"], a: 0, r: "\\(5! = 120\\)" },
+            { i: 169, s: "D", t: "Even Die", q: "A fair die is rolled. What is P(rolling an even number)?", o: ["1/2", "1/3", "1/6", "2/3", "5/6"], a: 0, r: "Even: {2, 4, 6}. \\(P = \\frac{3}{6} = \\frac{1}{2}\\)" },
+            { i: 170, s: "D", t: "At Least", q: "What is the complement of 'at least one success'?", o: ["No successes", "Exactly one", "Two", "Three", "All successes"], a: 0, r: "\\(P(\\geq 1) = 1 - P(0)\\). Complement is 'no successes'." },
+            { i: 171, s: "D", t: "Sum 2", q: "Two fair dice are rolled. What is P(sum = 2)?", o: ["1/36", "2/36", "1/6", "1/12", "0"], a: 0, r: "Only (1,1) gives sum 2. \\(P = \\frac{1}{36}\\)" },
+            { i: 172, s: "D", t: "Code Rep", q: "How many 3-digit codes can be made using digits 1-9 if repetition is allowed?", o: ["729", "504", "1000", "900", "27"], a: 0, r: "\\(9 \\times 9 \\times 9 = 9^3 = 729\\)" },
+            { i: 173, s: "D", t: "Code NoRep", q: "How many 3-digit codes can be made using digits 1-9 if repetition is NOT allowed?", o: ["729", "504", "720", "120", "60"], a: 1, r: "\\(9 \\times 8 \\times 7 = 504\\)" },
+            { i: 174, s: "D", t: "Indep", q: "If \\(P(Rain) = 0.2\\) and \\(P(Traffic) = 0.5\\), and events are independent, find \\(P(Rain \\cap Traffic)\\)", o: ["0.7", "0.1", "0.3", "0", "0.25"], a: 1, r: "\\(P(R \\cap T) = P(R) \\times P(T) = 0.2 \\times 0.5 = 0.1\\)" },
+            { i: 175, s: "D", t: "Diagonals", q: "Hexagon diagonals using \\(\\frac{n(n-3)}{2}\\):", o: ["6", "9", "12", "15", "3"], a: 1, r: "\\(\\frac{6(6-3)}{2} = \\frac{6 \\times 3}{2} = 9\\)" },
+            { i: 176, s: "D", t: "TF Quiz", q: "A quiz has 5 True/False questions. How many different answer combinations are possible?", o: ["10", "25", "32", "50", "100"], a: 2, r: "\\(2^5 = 32\\) combinations (2 choices per question)" },
+            { i: 177, s: "D", t: "Inclusion", q: "What is P(drawing a Red card OR a King) from a standard deck?", v: "venn", o: ["30/52", "28/52", "1/2", "4/13", "2/52"], a: 1, r: "\\(P(R \\cup K) = \\frac{26 + 4 - 2}{52} = \\frac{28}{52}\\) (subtract 2 red kings)" },
+            { i: 178, s: "D", t: "8C8", q: "What is \\(_8C_8\\)?", o: ["0", "1", "8", "64", "Undef"], a: 1, r: "\\(_8C_8 = 1\\) — only one way to choose all 8 items." },
+            { i: 179, s: "D", t: "LEVEL", q: "In how many distinct ways can the letters L-E-V-E-L be arranged?", o: ["120", "60", "30", "20", "10"], a: 2, r: "\\(\\frac{5!}{2! \\cdot 2!} = \\frac{120}{4} = 30\\) (divide by 2! for each repeated letter)" },
+            { i: 180, s: "D", t: "Sum 7", q: "P(sum = 7) with two dice:", o: ["1/6", "1/12", "1/36", "5/36", "7/36"], a: 0, r: "6 ways: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1). \\(P = \\frac{6}{36} = \\frac{1}{6}\\)" },
+            { i: 181, s: "D", t: "P=0", q: "If \\(P(A) = 0\\), the event A is:", o: ["Certain", "Impossible", "Likely", "Unlikely", "Random"], a: 1, r: "\\(P = 0\\) means the event cannot happen — it is impossible." },
+            { i: 182, s: "D", t: "With Rep", q: "A box has 3 Red and 2 Blue balls. You pick one, replace it, then pick again. Find P(Red then Blue).", o: ["6/25", "3/10", "1/2", "5/25", "1/5"], a: 0, r: "\\(P(R) \\times P(B) = \\frac{3}{5} \\times \\frac{2}{5} = \\frac{6}{25}\\)" },
+            { i: 183, s: "D", t: "No Rep", q: "A box has 3 Red and 2 Blue balls. You pick one, do NOT replace, then pick again. Find P(Red then Blue).", o: ["6/25", "3/10", "1/2", "1/5", "3/20"], a: 1, r: "\\(\\frac{3}{5} \\times \\frac{2}{4} = \\frac{6}{20} = \\frac{3}{10}\\)" },
+            { i: 184, s: "D", t: "Arrange", q: "In how many ways can 4 distinct paintings be arranged on a wall?", o: ["4", "12", "24", "16", "10"], a: 2, r: "\\(4! = 24\\)" },
+            { i: 185, s: "D", t: "Geo Prob", q: "A circle with radius 2 is inside a square with side 6. A dart is thrown randomly. P(hitting the circle)?", o: ["π/9", "π/4", "1/3", "2/6", "π"], a: 0, r: "\\(P = \\frac{\\pi r^2}{s^2} = \\frac{4\\pi}{36} = \\frac{\\pi}{9}\\)" },
+            { i: 186, s: "D", t: "Toppings", q: "You can choose 2 pizza toppings from a menu of 5. How many combinations? \\(_5C_2\\)", o: ["5", "10", "20", "25", "15"], a: 1, r: "\\(_5C_2 = 10\\)" },
+            { i: 187, s: "D", t: "Or Rule", q: "When can you simply add P(A) + P(B) to find P(A or B)?", o: ["Always", "When mutually exclusive", "When independent", "Never", "When dependent"], a: 1, r: "\\(P(A \\cup B) = P(A) + P(B)\\) only if A and B are mutually exclusive (disjoint)." },
+            { i: 188, s: "D", t: "Month", q: "What is the probability that a randomly chosen month starts with the letter J?", o: ["1/4", "1/3", "1/12", "3/10", "1/6"], a: 0, r: "Jan, Jun, Jul = 3 months. \\(P = \\frac{3}{12} = \\frac{1}{4}\\)" },
+            { i: 189, s: "D", t: "Fixed", q: "In how many ways can A, B, C, D be arranged if A must be first?", o: ["24", "6", "12", "4", "1"], a: 1, r: "Fix A first, arrange B, C, D: \\(3! = 6\\)" },
+            { i: 190, s: "D", t: "100C100", q: "What is \\(_{100}C_{100}\\)?", o: ["1", "100", "99", "0", "1000"], a: 0, r: "\\(_nC_n = 1\\) for any n — only one way to choose all items." },
+            { i: 191, s: "D", t: "Girls", q: "A family has 3 children. What is P(all are girls)?", o: ["1/3", "1/8", "1/6", "3/8", "1/2"], a: 1, r: "\\(P = \\left(\\frac{1}{2}\\right)^3 = \\frac{1}{8}\\)" },
+            { i: 192, s: "D", t: "4 Digit", q: "How many 4-digit PIN codes are possible using digits 0-9 (with repetition)?", o: ["10000", "9⁴", "5040", "40", "100"], a: 0, r: "\\(10^4 = 10000\\)" },
+            { i: 193, s: "D", t: "Valid P", q: "Which of the following is NOT a valid probability?", o: ["0", "0.5", "1", "1.5", "2/3"], a: 3, r: "Probability must be between 0 and 1. \\(1.5 > 1\\), so it's invalid." },
+            { i: 194, s: "D", t: "Die <3", q: "A fair die is rolled. What is P(number less than 3)?", o: ["1/6", "1/3", "1/2", "2/3", "5/6"], a: 1, r: "Numbers < 3: {1, 2}. \\(P = \\frac{2}{6} = \\frac{1}{3}\\)" },
+            { i: 195, s: "D", t: "Officers", q: "From 5 people, how many ways to select President, VP, and Treasurer (different people)? \\(_5P_3\\)", o: ["10", "60", "20", "15", "120"], a: 1, r: "\\(_5P_3 = 5 \\times 4 \\times 3 = 60\\)" },
+            { i: 196, s: "D", t: "Mult 4", q: "A number is randomly chosen from 1-10. What is P(multiple of 4)?", o: ["1/5", "2/5", "3/10", "1/10", "1/2"], a: 0, r: "Multiples of 4: {4, 8}. \\(P = \\frac{2}{10} = \\frac{1}{5}\\)" },
+            { i: 197, s: "D", t: "Sum P", q: "The sum of all probabilities in a probability distribution equals:", o: ["100", "1", "0", "n", "0.5"], a: 1, r: "\\(\\sum P(x) = 1\\) for any valid probability distribution." },
+            { i: 198, s: "D", t: "0!", q: "By definition, what is \\(0!\\)?", o: ["0", "1", "Undefined", "10", "-1"], a: 1, r: "\\(0! = 1\\) by definition (empty product)." },
+            { i: 199, s: "D", t: "Face", q: "What is P(drawing a Face card: J, Q, or K) from a standard deck?", o: ["3/13", "1/13", "1/4", "3/52", "1/2"], a: 0, r: "12 face cards (4 Jacks + 4 Queens + 4 Kings). \\(P = \\frac{12}{52} = \\frac{3}{13}\\)" },
+            { i: 200, s: "D", t: "Odds", q: "If \\(P(Rain) = 0.4\\), what are the odds in favor of rain?", o: ["2:3", "4:10", "6:4", "40%", "1:1"], a: 0, r: "Odds = P(A) : P(A') = 0.4 : 0.6 = 2:3" }
+        ];
+
+        let mode = 'study', sec = 'A', ans = {}, time = 3600, run = false, interval;
+        let examQuestions = []; // Holds random questions for exam mode
+        const titles = { A: "Descriptive Statistics", B: "Data Representation", C: "Bivariate Data", D: "Probability" };
+        const EXAM_QUESTION_COUNT = 10; // Number of random questions in exam mode
+
+        // Shuffle array using Fisher-Yates algorithm
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function showTheory() {
+            document.getElementById('theoryView').classList.remove('hidden');
+            document.getElementById('quizView').classList.add('hidden');
+            document.querySelectorAll('.nav-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
+        }
+
+        // Separate Exam section with 10 random questions
+        function showExam() {
+            mode = 'exam';
+            ans = {};
+
+            // Generate 10 random questions from all 200
+            const allQuestions = shuffleArray(Q);
+            examQuestions = allQuestions.slice(0, EXAM_QUESTION_COUNT);
+
+            // Reset timer to 15 minutes
+            time = 15 * 60;
+            updateTimer();
+
+            // Show quiz view
+            document.getElementById('theoryView').classList.add('hidden');
+            document.getElementById('quizView').classList.remove('hidden');
+            document.getElementById('sectionTitle').textContent = '📝 Random Exam';
+            document.getElementById('questionCount').textContent = `${EXAM_QUESTION_COUNT} Random Questions`;
+
+            // Update nav buttons
+            document.querySelectorAll('.nav-btn').forEach((b, i) => {
+                b.classList.remove('active');
+                if (i === 6) b.classList.add('active'); // Exam button index
+            });
+
+            renderQuestions(examQuestions);
+            updateProgress();
+            document.getElementById('submitBtn').classList.remove('hidden');
+            document.getElementById('printBtn').classList.remove('hidden');
+        }
+
+        function showQuiz(s) {
+            sec = s;
+            document.getElementById('theoryView').classList.add('hidden');
+            document.getElementById('quizView').classList.remove('hidden');
+
+            let qs;
+            if (mode === 'exam') {
+                // Exam mode: use the random questions
+                document.getElementById('sectionTitle').textContent = `📝 Exam Mode`;
+                qs = examQuestions;
+                document.getElementById('questionCount').textContent = `${qs.length} Random Questions`;
+            } else {
+                // Study mode: show all questions from section
+                document.getElementById('sectionTitle').textContent = `Section ${s}: ${titles[s]}`;
+                qs = Q.filter(q => q.s === s);
+                document.getElementById('questionCount').textContent = `${qs.length} Questions`;
+            }
+
+            document.querySelectorAll('.nav-btn').forEach((b, i) => b.classList.toggle('active', i === ['A', 'B', 'C', 'D'].indexOf(s) + 1));
+            renderQuestions(qs);
+            updateProgress();
+            document.getElementById('submitBtn').classList.toggle('hidden', mode !== 'exam');
+            document.getElementById('printBtn').classList.remove('hidden');
+        }
+
+        function renderQuestions(qs) {
+            const c = document.getElementById('questionsContainer');
+            c.innerHTML = qs.map(q => `
+        <div class="question-card" id="q${q.i}">
+            <div class="question-meta">
+                <span class="question-id">#${q.i}</span>
+                <span class="question-topic">${q.t}</span>
+            </div>
+            <div class="question-text">${q.q}</div>
+            ${q.v ? renderChart(q.v) : ''}
+            <div class="options">
+                ${q.o.map((o, i) => `<button class="option-btn" onclick="selectAnswer(${q.i},${i})">
+                    <span class="letter">${String.fromCharCode(65 + i)}</span>${o}
+                </button>`).join('')}
+            </div>
+            <div class="rationale hidden" id="rat${q.i}">
+                <div class="rationale-label">Explanation</div>
+                <div class="rationale-text">${q.r}</div>
+            </div>
+        </div>
+    `).join('');
+            // Trigger MathJax to render LaTeX
+            if (window.MathJax && window.MathJax.typeset) {
+                MathJax.typeset();
+            }
+        }
+
+        function renderChart(type, qData) {
+            // Box Plot with specific values
+            if (type === 'box') return `<div class="chart-container"><svg width="300" height="80">
+                <line x1="20" y1="40" x2="280" y2="40" stroke="#64748b"/>
+                <rect x="80" y="25" width="120" height="30" fill="#3b82f6" opacity="0.3" stroke="#3b82f6"/>
+                <line x1="140" y1="25" x2="140" y2="55" stroke="#10b981" stroke-width="3"/>
+                <line x1="20" y1="30" x2="20" y2="50" stroke="#64748b"/>
+                <line x1="280" y1="30" x2="280" y2="50" stroke="#64748b"/>
+                <line x1="20" y1="40" x2="80" y2="40" stroke="#64748b"/>
+                <line x1="200" y1="40" x2="280" y2="40" stroke="#64748b"/>
+                <text x="15" y="70" fill="#94a3b8" font-size="10">Min</text>
+                <text x="75" y="70" fill="#94a3b8" font-size="10">Q1</text>
+                <text x="125" y="70" fill="#10b981" font-size="11" font-weight="bold">Median</text>
+                <text x="190" y="70" fill="#94a3b8" font-size="10">Q3</text>
+                <text x="265" y="70" fill="#94a3b8" font-size="10">Max</text>
+            </svg></div>`;
+
+            // Box plot with whiskers 10-90 (Q57)
+            if (type === 'box57') return `<div class="chart-container"><svg width="300" height="80">
+                <line x1="20" y1="40" x2="280" y2="40" stroke="#64748b"/>
+                <rect x="80" y="25" width="120" height="30" fill="#3b82f6" opacity="0.3" stroke="#3b82f6"/>
+                <line x1="140" y1="25" x2="140" y2="55" stroke="#10b981" stroke-width="3"/>
+                <line x1="20" y1="30" x2="20" y2="50" stroke="#64748b"/>
+                <line x1="280" y1="30" x2="280" y2="50" stroke="#64748b"/>
+                <line x1="20" y1="40" x2="80" y2="40" stroke="#64748b"/>
+                <line x1="200" y1="40" x2="280" y2="40" stroke="#64748b"/>
+                <text x="15" y="70" fill="#f59e0b" font-size="11" font-weight="bold">10</text>
+                <text x="75" y="70" fill="#94a3b8" font-size="10">Q1</text>
+                <text x="130" y="70" fill="#94a3b8" font-size="10">Med</text>
+                <text x="190" y="70" fill="#94a3b8" font-size="10">Q3</text>
+                <text x="265" y="70" fill="#f59e0b" font-size="11" font-weight="bold">90</text>
+                <text x="150" y="8" fill="#94a3b8" font-size="9">Range = 90 - 10 = ?</text>
+            </svg></div>`;
+
+            // Box plot Q86 with Q1=20, Q3=35
+            if (type === 'box86') return `<div class="chart-container"><svg width="300" height="80">
+                <line x1="20" y1="40" x2="280" y2="40" stroke="#64748b"/>
+                <rect x="80" y="25" width="120" height="30" fill="#3b82f6" opacity="0.3" stroke="#3b82f6"/>
+                <line x1="140" y1="25" x2="140" y2="55" stroke="#10b981" stroke-width="3"/>
+                <line x1="20" y1="30" x2="20" y2="50" stroke="#64748b"/>
+                <line x1="280" y1="30" x2="280" y2="50" stroke="#64748b"/>
+                <line x1="20" y1="40" x2="80" y2="40" stroke="#64748b"/>
+                <line x1="200" y1="40" x2="280" y2="40" stroke="#64748b"/>
+                <text x="15" y="70" fill="#94a3b8" font-size="10">Min</text>
+                <text x="65" y="70" fill="#f59e0b" font-size="11" font-weight="bold">Q1=20</text>
+                <text x="130" y="70" fill="#94a3b8" font-size="10">Med</text>
+                <text x="180" y="70" fill="#f59e0b" font-size="11" font-weight="bold">Q3=35</text>
+                <text x="265" y="70" fill="#94a3b8" font-size="10">Max</text>
+            </svg></div>`;
+
+            // Random scatter (r≈0)
+            if (type === 'scatter') return `<div class="chart-container"><svg width="200" height="150">
+                <rect x="30" y="10" width="160" height="120" fill="#1e293b" stroke="#334155"/>
+                <circle cx="60" cy="30" r="4" fill="#ef4444"/>
+                <circle cx="150" cy="80" r="4" fill="#ef4444"/>
+                <circle cx="60" cy="100" r="4" fill="#ef4444"/>
+                <circle cx="150" cy="50" r="4" fill="#ef4444"/>
+                <circle cx="90" cy="65" r="4" fill="#ef4444"/>
+                <circle cx="120" cy="35" r="4" fill="#ef4444"/>
+                <circle cx="80" cy="90" r="4" fill="#ef4444"/>
+                <text x="100" y="145" fill="#94a3b8" font-size="10" text-anchor="middle">Random Pattern (r ≈ 0)</text>
+            </svg></div>`;
+
+            // Venn with specific numbers (Q72: A=40, B=30, A∩B=20)
+            if (type === 'venn72') return `<div class="chart-container"><svg width="220" height="130">
+                <circle cx="80" cy="60" r="50" fill="#3b82f6" opacity="0.3" stroke="#3b82f6"/>
+                <circle cx="140" cy="60" r="50" fill="#10b981" opacity="0.3" stroke="#10b981"/>
+                <text x="55" y="65" fill="#f1f5f9" font-size="14" font-weight="bold">20</text>
+                <text x="105" y="65" fill="#f59e0b" font-size="14" font-weight="bold">20</text>
+                <text x="160" y="65" fill="#f1f5f9" font-size="14" font-weight="bold">10</text>
+                <text x="55" y="115" fill="#94a3b8" font-size="10">A only</text>
+                <text x="100" y="115" fill="#94a3b8" font-size="10">A∩B</text>
+                <text x="155" y="115" fill="#94a3b8" font-size="10">B only</text>
+                <text x="45" y="20" fill="#3b82f6" font-size="11">A=40</text>
+                <text x="155" y="20" fill="#10b981" font-size="11">B=30</text>
+            </svg></div>`;
+
+            // Standard Venn
+            if (type === 'venn') return `<div class="chart-container"><svg width="200" height="120">
+                <circle cx="70" cy="60" r="45" fill="#3b82f6" opacity="0.3" stroke="#3b82f6"/>
+                <circle cx="130" cy="60" r="45" fill="#10b981" opacity="0.3" stroke="#10b981"/>
+                <text x="50" y="65" fill="#f1f5f9" font-size="12">A</text>
+                <text x="100" y="65" fill="#f59e0b" font-size="12">∩</text>
+                <text x="150" y="65" fill="#f1f5f9" font-size="12">B</text>
+            </svg></div>`;
+
+            if (type === 'bar') return `<div class="chart-container"><svg width="150" height="100"><rect x="30" y="40" width="40" height="50" fill="#3b82f6"/><rect x="80" y="20" width="40" height="70" fill="#10b981"/><text x="50" y="95" fill="#94a3b8" font-size="10" text-anchor="middle">A</text><text x="100" y="95" fill="#94a3b8" font-size="10" text-anchor="middle">B</text></svg></div>`;
+
+            // Right-skewed histogram
+            if (type === 'hist') return `<div class="chart-container"><svg width="250" height="120">
+                <rect x="30" y="10" width="200" height="90" fill="#1e293b" stroke="#334155"/>
+                <rect x="40" y="60" width="30" height="35" fill="#8b5cf6"/>
+                <rect x="75" y="30" width="30" height="65" fill="#8b5cf6"/>
+                <rect x="110" y="20" width="30" height="75" fill="#8b5cf6"/>
+                <rect x="145" y="40" width="30" height="55" fill="#8b5cf6"/>
+                <rect x="180" y="70" width="30" height="25" fill="#8b5cf6"/>
+                <text x="130" y="115" fill="#94a3b8" font-size="10" text-anchor="middle">Right Skewed (tail→right)</text>
+                <path d="M200,105 L210,100 L210,110 Z" fill="#f59e0b"/>
+            </svg></div>`;
+
+            // Left-skewed histogram
+            if (type === 'histL') return `<div class="chart-container"><svg width="250" height="120">
+                <rect x="30" y="10" width="200" height="90" fill="#1e293b" stroke="#334155"/>
+                <rect x="40" y="70" width="30" height="25" fill="#f59e0b"/>
+                <rect x="75" y="40" width="30" height="55" fill="#f59e0b"/>
+                <rect x="110" y="20" width="30" height="75" fill="#f59e0b"/>
+                <rect x="145" y="30" width="30" height="65" fill="#f59e0b"/>
+                <rect x="180" y="60" width="30" height="35" fill="#f59e0b"/>
+                <text x="130" y="115" fill="#94a3b8" font-size="10" text-anchor="middle">Left Skewed (tail←left)</text>
+                <path d="M30,105 L20,100 L20,110 Z" fill="#f59e0b"/>
+            </svg></div>`;
+
+            // Stem-and-leaf (Q55 specific: 4|1,3)
+            if (type === 'stem') return `<div class="chart-container"><svg width="180" height="100">
+                <rect x="10" y="10" width="160" height="80" fill="#1e293b" stroke="#334155"/>
+                <text x="25" y="32" fill="#94a3b8" font-size="12">Stem</text>
+                <text x="70" y="32" fill="#94a3b8" font-size="12">|</text>
+                <text x="90" y="32" fill="#94a3b8" font-size="12">Leaves</text>
+                <line x1="15" y1="38" x2="165" y2="38" stroke="#334155"/>
+                <text x="30" y="55" fill="#f59e0b" font-size="14" font-weight="bold">4</text>
+                <text x="70" y="55" fill="#64748b" font-size="14">|</text>
+                <text x="90" y="55" fill="#10b981" font-size="14" font-weight="bold">1  3</text>
+                <text x="30" y="75" fill="#94a3b8" font-size="12">5</text>
+                <text x="70" y="75" fill="#64748b" font-size="14">|</text>
+                <text x="90" y="75" fill="#94a3b8" font-size="12">2 7 8</text>
+            </svg></div>`;
+
+            if (type === 'pie') return `<div class="chart-container"><svg width="150" height="150"><circle cx="75" cy="75" r="60" fill="#3b82f6"/><path d="M75,75 L75,15 A60,60 0 0,1 135,75 Z" fill="#10b981"/><path d="M75,75 L135,75 A60,60 0 0,1 75,135 Z" fill="#f59e0b"/><text x="75" y="155" fill="#94a3b8" font-size="10" text-anchor="middle">Pie Chart</text></svg></div>`;
+
+            // Positive correlation scatter
+            if (type === 'scatterPos') return `<div class="chart-container"><svg width="200" height="150">
+                <rect x="30" y="10" width="160" height="120" fill="#1e293b" stroke="#334155"/>
+                <line x1="40" y1="120" x2="180" y2="20" stroke="#10b981" stroke-width="2" stroke-dasharray="5,5"/>
+                <circle cx="50" cy="115" r="4" fill="#ef4444"/>
+                <circle cx="70" cy="100" r="4" fill="#ef4444"/>
+                <circle cx="100" cy="75" r="4" fill="#ef4444"/>
+                <circle cx="130" cy="50" r="4" fill="#ef4444"/>
+                <circle cx="160" cy="30" r="4" fill="#ef4444"/>
+                <text x="100" y="145" fill="#10b981" font-size="10" text-anchor="middle">Positive Correlation (r > 0)</text>
+                <text x="35" y="85" fill="#94a3b8" font-size="9">y↑</text>
+                <text x="165" y="140" fill="#94a3b8" font-size="9">x→</text>
+            </svg></div>`;
+
+            // Negative correlation scatter
+            if (type === 'scatterNeg') return `<div class="chart-container"><svg width="200" height="150">
+                <rect x="30" y="10" width="160" height="120" fill="#1e293b" stroke="#334155"/>
+                <line x1="40" y1="20" x2="180" y2="120" stroke="#ef4444" stroke-width="2" stroke-dasharray="5,5"/>
+                <circle cx="50" cy="25" r="4" fill="#3b82f6"/>
+                <circle cx="80" cy="50" r="4" fill="#3b82f6"/>
+                <circle cx="110" cy="70" r="4" fill="#3b82f6"/>
+                <circle cx="140" cy="95" r="4" fill="#3b82f6"/>
+                <circle cx="170" cy="115" r="4" fill="#3b82f6"/>
+                <text x="100" y="145" fill="#ef4444" font-size="10" text-anchor="middle">Negative Correlation (r < 0)</text>
+            </svg></div>`;
+
+            // Time series line graph
+            if (type === 'line') return `<div class="chart-container"><svg width="200" height="120">
+                <rect x="20" y="10" width="170" height="90" fill="#1e293b" stroke="#334155"/>
+                <polyline points="30,80 60,60 90,70 120,40 150,30 180,35" fill="none" stroke="#10b981" stroke-width="2"/>
+                <circle cx="30" cy="80" r="3" fill="#10b981"/>
+                <circle cx="60" cy="60" r="3" fill="#10b981"/>
+                <circle cx="90" cy="70" r="3" fill="#10b981"/>
+                <circle cx="120" cy="40" r="3" fill="#10b981"/>
+                <circle cx="150" cy="30" r="3" fill="#10b981"/>
+                <circle cx="180" cy="35" r="3" fill="#10b981"/>
+                <text x="100" y="115" fill="#94a3b8" font-size="10" text-anchor="middle">Time Series (Gold Prices)</text>
+            </svg></div>`;
+
+            // Normal distribution with 68% shaded
+            if (type === 'normal') return `<div class="chart-container"><svg width="280" height="130">
+                <rect x="20" y="10" width="240" height="100" fill="#1e293b" stroke="#334155"/>
+                <path d="M30,100 Q80,100 100,70 Q120,25 140,15 Q160,25 180,70 Q200,100 250,100" fill="rgba(139,92,246,0.2)" stroke="#8b5cf6" stroke-width="2"/>
+                <rect x="100" y="15" width="80" height="85" fill="rgba(16,185,129,0.2)"/>
+                <line x1="140" y1="15" x2="140" y2="100" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3,3"/>
+                <text x="140" y="120" fill="#f59e0b" font-size="11" text-anchor="middle">μ (mean)</text>
+                <text x="100" y="120" fill="#94a3b8" font-size="9" text-anchor="middle">-1σ</text>
+                <text x="180" y="120" fill="#94a3b8" font-size="9" text-anchor="middle">+1σ</text>
+                <text x="140" y="60" fill="#10b981" font-size="12" text-anchor="middle" font-weight="bold">68%</text>
+            </svg></div>`;
+
+            // Residual plot (U-shape for non-linear)
+            if (type === 'resid') return `<div class="chart-container"><svg width="200" height="120">
+                <rect x="20" y="10" width="160" height="90" fill="#1e293b" stroke="#334155"/>
+                <line x1="20" y1="55" x2="180" y2="55" stroke="#64748b" stroke-dasharray="3,3"/>
+                <text x="15" y="58" fill="#94a3b8" font-size="8">0</text>
+                <circle cx="40" cy="30" r="4" fill="#ef4444"/>
+                <circle cx="60" cy="70" r="4" fill="#ef4444"/>
+                <circle cx="80" cy="80" r="4" fill="#ef4444"/>
+                <circle cx="100" cy="75" r="4" fill="#ef4444"/>
+                <circle cx="120" cy="70" r="4" fill="#ef4444"/>
+                <circle cx="140" cy="35" r="4" fill="#ef4444"/>
+                <circle cx="160" cy="25" r="4" fill="#ef4444"/>
+                <path d="M35,30 Q100,90 165,25" fill="none" stroke="#f59e0b" stroke-width="1" stroke-dasharray="2,2"/>
+                <text x="100" y="115" fill="#f59e0b" font-size="10" text-anchor="middle">U-Shape = Non-Linear!</text>
+            </svg></div>`;
+
+            return '';
+        }
+
+        function selectAnswer(qid, oi) {
+            const q = Q.find(x => x.i === qid);
+            if (mode === 'study' && ans[qid] !== undefined) return;
+            ans[qid] = oi;
+            const card = document.getElementById('q' + qid);
+            const btns = card.querySelectorAll('.option-btn');
+            btns.forEach((b, i) => {
+                b.classList.remove('selected', 'correct', 'incorrect', 'dimmed');
+                if (mode === 'study') {
+                    if (i === q.a) b.classList.add('correct');
+                    else if (i === oi) b.classList.add('incorrect');
+                    else b.classList.add('dimmed');
+                } else {
+                    if (i === oi) b.classList.add('selected');
+                }
+            });
+            if (mode === 'study') document.getElementById('rat' + qid).classList.remove('hidden');
+            updateProgress();
+        }
+
+        function setMode(m) {
+            mode = m;
+            document.querySelectorAll('.mode-btn').forEach((b, i) => b.classList.toggle('active', i === (m === 'study' ? 0 : 1)));
+            ans = {};
+
+            if (m === 'exam') {
+                // Generate random questions from ALL sections
+                const allQuestions = shuffleArray(Q);
+                examQuestions = allQuestions.slice(0, EXAM_QUESTION_COUNT);
+                // Reset timer to 30 minutes for exam
+                time = 30 * 60;
+                updateTimer();
+            }
+
+            showQuiz(sec);
+        }
+
+        function updateProgress() {
+            const qs = Q.filter(q => q.s === sec);
+            const answered = qs.filter(q => ans[q.i] !== undefined).length;
+            document.getElementById('progressBar')?.style?.setProperty('width', `${(answered / qs.length) * 100}%`);
+        }
+
+        function submitExam() {
+            const qs = Q.filter(q => q.s === sec);
+            let correct = 0;
+            qs.forEach(q => { if (ans[q.i] === q.a) correct++; });
+            const score = Math.round((correct / qs.length) * 100);
+            document.getElementById('scoreText').textContent = score + '%';
+            document.getElementById('resultModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('resultModal').classList.add('hidden');
+            setMode('study');
+        }
+
+        function toggleTimer() {
+            run = !run;
+            const btn = document.getElementById('timerBtn');
+            btn.textContent = run ? 'PAUSE' : 'START TIMER';
+            btn.className = 'timer-btn ' + (run ? 'pause' : 'start');
+            if (run) interval = setInterval(() => { if (time > 0) { time--; updateTimer(); } }, 1000);
+            else clearInterval(interval);
+        }
+
+        function updateTimer() {
+            const m = Math.floor(time / 60), s = time % 60;
+            document.getElementById('timer').textContent = `${m}:${s.toString().padStart(2, '0')}`;
+        }
+
+        console.log('EST Math Statistics - 200 Questions Loaded');
+        console.log('Section A:', Q.filter(q => q.s === 'A').length);
+        console.log('Section B:', Q.filter(q => q.s === 'B').length);
+        console.log('Section C:', Q.filter(q => q.s === 'C').length);
+        console.log('Section D:', Q.filter(q => q.s === 'D').length);
+
+        function printQuestions() {
+            // Show all rationales for print
+            document.querySelectorAll('.rationale').forEach(r => r.classList.remove('hidden'));
+            // Trigger MathJax one more time
+            if (window.MathJax && window.MathJax.typeset) {
+                MathJax.typeset();
+            }
+
+            // Wait for MathJax, then try to print
+            setTimeout(() => {
+                try {
+                    window.print();
+                } catch (e) {
+                    alert('للطباعة: اضغط Ctrl+P');
+                }
+            }, 500);
+        }
+
+        function printTheory() {
+            // Trigger MathJax to ensure all formulas are rendered
+            if (window.MathJax && window.MathJax.typeset) {
+                MathJax.typeset();
+            }
+            // Wait for MathJax to complete then print
+            setTimeout(() => {
+                try {
+                    window.print();
+                } catch (e) {
+                    alert('للطباعة: اضغط Ctrl+P');
+                }
+            }, 500);
+        }
+
+        function toggleMenu() {
+            const sidebar = document.querySelector('.sidebar');
+            const toggle = document.querySelector('.menu-toggle');
+            sidebar.classList.toggle('open');
+            toggle.textContent = sidebar.classList.contains('open') ? '✕' : '☰';
+        }
+
+        // Close sidebar when clicking a nav button on mobile
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    const sidebar = document.querySelector('.sidebar');
+                    const toggle = document.querySelector('.menu-toggle');
+                    sidebar.classList.remove('open');
+                    toggle.textContent = '☰';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

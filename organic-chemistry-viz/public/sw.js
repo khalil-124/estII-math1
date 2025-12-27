@@ -1,4 +1,4 @@
-const CACHE_NAME = 'organic-chem-v1';
+const CACHE_NAME = 'organic-chem-v2';
 const STATIC_ASSETS = [
     '/',
     '/manifest.json',
