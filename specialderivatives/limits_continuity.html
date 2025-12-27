@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>النهايات والاتصال - شرح شامل</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #f8fafc;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            padding: 1rem;
+            background: linear-gradient(90deg, #dbeafe 0%, #ede9fe 100%);
+            border-radius: 10px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4338ca;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #818cf8;
+            padding-bottom: 0.5rem;
+        }
+
+        h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #6366f1;
+            margin-bottom: 0.75rem;
+        }
+
+        .explanation {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            border-right: 5px solid #6366f1;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            border-right: 5px solid #22c55e;
+            padding: 1.25rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .student-task-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-right: 5px solid #f59e0b;
+            padding: 1.25rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .homework-box {
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+            border-right: 5px solid #ec4899;
+            padding: 1.25rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border-right: 5px solid #ef4444;
+            padding: 1.25rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #cffafe 0%, #a5f3fc 100%);
+            border-right: 5px solid #06b6d4;
+            padding: 1.25rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        details {
+            margin-top: 0.75rem;
+        }
+
+        summary {
+            cursor: pointer;
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        summary:hover {
+            background-color: #4338ca;
+        }
+
+        .solution-content {
+            background-color: white;
+            border: 2px solid #c7d2fe;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%);
+            border: 3px solid #eab308;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+
+<body class="p-4">
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl rounded-xl shadow-2xl">
+
+        <h2>📐 النهايات والاتصال - شرح شامل</h2>
+
+        <!-- ================================================================= -->
+        <!-- القسم الأول: التفسير الهندسي للنهايات -->
+        <!-- ================================================================= -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8 border-r-4 border-indigo-500">
+            <h3>أولاً: التفسير الهندسي للنهايات</h3>
+
+            <div class="explanation">
+                <h4>🎯 ما معنى النهاية هندسياً؟</h4>
+                <p class="mb-3">عندما نكتب \(\lim_{x \to a} f(x) = L\)، فإننا نقول:</p>
+                <p class="text-lg font-bold text-indigo-800 mb-3">"كلما اقتربنا من x = a (دون أن نصل إليها)، تقترب قيم
+                    f(x) من L"</p>
+
+                <div class="grid md:grid-cols-2 gap-4 mt-4">
+                    <div class="bg-white p-3 rounded-lg border border-indigo-300">
+                        <p class="font-bold text-indigo-700">النهاية من اليمين:</p>
+                        <p class="text-center text-lg my-2">\(\lim_{x \to a^+} f(x)\)</p>
+                        <p class="text-sm text-gray-600">نقترب من a من قيم أكبر منها (من اليمين على خط الأعداد)</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg border border-purple-300">
+                        <p class="font-bold text-purple-700">النهاية من اليسار:</p>
+                        <p class="text-center text-lg my-2">\(\lim_{x \to a^-} f(x)\)</p>
+                        <p class="text-sm text-gray-600">نقترب من a من قيم أصغر منها (من اليسار على خط الأعداد)</p>
+                    </div>
+                </div>
+
+                <div class="formula-box mt-4">
+                    <p class="font-bold text-lg">⚠️ القاعدة الذهبية:</p>
+                    <p>\(\lim_{x \to a} f(x) = L\) تتحقق إذا وفقط إذا:</p>
+                    <p class="text-xl">\(\lim_{x \to a^+} f(x) = \lim_{x \to a^-} f(x) = L\)</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 1: قراءة النهايات من الرسم البياني</p>
+                <p>من الرسم البياني لـ f(x)، إذا كان:</p>
+                <ul class="list-disc list-inside pr-4 space-y-1">
+                    <li>المنحنى يقترب من y = 3 عندما نقترب من x = 2 من اليسار</li>
+                    <li>المنحنى يقترب من y = 3 عندما نقترب من x = 2 من اليمين</li>
+                </ul>
+                <p class="mt-2">إذاً: \(\lim_{x \to 2} f(x) = 3\)</p>
+                <p class="text-sm text-gray-600 mt-2"><strong>ملاحظة:</strong> حتى لو كان \(f(2) \neq 3\) أو f(2) غير
+                    معرفة!</p>
+            </div>
+
+            <div class="warning-box">
+                <p class="font-bold text-red-700">⚠️ متى لا توجد النهاية؟</p>
+                <ul class="list-disc list-inside pr-4 space-y-2 mt-2">
+                    <li><strong>النهايتان الجانبيتان مختلفتان:</strong> \(\lim_{x \to a^+} f(x) \neq \lim_{x \to a^-}
+                        f(x)\)</li>
+                    <li><strong>النهاية تؤول للانهاية:</strong> \(\lim_{x \to a} f(x) = \pm \infty\)</li>
+                    <li><strong>التذبذب:</strong> الاقتران يتذبذب بشكل غير منتظم</li>
+                </ul>
+            </div>
+
+            <!-- أسئلة القسم الأول -->
+            <div class="mt-6">
+                <h4 class="text-xl font-bold text-indigo-800 mb-4">📝 تمارين على التفسير الهندسي</h4>
+
+                <div class="student-task-box">
+                    <p class="font-bold">1. إذا كان \(\lim_{x \to 3^+} f(x) = 5\) و \(\lim_{x \to 3^-} f(x) = 5\)، ما
+                        قيمة \(\lim_{x \to 3} f(x)\)؟</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>الحل:</strong></p>
+                            <p>بما أن النهايتين الجانبيتين متساويتان:</p>
+                            <p>\(\lim_{x \to 3^+} f(x) = \lim_{x \to 3^-} f(x) = 5\)</p>
+                            <p class="font-bold text-green-700">إذاً: \(\lim_{x \to 3} f(x) = 5\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="student-task-box">
+                    <p class="font-bold">2. إذا كان \(\lim_{x \to 1^+} g(x) = 4\) و \(\lim_{x \to 1^-} g(x) = 2\)، هل
+                        توجد \(\lim_{x \to 1} g(x)\)؟</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>الحل:</strong></p>
+                            <p>النهايتان الجانبيتان مختلفتان:</p>
+                            <p>\(\lim_{x \to 1^+} g(x) = 4 \neq 2 = \lim_{x \to 1^-} g(x)\)</p>
+                            <p class="font-bold text-red-600">إذاً: \(\lim_{x \to 1} g(x)\) غير موجودة</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">3. إذا علمت أن \(f(2) = 7\) و \(\lim_{x \to 2} f(x) = 5\)، ماذا تستنتج هندسياً؟
+                    </p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>الحل:</strong></p>
+                            <p>هذا يعني أن:</p>
+                            <ul class="list-disc list-inside pr-4">
+                                <li>المنحنى يقترب من y = 5 عندما نقترب من x = 2</li>
+                                <li>لكن النقطة الفعلية عند x = 2 هي (2, 7)</li>
+                            </ul>
+                            <p class="font-bold text-green-700 mt-2">استنتاج: يوجد "قفزة" أو "ثقب" في الرسم البياني عند
+                                x = 2</p>
+                            <p class="text-gray-600">هذا يعني أن f غير متصل عند x = 2</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- القسم 1-ب: قراءة النهايات من الرسم البياني -->
+        <!-- ================================================================= -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8 border-r-4 border-cyan-500">
+            <h3>📊 قراءة النهايات من الرسم البياني</h3>
+
+            <div class="explanation">
+                <h4>🎨 كيف نقرأ النهايات من الرسم؟</h4>
+                <p>لقراءة \(\lim_{x \to a} f(x)\) من الرسم:</p>
+                <ul class="list-disc list-inside pr-4 mt-2 space-y-1">
+                    <li>تتبع المنحنى من اليسار نحو x = a ← هذه النهاية اليسرى</li>
+                    <li>تتبع المنحنى من اليمين نحو x = a ← هذه النهاية اليمنى</li>
+                    <li>إذا وصلتا لنفس النقطة، النهاية موجودة</li>
+                </ul>
+
+                <div class="formula-box mt-4">
+                    <p class="font-bold">⚠️ تذكر:</p>
+                    <p>● نقطة مملوءة = قيمة الاقتران f(a)</p>
+                    <p>○ نقطة فارغة = النهاية فقط (الاقتران غير معرف أو له قيمة مختلفة)</p>
+                </div>
+            </div>
+
+            <!-- الرسم البياني 1 -->
+            <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                <h4 class="text-lg font-bold text-cyan-800 mb-3">📈 الرسم البياني (1): الاقتران f(x)</h4>
+                <div id="graph1" class="w-full flex justify-center" style="height: 350px;"></div>
+                <p class="text-center text-sm text-gray-600 mt-2">الاقتران f(x) = x + 1 للـ x < 2، وقيمة f(2)=1 (نقطة
+                        منفصلة)</p>
+            </div>
+
+            <div class="student-task-box">
+                <p class="font-bold">من الرسم البياني (1)، أجب:</p>
+                <p class="mt-2">1) ما قيمة \(\lim_{x \to 2} f(x)\)؟</p>
+                <p>2) ما قيمة \(f(2)\)؟</p>
+                <p>3) هل \(\lim_{x \to 2} f(x) = f(2)\)؟</p>
+                <p>4) هل f متصل عند x = 2؟</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>1)</strong> من الرسم، المنحنى يقترب من y = 3 عند x = 2</p>
+                        <p class="font-bold text-green-700">\(\lim_{x \to 2} f(x) = 3\)</p>
+                        <hr class="my-2">
+                        <p><strong>2)</strong> النقطة المنفصلة عند x = 2 هي (2, 1)</p>
+                        <p class="font-bold text-green-700">\(f(2) = 1\)</p>
+                        <hr class="my-2">
+                        <p><strong>3)</strong> \(3 \neq 1\)</p>
+                        <p class="font-bold text-red-600">لا، \(\lim_{x \to 2} f(x) \neq f(2)\)</p>
+                        <hr class="my-2">
+                        <p><strong>4)</strong> بما أن النهاية ≠ قيمة الاقتران:</p>
+                        <p class="font-bold text-red-600">f غير متصل عند x = 2</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- الرسم البياني 2 -->
+            <div class="bg-gray-50 p-4 rounded-lg mb-6 mt-8">
+                <h4 class="text-lg font-bold text-purple-800 mb-3">📈 الرسم البياني (2): الاقتران g(x)</h4>
+                <div id="graph2" class="w-full flex justify-center" style="height: 350px;"></div>
+                <p class="text-center text-sm text-gray-600 mt-2">g(x) = x للـ x < 1، و g(x)=x + 2 للـ x ≥ 1 (قفزة عند
+                        x=1)</p>
+            </div>
+
+            <div class="student-task-box">
+                <p class="font-bold">من الرسم البياني (2)، أجب:</p>
+                <p class="mt-2">1) ما قيمة \(\lim_{x \to 1^-} g(x)\)؟</p>
+                <p>2) ما قيمة \(\lim_{x \to 1^+} g(x)\)؟</p>
+                <p>3) هل \(\lim_{x \to 1} g(x)\) موجودة؟</p>
+                <p>4) هل g متصل عند x = 1؟</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>1)</strong> من اليسار، المنحنى يقترب من y = 1</p>
+                        <p class="font-bold text-green-700">\(\lim_{x \to 1^-} g(x) = 1\)</p>
+                        <hr class="my-2">
+                        <p><strong>2)</strong> من اليمين، المنحنى يقترب من y = 3</p>
+                        <p class="font-bold text-green-700">\(\lim_{x \to 1^+} g(x) = 3\)</p>
+                        <hr class="my-2">
+                        <p><strong>3)</strong> النهايتان الجانبيتان مختلفتان (1 ≠ 3)</p>
+                        <p class="font-bold text-red-600">\(\lim_{x \to 1} g(x)\) غير موجودة</p>
+                        <hr class="my-2">
+                        <p><strong>4)</strong> النهاية غير موجودة، فلا يمكن أن يكون متصلاً</p>
+                        <p class="font-bold text-red-600">g غير متصل عند x = 1</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- الرسم البياني 3: اقتران متصل -->
+            <div class="bg-gray-50 p-4 rounded-lg mb-6 mt-8">
+                <h4 class="text-lg font-bold text-green-800 mb-3">📈 الرسم البياني (3): الاقتران h(x) = x²</h4>
+                <div id="graph3" class="w-full flex justify-center" style="height: 350px;"></div>
+                <p class="text-center text-sm text-gray-600 mt-2">h(x) = x² (اقتران متصل على كل الأعداد الحقيقية)</p>
+            </div>
+
+            <div class="student-task-box">
+                <p class="font-bold">من الرسم البياني (3)، أجب:</p>
+                <p class="mt-2">1) ما قيمة \(\lim_{x \to 1} h(x)\)؟</p>
+                <p>2) ما قيمة \(h(1)\)؟</p>
+                <p>3) هل h متصل عند x = 1؟</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>1)</strong> \(\lim_{x \to 1} x^2 = 1\)</p>
+                        <p class="font-bold text-green-700">\(\lim_{x \to 1} h(x) = 1\)</p>
+                        <hr class="my-2">
+                        <p><strong>2)</strong> \(h(1) = 1^2 = 1\)</p>
+                        <p class="font-bold text-green-700">\(h(1) = 1\)</p>
+                        <hr class="my-2">
+                        <p><strong>3)</strong> \(\lim_{x \to 1} h(x) = h(1) = 1\)</p>
+                        <p class="font-bold text-green-700">✓ h متصل عند x = 1</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- أسئلة دمج النهايات -->
+            <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-5 rounded-lg mt-6 border-2 border-indigo-300">
+                <h4 class="text-lg font-bold text-indigo-800 mb-3">🧮 أسئلة إضافية على النهايات من الرسم</h4>
+
+                <div class="homework-box">
+                    <p class="font-bold">باستخدام الرسوم أعلاه، أجد:</p>
+                    <p class="mt-2">أ) \(\lim_{x \to 2} [f(x) + 1]\)</p>
+                    <p>ب) \(\lim_{x \to 1} [2 \cdot h(x)]\)</p>
+                    <p>ج) \(\lim_{x \to 0} h(x)\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>أ)</strong> \(\lim_{x \to 2} f(x) = 3\)</p>
+                            <p>\(\lim_{x \to 2} [f(x) + 1] = 3 + 1 = 4\)</p>
+                            <p class="font-bold text-green-700">= 4</p>
+                            <hr class="my-2">
+                            <p><strong>ب)</strong> \(\lim_{x \to 1} h(x) = 1\)</p>
+                            <p>\(\lim_{x \to 1} [2 \cdot h(x)] = 2 \times 1 = 2\)</p>
+                            <p class="font-bold text-green-700">= 2</p>
+                            <hr class="my-2">
+                            <p><strong>ج)</strong> \(\lim_{x \to 0} x^2 = 0\)</p>
+                            <p class="font-bold text-green-700">= 0</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- القسم 1-ج: هل الاقتران متصل؟ هل النهاية موجودة؟ -->
+        <!-- ================================================================= -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8 border-r-4 border-rose-500">
+            <h3>🔍 هل الاقتران متصل؟ هل النهاية موجودة؟</h3>
+
+            <div class="explanation">
+                <h4>📋 أسئلة نموذجية</h4>
+                <p>في هذا القسم نتدرب على الإجابة عن سؤالين أساسيين:</p>
+                <div class="grid md:grid-cols-2 gap-4 mt-4">
+                    <div class="bg-white p-3 rounded-lg border-2 border-blue-400">
+                        <p class="font-bold text-blue-700 text-center">هل النهاية موجودة؟</p>
+                        <p class="text-sm text-gray-600 mt-2 text-center">موجودة إذا تساوت النهايتان الجانبيتان</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg border-2 border-green-400">
+                        <p class="font-bold text-green-700 text-center">هل الاقتران متصل؟</p>
+                        <p class="text-sm text-gray-600 mt-2 text-center">متصل إذا: النهاية موجودة وتساوي قيمة الاقتران
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الرسم البياني 4: نهاية لانهائية -->
+            <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                <h4 class="text-lg font-bold text-rose-800 mb-3">📈 الرسم البياني (4): الاقتران k(x) = 1/x</h4>
+                <div id="graph4" class="w-full flex justify-center" style="height: 350px;"></div>
+            </div>
+
+            <div class="student-task-box">
+                <p class="font-bold">من الرسم البياني (4)، أجب:</p>
+                <p class="mt-2">1) هل \(\lim_{x \to 0} k(x)\) موجودة؟</p>
+                <p>2) هل k متصل عند x = 0؟</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>1)</strong></p>
+                        <p>\(\lim_{x \to 0^+} \frac{1}{x} = +\infty\)</p>
+                        <p>\(\lim_{x \to 0^-} \frac{1}{x} = -\infty\)</p>
+                        <p class="font-bold text-red-600">النهاية غير موجودة (تؤول للانهاية)</p>
+                        <hr class="my-2">
+                        <p><strong>2)</strong> k(0) غير معرف و النهاية غير موجودة</p>
+                        <p class="font-bold text-red-600">k غير متصل عند x = 0</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- الرسم البياني 5 -->
+            <div class="bg-gray-50 p-4 rounded-lg mb-6 mt-8">
+                <h4 class="text-lg font-bold text-orange-800 mb-3">📈 الرسم البياني (5): الاقتران m(x) = |x|/x</h4>
+                <div id="graph5" class="w-full flex justify-center" style="height: 350px;"></div>
+            </div>
+
+            <div class="student-task-box">
+                <p class="font-bold">من الرسم البياني (5)، أجب:</p>
+                <p class="mt-2">1) ما قيمة \(\lim_{x \to 0^+} m(x)\)؟</p>
+                <p>2) ما قيمة \(\lim_{x \to 0^-} m(x)\)؟</p>
+                <p>3) هل \(\lim_{x \to 0} m(x)\) موجودة؟</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>1)</strong> عندما x > 0: |x|/x = x/x = 1</p>
+                        <p class="font-bold text-green-700">\(\lim_{x \to 0^+} m(x) = 1\)</p>
+                        <hr class="my-2">
+                        <p><strong>2)</strong> عندما x < 0: |x|/x=-x/x=-1</p>
+                                <p class="font-bold text-green-700">\(\lim_{x \to 0^-} m(x) = -1\)</p>
+                                <hr class="my-2">
+                                <p><strong>3)</strong> \(1 \neq -1\)</p>
+                                <p class="font-bold text-red-600">النهاية غير موجودة</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- تمارين جبرية -->
+            <div class="mt-6">
+                <h4 class="text-xl font-bold text-rose-800 mb-4">📝 تمارين: هل النهاية موجودة؟ هل الاقتران متصل؟</h4>
+
+                <div class="student-task-box">
+                    <p class="font-bold">8. \(f(x) = \frac{x^2 - 9}{x - 3}\) عند x = 3</p>
+                    <p>أ) هل النهاية موجودة؟ ب) هل f متصل عند x = 3؟</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>أ)</strong> \(f(x) = \frac{(x-3)(x+3)}{x-3} = x + 3\) (عندما x ≠ 3)</p>
+                            <p>\(\lim_{x \to 3} (x + 3) = 6\)</p>
+                            <p class="font-bold text-green-700">✓ النهاية موجودة وتساوي 6</p>
+                            <hr class="my-2">
+                            <p><strong>ب)</strong> f(3) غير معرف (قسمة على صفر)</p>
+                            <p class="font-bold text-red-600">✗ f غير متصل عند x = 3</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">9. \(g(x) = \begin{cases} x^2 & x \leq 2 \\ 4 & x > 2 \end{cases}\) عند x = 2
+                    </p>
+                    <p>أ) هل النهاية موجودة؟ ب) هل g متصل عند x = 2؟</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>أ)</strong></p>
+                            <p>\(\lim_{x \to 2^-} x^2 = 4\)</p>
+                            <p>\(\lim_{x \to 2^+} 4 = 4\)</p>
+                            <p>النهايتان متساويتان</p>
+                            <p class="font-bold text-green-700">✓ النهاية موجودة وتساوي 4</p>
+                            <hr class="my-2">
+                            <p><strong>ب)</strong> g(2) = 2² = 4 = \(\lim_{x \to 2} g(x)\)</p>
+                            <p class="font-bold text-green-700">✓ g متصل عند x = 2</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">10. \(h(x) = \begin{cases} 2x - 1 & x < 1 \\ 3 & x=1 \\ x + 1 & x> 1
+                            \end{cases}\) عند x = 1</p>
+                    <p>أ) هل النهاية موجودة؟ ب) هل h متصل عند x = 1؟</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>أ)</strong></p>
+                            <p>\(\lim_{x \to 1^-} (2x-1) = 1\)</p>
+                            <p>\(\lim_{x \to 1^+} (x+1) = 2\)</p>
+                            <p>\(1 \neq 2\)</p>
+                            <p class="font-bold text-red-600">✗ النهاية غير موجودة</p>
+                            <hr class="my-2">
+                            <p><strong>ب)</strong> النهاية غير موجودة</p>
+                            <p class="font-bold text-red-600">✗ h غير متصل عند x = 1</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- ========== الأسئلة الإضافية على الرسم ========== -->
+            <div class="mt-8">
+                <h4 class="text-xl font-bold text-rose-800 mb-4">📊 أسئلة إضافية على قراءة النهايات من الرسم</h4>
+
+                <!-- الرسم 6 -->
+                <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                    <h4 class="text-lg font-bold text-sky-800 mb-3">📈 الرسم البياني (6): الاقتران p(x) = 2x - 1</h4>
+                    <div id="graph6" class="w-full flex justify-center" style="height: 350px;"></div>
+                </div>
+
+                <div class="student-task-box">
+                    <p class="font-bold">11. من الرسم البياني (6)، أجب:</p>
+                    <p class="mt-2">أ) ما قيمة \(\lim_{x \to 1} p(x)\)؟</p>
+                    <p>ب) ما قيمة \(p(1)\)؟</p>
+                    <p>ج) هل p متصل عند x = 1؟</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>أ)</strong> المنحنى متصل ويمر بالنقطة (1, 1)</p>
+                            <p class="font-bold text-green-700">\(\lim_{x \to 1} p(x) = 1\)</p>
+                            <hr class="my-2">
+                            <p><strong>ب)</strong> \(p(1) = 2(1) - 1 = 1\)</p>
+                            <p class="font-bold text-green-700">\(p(1) = 1\)</p>
+                            <hr class="my-2">
+                            <p><strong>ج)</strong> \(\lim_{x \to 1} p(x) = p(1) = 1\)</p>
+                            <p class="font-bold text-green-700">✓ p متصل عند x = 1</p>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- الرسم 7 -->
+                <div class="bg-gray-50 p-4 rounded-lg mb-6 mt-8">
+                    <h4 class="text-lg font-bold text-violet-800 mb-3">📈 الرسم البياني (7): الاقتران q(x) = 1/(x-2)
+                    </h4>
+                    <div id="graph7" class="w-full flex justify-center" style="height: 350px;"></div>
+                    <p class="text-center text-sm text-gray-600 mt-2">لاحظ الأسهم ↑ +∞ و ↓ -∞ التي تدل على أن الاقتران
+                        يذهب للمالانهاية</p>
+                </div>
+
+                <div class="student-task-box">
+                    <p class="font-bold">12. من الرسم البياني (7)، أجب:</p>
+                    <p class="mt-2">أ) ما قيمة \(\lim_{x \to 2^+} q(x)\)؟</p>
+                    <p>ب) ما قيمة \(\lim_{x \to 2^-} q(x)\)؟</p>
+                    <p>ج) هل \(\lim_{x \to 2} q(x)\) موجودة؟</p>
+                    <p>د) هل q متصل عند x = 2؟</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>أ)</strong> من اليمين، السهم يشير لأعلى ↑</p>
+                            <p class="font-bold text-green-700">\(\lim_{x \to 2^+} q(x) = +\infty\)</p>
+                            <hr class="my-2">
+                            <p><strong>ب)</strong> من اليسار، السهم يشير لأسفل ↓</p>
+                            <p class="font-bold text-green-700">\(\lim_{x \to 2^-} q(x) = -\infty\)</p>
+                            <hr class="my-2">
+                            <p><strong>ج)</strong> النهايتان الجانبيتان مختلفتان (+∞ ≠ -∞)</p>
+                            <p class="font-bold text-red-600">✗ النهاية غير موجودة</p>
+                            <hr class="my-2">
+                            <p><strong>د)</strong> q(2) غير معرف والنهاية غير موجودة</p>
+                            <p class="font-bold text-red-600">✗ q غير متصل عند x = 2</p>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- الرسم 8 -->
+                <div class="bg-gray-50 p-4 rounded-lg mb-6 mt-8">
+                    <h4 class="text-lg font-bold text-emerald-800 mb-3">📈 الرسم البياني (8): الاقتران r(x)</h4>
+                    <div id="graph8" class="w-full flex justify-center" style="height: 350px;"></div>
+                    <p class="text-center text-sm text-gray-600 mt-2">r(x) = x + 2 للـ x < 1، و r(x)=x - 1 للـ x ≥ 1</p>
+                </div>
+
+                <div class="student-task-box">
+                    <p class="font-bold">13. من الرسم البياني (8)، أجب:</p>
+                    <p class="mt-2">أ) ما قيمة \(\lim_{x \to 1^-} r(x)\)؟</p>
+                    <p>ب) ما قيمة \(\lim_{x \to 1^+} r(x)\)؟</p>
+                    <p>ج) هل \(\lim_{x \to 1} r(x)\) موجودة؟</p>
+                    <p>د) ما قيمة \(r(1)\)؟</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>أ)</strong> من اليسار، المنحنى يقترب من y = 3 (الدائرة الفارغة)</p>
+                            <p class="font-bold text-green-700">\(\lim_{x \to 1^-} r(x) = 3\)</p>
+                            <hr class="my-2">
+                            <p><strong>ب)</strong> من اليمين، المنحنى يقترب من y = 0</p>
+                            <p class="font-bold text-green-700">\(\lim_{x \to 1^+} r(x) = 0\)</p>
+                            <hr class="my-2">
+                            <p><strong>ج)</strong> \(3 \neq 0\)</p>
+                            <p class="font-bold text-red-600">✗ النهاية غير موجودة (قفزة)</p>
+                            <hr class="my-2">
+                            <p><strong>د)</strong> النقطة المملوءة عند (1, 0)</p>
+                            <p class="font-bold text-green-700">\(r(1) = 0\)</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- سكربت الرسوم البيانية -->
+        <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // الرسم 1: f(x) = x + 1 للـ x < 2، مع نقطة منفصلة
+                var trace1a = {
+                    x: [-2, -1, 0, 1, 1.9, 1.99],
+                    y: [-1, 0, 1, 2, 2.9, 2.99],
+                    mode: 'lines',
+                    name: 'f(x) = x + 1',
+                    line: { color: '#3b82f6', width: 3 }
+                };
+                var trace1b = {
+                    x: [2.01, 2.1, 3, 4],
+                    y: [3.01, 3.1, 4, 5],
+                    mode: 'lines',
+                    name: 'f(x) = x + 1',
+                    line: { color: '#3b82f6', width: 3 },
+                    showlegend: false
+                };
+                var trace1c = {
+                    x: [2],
+                    y: [3],
+                    mode: 'markers',
+                    name: 'النهاية',
+                    marker: { color: 'white', size: 12, line: { color: '#3b82f6', width: 3 } }
+                };
+                var trace1d = {
+                    x: [2],
+                    y: [1],
+                    mode: 'markers',
+                    name: 'f(2) = 1',
+                    marker: { color: '#3b82f6', size: 12 }
+                };
+
+                Plotly.newPlot('graph1', [trace1a, trace1b, trace1c, trace1d], {
+                    title: 'f(x)',
+                    xaxis: { title: 'x', range: [-3, 5], dtick: 1, zeroline: true, zerolinewidth: 2 },
+                    yaxis: { title: 'y', range: [-2, 6], dtick: 1, zeroline: true, zerolinewidth: 2 },
+                    showlegend: true,
+                    legend: { x: 0.02, y: 0.98 }
+                }, { staticPlot: true, displayModeBar: false });
+
+                // الرسم 2: g(x) مع قفزة
+                var trace2a = {
+                    x: [-2, -1, 0, 0.9, 0.99],
+                    y: [-2, -1, 0, 0.9, 0.99],
+                    mode: 'lines',
+                    name: 'g(x) = x',
+                    line: { color: '#9333ea', width: 3 }
+                };
+                var trace2b = {
+                    x: [1, 1.5, 2, 3],
+                    y: [3, 3.5, 4, 5],
+                    mode: 'lines',
+                    name: 'g(x) = x + 2',
+                    line: { color: '#9333ea', width: 3 }
+                };
+                var trace2c = {
+                    x: [1],
+                    y: [1],
+                    mode: 'markers',
+                    name: 'النهاية اليسرى',
+                    marker: { color: 'white', size: 12, line: { color: '#9333ea', width: 3 } }
+                };
+                var trace2d = {
+                    x: [1],
+                    y: [3],
+                    mode: 'markers',
+                    name: 'g(1) = 3',
+                    marker: { color: '#9333ea', size: 12 }
+                };
+
+                Plotly.newPlot('graph2', [trace2a, trace2b, trace2c, trace2d], {
+                    title: 'g(x)',
+                    xaxis: { title: 'x', range: [-3, 4], dtick: 1, zeroline: true, zerolinewidth: 2 },
+                    yaxis: { title: 'y', range: [-3, 6], dtick: 1, zeroline: true, zerolinewidth: 2 },
+                    showlegend: true,
+                    legend: { x: 0.02, y: 0.98 }
+                }, { staticPlot: true, displayModeBar: false });
+
+                // الرسم 3: h(x) = x² (متصل)
+                var xVals3 = [];
+                var yVals3 = [];
+                for (var i = -30; i <= 30; i++) {
+                    var x = i / 10;
+                    xVals3.push(x);
+                    yVals3.push(x * x);
+                }
+                var trace3 = {
+                    x: xVals3,
+                    y: yVals3,
+                    mode: 'lines',
+                    name: 'h(x) = x²',
+                    line: { color: '#22c55e', width: 3 }
+                };
+
+                Plotly.newPlot('graph3', [trace3], {
+                    title: 'h(x) = x²',
+                    xaxis: { title: 'x', range: [-3, 3], dtick: 1, zeroline: true, zerolinewidth: 2 },
+                    yaxis: { title: 'y', range: [-1, 5], dtick: 1, zeroline: true, zerolinewidth: 2 },
+                    showlegend: true
+                }, { staticPlot: true, displayModeBar: false });
+
+                // الرسم 4: k(x) = 1/x
+                var xVals4a = [], yVals4a = [], xVals4b = [], yVals4b = [];
+                for (var i = 1; i <= 40; i++) {
+                    var x = i / 10;
+                    xVals4a.push(x);
+                    yVals4a.push(1 / x);
+                }
+                for (var i = -40; i <= -1; i++) {
+                    var x = i / 10;
+                    xVals4b.push(x);
+                    yVals4b.push(1 / x);
+                }
+                var trace4a = {
+                    x: xVals4a,
+                    y: yVals4a,
+                    mode: 'lines',
+                    name: 'k(x) = 1/x (x > 0)',
+                    line: { color: '#ef4444', width: 3 }
+                };
+                var trace4b = {
+                    x: xVals4b,
+                    y: yVals4b,
+                    mode: 'lines',
+                    name: 'k(x) = 1/x (x < 0)',
+                    line: { color: '#ef4444', width: 3 }
+                };
+
+                Plotly.newPlot('graph4', [trace4a, trace4b], {
+                    title: 'k(x) = 1/x',
+                    xaxis: { title: 'x', range: [-5, 5], dtick: 1, zeroline: true, zerolinewidth: 2 },
+                    yaxis: { title: 'y', range: [-5, 5], dtick: 1, zeroline: true, zerolinewidth: 2 },
+                    showlegend: true,
+                    annotations: [
+                        { x: 0.1, y: 4.5, text: '↑ +∞', showarrow: false, font: { size: 16, color: '#ef4444' } },
+                        { x: -0.1, y: -4.5, text: '↓ -∞', showarrow: false, font: { size: 16, color: '#ef4444' } }
+                    ]
+                }, { staticPlot: true, displayModeBar: false });
+
+                // الرسم 5: m(x) = |x|/x
+                var trace5a = {
+                    x: [0.01, 0.5, 1, 2, 3],
+                    y: [1, 1, 1, 1, 1],
+                    mode: 'lines',
+                    name: 'm(x) = 1 (x > 0)',
+                    line: { color: '#f97316', width: 3 }
+                };
+                var trace5b = {
+                    x: [-3, -2, -1, -0.5, -0.01],
+                    y: [-1, -1, -1, -1, -1],
+                    mode: 'lines',
+                    name: 'm(x) = -1 (x < 0)',
+                    line: { color: '#f97316', width: 3 }
+                };
+                var trace5c = {
+                    x: [0],
+                    y: [1],
+                    mode: 'markers',
+                    name: 'النهاية اليمنى',
+                    marker: { color: 'white', size: 12, line: { color: '#f97316', width: 3 } }
+                };
+                var trace5d = {
+                    x: [0],
+                    y: [-1],
+                    mode: 'markers',
+                    name: 'النهاية اليسرى',
+                    marker: { color: 'white', size: 12, line: { color: '#f97316', width: 3 } }
+                };
+
+                Plotly.newPlot('graph5', [trace5a, trace5b, trace5c, trace5d], {
+                    title: 'm(x) = |x|/x',
+                    xaxis: { title: 'x', range: [-4, 4], dtick: 1, zeroline: true, zerolinewidth: 2 },
+                    yaxis: { title: 'y', range: [-2, 2], dtick: 1, zeroline: true, zerolinewidth: 2 },
+                    showlegend: true
+                }, { staticPlot: true, displayModeBar: false });
+
+                // ========== الرسومات الإضافية ==========
+
+                // الرسم 6: اقتران متصل p(x) = 2x - 1
+                var xVals6 = [];
+                var yVals6 = [];
+                for (var i = -20; i <= 30; i++) {
+                    var x = i / 10;
+                    xVals6.push(x);
+                    yVals6.push(2 * x - 1);
+                }
+                var trace6 = {
+                    x: xVals6,
+                    y: yVals6,
+                    mode: 'lines',
+                    name: 'p(x) = 2x - 1',
+                    line: { color: '#0ea5e9', width: 3 }
+                };
+                var trace6point = {
+                    x: [1],
+                    y: [1],
+                    mode: 'markers',
+                    name: 'p(1) = 1',
+                    marker: { color: '#0ea5e9', size: 12 }
+                };
+
+                Plotly.newPlot('graph6', [trace6, trace6point], {
+                    title: 'p(x) = 2x - 1',
+                    xaxis: { title: 'x', range: [-2, 3], dtick: 1, zeroline: true, zerolinewidth: 2 },
+                    yaxis: { title: 'y', range: [-4, 5], dtick: 1, zeroline: true, zerolinewidth: 2 },
+                    showlegend: true
+                }, { staticPlot: true, displayModeBar: false });
+
+                // الرسم 7: اقتران كسري q(x) = 1/(x-2) مع سهم
+                var xVals7a = [], yVals7a = [], xVals7b = [], yVals7b = [];
+                for (var i = -20; i <= 18; i++) {
+                    var x = i / 10;
+                    xVals7a.push(x);
+                    yVals7a.push(1 / (x - 2));
+                }
+                for (var i = 22; i <= 50; i++) {
+                    var x = i / 10;
+                    xVals7b.push(x);
+                    yVals7b.push(1 / (x - 2));
+                }
+                var trace7a = {
+                    x: xVals7a,
+                    y: yVals7a,
+                    mode: 'lines',
+                    name: 'q(x) للـ x < 2',
+                    line: { color: '#8b5cf6', width: 3 }
+                };
+                var trace7b = {
+                    x: xVals7b,
+                    y: yVals7b,
+                    mode: 'lines',
+                    name: 'q(x) للـ x > 2',
+                    line: { color: '#8b5cf6', width: 3 }
+                };
+
+                Plotly.newPlot('graph7', [trace7a, trace7b], {
+                    title: 'q(x) = 1/(x-2)',
+                    xaxis: { title: 'x', range: [-2, 6], dtick: 1, zeroline: true, zerolinewidth: 2 },
+                    yaxis: { title: 'y', range: [-5, 5], dtick: 1, zeroline: true, zerolinewidth: 2 },
+                    showlegend: true,
+                    annotations: [
+                        { x: 2.1, y: 4.5, text: '↑ +∞', showarrow: false, font: { size: 16, color: '#8b5cf6' } },
+                        { x: 1.9, y: -4.5, text: '↓ -∞', showarrow: false, font: { size: 16, color: '#8b5cf6' } },
+                        { x: 2, y: 0, text: 'x=2', showarrow: true, arrowhead: 2, ax: 40, ay: 0, font: { size: 12 } }
+                    ],
+                    shapes: [{
+                        type: 'line',
+                        x0: 2, y0: -5, x1: 2, y1: 5,
+                        line: { color: '#8b5cf6', width: 2, dash: 'dot' }
+                    }]
+                }, { staticPlot: true, displayModeBar: false });
+
+                // الرسم 8: اقتران متشعب مع قفزة r(x)
+                var trace8a = {
+                    x: [-2, -1, 0, 0.9, 0.99],
+                    y: [0, 1, 2, 2.9, 2.99],
+                    mode: 'lines',
+                    name: 'r(x) = x + 2 (x < 1)',
+                    line: { color: '#10b981', width: 3 }
+                };
+                var trace8b = {
+                    x: [1, 1.5, 2, 3],
+                    y: [0, 0.5, 1, 2],
+                    mode: 'lines',
+                    name: 'r(x) = x - 1 (x ≥ 1)',
+                    line: { color: '#10b981', width: 3 }
+                };
+                var trace8c = {
+                    x: [1],
+                    y: [3],
+                    mode: 'markers',
+                    name: 'النهاية اليسرى',
+                    marker: { color: 'white', size: 12, line: { color: '#10b981', width: 3 } }
+                };
+                var trace8d = {
+                    x: [1],
+                    y: [0],
+                    mode: 'markers',
+                    name: 'r(1) = 0',
+                    marker: { color: '#10b981', size: 12 }
+                };
+
+                Plotly.newPlot('graph8', [trace8a, trace8b, trace8c, trace8d], {
+                    title: 'r(x)',
+                    xaxis: { title: 'x', range: [-3, 4], dtick: 1, zeroline: true, zerolinewidth: 2 },
+                    yaxis: { title: 'y', range: [-1, 4], dtick: 1, zeroline: true, zerolinewidth: 2 },
+                    showlegend: true,
+                    legend: { x: 0.02, y: 0.98 }
+                }, { staticPlot: true, displayModeBar: false });
+            });
+        </script>
+
+
+        <!-- ================================================================= -->
+        <!-- القسم الثاني: نهايات الاقترانات المتشعبة -->
+        <!-- ================================================================= -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8 border-r-4 border-orange-500">
+            <h3>ثانياً: نهايات الاقترانات المتشعبة</h3>
+
+            <div class="explanation">
+                <h4>🔀 كيف نجد نهاية اقتران متشعب؟</h4>
+                <p>الاقتران المتشعب له قوانين مختلفة لفترات مختلفة. لإيجاد النهاية عند نقطة التشعب:</p>
+
+                <div class="tip-box mt-3">
+                    <p class="font-bold">📌 الخطوات:</p>
+                    <ol class="list-decimal list-inside pr-4 space-y-2">
+                        <li><strong>أجد النهاية من اليمين:</strong> باستخدام القانون المعرف عندما x > a</li>
+                        <li><strong>أجد النهاية من اليسار:</strong> باستخدام القانون المعرف عندما x < a</li>
+                        <li><strong>أقارن:</strong> إذا تساوتا، النهاية موجودة. وإلا، فلا.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 2</p>
+                <p>أجد \(\lim_{x \to 2} f(x)\) حيث:</p>
+                <p class="text-center my-2">\(f(x) = \begin{cases} x^2 + 1 & x < 2 \\ 3x - 1 & x \geq 2
+                        \end{cases}\)</p>
+                        <details>
+                            <summary>إظهار الحل</summary>
+                            <div class="solution-content">
+                                <p><strong>الخطوة 1:</strong> النهاية من اليسار (x < 2، نستخدم x² + 1):</p>
+                                        <p>\(\lim_{x \to 2^-} f(x) = \lim_{x \to 2^-} (x^2 + 1) = 4 + 1 = 5\)</p>
+                                        <hr class="my-3">
+                                        <p><strong>الخطوة 2:</strong> النهاية من اليمين (x ≥ 2، نستخدم 3x - 1):</p>
+                                        <p>\(\lim_{x \to 2^+} f(x) = \lim_{x \to 2^+} (3x - 1) = 6 - 1 = 5\)</p>
+                                        <hr class="my-3">
+                                        <p><strong>الخطوة 3:</strong> المقارنة:</p>
+                                        <p>بما أن \(\lim_{x \to 2^-} f(x) = \lim_{x \to 2^+} f(x) = 5\)</p>
+                                        <p class="font-bold text-green-700">\(\lim_{x \to 2} f(x) = 5\)</p>
+                            </div>
+                        </details>
+            </div>
+
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 3: نهاية غير موجودة</p>
+                <p>أجد \(\lim_{x \to 1} g(x)\) حيث:</p>
+                <p class="text-center my-2">\(g(x) = \begin{cases} 2x + 3 & x < 1 \\ x^2 + 1 & x> 1 \end{cases}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الخطوة 1:</strong> النهاية من اليسار:</p>
+                        <p>\(\lim_{x \to 1^-} g(x) = 2(1) + 3 = 5\)</p>
+                        <hr class="my-3">
+                        <p><strong>الخطوة 2:</strong> النهاية من اليمين:</p>
+                        <p>\(\lim_{x \to 1^+} g(x) = (1)^2 + 1 = 2\)</p>
+                        <hr class="my-3">
+                        <p><strong>الخطوة 3:</strong> المقارنة:</p>
+                        <p>\(5 \neq 2\)</p>
+                        <p class="font-bold text-red-600">\(\lim_{x \to 1} g(x)\) غير موجودة</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- أسئلة تدريبية -->
+            <div class="mt-6">
+                <h4 class="text-xl font-bold text-orange-800 mb-4">📝 تمارين على المتشعب</h4>
+
+                <div class="student-task-box">
+                    <p class="font-bold">4. أجد \(\lim_{x \to 0} f(x)\) حيث: \(f(x) = \begin{cases} x + 2 & x < 0 \\ 2 -
+                            x^2 & x \geq 0 \end{cases}\)</p>
+                            <details>
+                                <summary>إظهار الحل</summary>
+                                <div class="solution-content">
+                                    <p><strong>النهاية من اليسار:</strong></p>
+                                    <p>\(\lim_{x \to 0^-} (x + 2) = 0 + 2 = 2\)</p>
+                                    <hr class="my-3">
+                                    <p><strong>النهاية من اليمين:</strong></p>
+                                    <p>\(\lim_{x \to 0^+} (2 - x^2) = 2 - 0 = 2\)</p>
+                                    <hr class="my-3">
+                                    <p class="font-bold text-green-700">\(\lim_{x \to 0} f(x) = 2\)</p>
+                                </div>
+                            </details>
+                </div>
+
+                <div class="student-task-box">
+                    <p class="font-bold">5. أجد \(\lim_{x \to 3} h(x)\) حيث: \(h(x) = \begin{cases} x^2 - 6 & x < 3 \\
+                            2x + 1 & x> 3 \end{cases}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>النهاية من اليسار:</strong></p>
+                            <p>\(\lim_{x \to 3^-} (x^2 - 6) = 9 - 6 = 3\)</p>
+                            <hr class="my-3">
+                            <p><strong>النهاية من اليمين:</strong></p>
+                            <p>\(\lim_{x \to 3^+} (2x + 1) = 6 + 1 = 7\)</p>
+                            <hr class="my-3">
+                            <p>\(3 \neq 7\)</p>
+                            <p class="font-bold text-red-600">\(\lim_{x \to 3} h(x)\) غير موجودة</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">6. أجد \(\lim_{x \to -1} f(x)\) حيث: \(f(x) = \begin{cases} x^3 + 2 & x \leq -1
+                        \\ -x + 1 & x > -1 \end{cases}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>النهاية من اليسار:</strong></p>
+                            <p>\(\lim_{x \to -1^-} (x^3 + 2) = (-1)^3 + 2 = -1 + 2 = 1\)</p>
+                            <hr class="my-3">
+                            <p><strong>النهاية من اليمين:</strong></p>
+                            <p>\(\lim_{x \to -1^+} (-x + 1) = -(-1) + 1 = 1 + 1 = 2\)</p>
+                            <hr class="my-3">
+                            <p>\(1 \neq 2\)</p>
+                            <p class="font-bold text-red-600">\(\lim_{x \to -1} f(x)\) غير موجودة</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- القسم الثالث: الضرب بالمرافق -->
+        <!-- ================================================================= -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8 border-r-4 border-green-500">
+            <h3>ثالثاً: النهايات باستخدام المرافق</h3>
+
+            <div class="explanation">
+                <h4>🔧 متى نستخدم المرافق؟</h4>
+                <p>نستخدم الضرب بالمرافق عندما يكون في البسط أو المقام جذور تربيعية والتعويض المباشر يعطي
+                    \(\frac{0}{0}\).</p>
+
+                <div class="formula-box mt-3">
+                    <p class="font-bold">تذكر: مرافق \(\sqrt{a} - \sqrt{b}\) هو \(\sqrt{a} + \sqrt{b}\)</p>
+                    <p class="mt-2">\((\sqrt{a} - \sqrt{b})(\sqrt{a} + \sqrt{b}) = a - b\)</p>
+                </div>
+
+                <div class="tip-box mt-3">
+                    <p class="font-bold">📌 الخطوات:</p>
+                    <ol class="list-decimal list-inside pr-4 space-y-1">
+                        <li>تحقق أن التعويض المباشر يعطي \(\frac{0}{0}\)</li>
+                        <li>اضرب البسط والمقام بمرافق الجذر</li>
+                        <li>بسّط واختصر العامل المشترك</li>
+                        <li>عوّض مباشرة</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 4</p>
+                <p>أجد: \(\lim_{x \to 4} \frac{\sqrt{x} - 2}{x - 4}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الخطوة 1:</strong> التعويض المباشر:</p>
+                        <p>\(\frac{\sqrt{4} - 2}{4 - 4} = \frac{0}{0}\) ⟶ حالة عدم تعيين</p>
+                        <hr class="my-3">
+                        <p><strong>الخطوة 2:</strong> نضرب بمرافق البسط:</p>
+                        <p>\(\lim_{x \to 4} \frac{\sqrt{x} - 2}{x - 4} \cdot \frac{\sqrt{x} + 2}{\sqrt{x} + 2}\)</p>
+                        <hr class="my-3">
+                        <p><strong>الخطوة 3:</strong> نبسط البسط:</p>
+                        <p>\(= \lim_{x \to 4} \frac{(\sqrt{x})^2 - (2)^2}{(x-4)(\sqrt{x}+2)} = \lim_{x \to 4} \frac{x -
+                            4}{(x-4)(\sqrt{x}+2)}\)</p>
+                        <hr class="my-3">
+                        <p><strong>الخطوة 4:</strong> نختصر (x - 4):</p>
+                        <p>\(= \lim_{x \to 4} \frac{1}{\sqrt{x}+2}\)</p>
+                        <hr class="my-3">
+                        <p><strong>الخطوة 5:</strong> التعويض:</p>
+                        <p>\(= \frac{1}{\sqrt{4}+2} = \frac{1}{2+2}\)</p>
+                        <p class="font-bold text-green-700">\(= \frac{1}{4}\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 5</p>
+                <p>أجد: \(\lim_{x \to 0} \frac{\sqrt{x+1} - 1}{x}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>التحقق:</strong> \(\frac{\sqrt{1} - 1}{0} = \frac{0}{0}\) ✓</p>
+                        <hr class="my-3">
+                        <p><strong>الضرب بالمرافق:</strong></p>
+                        <p>\(= \lim_{x \to 0} \frac{(\sqrt{x+1} - 1)(\sqrt{x+1} + 1)}{x(\sqrt{x+1} + 1)}\)</p>
+                        <p>\(= \lim_{x \to 0} \frac{(x+1) - 1}{x(\sqrt{x+1} + 1)}\)</p>
+                        <p>\(= \lim_{x \to 0} \frac{x}{x(\sqrt{x+1} + 1)}\)</p>
+                        <p>\(= \lim_{x \to 0} \frac{1}{\sqrt{x+1} + 1}\)</p>
+                        <p>\(= \frac{1}{\sqrt{1} + 1}\)</p>
+                        <p class="font-bold text-green-700">\(= \frac{1}{2}\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="mt-6">
+                <h4 class="text-xl font-bold text-green-800 mb-4">📝 تمارين على المرافق</h4>
+
+                <div class="student-task-box">
+                    <p class="font-bold">7. أجد: \(\lim_{x \to 9} \frac{\sqrt{x} - 3}{x - 9}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>\(= \lim_{x \to 9} \frac{(\sqrt{x} - 3)(\sqrt{x} + 3)}{(x-9)(\sqrt{x} + 3)}\)</p>
+                            <p>\(= \lim_{x \to 9} \frac{x - 9}{(x-9)(\sqrt{x} + 3)}\)</p>
+                            <p>\(= \lim_{x \to 9} \frac{1}{\sqrt{x} + 3} = \frac{1}{3+3}\)</p>
+                            <p class="font-bold text-green-700">\(= \frac{1}{6}\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="student-task-box">
+                    <p class="font-bold">8. أجد: \(\lim_{x \to 1} \frac{x - 1}{\sqrt{x} - 1}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>نضرب بمرافق المقام:</p>
+                            <p>\(= \lim_{x \to 1} \frac{(x-1)(\sqrt{x} + 1)}{(\sqrt{x}-1)(\sqrt{x}+1)}\)</p>
+                            <p>\(= \lim_{x \to 1} \frac{(x-1)(\sqrt{x} + 1)}{x - 1}\)</p>
+                            <p>\(= \lim_{x \to 1} (\sqrt{x} + 1) = 1 + 1\)</p>
+                            <p class="font-bold text-green-700">\(= 2\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">9. أجد: \(\lim_{x \to 0} \frac{\sqrt{4+x} - 2}{x}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>\(= \lim_{x \to 0} \frac{(\sqrt{4+x} - 2)(\sqrt{4+x} + 2)}{x(\sqrt{4+x} + 2)}\)</p>
+                            <p>\(= \lim_{x \to 0} \frac{4+x - 4}{x(\sqrt{4+x} + 2)}\)</p>
+                            <p>\(= \lim_{x \to 0} \frac{x}{x(\sqrt{4+x} + 2)}\)</p>
+                            <p>\(= \frac{1}{\sqrt{4} + 2}\)</p>
+                            <p class="font-bold text-green-700">\(= \frac{1}{4}\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">10. أجد: \(\lim_{x \to 5} \frac{\sqrt{x+4} - 3}{x - 5}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>\(= \lim_{x \to 5} \frac{(x+4) - 9}{(x-5)(\sqrt{x+4} + 3)}\)</p>
+                            <p>\(= \lim_{x \to 5} \frac{x - 5}{(x-5)(\sqrt{x+4} + 3)}\)</p>
+                            <p>\(= \frac{1}{\sqrt{9} + 3}\)</p>
+                            <p class="font-bold text-green-700">\(= \frac{1}{6}\)</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- القسم الرابع: الكسور المركبة -->
+        <!-- ================================================================= -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8 border-r-4 border-purple-500">
+            <h3>رابعاً: نهايات الكسور المركبة</h3>
+
+            <div class="explanation">
+                <h4>📊 كيف نتعامل مع الكسور المركبة؟</h4>
+                <p>الكسر المركب هو كسر في بسطه أو مقامه (أو كليهما) كسور أخرى.</p>
+
+                <div class="tip-box mt-3">
+                    <p class="font-bold">📌 الطريقة:</p>
+                    <ol class="list-decimal list-inside pr-4 space-y-1">
+                        <li>وحّد الكسور في البسط والمقام كل على حدة</li>
+                        <li>اقلب واضرب (اضرب البسط بمقلوب المقام)</li>
+                        <li>بسّط واختصر</li>
+                        <li>عوّض</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 6</p>
+                <p>أجد: \(\lim_{x \to 2} \frac{\frac{1}{x} - \frac{1}{2}}{x - 2}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الخطوة 1:</strong> نوحد البسط:</p>
+                        <p>\(\frac{1}{x} - \frac{1}{2} = \frac{2 - x}{2x}\)</p>
+                        <hr class="my-3">
+                        <p><strong>الخطوة 2:</strong> نعيد كتابة النهاية:</p>
+                        <p>\(= \lim_{x \to 2} \frac{\frac{2-x}{2x}}{x-2}\)</p>
+                        <hr class="my-3">
+                        <p><strong>الخطوة 3:</strong> نقلب ونضرب:</p>
+                        <p>\(= \lim_{x \to 2} \frac{2-x}{2x} \cdot \frac{1}{x-2}\)</p>
+                        <p>\(= \lim_{x \to 2} \frac{-(x-2)}{2x(x-2)}\)</p>
+                        <hr class="my-3">
+                        <p><strong>الخطوة 4:</strong> نختصر:</p>
+                        <p>\(= \lim_{x \to 2} \frac{-1}{2x} = \frac{-1}{4}\)</p>
+                        <p class="font-bold text-green-700">\(= -\frac{1}{4}\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 7</p>
+                <p>أجد: \(\lim_{x \to 0} \frac{\frac{1}{x+2} - \frac{1}{2}}{x}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>توحيد البسط:</strong></p>
+                        <p>\(\frac{1}{x+2} - \frac{1}{2} = \frac{2 - (x+2)}{2(x+2)} = \frac{-x}{2(x+2)}\)</p>
+                        <hr class="my-3">
+                        <p><strong>النهاية:</strong></p>
+                        <p>\(= \lim_{x \to 0} \frac{\frac{-x}{2(x+2)}}{x} = \lim_{x \to 0} \frac{-x}{2(x+2)} \cdot
+                            \frac{1}{x}\)</p>
+                        <p>\(= \lim_{x \to 0} \frac{-1}{2(x+2)} = \frac{-1}{2(2)}\)</p>
+                        <p class="font-bold text-green-700">\(= -\frac{1}{4}\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="mt-6">
+                <h4 class="text-xl font-bold text-purple-800 mb-4">📝 تمارين على الكسور المركبة</h4>
+
+                <div class="student-task-box">
+                    <p class="font-bold">11. أجد: \(\lim_{x \to 3} \frac{\frac{1}{x} - \frac{1}{3}}{x - 3}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>\(\frac{1}{x} - \frac{1}{3} = \frac{3-x}{3x}\)</p>
+                            <p>\(= \lim_{x \to 3} \frac{3-x}{3x(x-3)} = \lim_{x \to 3} \frac{-(x-3)}{3x(x-3)}\)</p>
+                            <p>\(= \lim_{x \to 3} \frac{-1}{3x} = \frac{-1}{9}\)</p>
+                            <p class="font-bold text-green-700">\(= -\frac{1}{9}\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">12. أجد: \(\lim_{x \to 1} \frac{\frac{1}{x+1} - \frac{1}{2}}{x - 1}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>\(\frac{1}{x+1} - \frac{1}{2} = \frac{2-(x+1)}{2(x+1)} = \frac{1-x}{2(x+1)}\)</p>
+                            <p>\(= \lim_{x \to 1} \frac{1-x}{2(x+1)(x-1)} = \lim_{x \to 1} \frac{-(x-1)}{2(x+1)(x-1)}\)
+                            </p>
+                            <p>\(= \lim_{x \to 1} \frac{-1}{2(x+1)} = \frac{-1}{4}\)</p>
+                            <p class="font-bold text-green-700">\(= -\frac{1}{4}\)</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- القسم الخامس: اقتران القيمة المطلقة -->
+        <!-- ================================================================= -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8 border-r-4 border-red-500">
+            <h3>خامساً: نهايات اقتران القيمة المطلقة</h3>
+
+            <div class="explanation">
+                <h4>|x| كيف نتعامل مع القيمة المطلقة؟</h4>
+
+                <div class="formula-box">
+                    <p class="font-bold">تعريف القيمة المطلقة:</p>
+                    <p>\(|x| = \begin{cases} x & x \geq 0 \\ -x & x < 0 \end{cases}\)</p>
+                </div>
+
+                <div class="tip-box mt-3">
+                    <p class="font-bold">📌 الفكرة الأساسية:</p>
+                    <p>نعتبر |x-a| كاقتران متشعب عند x = a:</p>
+                    <ul class="list-disc list-inside pr-4 mt-2">
+                        <li>عندما x > a: \(|x-a| = x - a\)</li>
+                        <li>عندما x < a: \(|x-a|=-(x-a)=a - x\)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 8</p>
+                <p>أجد: \(\lim_{x \to 0} \frac{|x|}{x}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>النهاية من اليمين (x > 0):</strong></p>
+                        <p>عندما x > 0: \(|x| = x\)</p>
+                        <p>\(\lim_{x \to 0^+} \frac{x}{x} = 1\)</p>
+                        <hr class="my-3">
+                        <p><strong>النهاية من اليسار (x < 0):</strong>
+                        </p>
+                        <p>عندما x < 0: \(|x|=-x\)</p>
+                                <p>\(\lim_{x \to 0^-} \frac{-x}{x} = -1\)</p>
+                                <hr class="my-3">
+                                <p>\(1 \neq -1\)</p>
+                                <p class="font-bold text-red-600">\(\lim_{x \to 0} \frac{|x|}{x}\) غير موجودة</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 9</p>
+                <p>أجد: \(\lim_{x \to 3} \frac{|x - 3|}{x - 3}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>من اليمين (x > 3):</strong></p>
+                        <p>\(|x-3| = x - 3\)</p>
+                        <p>\(\lim_{x \to 3^+} \frac{x-3}{x-3} = 1\)</p>
+                        <hr class="my-3">
+                        <p><strong>من اليسار (x < 3):</strong>
+                        </p>
+                        <p>\(|x-3| = -(x-3) = 3 - x\)</p>
+                        <p>\(\lim_{x \to 3^-} \frac{3-x}{x-3} = \lim_{x \to 3^-} \frac{-(x-3)}{x-3} = -1\)</p>
+                        <hr class="my-3">
+                        <p class="font-bold text-red-600">\(\lim_{x \to 3} \frac{|x-3|}{x-3}\) غير موجودة</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 10</p>
+                <p>أجد: \(\lim_{x \to 2} \frac{x^2 - 4}{|x - 2|}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p>\(x^2 - 4 = (x-2)(x+2)\)</p>
+                        <hr class="my-3">
+                        <p><strong>من اليمين:</strong></p>
+                        <p>\(\lim_{x \to 2^+} \frac{(x-2)(x+2)}{x-2} = \lim_{x \to 2^+} (x+2) = 4\)</p>
+                        <hr class="my-3">
+                        <p><strong>من اليسار:</strong></p>
+                        <p>\(\lim_{x \to 2^-} \frac{(x-2)(x+2)}{-(x-2)} = \lim_{x \to 2^-} -(x+2) = -4\)</p>
+                        <hr class="my-3">
+                        <p class="font-bold text-red-600">\(\lim_{x \to 2} \frac{x^2-4}{|x-2|}\) غير موجودة</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="mt-6">
+                <h4 class="text-xl font-bold text-red-800 mb-4">📝 تمارين على القيمة المطلقة</h4>
+
+                <div class="student-task-box">
+                    <p class="font-bold">13. أجد: \(\lim_{x \to 0^+} \frac{|x|}{x}\) و \(\lim_{x \to 0^-}
+                        \frac{|x|}{x}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>من اليمين:</strong> \(|x| = x\)، فـ \(\frac{x}{x} = 1\)</p>
+                            <p class="font-bold text-green-700">\(\lim_{x \to 0^+} \frac{|x|}{x} = 1\)</p>
+                            <hr class="my-3">
+                            <p><strong>من اليسار:</strong> \(|x| = -x\)، فـ \(\frac{-x}{x} = -1\)</p>
+                            <p class="font-bold text-green-700">\(\lim_{x \to 0^-} \frac{|x|}{x} = -1\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">14. أجد: \(\lim_{x \to -1} \frac{|x + 1|}{x + 1}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>من اليمين (x > -1):</strong> \(|x+1| = x+1\)</p>
+                            <p>\(\lim_{x \to -1^+} \frac{x+1}{x+1} = 1\)</p>
+                            <hr class="my-3">
+                            <p><strong>من اليسار (x < -1):</strong> \(|x+1| = -(x+1)\)</p>
+                            <p>\(\lim_{x \to -1^-} \frac{-(x+1)}{x+1} = -1\)</p>
+                            <hr class="my-3">
+                            <p class="font-bold text-red-600">النهاية غير موجودة</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- القسم السادس: إيجاد المجهول ليكون الاقتران متصلاً -->
+        <!-- ================================================================= -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8 border-r-4 border-yellow-500">
+            <h3>سادساً: إيجاد قيمة المجهول ليكون الاقتران متصلاً</h3>
+
+            <div class="explanation">
+                <h4>🔗 شروط الاتصال عند نقطة</h4>
+                <p>الاقتران f متصل عند x = a إذا تحققت <strong>ثلاثة شروط</strong>:</p>
+
+                <div class="formula-box mt-3">
+                    <ol class="list-decimal list-inside space-y-2 text-right">
+                        <li>\(f(a)\) معرف (موجود)</li>
+                        <li>\(\lim_{x \to a} f(x)\) موجودة</li>
+                        <li>\(\lim_{x \to a} f(x) = f(a)\)</li>
+                    </ol>
+                </div>
+
+                <div class="tip-box mt-3">
+                    <p class="font-bold">💡 الاستراتيجية لإيجاد المجهول:</p>
+                    <p>إذا طُلب إيجاد قيمة k (أو a, b, c...) بحيث يكون الاقتران المتشعب متصلاً:</p>
+                    <ol class="list-decimal list-inside pr-4 space-y-1 mt-2">
+                        <li>أجد النهاية من اليمين واليسار</li>
+                        <li>ساوِ بينهما (شرط وجود النهاية)</li>
+                        <li>ساوِ النتيجة بـ f(a) إن لزم</li>
+                        <li>حل المعادلة لإيجاد المجهول</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 11</p>
+                <p>أجد قيمة k التي تجعل f(x) متصلاً عند x = 2:</p>
+                <p class="text-center my-2">\(f(x) = \begin{cases} x^2 + 1 & x < 2 \\ k & x=2 \\ 3x - 1 & x> 2
+                        \end{cases}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الخطوة 1:</strong> النهاية من اليسار:</p>
+                        <p>\(\lim_{x \to 2^-} (x^2 + 1) = 4 + 1 = 5\)</p>
+                        <hr class="my-3">
+                        <p><strong>الخطوة 2:</strong> النهاية من اليمين:</p>
+                        <p>\(\lim_{x \to 2^+} (3x - 1) = 6 - 1 = 5\)</p>
+                        <hr class="my-3">
+                        <p><strong>الخطوة 3:</strong> النهايتان متساويتان، إذاً \(\lim_{x \to 2} f(x) = 5\)</p>
+                        <hr class="my-3">
+                        <p><strong>الخطوة 4:</strong> للاتصال نحتاج:</p>
+                        <p>\(f(2) = \lim_{x \to 2} f(x)\)</p>
+                        <p>\(k = 5\)</p>
+                        <p class="font-bold text-green-700">\(k = 5\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 12</p>
+                <p>أجد قيمتي a و b بحيث يكون f(x) متصلاً على ℝ:</p>
+                <p class="text-center my-2">\(f(x) = \begin{cases} x + 1 & x < 1 \\ ax + b & 1 \leq x \leq 3 \\ 2x - 1 &
+                        x>
+                        3 \end{cases}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الاتصال عند x = 1:</strong></p>
+                        <p>من اليسار: \(\lim_{x \to 1^-} (x+1) = 2\)</p>
+                        <p>من اليمين: \(\lim_{x \to 1^+} (ax+b) = a + b\)</p>
+                        <p>للاتصال: \(a + b = 2\) ... (1)</p>
+                        <hr class="my-3">
+                        <p><strong>الاتصال عند x = 3:</strong></p>
+                        <p>من اليسار: \(\lim_{x \to 3^-} (ax+b) = 3a + b\)</p>
+                        <p>من اليمين: \(\lim_{x \to 3^+} (2x-1) = 5\)</p>
+                        <p>للاتصال: \(3a + b = 5\) ... (2)</p>
+                        <hr class="my-3">
+                        <p><strong>حل النظام:</strong></p>
+                        <p>نطرح (1) من (2): \(2a = 3 \Rightarrow a = \frac{3}{2}\)</p>
+                        <p>نعوض في (1): \(\frac{3}{2} + b = 2 \Rightarrow b = \frac{1}{2}\)</p>
+                        <p class="font-bold text-green-700">\(a = \frac{3}{2}, \quad b = \frac{1}{2}\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 13</p>
+                <p>أجد قيمة k بحيث يكون f(x) متصلاً عند x = 0:</p>
+                <p class="text-center my-2">\(f(x) = \begin{cases} \frac{x^2 + 3x}{x} & x \neq 0 \\ k & x = 0
+                    \end{cases}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>نبسط الاقتران عندما x ≠ 0:</strong></p>
+                        <p>\(\frac{x^2 + 3x}{x} = \frac{x(x + 3)}{x} = x + 3\)</p>
+                        <hr class="my-3">
+                        <p><strong>النهاية:</strong></p>
+                        <p>\(\lim_{x \to 0} (x + 3) = 0 + 3 = 3\)</p>
+                        <hr class="my-3">
+                        <p><strong>للاتصال:</strong></p>
+                        <p>\(f(0) = \lim_{x \to 0} f(x)\)</p>
+                        <p class="font-bold text-green-700">\(k = 3\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="mt-6">
+                <h4 class="text-xl font-bold text-yellow-800 mb-4">📝 تمارين على إيجاد المجهول</h4>
+
+                <div class="student-task-box">
+                    <p class="font-bold">15. أجد k بحيث يكون f متصلاً عند x = 1:</p>
+                    <p>\(f(x) = \begin{cases} 2x + k & x \leq 1 \\ x^2 + 2 & x > 1 \end{cases}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>من اليسار: \(\lim_{x \to 1^-} (2x + k) = 2 + k\)</p>
+                            <p>من اليمين: \(\lim_{x \to 1^+} (x^2 + 2) = 1 + 2 = 3\)</p>
+                            <p>للاتصال: \(2 + k = 3\)</p>
+                            <p class="font-bold text-green-700">\(k = 1\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="student-task-box">
+                    <p class="font-bold">16. أجد k بحيث يكون f متصلاً عند x = 2:</p>
+                    <p>\(f(x) = \begin{cases} k x^2 & x < 2 \\ 3x + 2 & x \geq 2 \end{cases}\)</p>
+                            <details>
+                                <summary>إظهار الحل</summary>
+                                <div class="solution-content">
+                                    <p>من اليسار: \(\lim_{x \to 2^-} (kx^2) = 4k\)</p>
+                                    <p>من اليمين: \(\lim_{x \to 2^+} (3x + 2) = 8\)</p>
+                                    <p>للاتصال: \(4k = 8\)</p>
+                                    <p class="font-bold text-green-700">\(k = 2\)</p>
+                                </div>
+                            </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">17. أجد a و b بحيث يكون f متصلاً على ℝ:</p>
+                    <p>\(f(x) = \begin{cases} x^2 & x < 0 \\ ax + b & 0 \leq x \leq 2 \\ x + 4 & x> 2 \end{cases}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>عند x = 0:</strong></p>
+                            <p>\(\lim_{x \to 0^-} x^2 = 0\)</p>
+                            <p>\(\lim_{x \to 0^+} (ax + b) = b\)</p>
+                            <p>للاتصال: \(b = 0\) ... (1)</p>
+                            <hr class="my-3">
+                            <p><strong>عند x = 2:</strong></p>
+                            <p>\(\lim_{x \to 2^-} (ax + b) = 2a + b\)</p>
+                            <p>\(\lim_{x \to 2^+} (x + 4) = 6\)</p>
+                            <p>للاتصال: \(2a + b = 6\) ... (2)</p>
+                            <hr class="my-3">
+                            <p>من (1): \(b = 0\)</p>
+                            <p>نعوض في (2): \(2a = 6 \Rightarrow a = 3\)</p>
+                            <p class="font-bold text-green-700">\(a = 3, \quad b = 0\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">18. أجد k بحيث يكون f متصلاً عند x = 4:</p>
+                    <p>\(f(x) = \begin{cases} \frac{x^2 - 16}{x - 4} & x \neq 4 \\ k & x = 4 \end{cases}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>\(\frac{x^2 - 16}{x - 4} = \frac{(x-4)(x+4)}{x-4} = x + 4\)</p>
+                            <p>\(\lim_{x \to 4} (x + 4) = 8\)</p>
+                            <p>للاتصال: \(k = 8\)</p>
+                            <p class="font-bold text-green-700">\(k = 8\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">19. أجد k بحيث يكون f متصلاً عند x = 1:</p>
+                    <p>\(f(x) = \begin{cases} \frac{\sqrt{x} - 1}{x - 1} & x \neq 1 \\ k & x = 1 \end{cases}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>نضرب بالمرافق:</p>
+                            <p>\(\lim_{x \to 1} \frac{(\sqrt{x}-1)(\sqrt{x}+1)}{(x-1)(\sqrt{x}+1)}\)</p>
+                            <p>\(= \lim_{x \to 1} \frac{x - 1}{(x-1)(\sqrt{x}+1)}\)</p>
+                            <p>\(= \lim_{x \to 1} \frac{1}{\sqrt{x}+1} = \frac{1}{2}\)</p>
+                            <p class="font-bold text-green-700">\(k = \frac{1}{2}\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">20. أجد k بحيث يكون f متصلاً عند x = 0:</p>
+                    <p>\(f(x) = \begin{cases} \frac{\sqrt{1+x} - 1}{x} & x \neq 0 \\ k & x = 0 \end{cases}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>\(\lim_{x \to 0} \frac{(\sqrt{1+x}-1)(\sqrt{1+x}+1)}{x(\sqrt{1+x}+1)}\)</p>
+                            <p>\(= \lim_{x \to 0} \frac{(1+x) - 1}{x(\sqrt{1+x}+1)}\)</p>
+                            <p>\(= \lim_{x \to 0} \frac{x}{x(\sqrt{1+x}+1)}\)</p>
+                            <p>\(= \frac{1}{1+1} = \frac{1}{2}\)</p>
+                            <p class="font-bold text-green-700">\(k = \frac{1}{2}\)</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- زر إظهار جميع الحلول -->
+        <div class="text-center mt-12">
+            <button id="show-all-solutions-btn"
+                class="bg-green-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-green-700 transition-colors duration-300 text-xl shadow-lg">
+                إظهار جميع الحلول
+            </button>
+        </div>
+
+        <!-- زر العودة للأعلى -->
+        <button id="back-to-top-btn"
+            class="fixed bottom-6 left-6 bg-blue-600 text-white w-14 h-14 rounded-full shadow-lg hover:bg-blue-700 transition-transform transform hover:scale-110 hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+            </svg>
+        </button>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const backToTopBtn = document.getElementById('back-to-top-btn');
+            const showAllBtn = document.getElementById('show-all-solutions-btn');
+
+            window.onscroll = function () {
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    backToTopBtn.classList.remove('hidden');
+                } else {
+                    backToTopBtn.classList.add('hidden');
+                }
+            };
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            if (showAllBtn) {
+                showAllBtn.addEventListener('click', () => {
+                    const allDetails = document.querySelectorAll('details');
+                    allDetails.forEach(detail => {
+                        detail.open = true;
+                    });
+                    showAllBtn.textContent = '✓ تم إظهار جميع الحلول';
+                    showAllBtn.disabled = true;
+                    showAllBtn.classList.remove('bg-green-600', 'hover:bg-green-700');
+                    showAllBtn.classList.add('bg-gray-400', 'cursor-not-allowed');
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

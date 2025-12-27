@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الاقترانات الأسية واللوغاريتمية - شرح شامل</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        h2 {
+            color: #1e40af;
+            font-size: 2rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            color: #1e3a5f;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 0.5rem;
+        }
+
+        .explanation {
+            background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            margin: 1rem 0;
+            border-right: 5px solid #3b82f6;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            margin: 1rem 0;
+            border-right: 5px solid #22c55e;
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            margin: 1rem 0;
+            border-right: 5px solid #f59e0b;
+            text-align: center;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fee2e2 0%, #fef2f2 100%);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            margin: 1rem 0;
+            border-right: 5px solid #ef4444;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #e0e7ff 0%, #eef2ff 100%);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            margin: 1rem 0;
+            border-right: 5px solid #6366f1;
+        }
+
+        .student-task-box {
+            background: linear-gradient(135deg, #fce7f3 0%, #fdf2f8 100%);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            margin: 1rem 0;
+            border-right: 5px solid #ec4899;
+        }
+
+        .homework-box {
+            background: linear-gradient(135deg, #f3e8ff 0%, #faf5ff 100%);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            margin: 1rem 0;
+            border-right: 5px solid #a855f7;
+        }
+
+        details {
+            margin-top: 0.75rem;
+        }
+
+        summary {
+            cursor: pointer;
+            color: #2563eb;
+            font-weight: 600;
+            padding: 0.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        summary:hover {
+            background: rgba(59, 130, 246, 0.2);
+        }
+
+        .solution-content {
+            padding: 1rem;
+            margin-top: 0.5rem;
+            background: white;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .back-to-top:hover {
+            background: #2563eb;
+            transform: scale(1.1);
+        }
+
+        .graph-container {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+
+<body class="p-4">
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl rounded-2xl shadow-2xl">
+        <!-- العنوان الرئيسي -->
+        <h2 class="text-3xl md:text-4xl">📐 الاقترانات الأسية واللوغاريتمية ومشتقاتها</h2>
+
+        <div class="text-center mb-8">
+            <p class="text-gray-600">شرح تفصيلي شامل مع أمثلة وتمارين محلولة</p>
+            <button id="showAllBtn"
+                class="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                📖 إظهار جميع الحلول
+            </button>
+        </div>
+
+        <!-- ================================================================= -->
+        <!-- قسم تمهيدي: ما هو العدد e؟ -->
+        <!-- ================================================================= -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8 border-r-4 border-indigo-500">
+            <h3>🔢 مقدمة: ما هو العدد \(e\) ومن أين جاء؟</h3>
+
+            <div class="explanation">
+                <h4 class="text-lg font-bold text-indigo-800 mb-3">📖 قصة اكتشاف العدد e</h4>
+                <p>العدد \(e\) ليس رقماً اعتباطياً، بل هو عدد <strong>طبيعي</strong> يظهر في الطبيعة والرياضيات بشكل
+                    متكرر.</p>
+                <p class="mt-3">تخيل أنك وضعت 1 دينار في البنك بفائدة 100% سنوياً:</p>
+                <ul class="list-disc list-inside pr-6 mt-2 space-y-2">
+                    <li>إذا حُسبت الفائدة <strong>مرة واحدة</strong> في السنة: \(1 + 1 = 2\) دينار</li>
+                    <li>إذا حُسبت <strong>مرتين</strong> (كل 6 أشهر): \((1 + 0.5)^2 = 2.25\) دينار</li>
+                    <li>إذا حُسبت <strong>12 مرة</strong> (شهرياً): \((1 + \frac{1}{12})^{12} \approx 2.613\) دينار</li>
+                    <li>إذا حُسبت <strong>365 مرة</strong> (يومياً): \((1 + \frac{1}{365})^{365} \approx 2.7146\) دينار
+                    </li>
+                    <li>إذا حُسبت <strong>بشكل مستمر</strong> (كل لحظة): \(\lim_{n \to \infty}(1 + \frac{1}{n})^n = e
+                        \approx 2.71828\) دينار</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <h4 class="font-bold text-amber-800 mb-3">📐 التعريف الرياضي للعدد e</h4>
+                <p class="text-2xl mb-3">\(e = \lim_{n \to \infty}\left(1 + \frac{1}{n}\right)^n\)</p>
+                <p class="text-lg">\(e \approx 2.718281828459045...\)</p>
+                <p class="text-sm text-gray-600 mt-2">عدد غير نسبي وغير جبري (عدد متسامي)</p>
+            </div>
+
+            <div class="tip-box">
+                <h4 class="font-bold text-indigo-800 mb-2">🌍 أين نجد العدد e في الحياة؟</h4>
+                <ul class="list-disc list-inside pr-4 space-y-1">
+                    <li><strong>النمو السكاني:</strong> يصف كيف تنمو الكائنات الحية</li>
+                    <li><strong>التحلل الإشعاعي:</strong> كيف تتفكك المواد المشعة</li>
+                    <li><strong>الفائدة المركبة:</strong> نمو الأموال في البنوك</li>
+                    <li><strong>الاحتمالات:</strong> يظهر في توزيع بواسون</li>
+                    <li><strong>الهندسة:</strong> شكل السلسلة المعلقة (catenary)</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h4 class="font-bold text-red-800 mb-2">⚠️ لماذا e وليس 2 أو 3؟</h4>
+                <p>العدد \(e\) هو <strong>الأساس الوحيد</strong> الذي يجعل مشتقة الاقتران الأسي تساوي نفسها!</p>
+                <p class="mt-2">أي أساس آخر (مثل 2 أو 10) سيعطي معامل إضافي في المشتقة.</p>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- القسم الأول: الاقتران الأسي -->
+        <!-- ================================================================= -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8 border-r-4 border-blue-500">
+            <h3>أولاً: الاقتران الأسي \(a^x\)</h3>
+
+            <div class="explanation">
+                <h4 class="text-lg font-bold text-blue-800 mb-2">📘 التعريف</h4>
+                <p>الاقتران الأسي هو اقتران يكون فيه المتغير <strong>في الأس</strong> (وليس في القاعدة):</p>
+                <p class="text-center text-xl mt-3">\(f(x) = a^x\)</p>
+                <p class="mt-2">حيث \(a > 0\) و \(a \neq 1\)</p>
+
+                <div class="mt-4 p-3 bg-white rounded-lg border border-blue-200">
+                    <p class="font-bold text-blue-700">🔍 الفرق بين الاقتران الأسي واقتران القوة:</p>
+                    <table class="w-full mt-2 text-center">
+                        <tr>
+                            <td class="p-2 border">اقتران القوة: \(x^n\)</td>
+                            <td class="p-2 border">المتغير في <strong>القاعدة</strong></td>
+                            <td class="p-2 border">مثال: \(x^3\)</td>
+                        </tr>
+                        <tr class="bg-blue-50">
+                            <td class="p-2 border">الاقتران الأسي: \(a^x\)</td>
+                            <td class="p-2 border">المتغير في <strong>الأس</strong></td>
+                            <td class="p-2 border">مثال: \(2^x\)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="formula-box">
+                <h4 class="font-bold text-amber-800 mb-2">📌 أهم اقتران أسي: \(e^x\)</h4>
+                <p class="text-2xl">\(e \approx 2.71828...\)</p>
+                <p class="text-sm text-gray-600 mt-2">العدد e هو عدد أويلر، وهو أساس اللوغاريتم الطبيعي</p>
+            </div>
+
+            <!-- رسم الاقتران الأسي -->
+            <div class="graph-container">
+                <h4 class="text-lg font-bold text-blue-800 mb-3">📈 الرسم البياني للاقتران \(e^x\)</h4>
+                <div id="expGraph" style="height: 350px;"></div>
+            </div>
+
+            <div class="tip-box">
+                <h4 class="font-bold text-indigo-800 mb-2">🔑 خصائص الاقتران الأسي \(e^x\)</h4>
+                <ul class="list-disc list-inside pr-4 space-y-1">
+                    <li>المجال: \(\mathbb{R}\) (جميع الأعداد الحقيقية)</li>
+                    <li>المدى: \((0, +\infty)\) (الأعداد الموجبة فقط)</li>
+                    <li>\(e^0 = 1\) (يمر بالنقطة (0,1))</li>
+                    <li>\(e^x > 0\) لجميع قيم x (الاقتران موجب دائماً)</li>
+                    <li>اقتران متزايد دائماً (كلما زاد x، زاد \(e^x\))</li>
+                    <li>\(\lim_{x \to -\infty} e^x = 0\) (يقترب من الصفر جهة اليسار)</li>
+                    <li>\(\lim_{x \to +\infty} e^x = +\infty\) (ينمو بلا حدود جهة اليمين)</li>
+                </ul>
+            </div>
+
+            <!-- ========== لماذا مشتقة e^x تساوي نفسها؟ ========== -->
+            <div class="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl mt-8 border-2 border-purple-300">
+                <h4 class="text-xl font-bold text-purple-800 mb-4">🤔 لماذا مشتقة \(e^x\) تساوي نفسها؟</h4>
+
+                <div class="explanation mb-4">
+                    <h5 class="font-bold text-blue-800 mb-2">📐 الإثبات باستخدام تعريف المشتقة:</h5>
+                    <p>المشتقة بالتعريف هي:</p>
+                    <p class="text-center text-lg my-3">\(f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}\)</p>
+
+                    <p>بالتطبيق على \(f(x) = e^x\):</p>
+                    <div class="bg-white p-4 rounded-lg mt-3 space-y-2">
+                        <p>\(f'(x) = \lim_{h \to 0} \frac{e^{x+h} - e^x}{h}\)</p>
+                        <p class="text-gray-600">نستخدم قانون الأسس: \(e^{x+h} = e^x \cdot e^h\)</p>
+                        <p>\(= \lim_{h \to 0} \frac{e^x \cdot e^h - e^x}{h}\)</p>
+                        <p class="text-gray-600">نُخرج \(e^x\) كعامل مشترك:</p>
+                        <p>\(= \lim_{h \to 0} \frac{e^x(e^h - 1)}{h}\)</p>
+                        <p class="text-gray-600">\(e^x\) لا يحتوي على h، فنُخرجه من النهاية:</p>
+                        <p>\(= e^x \cdot \lim_{h \to 0} \frac{e^h - 1}{h}\)</p>
+                    </div>
+                </div>
+
+                <div class="formula-box">
+                    <h5 class="font-bold text-amber-800 mb-2">🔑 النهاية الأساسية</h5>
+                    <p class="text-xl">\(\lim_{h \to 0} \frac{e^h - 1}{h} = 1\)</p>
+                    <p class="text-sm text-gray-600 mt-2">هذه النهاية تساوي 1 بالضبط! (وهذا ما يجعل e مميزاً)</p>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg mt-4">
+                    <p class="font-bold text-green-700">إذاً:</p>
+                    <p class="text-center text-xl my-2">\(f'(x) = e^x \cdot 1 = e^x\)</p>
+                    <p class="text-center text-2xl font-bold text-green-700 mt-3">\(\boxed{\frac{d}{dx}[e^x] = e^x}\)
+                    </p>
+                </div>
+
+                <div class="tip-box mt-4">
+                    <h5 class="font-bold text-indigo-800 mb-2">💡 التفسير الحدسي (البسيط):</h5>
+                    <p>تخيل أن \(e^x\) يمثل <strong>عدد البكتيريا</strong> في وقت معين x:</p>
+                    <ul class="list-disc list-inside pr-4 mt-2 space-y-1">
+                        <li>المشتقة \(f'(x)\) تمثل <strong>سرعة النمو</strong></li>
+                        <li>في النمو الأسي، سرعة النمو <strong>تتناسب مع العدد الحالي</strong></li>
+                        <li>كلما زاد عدد البكتيريا، زادت سرعة تكاثرها!</li>
+                        <li>لذلك: سرعة النمو = العدد الحالي، أي \(f'(x) = f(x) = e^x\)</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box mt-4">
+                    <h5 class="font-bold text-red-800 mb-2">🎯 التفسير الهندسي:</h5>
+                    <p>عند أي نقطة على منحنى \(e^x\):</p>
+                    <p class="mt-2"><strong>ميل المماس = قيمة الاقتران عند تلك النقطة</strong></p>
+                    <ul class="list-disc list-inside pr-4 mt-2">
+                        <li>عند x = 0: \(e^0 = 1\)، لذا ميل المماس = 1</li>
+                        <li>عند x = 1: \(e^1 \approx 2.718\)، لذا ميل المماس ≈ 2.718</li>
+                        <li>عند x = 2: \(e^2 \approx 7.389\)، لذا ميل المماس ≈ 7.389</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box mt-6">
+                <h4 class="font-bold text-amber-800 mb-3">⭐ ملخص: مشتقة الاقتران الأسي</h4>
+                <p class="text-2xl mb-4">\(\frac{d}{dx}[e^x] = e^x\)</p>
+                <p class="text-lg">\(\frac{d}{dx}[e^{u}] = e^{u} \cdot u'\)</p>
+                <p class="text-sm text-gray-600 mt-2">(قاعدة السلسلة: نضرب في مشتقة الأس)</p>
+            </div>
+
+            <div class="example-box">
+                <h4 class="font-bold text-green-800 mb-2">✅ مثال 1</h4>
+                <p>أجد مشتقة: \(f(x) = e^{3x}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الحل:</strong></p>
+                        <p>\(u = 3x \Rightarrow u' = 3\)</p>
+                        <p>\(f'(x) = e^{3x} \cdot 3\)</p>
+                        <p class="font-bold text-green-700 text-lg mt-2">\(f'(x) = 3e^{3x}\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="example-box">
+                <h4 class="font-bold text-green-800 mb-2">✅ مثال 2</h4>
+                <p>أجد مشتقة: \(f(x) = e^{x^2}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الحل:</strong></p>
+                        <p>\(u = x^2 \Rightarrow u' = 2x\)</p>
+                        <p>\(f'(x) = e^{x^2} \cdot 2x\)</p>
+                        <p class="font-bold text-green-700 text-lg mt-2">\(f'(x) = 2x \cdot e^{x^2}\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="example-box">
+                <h4 class="font-bold text-green-800 mb-2">✅ مثال 3</h4>
+                <p>أجد مشتقة: \(f(x) = x \cdot e^x\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الحل:</strong> نستخدم قاعدة الضرب</p>
+                        <p>\(f'(x) = (x)' \cdot e^x + x \cdot (e^x)'\)</p>
+                        <p>\(f'(x) = 1 \cdot e^x + x \cdot e^x\)</p>
+                        <p>\(f'(x) = e^x + x \cdot e^x\)</p>
+                        <p class="font-bold text-green-700 text-lg mt-2">\(f'(x) = e^x(1 + x)\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="formula-box mt-6">
+                <h4 class="font-bold text-amber-800 mb-3">📌 مشتقة \(a^x\) (أي أساس)</h4>
+                <p class="text-xl mb-2">\(\frac{d}{dx}[a^x] = a^x \cdot \ln(a)\)</p>
+                <p class="text-lg">\(\frac{d}{dx}[a^{u}] = a^{u} \cdot \ln(a) \cdot u'\)</p>
+            </div>
+
+            <div class="example-box">
+                <h4 class="font-bold text-green-800 mb-2">✅ مثال 4</h4>
+                <p>أجد مشتقة: \(f(x) = 2^x\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الحل:</strong></p>
+                        <p>\(f'(x) = 2^x \cdot \ln(2)\)</p>
+                        <p class="font-bold text-green-700 text-lg mt-2">\(f'(x) = 2^x \ln(2)\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="example-box">
+                <h4 class="font-bold text-green-800 mb-2">✅ مثال 5</h4>
+                <p>أجد مشتقة: \(f(x) = 3^{2x}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الحل:</strong></p>
+                        <p>\(u = 2x \Rightarrow u' = 2\)</p>
+                        <p>\(f'(x) = 3^{2x} \cdot \ln(3) \cdot 2\)</p>
+                        <p class="font-bold text-green-700 text-lg mt-2">\(f'(x) = 2 \cdot 3^{2x} \cdot \ln(3)\)</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- القسم الثاني: اللوغاريتم الطبيعي ln -->
+        <!-- ================================================================= -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8 border-r-4 border-green-500">
+            <h3>ثانياً: اللوغاريتم الطبيعي \(\ln(x)\)</h3>
+
+            <div class="explanation">
+                <h4 class="text-lg font-bold text-green-800 mb-2">📘 التعريف</h4>
+                <p>اللوغاريتم الطبيعي هو اللوغاريتم للأساس \(e\):</p>
+                <p class="text-center text-xl mt-3">\(\ln(x) = \log_e(x)\)</p>
+                <p class="mt-2">\(\ln(x)\) هو العكس لـ \(e^x\)</p>
+            </div>
+
+            <div class="formula-box">
+                <h4 class="font-bold text-amber-800 mb-2">🔗 العلاقة بين \(e^x\) و \(\ln(x)\)</h4>
+                <p class="text-xl">\(e^{\ln(x)} = x\) &nbsp;&nbsp;&nbsp; و &nbsp;&nbsp;&nbsp; \(\ln(e^x) = x\)</p>
+            </div>
+
+            <!-- رسم اللوغاريتم -->
+            <div class="graph-container">
+                <h4 class="text-lg font-bold text-green-800 mb-3">📈 الرسم البياني للاقتران \(\ln(x)\)</h4>
+                <div id="lnGraph" style="height: 350px;"></div>
+            </div>
+
+            <div class="tip-box">
+                <h4 class="font-bold text-indigo-800 mb-2">🔑 خصائص \(\ln(x)\)</h4>
+                <ul class="list-disc list-inside pr-4 space-y-1">
+                    <li>المجال: \((0, +\infty)\) (الموجبة فقط)</li>
+                    <li>المدى: \(\mathbb{R}\) (جميع الأعداد الحقيقية)</li>
+                    <li>\(\ln(1) = 0\)</li>
+                    <li>\(\ln(e) = 1\)</li>
+                    <li>اقتران متزايد على مجاله</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h4 class="font-bold text-red-800 mb-2">⚠️ تنبيه مهم جداً</h4>
+                <p>\(\ln(x)\) معرف فقط عندما \(x > 0\)</p>
+                <p class="mt-1">\(\ln(0)\) غير معرف (تذهب للسالب لانهاية)</p>
+                <p class="mt-1">\(\ln(-5)\) غير معرف (لا يوجد لوغاريتم للأعداد السالبة)</p>
+            </div>
+
+            <!-- شرح العلاقة العكسية -->
+            <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-xl mt-6 border-2 border-green-300">
+                <h4 class="text-xl font-bold text-green-800 mb-4">🔄 فهم العلاقة العكسية بين \(e^x\) و \(\ln(x)\)</h4>
+
+                <div class="explanation mb-4">
+                    <h5 class="font-bold text-blue-800 mb-2">📘 ما معنى "اقتران عكسي"؟</h5>
+                    <p>إذا كان \(f(x) = e^x\) و \(g(x) = \ln(x)\)، فهما <strong>اقترانان عكسيان</strong>:</p>
+                    <ul class="list-disc list-inside pr-4 mt-2 space-y-1">
+                        <li>\(f(g(x)) = e^{\ln(x)} = x\) (تطبيق e ثم ln يُعيد x)</li>
+                        <li>\(g(f(x)) = \ln(e^x) = x\) (تطبيق ln ثم e يُعيد x)</li>
+                    </ul>
+                    <p class="mt-3"><strong>هندسياً:</strong> منحنى \(\ln(x)\) هو انعكاس منحنى \(e^x\) حول المستقيم \(y
+                        = x\)</p>
+                </div>
+
+                <div class="tip-box">
+                    <h5 class="font-bold text-indigo-800 mb-2">💡 كيف نفكر باللوغاريتم؟</h5>
+                    <p>\(\ln(x)\) يسأل: <strong>"ما هو الأس الذي نرفع له e للحصول على x؟"</strong></p>
+                    <ul class="list-disc list-inside pr-4 mt-2 space-y-1">
+                        <li>\(\ln(1) = 0\) لأن \(e^0 = 1\)</li>
+                        <li>\(\ln(e) = 1\) لأن \(e^1 = e\)</li>
+                        <li>\(\ln(e^2) = 2\) لأن \(e^2 = e^2\)</li>
+                        <li>\(\ln(e^{-1}) = -1\) لأن \(e^{-1} = \frac{1}{e}\)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box mt-6">
+                <h4 class="font-bold text-amber-800 mb-3">📐 قوانين اللوغاريتم الأساسية</h4>
+                <div class="grid md:grid-cols-2 gap-4 text-lg">
+                    <div class="bg-white p-2 rounded">\(\ln(ab) = \ln(a) + \ln(b)\)</div>
+                    <div class="bg-white p-2 rounded">\(\ln\left(\frac{a}{b}\right) = \ln(a) - \ln(b)\)</div>
+                    <div class="bg-white p-2 rounded">\(\ln(a^n) = n \cdot \ln(a)\)</div>
+                    <div class="bg-white p-2 rounded">\(\ln(\sqrt{a}) = \frac{1}{2}\ln(a)\)</div>
+                    <div class="bg-white p-2 rounded">\(\ln(1) = 0\)</div>
+                    <div class="bg-white p-2 rounded">\(\ln(e) = 1\)</div>
+                </div>
+            </div>
+
+            <!-- لماذا مشتقة ln هي 1/x؟ -->
+            <div class="bg-gradient-to-r from-teal-50 to-cyan-50 p-6 rounded-xl mt-8 border-2 border-teal-300">
+                <h4 class="text-xl font-bold text-teal-800 mb-4">🤔 لماذا مشتقة \(\ln(x)\) تساوي \(\frac{1}{x}\)؟</h4>
+
+                <div class="explanation mb-4">
+                    <h5 class="font-bold text-blue-800 mb-2">📐 الإثبات باستخدام الاقتران العكسي:</h5>
+                    <p>نعلم أن \(e^{\ln(x)} = x\)</p>
+                    <p class="mt-2">بأخذ مشتقة الطرفين باستخدام قاعدة السلسلة:</p>
+                    <div class="bg-white p-4 rounded-lg mt-3 space-y-2">
+                        <p>\(\frac{d}{dx}[e^{\ln(x)}] = \frac{d}{dx}[x]\)</p>
+                        <p class="text-gray-600">الطرف الأيمن: \(\frac{d}{dx}[x] = 1\)</p>
+                        <p class="text-gray-600">الطرف الأيسر (قاعدة السلسلة): \(e^{\ln(x)} \cdot \frac{d}{dx}[\ln(x)]\)
+                        </p>
+                        <p>لكن \(e^{\ln(x)} = x\)، فيصبح:</p>
+                        <p>\(x \cdot \frac{d}{dx}[\ln(x)] = 1\)</p>
+                        <p class="font-bold text-green-700 text-lg mt-2">إذاً: \(\frac{d}{dx}[\ln(x)] = \frac{1}{x}\)
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tip-box mt-4">
+                    <h5 class="font-bold text-indigo-800 mb-2">💡 التفسير الحدسي:</h5>
+                    <p>بما أن \(\ln(x)\) هو العكس لـ \(e^x\)، فمشتقته هي <strong>مقلوب</strong> مشتقة \(e^x\) مقيّمة عند
+                        نقطة معينة.</p>
+                    <p class="mt-2">لأن \(\frac{d}{dx}[e^x] = e^x\)، ونحن عند \(y = \ln(x)\) حيث \(x = e^y\):</p>
+                    <p class="text-center mt-2">\(\frac{d}{dx}[\ln(x)] = \frac{1}{e^y} = \frac{1}{x}\)</p>
+                </div>
+
+                <div class="warning-box mt-4">
+                    <h5 class="font-bold text-red-800 mb-2">🎯 التفسير الهندسي:</h5>
+                    <p>ميل المماس لمنحنى \(\ln(x)\) عند أي نقطة = <strong>مقلوب الإحداثي السيني</strong></p>
+                    <ul class="list-disc list-inside pr-4 mt-2">
+                        <li>عند x = 1: ميل المماس = \(\frac{1}{1} = 1\)</li>
+                        <li>عند x = 2: ميل المماس = \(\frac{1}{2} = 0.5\)</li>
+                        <li>عند x = 10: ميل المماس = \(\frac{1}{10} = 0.1\)</li>
+                    </ul>
+                    <p class="mt-2 text-gray-600">كلما زاد x، قلّ الميل (المنحنى يصبح أكثر انبساطاً)</p>
+                </div>
+            </div>
+
+            <div class="formula-box mt-6">
+                <h4 class="font-bold text-amber-800 mb-3">⭐ ملخص: مشتقة اللوغاريتم الطبيعي</h4>
+                <p class="text-2xl mb-4">\(\frac{d}{dx}[\ln(x)] = \frac{1}{x}\)</p>
+                <p class="text-lg">\(\frac{d}{dx}[\ln(u)] = \frac{u'}{u}\)</p>
+                <p class="text-sm text-gray-600 mt-2">(قاعدة السلسلة: مشتقة ما بالداخل مقسومة على ما بالداخل)</p>
+            </div>
+
+            <div class="example-box">
+                <h4 class="font-bold text-green-800 mb-2">✅ مثال 6</h4>
+                <p>أجد مشتقة: \(f(x) = \ln(3x)\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الحل:</strong></p>
+                        <p>\(u = 3x \Rightarrow u' = 3\)</p>
+                        <p>\(f'(x) = \frac{3}{3x}\)</p>
+                        <p class="font-bold text-green-700 text-lg mt-2">\(f'(x) = \frac{1}{x}\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="example-box">
+                <h4 class="font-bold text-green-800 mb-2">✅ مثال 7</h4>
+                <p>أجد مشتقة: \(f(x) = \ln(x^2 + 1)\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الحل:</strong></p>
+                        <p>\(u = x^2 + 1 \Rightarrow u' = 2x\)</p>
+                        <p>\(f'(x) = \frac{2x}{x^2 + 1}\)</p>
+                        <p class="font-bold text-green-700 text-lg mt-2">\(f'(x) = \frac{2x}{x^2 + 1}\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="example-box">
+                <h4 class="font-bold text-green-800 mb-2">✅ مثال 8</h4>
+                <p>أجد مشتقة: \(f(x) = \ln(\sin x)\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الحل:</strong></p>
+                        <p>\(u = \sin x \Rightarrow u' = \cos x\)</p>
+                        <p>\(f'(x) = \frac{\cos x}{\sin x}\)</p>
+                        <p class="font-bold text-green-700 text-lg mt-2">\(f'(x) = \cot x\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="example-box">
+                <h4 class="font-bold text-green-800 mb-2">✅ مثال 9</h4>
+                <p>أجد مشتقة: \(f(x) = x \cdot \ln(x)\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الحل:</strong> نستخدم قاعدة الضرب</p>
+                        <p>\(f'(x) = (x)' \cdot \ln(x) + x \cdot (\ln x)'\)</p>
+                        <p>\(f'(x) = 1 \cdot \ln(x) + x \cdot \frac{1}{x}\)</p>
+                        <p>\(f'(x) = \ln(x) + 1\)</p>
+                        <p class="font-bold text-green-700 text-lg mt-2">\(f'(x) = \ln(x) + 1\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="example-box">
+                <h4 class="font-bold text-green-800 mb-2">✅ مثال 10</h4>
+                <p>أجد مشتقة: \(f(x) = \frac{\ln(x)}{x}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الحل:</strong> نستخدم قاعدة القسمة</p>
+                        <p>\(f'(x) = \frac{(\ln x)' \cdot x - \ln(x) \cdot (x)'}{x^2}\)</p>
+                        <p>\(f'(x) = \frac{\frac{1}{x} \cdot x - \ln(x) \cdot 1}{x^2}\)</p>
+                        <p>\(f'(x) = \frac{1 - \ln(x)}{x^2}\)</p>
+                        <p class="font-bold text-green-700 text-lg mt-2">\(f'(x) = \frac{1 - \ln(x)}{x^2}\)</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- قسم جديد: استخدام خواص اللوغاريتم لتبسيط الاشتقاق -->
+        <!-- ================================================================= -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8 border-r-4 border-cyan-500">
+            <h3>🔧 استخدام خواص اللوغاريتم لتبسيط الاشتقاق</h3>
+
+            <div class="explanation">
+                <h4 class="text-lg font-bold text-cyan-800 mb-3">💡 الفكرة الأساسية</h4>
+                <p>قبل الاشتقاق، يمكننا <strong>تبسيط التعبير</strong> باستخدام خواص اللوغاريتم، مما يجعل الحل أسهل
+                    بكثير!</p>
+                <p class="mt-2">الخواص تحوّل:</p>
+                <ul class="list-disc list-inside pr-4 mt-2 space-y-1">
+                    <li><strong>الضرب ← جمع:</strong> \(\ln(ab) = \ln(a) + \ln(b)\)</li>
+                    <li><strong>القسمة ← طرح:</strong> \(\ln\left(\frac{a}{b}\right) = \ln(a) - \ln(b)\)</li>
+                    <li><strong>الأس ← ضرب:</strong> \(\ln(a^n) = n \cdot \ln(a)\)</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <h4 class="font-bold text-amber-800 mb-3">📐 ملخص خواص اللوغاريتم</h4>
+                <div class="grid md:grid-cols-2 gap-3 text-lg">
+                    <div class="bg-white p-3 rounded border-r-4 border-blue-400">
+                        <p class="font-bold text-blue-700">الجمع</p>
+                        <p>\(\ln(ab) = \ln(a) + \ln(b)\)</p>
+                    </div>
+                    <div class="bg-white p-3 rounded border-r-4 border-green-400">
+                        <p class="font-bold text-green-700">الطرح</p>
+                        <p>\(\ln\left(\frac{a}{b}\right) = \ln(a) - \ln(b)\)</p>
+                    </div>
+                    <div class="bg-white p-3 rounded border-r-4 border-purple-400">
+                        <p class="font-bold text-purple-700">الأس</p>
+                        <p>\(\ln(a^n) = n \cdot \ln(a)\)</p>
+                    </div>
+                    <div class="bg-white p-3 rounded border-r-4 border-orange-400">
+                        <p class="font-bold text-orange-700">الجذور</p>
+                        <p>\(\ln(\sqrt[n]{a}) = \frac{1}{n} \ln(a)\)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- مثال مقارنة 1 -->
+            <div class="bg-gradient-to-r from-rose-50 to-pink-50 p-5 rounded-xl mt-6 border-2 border-rose-300">
+                <h4 class="text-lg font-bold text-rose-800 mb-3">📊 مثال مقارنة 1: \(f(x) = \ln(x^5)\)</h4>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                        <h5 class="font-bold text-red-700 mb-2">❌ بدون استخدام الخواص (أصعب)</h5>
+                        <p>\(f(x) = \ln(x^5)\)</p>
+                        <p>\(u = x^5 \Rightarrow u' = 5x^4\)</p>
+                        <p>\(f'(x) = \frac{5x^4}{x^5} = \frac{5}{x}\)</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                        <h5 class="font-bold text-green-700 mb-2">✅ باستخدام الخواص (أسهل)</h5>
+                        <p>\(f(x) = \ln(x^5) = 5\ln(x)\)</p>
+                        <p>\(f'(x) = 5 \cdot \frac{1}{x}\)</p>
+                        <p class="font-bold text-green-700">\(f'(x) = \frac{5}{x}\)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- مثال مقارنة 2 -->
+            <div class="bg-gradient-to-r from-amber-50 to-yellow-50 p-5 rounded-xl mt-6 border-2 border-amber-300">
+                <h4 class="text-lg font-bold text-amber-800 mb-3">📊 مثال مقارنة 2: \(f(x) =
+                    \ln\left(\frac{x^2}{x+1}\right)\)</h4>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                        <h5 class="font-bold text-red-700 mb-2">❌ بدون الخواص (معقد جداً)</h5>
+                        <p>\(u = \frac{x^2}{x+1}\)</p>
+                        <p>نحتاج قاعدة القسمة لإيجاد u'</p>
+                        <p>\(u' = \frac{2x(x+1) - x^2}{(x+1)^2}\)</p>
+                        <p>ثم \(f'(x) = \frac{u'}{u} = ...\) 😵</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                        <h5 class="font-bold text-green-700 mb-2">✅ باستخدام الخواص (أسهل بكثير)</h5>
+                        <p>\(f(x) = \ln(x^2) - \ln(x+1)\)</p>
+                        <p>\(= 2\ln(x) - \ln(x+1)\)</p>
+                        <p>\(f'(x) = \frac{2}{x} - \frac{1}{x+1}\)</p>
+                        <p class="font-bold text-green-700">\(f'(x) = \frac{2}{x} - \frac{1}{x+1}\)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- مثال مقارنة 3 -->
+            <div class="bg-gradient-to-r from-violet-50 to-purple-50 p-5 rounded-xl mt-6 border-2 border-violet-300">
+                <h4 class="text-lg font-bold text-violet-800 mb-3">📊 مثال مقارنة 3: \(f(x) = \ln\sqrt{x^2 + 1}\)</h4>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                        <h5 class="font-bold text-red-700 mb-2">❌ بدون الخواص</h5>
+                        <p>\(u = \sqrt{x^2+1} = (x^2+1)^{1/2}\)</p>
+                        <p>\(u' = \frac{2x}{2\sqrt{x^2+1}}\)</p>
+                        <p>\(f'(x) = \frac{u'}{u} = ...\)</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                        <h5 class="font-bold text-green-700 mb-2">✅ باستخدام الخواص</h5>
+                        <p>\(f(x) = \frac{1}{2}\ln(x^2+1)\)</p>
+                        <p>\(f'(x) = \frac{1}{2} \cdot \frac{2x}{x^2+1}\)</p>
+                        <p class="font-bold text-green-700">\(f'(x) = \frac{x}{x^2+1}\)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- أمثلة إضافية -->
+            <h4 class="text-xl font-bold text-cyan-800 mt-8 mb-4">📝 تمارين على استخدام الخواص</h4>
+
+            <div class="student-task-box">
+                <p class="font-bold">1. أجد مشتقة: \(f(x) = \ln(x^3 \cdot e^x)\)</p>
+                <p class="text-sm text-gray-600">💡 تلميح: استخدم \(\ln(ab) = \ln(a) + \ln(b)\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الخطوة 1:</strong> نبسط باستخدام الخواص</p>
+                        <p>\(f(x) = \ln(x^3) + \ln(e^x)\)</p>
+                        <p>\(= 3\ln(x) + x\)</p>
+                        <p class="text-gray-600">(لأن \(\ln(e^x) = x\))</p>
+                        <hr class="my-2">
+                        <p><strong>الخطوة 2:</strong> نشتق</p>
+                        <p>\(f'(x) = \frac{3}{x} + 1\)</p>
+                        <p class="font-bold text-green-700 text-lg">\(f'(x) = \frac{3}{x} + 1\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="student-task-box">
+                <p class="font-bold">2. أجد مشتقة: \(f(x) = \ln\left(\frac{x^4}{e^{2x}}\right)\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الخطوة 1:</strong> نبسط</p>
+                        <p>\(f(x) = \ln(x^4) - \ln(e^{2x})\)</p>
+                        <p>\(= 4\ln(x) - 2x\)</p>
+                        <hr class="my-2">
+                        <p><strong>الخطوة 2:</strong> نشتق</p>
+                        <p>\(f'(x) = \frac{4}{x} - 2\)</p>
+                        <p class="font-bold text-green-700 text-lg">\(f'(x) = \frac{4}{x} - 2\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="homework-box">
+                <p class="font-bold">3. أجد مشتقة: \(f(x) = \ln\left(\frac{\sqrt{x}}{x^2 + 1}\right)\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الخطوة 1:</strong> نبسط</p>
+                        <p>\(f(x) = \ln(\sqrt{x}) - \ln(x^2+1)\)</p>
+                        <p>\(= \frac{1}{2}\ln(x) - \ln(x^2+1)\)</p>
+                        <hr class="my-2">
+                        <p><strong>الخطوة 2:</strong> نشتق</p>
+                        <p>\(f'(x) = \frac{1}{2x} - \frac{2x}{x^2+1}\)</p>
+                        <p class="font-bold text-green-700 text-lg">\(f'(x) = \frac{1}{2x} - \frac{2x}{x^2+1}\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="homework-box">
+                <p class="font-bold">4. أجد مشتقة: \(f(x) = \ln\sqrt[3]{x^2 \cdot (x+1)}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الخطوة 1:</strong> نبسط</p>
+                        <p>\(f(x) = \frac{1}{3}\ln(x^2 \cdot (x+1))\)</p>
+                        <p>\(= \frac{1}{3}[\ln(x^2) + \ln(x+1)]\)</p>
+                        <p>\(= \frac{1}{3}[2\ln(x) + \ln(x+1)]\)</p>
+                        <p>\(= \frac{2}{3}\ln(x) + \frac{1}{3}\ln(x+1)\)</p>
+                        <hr class="my-2">
+                        <p><strong>الخطوة 2:</strong> نشتق</p>
+                        <p>\(f'(x) = \frac{2}{3x} + \frac{1}{3(x+1)}\)</p>
+                        <p class="font-bold text-green-700 text-lg">\(f'(x) = \frac{2}{3x} + \frac{1}{3(x+1)}\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- الاشتقاق اللوغاريتمي -->
+            <div class="bg-gradient-to-r from-indigo-50 to-blue-50 p-6 rounded-xl mt-8 border-2 border-indigo-300">
+                <h4 class="text-xl font-bold text-indigo-800 mb-4">🌟 الاشتقاق اللوغاريتمي (Logarithmic Differentiation)
+                </h4>
+
+                <div class="explanation mb-4">
+                    <h5 class="font-bold text-blue-800 mb-2">📘 متى نستخدمه؟</h5>
+                    <p>عندما يكون الاقتران على شكل:</p>
+                    <ul class="list-disc list-inside pr-4 mt-2 space-y-1">
+                        <li>\(y = [f(x)]^{g(x)}\) (اقتران مرفوع لاقتران)</li>
+                        <li>ضرب أو قسمة عدة اقترانات معقدة</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h5 class="font-bold text-green-800 mb-2">✅ مثال: أجد مشتقة \(y = x^x\)</h5>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>الخطوة 1:</strong> نأخذ ln للطرفين</p>
+                            <p>\(\ln(y) = \ln(x^x) = x \cdot \ln(x)\)</p>
+                            <hr class="my-2">
+                            <p><strong>الخطوة 2:</strong> نشتق الطرفين (الطرف الأيسر بالسلسلة)</p>
+                            <p>\(\frac{1}{y} \cdot \frac{dy}{dx} = 1 \cdot \ln(x) + x \cdot \frac{1}{x}\)</p>
+                            <p>\(\frac{y'}{y} = \ln(x) + 1\)</p>
+                            <hr class="my-2">
+                            <p><strong>الخطوة 3:</strong> نضرب بـ y</p>
+                            <p>\(y' = y[\ln(x) + 1]\)</p>
+                            <p>\(y' = x^x[\ln(x) + 1]\)</p>
+                            <p class="font-bold text-green-700 text-lg mt-2">\(\frac{d}{dx}[x^x] = x^x(\ln x + 1)\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="example-box mt-4">
+                    <h5 class="font-bold text-green-800 mb-2">✅ مثال: أجد مشتقة \(y = x^{\sin x}\)</h5>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>الخطوة 1:</strong> نأخذ ln للطرفين</p>
+                            <p>\(\ln(y) = \sin(x) \cdot \ln(x)\)</p>
+                            <hr class="my-2">
+                            <p><strong>الخطوة 2:</strong> نشتق (قاعدة الضرب على الطرف الأيمن)</p>
+                            <p>\(\frac{y'}{y} = \cos(x) \cdot \ln(x) + \sin(x) \cdot \frac{1}{x}\)</p>
+                            <hr class="my-2">
+                            <p><strong>الخطوة 3:</strong> نضرب بـ y</p>
+                            <p class="font-bold text-green-700 text-lg mt-2">\(y' = x^{\sin x}\left[\cos x \cdot \ln x +
+                                \frac{\sin x}{x}\right]\)</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="tip-box mt-6">
+                <h4 class="font-bold text-indigo-800 mb-2">🎯 نصيحة ذهبية</h4>
+                <p>قبل اشتقاق أي تعبير يحتوي على \(\ln\):</p>
+                <ol class="list-decimal list-inside pr-4 mt-2 space-y-1">
+                    <li><strong>بسّط أولاً</strong> باستخدام خواص اللوغاريتم</li>
+                    <li>ثم <strong>اشتق</strong> التعبير المبسط</li>
+                    <li>النتيجة ستكون أسهل بكثير! 🎉</li>
+                </ol>
+            </div>
+        </section>
+
+
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8 border-r-4 border-purple-500">
+            <h3>ثالثاً: اللوغاريتم لأي أساس \(\log_a(x)\)</h3>
+
+            <div class="explanation">
+                <h4 class="text-lg font-bold text-purple-800 mb-2">📘 التعريف</h4>
+                <p>\(\log_a(x) = y\) تعني أن \(a^y = x\)</p>
+                <p class="mt-2">مثال: \(\log_2(8) = 3\) لأن \(2^3 = 8\)</p>
+            </div>
+
+            <div class="formula-box">
+                <h4 class="font-bold text-amber-800 mb-2">🔄 تحويل اللوغاريتم للأساس e</h4>
+                <p class="text-xl">\(\log_a(x) = \frac{\ln(x)}{\ln(a)}\)</p>
+            </div>
+
+            <div class="formula-box mt-4">
+                <h4 class="font-bold text-amber-800 mb-3">⭐ مشتقة اللوغاريتم لأي أساس</h4>
+                <p class="text-2xl mb-4">\(\frac{d}{dx}[\log_a(x)] = \frac{1}{x \cdot \ln(a)}\)</p>
+                <p class="text-lg">\(\frac{d}{dx}[\log_a(u)] = \frac{u'}{u \cdot \ln(a)}\)</p>
+            </div>
+
+            <div class="example-box">
+                <h4 class="font-bold text-green-800 mb-2">✅ مثال 11</h4>
+                <p>أجد مشتقة: \(f(x) = \log_2(x)\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الحل:</strong></p>
+                        <p>\(f'(x) = \frac{1}{x \cdot \ln(2)}\)</p>
+                        <p class="font-bold text-green-700 text-lg mt-2">\(f'(x) = \frac{1}{x \ln(2)}\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="example-box">
+                <h4 class="font-bold text-green-800 mb-2">✅ مثال 12</h4>
+                <p>أجد مشتقة: \(f(x) = \log_{10}(x^2 + 1)\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الحل:</strong></p>
+                        <p>\(u = x^2 + 1 \Rightarrow u' = 2x\)</p>
+                        <p>\(f'(x) = \frac{2x}{(x^2 + 1) \cdot \ln(10)}\)</p>
+                        <p class="font-bold text-green-700 text-lg mt-2">\(f'(x) = \frac{2x}{(x^2 + 1) \ln(10)}\)</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- القسم الرابع: ملخص القوانين -->
+        <!-- ================================================================= -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8 border-r-4 border-amber-500">
+            <h3>رابعاً: ملخص قوانين الاشتقاق</h3>
+
+            <div class="overflow-x-auto">
+                <table class="w-full border-collapse border border-gray-300 mt-4">
+                    <thead>
+                        <tr class="bg-blue-100">
+                            <th class="border border-gray-300 p-3">الاقتران \(f(x)\)</th>
+                            <th class="border border-gray-300 p-3">المشتقة \(f'(x)\)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border border-gray-300 p-3 text-center">\(e^x\)</td>
+                            <td class="border border-gray-300 p-3 text-center">\(e^x\)</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="border border-gray-300 p-3 text-center">\(e^{u}\)</td>
+                            <td class="border border-gray-300 p-3 text-center">\(e^{u} \cdot u'\)</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 p-3 text-center">\(a^x\)</td>
+                            <td class="border border-gray-300 p-3 text-center">\(a^x \cdot \ln(a)\)</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="border border-gray-300 p-3 text-center">\(a^{u}\)</td>
+                            <td class="border border-gray-300 p-3 text-center">\(a^{u} \cdot \ln(a) \cdot u'\)</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 p-3 text-center">\(\ln(x)\)</td>
+                            <td class="border border-gray-300 p-3 text-center">\(\frac{1}{x}\)</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="border border-gray-300 p-3 text-center">\(\ln(u)\)</td>
+                            <td class="border border-gray-300 p-3 text-center">\(\frac{u'}{u}\)</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 p-3 text-center">\(\log_a(x)\)</td>
+                            <td class="border border-gray-300 p-3 text-center">\(\frac{1}{x \cdot \ln(a)}\)</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="border border-gray-300 p-3 text-center">\(\log_a(u)\)</td>
+                            <td class="border border-gray-300 p-3 text-center">\(\frac{u'}{u \cdot \ln(a)}\)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- القسم الخامس: تمارين شاملة -->
+        <!-- ================================================================= -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8 border-r-4 border-rose-500">
+            <h3>خامساً: تمارين شاملة</h3>
+
+            <div class="student-task-box">
+                <p class="font-bold">1. أجد مشتقة: \(f(x) = e^{5x}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p>\(f'(x) = e^{5x} \cdot 5\)</p>
+                        <p class="font-bold text-green-700">\(f'(x) = 5e^{5x}\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="student-task-box">
+                <p class="font-bold">2. أجد مشتقة: \(f(x) = e^{-x}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p>\(f'(x) = e^{-x} \cdot (-1)\)</p>
+                        <p class="font-bold text-green-700">\(f'(x) = -e^{-x}\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="student-task-box">
+                <p class="font-bold">3. أجد مشتقة: \(f(x) = e^{x^3}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p>\(u = x^3 \Rightarrow u' = 3x^2\)</p>
+                        <p>\(f'(x) = e^{x^3} \cdot 3x^2\)</p>
+                        <p class="font-bold text-green-700">\(f'(x) = 3x^2 e^{x^3}\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="homework-box">
+                <p class="font-bold">4. أجد مشتقة: \(f(x) = \ln(5x)\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p>\(f'(x) = \frac{5}{5x} = \frac{1}{x}\)</p>
+                        <p class="font-bold text-green-700">\(f'(x) = \frac{1}{x}\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="homework-box">
+                <p class="font-bold">5. أجد مشتقة: \(f(x) = \ln(x^3)\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>طريقة 1:</strong> \(\ln(x^3) = 3\ln(x)\)</p>
+                        <p>\(f'(x) = 3 \cdot \frac{1}{x} = \frac{3}{x}\)</p>
+                        <hr class="my-2">
+                        <p><strong>طريقة 2:</strong> \(u = x^3\), \(u' = 3x^2\)</p>
+                        <p>\(f'(x) = \frac{3x^2}{x^3} = \frac{3}{x}\)</p>
+                        <p class="font-bold text-green-700">\(f'(x) = \frac{3}{x}\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="homework-box">
+                <p class="font-bold">6. أجد مشتقة: \(f(x) = \ln\sqrt{x}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p>\(\ln\sqrt{x} = \ln(x^{1/2}) = \frac{1}{2}\ln(x)\)</p>
+                        <p>\(f'(x) = \frac{1}{2} \cdot \frac{1}{x}\)</p>
+                        <p class="font-bold text-green-700">\(f'(x) = \frac{1}{2x}\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="student-task-box">
+                <p class="font-bold">7. أجد مشتقة: \(f(x) = e^x + \ln(x)\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p>\(f'(x) = e^x + \frac{1}{x}\)</p>
+                        <p class="font-bold text-green-700">\(f'(x) = e^x + \frac{1}{x}\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="student-task-box">
+                <p class="font-bold">8. أجد مشتقة: \(f(x) = e^x \cdot \ln(x)\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p>قاعدة الضرب:</p>
+                        <p>\(f'(x) = (e^x)' \cdot \ln(x) + e^x \cdot (\ln x)'\)</p>
+                        <p>\(f'(x) = e^x \cdot \ln(x) + e^x \cdot \frac{1}{x}\)</p>
+                        <p class="font-bold text-green-700">\(f'(x) = e^x \left(\ln(x) + \frac{1}{x}\right)\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="homework-box">
+                <p class="font-bold">9. أجد مشتقة: \(f(x) = \frac{e^x}{x}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p>قاعدة القسمة:</p>
+                        <p>\(f'(x) = \frac{(e^x)' \cdot x - e^x \cdot (x)'}{x^2}\)</p>
+                        <p>\(f'(x) = \frac{e^x \cdot x - e^x \cdot 1}{x^2}\)</p>
+                        <p>\(f'(x) = \frac{e^x(x - 1)}{x^2}\)</p>
+                        <p class="font-bold text-green-700">\(f'(x) = \frac{e^x(x - 1)}{x^2}\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="homework-box">
+                <p class="font-bold">10. أجد مشتقة: \(f(x) = 5^{x^2}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p>\(u = x^2 \Rightarrow u' = 2x\)</p>
+                        <p>\(f'(x) = 5^{x^2} \cdot \ln(5) \cdot 2x\)</p>
+                        <p class="font-bold text-green-700">\(f'(x) = 2x \cdot 5^{x^2} \cdot \ln(5)\)</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- ========== أسئلة إضافية متنوعة ========== -->
+            <h4 class="text-xl font-bold text-rose-800 mt-8 mb-4 border-b-2 border-rose-300 pb-2">📚 بنك أسئلة إضافي
+                (متنوع ومتدرج)</h4>
+
+            <!-- أسئلة على e^x -->
+            <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                <h5 class="font-bold text-blue-800 mb-3">🔵 أسئلة على \(e^x\) وتركيباته:</h5>
+
+                <div class="student-task-box">
+                    <p class="font-bold">11. أجد مشتقة: \(f(x) = e^{2x+3}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>\(u = 2x+3 \Rightarrow u' = 2\)</p>
+                            <p>\(f'(x) = e^{2x+3} \cdot 2\)</p>
+                            <p class="font-bold text-green-700">\(f'(x) = 2e^{2x+3}\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="student-task-box">
+                    <p class="font-bold">12. أجد مشتقة: \(f(x) = e^{\sin x}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>\(u = \sin x \Rightarrow u' = \cos x\)</p>
+                            <p>\(f'(x) = e^{\sin x} \cdot \cos x\)</p>
+                            <p class="font-bold text-green-700">\(f'(x) = \cos x \cdot e^{\sin x}\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">13. أجد مشتقة: \(f(x) = e^{\sqrt{x}}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>\(u = \sqrt{x} = x^{1/2} \Rightarrow u' = \frac{1}{2\sqrt{x}}\)</p>
+                            <p>\(f'(x) = e^{\sqrt{x}} \cdot \frac{1}{2\sqrt{x}}\)</p>
+                            <p class="font-bold text-green-700">\(f'(x) = \frac{e^{\sqrt{x}}}{2\sqrt{x}}\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">14. أجد مشتقة: \(f(x) = x^2 \cdot e^{3x}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>قاعدة الضرب:</strong></p>
+                            <p>\(f'(x) = (x^2)' \cdot e^{3x} + x^2 \cdot (e^{3x})'\)</p>
+                            <p>\(= 2x \cdot e^{3x} + x^2 \cdot 3e^{3x}\)</p>
+                            <p>\(= e^{3x}(2x + 3x^2)\)</p>
+                            <p class="font-bold text-green-700">\(f'(x) = xe^{3x}(2 + 3x)\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">15. أجد مشتقة: \(f(x) = \frac{e^x}{x^2}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>قاعدة القسمة:</strong></p>
+                            <p>\(f'(x) = \frac{e^x \cdot x^2 - e^x \cdot 2x}{x^4}\)</p>
+                            <p>\(= \frac{e^x(x^2 - 2x)}{x^4}\)</p>
+                            <p>\(= \frac{e^x \cdot x(x - 2)}{x^4}\)</p>
+                            <p class="font-bold text-green-700">\(f'(x) = \frac{e^x(x - 2)}{x^3}\)</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- أسئلة على ln -->
+            <div class="bg-green-50 p-4 rounded-lg mb-4">
+                <h5 class="font-bold text-green-800 mb-3">🟢 أسئلة على \(\ln(x)\) وتركيباته:</h5>
+
+                <div class="student-task-box">
+                    <p class="font-bold">16. أجد مشتقة: \(f(x) = \ln(2x + 5)\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>\(u = 2x+5 \Rightarrow u' = 2\)</p>
+                            <p>\(f'(x) = \frac{2}{2x+5}\)</p>
+                            <p class="font-bold text-green-700">\(f'(x) = \frac{2}{2x+5}\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="student-task-box">
+                    <p class="font-bold">17. أجد مشتقة: \(f(x) = \ln(\cos x)\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>\(u = \cos x \Rightarrow u' = -\sin x\)</p>
+                            <p>\(f'(x) = \frac{-\sin x}{\cos x}\)</p>
+                            <p class="font-bold text-green-700">\(f'(x) = -\tan x\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">18. أجد مشتقة: \(f(x) = \ln(e^x + 1)\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>\(u = e^x + 1 \Rightarrow u' = e^x\)</p>
+                            <p>\(f'(x) = \frac{e^x}{e^x + 1}\)</p>
+                            <p class="font-bold text-green-700">\(f'(x) = \frac{e^x}{e^x + 1}\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">19. أجد مشتقة: \(f(x) = [\ln(x)]^2\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>قاعدة السلسلة:</strong> \(u = \ln(x)\)</p>
+                            <p>\(f(x) = u^2 \Rightarrow f'(x) = 2u \cdot u'\)</p>
+                            <p>\(= 2\ln(x) \cdot \frac{1}{x}\)</p>
+                            <p class="font-bold text-green-700">\(f'(x) = \frac{2\ln(x)}{x}\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">20. أجد مشتقة: \(f(x) = \ln(\ln(x))\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>\(u = \ln(x) \Rightarrow u' = \frac{1}{x}\)</p>
+                            <p>\(f'(x) = \frac{1}{\ln(x)} \cdot \frac{1}{x}\)</p>
+                            <p class="font-bold text-green-700">\(f'(x) = \frac{1}{x \cdot \ln(x)}\)</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- أسئلة مختلطة -->
+            <div class="bg-purple-50 p-4 rounded-lg mb-4">
+                <h5 class="font-bold text-purple-800 mb-3">🟣 أسئلة مختلطة (e و ln معاً):</h5>
+
+                <div class="student-task-box">
+                    <p class="font-bold">21. أجد مشتقة: \(f(x) = e^x - \ln(x)\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>\(f'(x) = e^x - \frac{1}{x}\)</p>
+                            <p class="font-bold text-green-700">\(f'(x) = e^x - \frac{1}{x}\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="student-task-box">
+                    <p class="font-bold">22. أجد مشتقة: \(f(x) = e^{\ln(x)}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>ملاحظة:</strong> \(e^{\ln(x)} = x\)</p>
+                            <p>إذاً \(f(x) = x\)</p>
+                            <p class="font-bold text-green-700">\(f'(x) = 1\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">23. أجد مشتقة: \(f(x) = \ln(e^{2x})\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>تبسيط أولاً:</strong> \(\ln(e^{2x}) = 2x\)</p>
+                            <p>إذاً \(f(x) = 2x\)</p>
+                            <p class="font-bold text-green-700">\(f'(x) = 2\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">24. أجد مشتقة: \(f(x) = \frac{\ln(x)}{e^x}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>قاعدة القسمة:</strong></p>
+                            <p>\(f'(x) = \frac{\frac{1}{x} \cdot e^x - \ln(x) \cdot e^x}{e^{2x}}\)</p>
+                            <p>\(= \frac{e^x(\frac{1}{x} - \ln x)}{e^{2x}}\)</p>
+                            <p class="font-bold text-green-700">\(f'(x) = \frac{1 - x\ln(x)}{xe^x}\)</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- أسئلة على a^x و log -->
+            <div class="bg-amber-50 p-4 rounded-lg mb-4">
+                <h5 class="font-bold text-amber-800 mb-3">🟠 أسئلة على \(a^x\) و \(\log_a(x)\):</h5>
+
+                <div class="student-task-box">
+                    <p class="font-bold">25. أجد مشتقة: \(f(x) = 3^x\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>\(f'(x) = 3^x \cdot \ln(3)\)</p>
+                            <p class="font-bold text-green-700">\(f'(x) = 3^x \ln(3)\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="student-task-box">
+                    <p class="font-bold">26. أجد مشتقة: \(f(x) = 2^{3x+1}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>\(u = 3x+1 \Rightarrow u' = 3\)</p>
+                            <p>\(f'(x) = 2^{3x+1} \cdot \ln(2) \cdot 3\)</p>
+                            <p class="font-bold text-green-700">\(f'(x) = 3 \cdot 2^{3x+1} \cdot \ln(2)\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">27. أجد مشتقة: \(f(x) = \log_3(x^2)\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>طريقة 1:</strong> \(\log_3(x^2) = 2\log_3(x)\)</p>
+                            <p>\(f'(x) = 2 \cdot \frac{1}{x\ln(3)} = \frac{2}{x\ln(3)}\)</p>
+                            <hr class="my-2">
+                            <p><strong>طريقة 2:</strong> \(u = x^2, u' = 2x\)</p>
+                            <p>\(f'(x) = \frac{2x}{x^2 \cdot \ln(3)} = \frac{2}{x\ln(3)}\)</p>
+                            <p class="font-bold text-green-700">\(f'(x) = \frac{2}{x\ln(3)}\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">28. أجد مشتقة: \(f(x) = x \cdot 2^x\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>قاعدة الضرب:</strong></p>
+                            <p>\(f'(x) = 1 \cdot 2^x + x \cdot 2^x \ln(2)\)</p>
+                            <p>\(= 2^x(1 + x\ln 2)\)</p>
+                            <p class="font-bold text-green-700">\(f'(x) = 2^x(1 + x\ln 2)\)</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- أسئلة متقدمة -->
+            <div class="bg-rose-50 p-4 rounded-lg mb-4">
+                <h5 class="font-bold text-rose-800 mb-3">🔴 أسئلة متقدمة:</h5>
+
+                <div class="homework-box">
+                    <p class="font-bold">29. أجد مشتقة: \(f(x) = e^{x^2 - 3x + 1}\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>\(u = x^2 - 3x + 1 \Rightarrow u' = 2x - 3\)</p>
+                            <p>\(f'(x) = e^{x^2-3x+1} \cdot (2x-3)\)</p>
+                            <p class="font-bold text-green-700">\(f'(x) = (2x-3)e^{x^2-3x+1}\)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="homework-box">
+                    <p class="font-bold">30. أجد مشتقة: \(f(x) = \ln\left(\frac{x-1}{x+1}\right)\)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>تبسيط أولاً:</strong></p>
+                            <p>\(f(x) = \ln(x-1) - \ln(x+1)\)</p>
+                            <p>\(f'(x) = \frac{1}{x-1} - \frac{1}{x+1}\)</p>
+                            <p>\(= \frac{(x+1) - (x-1)}{(x-1)(x+1)} = \frac{2}{x^2-1}\)</p>
+                            <p class="font-bold text-green-700">\(f'(x) = \frac{2}{x^2-1}\)</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- زر العودة للأعلى -->
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <!-- سكربت الرسوم البيانية -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // رسم e^x
+            var xExp = [], yExp = [];
+            for (var i = -30; i <= 20; i++) {
+                var x = i / 10;
+                xExp.push(x);
+                yExp.push(Math.exp(x));
+            }
+            Plotly.newPlot('expGraph', [{
+                x: xExp, y: yExp,
+                mode: 'lines',
+                name: 'e^x',
+                line: { color: '#3b82f6', width: 3 }
+            }, {
+                x: [0], y: [1],
+                mode: 'markers',
+                name: '(0, 1)',
+                marker: { color: '#3b82f6', size: 12 }
+            }], {
+                title: 'f(x) = eˣ',
+                xaxis: { title: 'x', range: [-3, 2.5], dtick: 1, zeroline: true, zerolinewidth: 2 },
+                yaxis: { title: 'y', range: [-1, 8], dtick: 1, zeroline: true, zerolinewidth: 2 },
+                showlegend: true,
+                annotations: [
+                    { x: 2, y: 7, text: '↑', showarrow: false, font: { size: 20, color: '#3b82f6' } }
+                ]
+            }, { staticPlot: true, displayModeBar: false });
+
+            // رسم ln(x)
+            var xLn = [], yLn = [];
+            for (var i = 1; i <= 50; i++) {
+                var x = i / 10;
+                xLn.push(x);
+                yLn.push(Math.log(x));
+            }
+            Plotly.newPlot('lnGraph', [{
+                x: xLn, y: yLn,
+                mode: 'lines',
+                name: 'ln(x)',
+                line: { color: '#22c55e', width: 3 }
+            }, {
+                x: [1], y: [0],
+                mode: 'markers',
+                name: '(1, 0)',
+                marker: { color: '#22c55e', size: 12 }
+            }, {
+                x: [Math.E], y: [1],
+                mode: 'markers',
+                name: '(e, 1)',
+                marker: { color: '#f59e0b', size: 12 }
+            }], {
+                title: 'f(x) = ln(x)',
+                xaxis: { title: 'x', range: [-0.5, 5], dtick: 1, zeroline: true, zerolinewidth: 2 },
+                yaxis: { title: 'y', range: [-3, 2], dtick: 1, zeroline: true, zerolinewidth: 2 },
+                showlegend: true,
+                annotations: [
+                    { x: 0.1, y: -2.5, text: '↓ -∞', showarrow: false, font: { size: 14, color: '#22c55e' } }
+                ],
+                shapes: [{
+                    type: 'line',
+                    x0: 0, y0: -3, x1: 0, y1: 2,
+                    line: { color: '#22c55e', width: 2, dash: 'dot' }
+                }]
+            }, { staticPlot: true, displayModeBar: false });
+        });
+
+        // زر إظهار جميع الحلول
+        document.getElementById('showAllBtn').addEventListener('click', function () {
+            document.querySelectorAll('details').forEach(d => d.open = true);
+            this.disabled = true;
+            this.textContent = '✓ تم إظهار جميع الحلول';
+        });
+
+        // زر العودة للأعلى
+        window.onscroll = function () {
+            document.getElementById('backToTop').style.display =
+                (document.documentElement.scrollTop > 300) ? 'block' : 'none';
+        };
+        document.getElementById('backToTop').onclick = function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+    </script>
+</body>
+
+</html>

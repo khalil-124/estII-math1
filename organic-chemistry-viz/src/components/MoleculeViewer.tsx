@@ -1,0 +1,567 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+interface MoleculeViewerProps {
+    moleculeName: string;
+    smilesOrPdb?: string;
+    description?: string;
+    height?: number;
+}
+
+// Common molecules in PDB format for 3Dmol.js
+const moleculeData: Record<string, { pdb: string; color: string; emoji: string }> = {
+    'serotonin': {
+        color: '#8b5cf6',
+        emoji: '😊',
+        pdb: `COMPND    SEROTONIN
+ATOM      1  N1  SER     1       0.000   0.000   0.000  1.00  0.00           N
+ATOM      2  C2  SER     1       1.300   0.000   0.000  1.00  0.00           C
+ATOM      3  C3  SER     1       2.000   1.200   0.000  1.00  0.00           C
+ATOM      4  C4  SER     1       1.300   2.400   0.000  1.00  0.00           C
+ATOM      5  C5  SER     1       0.000   2.400   0.000  1.00  0.00           C
+ATOM      6  C6  SER     1      -0.700   1.200   0.000  1.00  0.00           C
+ATOM      7  C7  SER     1       3.500   1.200   0.000  1.00  0.00           C
+ATOM      8  C8  SER     1       4.200   2.400   0.000  1.00  0.00           C
+ATOM      9  N2  SER     1       3.500   3.600   0.000  1.00  0.00           N
+ATOM     10  C9  SER     1       2.100   3.600   0.000  1.00  0.00           C
+ATOM     11  O1  SER     1       5.600   2.400   0.000  1.00  0.00           O
+ATOM     12  C10 SER     1       6.300   3.700   0.000  1.00  0.00           C
+ATOM     13  N2  SER     1       7.600   4.300   0.000  1.00  0.00           N
+END`
+    },
+    'caffeine': {
+        color: '#f59e0b',
+        emoji: '☕',
+        pdb: `COMPND    CAFFEINE
+ATOM      1  N1  CAF     1       0.000   0.000   0.000  1.00  0.00           N
+ATOM      2  C2  CAF     1       1.300   0.000   0.000  1.00  0.00           C
+ATOM      3  N3  CAF     1       2.000   1.200   0.000  1.00  0.00           N
+ATOM      4  C4  CAF     1       1.300   2.400   0.000  1.00  0.00           C
+ATOM      5  C5  CAF     1       0.000   2.400   0.000  1.00  0.00           C
+ATOM      6  C6  CAF     1      -0.700   1.200   0.000  1.00  0.00           C
+ATOM      7  N7  CAF     1       2.000   3.600   0.000  1.00  0.00           N
+ATOM      8  C8  CAF     1       1.300   4.800   0.000  1.00  0.00           C
+ATOM      9  N9  CAF     1       0.000   4.800   0.000  1.00  0.00           N
+ATOM     10  O1  CAF     1      -2.100   1.200   0.000  1.00  0.00           O
+ATOM     11  O2  CAF     1       2.000   6.000   0.000  1.00  0.00           O
+ATOM     12  C10 CAF     1      -0.700  -1.200   0.000  1.00  0.00           C
+ATOM     13  C11 CAF     1       3.500   3.600   0.000  1.00  0.00           C
+ATOM     14  C12 CAF     1      -0.700   6.000   0.000  1.00  0.00           C
+END`
+    },
+    'aspirin': {
+        color: '#ef4444',
+        emoji: '💊',
+        pdb: `COMPND    ASPIRIN
+ATOM      1  C1  ASP     1       0.000   0.000   0.000  1.00  0.00           C
+ATOM      2  C2  ASP     1       1.400   0.000   0.000  1.00  0.00           C
+ATOM      3  C3  ASP     1       2.100   1.200   0.000  1.00  0.00           C
+ATOM      4  C4  ASP     1       1.400   2.400   0.000  1.00  0.00           C
+ATOM      5  C5  ASP     1       0.000   2.400   0.000  1.00  0.00           C
+ATOM      6  C6  ASP     1      -0.700   1.200   0.000  1.00  0.00           C
+ATOM      7  C7  ASP     1      -2.100   1.200   0.000  1.00  0.00           C
+ATOM      8  O1  ASP     1      -2.800   0.000   0.000  1.00  0.00           O
+ATOM      9  O2  ASP     1      -2.800   2.400   0.000  1.00  0.00           O
+ATOM     10  O3  ASP     1       2.100  -1.200   0.000  1.00  0.00           O
+ATOM     11  C8  ASP     1       3.500  -1.200   0.000  1.00  0.00           C
+ATOM     12  C9  ASP     1       4.200   0.000   0.000  1.00  0.00           C
+ATOM     13  O4  ASP     1       4.200  -2.400   0.000  1.00  0.00           O
+END`
+    },
+    'menthol': {
+        color: '#10b981',
+        emoji: '🌿',
+        pdb: `COMPND    MENTHOL
+ATOM      1  C1  MEN     1       0.000   0.000   0.000  1.00  0.00           C
+ATOM      2  C2  MEN     1       1.500   0.000   0.000  1.00  0.00           C
+ATOM      3  C3  MEN     1       2.200   1.300   0.200  1.00  0.00           C
+ATOM      4  C4  MEN     1       1.400   2.400  -0.500  1.00  0.00           C
+ATOM      5  C5  MEN     1       0.000   2.200  -0.200  1.00  0.00           C
+ATOM      6  C6  MEN     1      -0.700   1.100   0.200  1.00  0.00           C
+ATOM      7  C7  MEN     1       2.100  -1.200   0.000  1.00  0.00           C
+ATOM      8  O1  MEN     1       3.700   1.300   0.000  1.00  0.00           O
+ATOM      9  C8  MEN     1      -2.200   1.100   0.000  1.00  0.00           C
+ATOM     10  C9  MEN     1      -2.900   0.000   0.800  1.00  0.00           C
+ATOM     11  C10 MEN     1      -2.900   1.000  -1.400  1.00  0.00           C
+END`
+    },
+    'vanillin': {
+        color: '#d97706',
+        emoji: '🍦',
+        pdb: `COMPND    VANILLIN
+ATOM      1  C1  VAN     1       0.000   0.000   0.000  1.00  0.00           C
+ATOM      2  C2  VAN     1       1.400   0.000   0.000  1.00  0.00           C
+ATOM      3  C3  VAN     1       2.100   1.200   0.000  1.00  0.00           C
+ATOM      4  C4  VAN     1       1.400   2.400   0.000  1.00  0.00           C
+ATOM      5  C5  VAN     1       0.000   2.400   0.000  1.00  0.00           C
+ATOM      6  C6  VAN     1      -0.700   1.200   0.000  1.00  0.00           C
+ATOM      7  C7  VAN     1      -2.100   1.200   0.000  1.00  0.00           C
+ATOM      8  O1  VAN     1      -2.800   2.300   0.000  1.00  0.00           O
+ATOM      9  O2  VAN     1      -0.700  -1.200   0.000  1.00  0.00           O
+ATOM     10  O3  VAN     1       2.100   3.700   0.000  1.00  0.00           O
+ATOM     11  C8  VAN     1       4.200   0.000   0.000  1.00  0.00           C
+END`
+    },
+    'ethanol': {
+        color: '#3b82f6',
+        emoji: '🧪',
+        pdb: `COMPND    ETHANOL
+ATOM      1  C1  ETH     1       0.000   0.000   0.000  1.00  0.00           C
+ATOM      2  C2  ETH     1       1.500   0.000   0.000  1.00  0.00           C
+ATOM      3  O1  ETH     1       2.100   1.300   0.000  1.00  0.00           O
+ATOM      4  H1  ETH     1      -0.400  -1.000   0.000  1.00  0.00           H
+ATOM      5  H2  ETH     1      -0.400   0.500   0.900  1.00  0.00           H
+ATOM      6  H3  ETH     1      -0.400   0.500  -0.900  1.00  0.00           H
+ATOM      7  H4  ETH     1       1.900  -0.500   0.900  1.00  0.00           H
+ATOM      8  H5  ETH     1       1.900  -0.500  -0.900  1.00  0.00           H
+ATOM      9  H6  ETH     1       3.100   1.200   0.000  1.00  0.00           H
+END`
+    },
+    'methane': {
+        color: '#6366f1',
+        emoji: '⚛️',
+        pdb: `COMPND    METHANE
+ATOM      1  C   CH4     1       0.000   0.000   0.000  1.00  0.00           C
+ATOM      2  H1  CH4     1       0.629   0.629   0.629  1.00  0.00           H
+ATOM      3  H2  CH4     1      -0.629  -0.629   0.629  1.00  0.00           H
+ATOM      4  H3  CH4     1       0.629  -0.629  -0.629  1.00  0.00           H
+ATOM      5  H4  CH4     1      -0.629   0.629  -0.629  1.00  0.00           H
+END`
+    },
+    'benzene': {
+        color: '#ec4899',
+        emoji: '⬡',
+        pdb: `COMPND    BENZENE
+ATOM      1  C1  BEN     1       1.400   0.000   0.000  1.00  0.00           C
+ATOM      2  C2  BEN     1       0.700   1.212   0.000  1.00  0.00           C
+ATOM      3  C3  BEN     1      -0.700   1.212   0.000  1.00  0.00           C
+ATOM      4  C4  BEN     1      -1.400   0.000   0.000  1.00  0.00           C
+ATOM      5  C5  BEN     1      -0.700  -1.212   0.000  1.00  0.00           C
+ATOM      6  C6  BEN     1       0.700  -1.212   0.000  1.00  0.00           C
+ATOM      7  H1  BEN     1       2.500   0.000   0.000  1.00  0.00           H
+ATOM      8  H2  BEN     1       1.250   2.165   0.000  1.00  0.00           H
+ATOM      9  H3  BEN     1      -1.250   2.165   0.000  1.00  0.00           H
+ATOM     10  H4  BEN     1      -2.500   0.000   0.000  1.00  0.00           H
+ATOM     11  H5  BEN     1      -1.250  -2.165   0.000  1.00  0.00           H
+ATOM     12  H6  BEN     1       1.250  -2.165   0.000  1.00  0.00           H
+END`
+    },
+    'limonene': {
+        color: '#eab308',
+        emoji: '🍋',
+        pdb: `COMPND    LIMONENE
+ATOM      1  C1  LIM     1       0.000   0.000   0.000  1.00  0.00           C
+ATOM      2  C2  LIM     1       1.400   0.000   0.000  1.00  0.00           C
+ATOM      3  C3  LIM     1       2.100   1.200   0.000  1.00  0.00           C
+ATOM      4  C4  LIM     1       1.400   2.400   0.000  1.00  0.00           C
+ATOM      5  C5  LIM     1      -0.200   2.300   0.000  1.00  0.00           C
+ATOM      6  C6  LIM     1      -0.700   0.900   0.000  1.00  0.00           C
+ATOM      7  C7  LIM     1       3.600   1.600   0.000  1.00  0.00           C
+ATOM      8  C8  LIM     1       4.100   3.000   0.000  1.00  0.00           C
+ATOM      9  C9  LIM     1      -0.600  -1.300   0.000  1.00  0.00           C
+ATOM     10  C10 LIM     1      -2.000  -1.500   0.000  1.00  0.00           C
+END`
+    },
+};
+
+type ViewStyle = 'stick' | 'sphere' | 'line' | 'cartoon';
+
+export default function MoleculeViewer({
+    moleculeName,
+    description,
+    height = 350
+}: MoleculeViewerProps) {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const viewerRef = useRef<any>(null);
+    const rotationRef = useRef<number | null>(null);
+    const [viewStyle, setViewStyle] = useState<ViewStyle>('stick');
+    const [isLoading, setIsLoading] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(false);
+    const [isRotating, setIsRotating] = useState(false); // Start with no rotation for better interaction
+
+    const molecule = moleculeData[moleculeName.toLowerCase()];
+    const hasMolecule = !!molecule;
+
+    // Load 3D viewer only when expanded
+    useEffect(() => {
+        if (!isExpanded || !containerRef.current || !hasMolecule) return;
+
+        const loadViewer = async () => {
+            setIsLoading(true);
+
+            try {
+                // Dynamically import 3Dmol
+                const $3Dmol = await import('3dmol');
+
+                // Clear previous viewer
+                if (viewerRef.current) {
+                    viewerRef.current.clear();
+                }
+
+                // Create new viewer
+                const viewer = $3Dmol.createViewer(containerRef.current, {
+                    backgroundColor: 'rgba(10, 10, 15, 0.95)',
+                    antialias: true,
+                });
+
+                viewerRef.current = viewer;
+
+                viewer.addModel(molecule.pdb, 'pdb');
+                applyStyle(viewer, viewStyle, molecule.color);
+                viewer.zoomTo();
+                viewer.render();
+
+                // Stop rotation when user interacts with the viewer
+                const stopRotationOnInteraction = () => {
+                    if (rotationRef.current) {
+                        cancelAnimationFrame(rotationRef.current);
+                        rotationRef.current = null;
+                        setIsRotating(false);
+                    }
+                };
+
+                containerRef.current?.addEventListener('mousedown', stopRotationOnInteraction);
+                containerRef.current?.addEventListener('touchstart', stopRotationOnInteraction);
+                containerRef.current?.addEventListener('wheel', stopRotationOnInteraction);
+
+            } catch (error) {
+                console.error('Failed to load 3Dmol:', error);
+            }
+
+            setIsLoading(false);
+        };
+
+        loadViewer();
+
+        return () => {
+            if (rotationRef.current) {
+                cancelAnimationFrame(rotationRef.current);
+            }
+            if (viewerRef.current) {
+                viewerRef.current.clear();
+                viewerRef.current = null;
+            }
+        };
+    }, [isExpanded, moleculeName, hasMolecule]);
+
+    useEffect(() => {
+        if (viewerRef.current && hasMolecule) {
+            applyStyle(viewerRef.current, viewStyle, molecule.color);
+            viewerRef.current.render();
+        }
+    }, [viewStyle, moleculeName, hasMolecule, molecule?.color]);
+
+    const applyStyle = (viewer: any, style: ViewStyle, color: string) => {
+        viewer.setStyle({}, {});
+
+        switch (style) {
+            case 'stick':
+                viewer.setStyle({}, {
+                    stick: { radius: 0.15, colorscheme: 'Jmol' },
+                    sphere: { scale: 0.25, colorscheme: 'Jmol' }
+                });
+                break;
+            case 'sphere':
+                viewer.setStyle({}, {
+                    sphere: { scale: 1, colorscheme: 'Jmol' }
+                });
+                break;
+            case 'line':
+                viewer.setStyle({}, {
+                    line: { colorscheme: 'Jmol' }
+                });
+                break;
+            case 'cartoon':
+                viewer.setStyle({}, {
+                    stick: { radius: 0.3, color: color },
+                    sphere: { scale: 0.4, color: color }
+                });
+                break;
+        }
+    };
+
+    const startRotation = () => {
+        if (!viewerRef.current) return;
+
+        const rotate = () => {
+            if (viewerRef.current && isRotating) {
+                viewerRef.current.rotate(0.5, 'y');
+                viewerRef.current.render();
+                rotationRef.current = requestAnimationFrame(rotate);
+            }
+        };
+        rotate();
+    };
+
+    const stopRotation = () => {
+        if (rotationRef.current) {
+            cancelAnimationFrame(rotationRef.current);
+            rotationRef.current = null;
+        }
+    };
+
+    // Handle rotation state changes
+    useEffect(() => {
+        if (isRotating && viewerRef.current && isExpanded) {
+            startRotation();
+        } else {
+            stopRotation();
+        }
+        return () => stopRotation();
+    }, [isRotating, isExpanded]);
+
+    const handleStyleChange = (style: ViewStyle) => {
+        setViewStyle(style);
+    };
+
+    const toggleRotation = () => {
+        setIsRotating(!isRotating);
+    };
+
+    const handleClose = () => {
+        setIsExpanded(false);
+        if (viewerRef.current) {
+            viewerRef.current.clear();
+            viewerRef.current = null;
+        }
+    };
+
+    // Placeholder card when not expanded
+    if (!isExpanded) {
+        return (
+            <motion.div
+                className="molecule-viewer-container"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                style={{
+                    background: hasMolecule
+                        ? `linear-gradient(135deg, ${molecule.color}15 0%, rgba(30, 30, 46, 0.95) 50%)`
+                        : 'var(--gradient-card)',
+                    cursor: hasMolecule ? 'pointer' : 'default',
+                }}
+                onClick={() => hasMolecule && setIsExpanded(true)}
+                whileHover={hasMolecule ? { scale: 1.02, y: -4 } : {}}
+                whileTap={hasMolecule ? { scale: 0.98 } : {}}
+            >
+                <div style={{
+                    padding: '2rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    minHeight: '180px',
+                    textAlign: 'center',
+                }}>
+                    {hasMolecule ? (
+                        <>
+                            <span style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>
+                                {molecule.emoji}
+                            </span>
+                            <h4 style={{
+                                margin: 0,
+                                fontSize: '1.2rem',
+                                color: 'var(--neutral-100)',
+                                fontWeight: 600,
+                                marginBottom: '0.5rem',
+                            }}>
+                                {moleculeName}
+                            </h4>
+                            {description && (
+                                <p style={{
+                                    margin: '0 0 1rem',
+                                    fontSize: '0.85rem',
+                                    color: 'var(--neutral-400)',
+                                    lineHeight: 1.5,
+                                }}>
+                                    {description}
+                                </p>
+                            )}
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                style={{
+                                    padding: '10px 24px',
+                                    background: `linear-gradient(135deg, ${molecule.color} 0%, ${molecule.color}cc 100%)`,
+                                    border: 'none',
+                                    borderRadius: '12px',
+                                    color: 'white',
+                                    fontSize: '0.9rem',
+                                    fontWeight: 600,
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '8px',
+                                    boxShadow: `0 4px 20px ${molecule.color}40`,
+                                }}
+                            >
+                                <span>🔬</span>
+                                View 3D Model
+                            </motion.button>
+                        </>
+                    ) : (
+                        <>
+                            <span style={{ fontSize: '3rem', marginBottom: '1rem', opacity: 0.5 }}>🧬</span>
+                            <h4 style={{
+                                margin: 0,
+                                fontSize: '1.1rem',
+                                color: 'var(--neutral-300)',
+                                fontWeight: 600,
+                            }}>
+                                {moleculeName}
+                            </h4>
+                            <p style={{
+                                margin: '0.5rem 0 0',
+                                fontSize: '0.8rem',
+                                color: 'var(--neutral-500)',
+                            }}>
+                                3D model coming soon
+                            </p>
+                        </>
+                    )}
+                </div>
+            </motion.div>
+        );
+    }
+
+    // Expanded 3D viewer
+    return (
+        <motion.div
+            className="molecule-viewer-container"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+        >
+            {/* Header */}
+            <div style={{
+                padding: '1rem 1.5rem',
+                borderBottom: '1px solid var(--card-border)',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center'
+            }}>
+                <div>
+                    <h4 style={{
+                        margin: 0,
+                        fontSize: '1.1rem',
+                        color: 'var(--neutral-100)',
+                        fontWeight: 600,
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                    }}>
+                        <span>{molecule?.emoji || '🧬'}</span>
+                        {moleculeName}
+                    </h4>
+                    {description && (
+                        <p style={{
+                            margin: '0.25rem 0 0',
+                            fontSize: '0.85rem',
+                            color: 'var(--neutral-400)'
+                        }}>
+                            {description}
+                        </p>
+                    )}
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <span className="badge">3D Interactive</span>
+                    <button
+                        onClick={handleClose}
+                        style={{
+                            padding: '8px 14px',
+                            background: 'rgba(255, 255, 255, 0.1)',
+                            border: 'none',
+                            borderRadius: '8px',
+                            color: 'var(--neutral-300)',
+                            fontSize: '0.8rem',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '6px',
+                        }}
+                    >
+                        ✕ Close
+                    </button>
+                </div>
+            </div>
+
+            {/* Viewer */}
+            <div style={{ position: 'relative' }}>
+                <AnimatePresence>
+                    {isLoading && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            style={{
+                                position: 'absolute',
+                                inset: 0,
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                background: 'var(--neutral-900)',
+                                zIndex: 10
+                            }}
+                        >
+                            <div style={{ textAlign: 'center' }}>
+                                <div style={{
+                                    fontSize: '2rem',
+                                    marginBottom: '0.5rem',
+                                    animation: 'pulse 1.5s infinite',
+                                }}>
+                                    🔬
+                                </div>
+                                <div style={{ color: 'var(--primary-400)' }}>
+                                    Loading 3D model...
+                                </div>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+                <div
+                    ref={containerRef}
+                    style={{
+                        width: '100%',
+                        height: `${height}px`,
+                        position: 'relative',
+                        zIndex: 1
+                    }}
+                />
+            </div>
+
+            {/* Controls */}
+            <div className="molecule-controls">
+                <button
+                    className={viewStyle === 'stick' ? 'active' : ''}
+                    onClick={() => handleStyleChange('stick')}
+                >
+                    Stick
+                </button>
+                <button
+                    className={viewStyle === 'sphere' ? 'active' : ''}
+                    onClick={() => handleStyleChange('sphere')}
+                >
+                    Sphere
+                </button>
+                <button
+                    className={viewStyle === 'line' ? 'active' : ''}
+                    onClick={() => handleStyleChange('line')}
+                >
+                    Line
+                </button>
+                <button
+                    className={viewStyle === 'cartoon' ? 'active' : ''}
+                    onClick={() => handleStyleChange('cartoon')}
+                >
+                    Colored
+                </button>
+                <div style={{ flex: 1 }} />
+                <button onClick={toggleRotation}>
+                    {isRotating ? '⏸ Pause' : '▶ Rotate'}
+                </button>
+            </div>
+        </motion.div>
+    );
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاكي التفاعل النووي</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Orbitron:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="hazard-icon">☢️</span> نظام التحكم في المفاعل النووي <span class="hazard-icon">☢️</span>
+            </h1>
+            <div class="status-bar">
+                <div class="status-item">الحالة: <span id="system-status" class="status-normal">مستقر</span></div>
+                <div class="status-item">الطاقة الناتجة: <span id="energy-output">0</span> ميجا واط</div>
+                <div class="status-item">الحرارة: <span id="core-temp">25</span> °C</div>
+            </div>
+        </header>
+
+        <main>
+            <div class="simulation-view">
+                <canvas id="reactor-canvas"></canvas>
+                <div class="overlay-stats">
+                    <div>نيوترونات نشطة: <span id="neutron-count">0</span></div>
+                    <div>تفاعلات متسلسلة: <span id="reaction-count">0</span></div>
+                </div>
+            </div>
+
+            <aside class="control-panel">
+                <h2>وحدة التحكم</h2>
+
+                <div class="control-group">
+                    <label for="atom-count">كثافة اليورانيوم (عدد الذرات)</label>
+                    <input type="range" id="atom-count" min="10" max="500" value="100">
+                    <span class="value-display" id="atom-count-val">100</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="pressure">ضغط المفاعل (سرعة الجزيئات)</label>
+                    <input type="range" id="pressure" min="1" max="20" value="5">
+                    <span class="value-display" id="pressure-val">5</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="cooling">نظام التبريد (تثبيط التفاعل)</label>
+                    <input type="range" id="cooling" min="0" max="100" value="0">
+                    <span class="value-display" id="cooling-val">0%</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="control-rods">قضبان التحكم (امتصاص النيوترونات)</label>
+                    <input type="range" id="control-rods" min="0" max="10" value="0">
+                    <span class="value-display" id="control-rods-val">0</span>
+                </div>
+
+                <div class="actions">
+                    <button id="inject-neutron" class="btn btn-warning">إطلاق نيوترون (بدء التفاعل)</button>
+                    <button id="reset-sim" class="btn btn-secondary">إعادة تعيين النظام</button>
+                    <button id="show-impact" class="btn btn-danger">⚠️ عرض أثر الانفجار ⚠️</button>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <!-- Impact Modal -->
+    <div id="impact-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>تقرير أثر الانفجار النووي</h2>
+            <div class="impact-grid">
+                <div class="impact-visual">
+                    <div id="blast-radius-visual">
+                        <div class="city-bg"></div>
+                        <div class="blast-circle"></div>
+                    </div>
+                </div>
+                <div class="impact-stats">
+                    <h3>بيانات الدمار</h3>
+                    <p>الطاقة الكلية: <span id="total-energy">0</span> كيلوطن (TNT)</p>
+                    <p>نصف قطر كرة النار: <span id="fireball-radius">0</span> كم</p>
+                    <p>نصف قطر موجة الصدمة: <span id="shockwave-radius">0</span> كم</p>
+                    <p>الخسائر البشرية المقدرة: <span id="casualties">0</span></p>
+                    <div class="alert-box" id="impact-alert">
+                        تحذير: مستوى دمار شامل
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,2490 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس الثاني: قاعدة السلسلة والاقترانات الخاصة</title>
+
+    <!-- تحميل Tailwind CSS للتصميم -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- تحميل MathJax لعرض المعادلات الرياضية -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <!-- مقدمة للمعلم (الأهداف والمصطلحات) -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h3 class="text-2xl font-bold text-blue-700 mb-4 pb-2 border-b-2 border-blue-100">خطة الدرس وملاحظات المعلم
+            </h3>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- أهداف الدرس -->
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                    <h4 class="text-lg font-bold text-blue-800 mb-2">أهداف الدرس</h4>
+                    <p class="mb-2">يتوقع من الطالب في نهاية هذا الدرس أن يكون قادراً على:</p>
+                    <ul class="list-disc list-inside space-y-1 text-gray-700">
+                        <li>تطبيق قاعدة السلسلة (The Chain Rule) لاشتقاق الاقترانات المركبة.</li>
+                        <li>اشتقاق الاقترانات المثلثية (Trigonometric Functions).</li>
+                        <li>اشتقاق الاقترانات الأسية (Exponential Functions) بنوعيها.</li>
+                        <li>اشتقاق الاقترانات اللوغاريتمية (Logarithmic Functions) بنوعيها.</li>
+                        <li>دمج قاعدة السلسلة مع قواعد الضرب والقسمة لحل مسائل معقدة.</li>
+                    </ul>
+                </div>
+
+                <!-- المصطلحات -->
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                    <h4 class="text-lg font-bold text-blue-800 mb-2">المصطلحات الرئيسية</h4>
+                    <ul class="list-disc list-inside space-y-1 text-gray-700">
+                        <li>قاعدة السلسلة (Chain Rule)</li>
+                        <li>الاقتران المركب (Composite Function)</li>
+                        <li>الاقتران الأسي الطبيعي (Natural Exponential)</li>
+                        <li>اللوغاريتم الطبيعي (Natural Logarithm)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- الجزء الأول: قاعدة السلسلة -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h3>أولاً: قاعدة السلسلة (The Chain Rule)</h3>
+
+            <div class="explanation">
+                <h4>مفهوم أساسي: قاعدة السلسلة</h4>
+                <p>قاعدة السلسلة هي أهم قاعدة في التفاضل، وتسمح لنا باشتقاق "اقتران داخل اقتران" (الاقترانات المركبة).
+                    فكر فيها كأنك تقشر بصلة، تبدأ من الطبقة الخارجية ثم تنتقل إلى الطبقة الداخلية.</p>
+                <p>إذا كان \(y = f(g(x))\)، أي اقتران "خارجي" \(f\) بداخله اقتران "داخلي" \(g\)، فإن مشتقته:</p>
+                <p class="text-lg text-center font-bold my-2">
+                    \( \frac{dy}{dx} = f'(g(x)) \cdot g'(x) \)
+                </p>
+                <p>أو بالكلمات (وهي أسهل للحفظ):</p>
+                <p class="text-lg text-center font-bold my-2">
+                    المشتقة = (مشتقة الاقتران الخارجي مع تثبيت الداخلي) \(\times\) (مشتقة الاقتران الداخلي)
+                </p>
+                <hr class="my-3 border-blue-200">
+                <p><strong>تطبيق على قاعدة القوة (قاعدة القوة العامة):</strong></p>
+                <p>إذا كان \(y = [g(x)]^n\)، فإن:</p>
+                <p>الخارجي هو القوة \((\dots)^n\). الداخلي هو \(g(x)\).</p>
+                $$ \frac{dy}{dx} = n \cdot [g(x)]^{n-1} \cdot g'(x) $$
+                <p class="text-sm">"نُنزل الأس، نطرح من الأس واحداً، ونحافظ على ما بداخل القوس، ثم نضرب في مشتقة ما
+                    بداخل القوس."</p>
+            </div>
+
+            <!-- مثال 1 (للمعلم) -->
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 1 (للمعلم) - قاعدة القوة العامة</p>
+                <p>أجد مشتقة \(f(x) = (3x^2 - 7)^8\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p>الخارجي: \((\dots)^8\). الداخلي: \(3x^2 - 7\).</p>
+                        <p>1. نشتق الخارجي (ننزل الأس ونطرح 1): \(8(\dots)^7\)</p>
+                        $$ f'(x) = 8(3x^2 - 7)^7 \dots $$
+                        <p>2. نشتق الداخلي: مشتقة \(3x^2 - 7\) هي \(6x\).</p>
+                        <p>3. نضرب الخطوتين:</p>
+                        $$ f'(x) = 8(3x^2 - 7)^7 \cdot (6x) $$
+                        <p>4. نبسط (نضرب الثوابت):</p>
+                        $$ f'(x) = 48x(3x^2 - 7)^7 $$
+                    </div>
+                </details>
+            </div>
+
+            <!-- مثال إضافي 1ب -->
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 1 (ب) - السلسلة مع جذر</p>
+                <p>أجد مشتقة \(h(x) = \sqrt{x^2+8x}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>الطريقة 1: قاعدة القوة العامة</strong></p>
+                        <p>1. نجهز الاقتران: \(h(x) = (x^2+8x)^{1/2}\)</p>
+                        <p>2. نشتق الخارجي (القوة): \(\frac{1}{2}(x^2+8x)^{-1/2}\)</p>
+                        <p>3. نشتق الداخلي (\(x^2+8x\)): \(2x+8\)</p>
+                        <p>4. نضرب: \(h'(x) = \frac{1}{2}(x^2+8x)^{-1/2} \cdot (2x+8)\)</p>
+                        <p>5. نبسط: \(h'(x) = \frac{2x+8}{2\sqrt{x^2+8x}} = \frac{2(x+4)}{2\sqrt{x^2+8x}} =
+                            \frac{x+4}{\sqrt{x^2+8x}}\)</p>
+                        <hr class="my-3">
+                        <p><strong>الطريقة 2: قاعدة الجذر السريعة (سيتم شرحها في القسم التالي)</strong></p>
+                        <p>المشتقة = (مشتقة ما تحت الجذر) / (2 * الجذر نفسه)</p>
+                        $$ h'(x) = \frac{2x+8}{2\sqrt{x^2+8x}} = \frac{x+4}{\sqrt{x^2+8x}} $$
+                    </div>
+                </details>
+            </div>
+
+            <!-- سؤال للصف 1 -->
+            <div class="student-task-box">
+                <p class="font-bold text-blue-700">سؤال للصف (1)</p>
+                <p>أجد مشتقة كل اقتران مما يأتي:</p>
+                <p> a) \(y = (x^3 + 4x)^5\)
+                    <br> b) \(f(x) = (2x - 1)^{-3}\)
+                </p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>a) \(y = (x^3 + 4x)^5\)</strong></p>
+                        <p>مشتقة الخارجي: \(5(\dots)^4\)</p>
+                        <p>مشتقة الداخلي: \(3x^2 + 4\)</p>
+                        $$ \frac{dy}{dx} = 5(x^3 + 4x)^4 \cdot (3x^2 + 4) $$
+
+                        <hr class="my-4">
+                        <p><strong>b) \(f(x) = (2x - 1)^{-3}\)</strong></p>
+                        <p>مشتقة الخارجي: \(-3(\dots)^{-4}\)</p>
+                        <p>مشتقة الداخلي: \(2\)</p>
+                        $$ f'(x) = -3(2x - 1)^{-4} \cdot (2) $$
+                        $$ f'(x) = -6(2x - 1)^{-4} = \frac{-6}{(2x - 1)^4} $$
+                    </div>
+                </details>
+            </div>
+
+            <!-- تمرين إضافي -->
+            <div class="student-task-box">
+                <p class="font-bold text-blue-700">سؤال للصف (1ب) - تدريب إضافي</p>
+                <p>أجد مشتقة \(y = \sqrt[3]{(x^2+1)}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p>1. <strong>تجهيز:</strong> \(y = (x^2+1)^{1/3}\)</p>
+                        <p>2. <strong>اشتقاق الخارجي (القوة):</strong> \(\frac{1}{3}(x^2+1)^{-2/3}\)</p>
+                        <p>3. <strong>اشتقاق الداخلي (\(x^2+1\)):</strong> \(2x\)</p>
+                        <p>4. <strong>الضرب والتبسيط:</strong></p>
+                        $$ \frac{dy}{dx} = \frac{1}{3}(x^2+1)^{-2/3} \cdot (2x) $$
+                        $$ \frac{dy}{dx} = \frac{2x}{3(x^2+1)^{2/3}} = \frac{2x}{3\sqrt[3]{(x^2+1)^2}} $$
+                    </div>
+                </details>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- بنك الأسئلة الإضافي لقاعدة السلسلة -->
+            <!-- =================================================================== -->
+            <div class="mt-10 p-6 bg-gray-50 rounded-lg border-t-4 border-blue-300">
+                <h4 class="text-2xl font-bold text-blue-800 mb-4">بنك أسئلة إضافي على قاعدة السلسلة</h4>
+                <p class="mb-6 text-gray-600">تدريبات متنوعة لترسيخ مفهوم قاعدة القوة العامة وتطبيقاتها.</p>
+
+                <!-- سؤال 1 -->
+                <div class="homework-box">
+                    <p class="font-bold">1. أجد مشتقة \( f(x) = (1 - 4x)^{10} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            $$ f'(x) = 10(1 - 4x)^9 \cdot (-4) = -40(1 - 4x)^9 $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 2 -->
+                <div class="student-task-box">
+                    <p class="font-bold">2. أجد مشتقة \( y = (x^2 + x + 1)^{-5} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            $$ \frac{dy}{dx} = -5(x^2 + x + 1)^{-6} \cdot (2x + 1) = \frac{-5(2x+1)}{(x^2+x+1)^6} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 3 -->
+                <div class="example-box">
+                    <p class="font-bold">3. أجد مشتقة \( g(t) = \sqrt{9t^2 - t + 5} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>باستخدام قاعدة الجذر السريعة:</p>
+                            $$ g'(t) = \frac{\text{مشتقة ما تحت الجذر}}{2 \times \text{الجذر نفسه}} = \frac{18t -
+                            1}{2\sqrt{9t^2 - t + 5}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 4 -->
+                <div class="student-task-box">
+                    <p class="font-bold">4. أجد مشتقة \( h(x) = \sqrt[4]{x^3 - 8} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>1. <strong>تجهيز:</strong> \( h(x) = (x^3 - 8)^{1/4} \)</p>
+                            <p>2. <strong>اشتقاق:</strong></p>
+                            $$ h'(x) = \frac{1}{4}(x^3 - 8)^{-3/4} \cdot (3x^2) = \frac{3x^2}{4(x^3 - 8)^{3/4}} =
+                            \frac{3x^2}{4\sqrt[4]{(x^3-8)^3}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 5 -->
+                <div class="homework-box">
+                    <p class="font-bold">5. أجد مشتقة \( f(x) = \frac{1}{(x^2+4)^3} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>الطريقة 1: قاعدة (ثابت/اقتران)</strong></p>
+                            $$ f'(x) = \frac{-1 \cdot \text{مشتقة المقام}}{(\text{المقام})^2} = \frac{-1 \cdot
+                            [3(x^2+4)^2 \cdot (2x)]}{((x^2+4)^3)^2} = \frac{-6x(x^2+4)^2}{(x^2+4)^6} =
+                            \frac{-6x}{(x^2+4)^4} $$
+                            <hr class="my-3">
+                            <p><strong>الطريقة 2: تجهيز بالأس السالب (أسهل)</strong></p>
+                            <p>تجهيز: \( f(x) = (x^2+4)^{-3} \)</p>
+                            $$ f'(x) = -3(x^2+4)^{-4} \cdot (2x) = -6x(x^2+4)^{-4} = \frac{-6x}{(x^2+4)^4} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 6 -->
+                <div class="student-task-box">
+                    <p class="font-bold">6. أجد مشتقة \( y = (x + \frac{1}{x})^3 \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة الداخلي (\(x+x^{-1}\)) هي \(1 - x^{-2}\).</p>
+                            $$ \frac{dy}{dx} = 3(x + \frac{1}{x})^2 \cdot (1 - \frac{1}{x^2}) $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 7 -->
+                <div class="example-box">
+                    <p class="font-bold">7. أجد مشتقة \( y = \sqrt{1 + \sqrt{x}} \) (سلسلة متداخلة)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>الخارجي هو الجذر الكبير، والداخلي هو \(1+\sqrt{x}\).</p>
+                            <p>1. <strong>مشتقة الخارجي:</strong> \(\frac{1}{2\sqrt{1+\sqrt{x}}}\)</p>
+                            <p>2. <strong>مشتقة الداخلي (\(1+\sqrt{x}\)):</strong> \(0 + \frac{1}{2\sqrt{x}}\)</p>
+                            <p>3. <strong>الضرب:</strong></p>
+                            $$ \frac{dy}{dx} = \frac{1}{2\sqrt{1+\sqrt{x}}} \cdot \frac{1}{2\sqrt{x}} =
+                            \frac{1}{4\sqrt{x}\sqrt{1+\sqrt{x}}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 8 -->
+                <div class="homework-box">
+                    <p class="font-bold">8. أجد مشتقة \( f(x) = (5x^3 - 2x^2 + x - 7)^9 \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            $$ f'(x) = 9(5x^3 - 2x^2 + x - 7)^8 \cdot (15x^2 - 4x + 1) $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 9 -->
+                <div class="student-task-box">
+                    <p class="font-bold">9. أجد مشتقة \( y = \frac{1}{\sqrt{x^2+1}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>الطريقة 1: قاعدة (1/اقتران)</strong></p>
+                            <p>مشتقة المقام (\(\sqrt{x^2+1}\)) هي \(\frac{2x}{2\sqrt{x^2+1}} = \frac{x}{\sqrt{x^2+1}}\).
+                            </p>
+                            $$ \frac{dy}{dx} = \frac{-(\frac{x}{\sqrt{x^2+1}})}{(\sqrt{x^2+1})^2} =
+                            \frac{-x}{\sqrt{x^2+1} \cdot (x^2+1)} = \frac{-x}{(x^2+1)^{3/2}} $$
+                            <hr class="my-3">
+                            <p><strong>الطريقة 2: تجهيز بالأس السالب (أسهل)</strong></p>
+                            <p>تجهيز: \( y = (x^2+1)^{-1/2} \)</p>
+                            $$ \frac{dy}{dx} = -\frac{1}{2}(x^2+1)^{-3/2} \cdot (2x) = -x(x^2+1)^{-3/2} =
+                            \frac{-x}{(x^2+1)^{3/2}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 10 -->
+                <div class="example-box">
+                    <p class="font-bold">10. أجد مشتقة \( f(x) = (x^2 - \frac{1}{x^2})^2 \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>الأفضل: فك القوس أولاً.</strong></p>
+                            <p>تجهيز: \( f(x) = (x^2)^2 - 2(x^2)(\frac{1}{x^2}) + (\frac{1}{x^2})^2 = x^4 - 2 + x^{-4}
+                                \)</p>
+                            <p>اشتقاق: \( f'(x) = 4x^3 - 0 - 4x^{-5} = 4x^3 - \frac{4}{x^5} \)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 11 -->
+                <div class="homework-box">
+                    <p class="font-bold">11. أجد مشتقة \( y = \sqrt[5]{(8x-1)} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>تجهيز: \( y = (8x-1)^{1/5} \)</p>
+                            $$ \frac{dy}{dx} = \frac{1}{5}(8x-1)^{-4/5} \cdot (8) = \frac{8}{5\sqrt[5]{(8x-1)^4}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 12 -->
+                <div class="student-task-box">
+                    <p class="font-bold">12. أجد مشتقة \( f(x) = (7-x^2)^4 \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            $$ f'(x) = 4(7-x^2)^3 \cdot (-2x) = -8x(7-x^2)^3 $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 13 -->
+                <div class="example-box">
+                    <p class="font-bold">13. أجد مشتقة \( y = \sqrt{x^2 - \sqrt{x}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة ما تحت الجذر (\(x^2 - x^{1/2}\)) هي \(2x - \frac{1}{2}x^{-1/2}\).</p>
+                            $$ \frac{dy}{dx} = \frac{2x - \frac{1}{2\sqrt{x}}}{2\sqrt{x^2 - \sqrt{x}}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 14 -->
+                <div class="student-task-box">
+                    <p class="font-bold">14. أجد مشتقة \( g(x) = \frac{10}{(1-5x)^4} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>تجهيز: \( g(x) = 10(1-5x)^{-4} \)</p>
+                            $$ g'(x) = 10 \cdot (-4)(1-5x)^{-5} \cdot (-5) = 200(1-5x)^{-5} = \frac{200}{(1-5x)^5} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 15 -->
+                <div class="homework-box">
+                    <p class="font-bold">15. أجد مشتقة \( y = (x^4 - 3x^2 + 5)^3 \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            $$ \frac{dy}{dx} = 3(x^4 - 3x^2 + 5)^2 \cdot (4x^3 - 6x) $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 16 -->
+                <div class="student-task-box">
+                    <p class="font-bold">16. أجد مشتقة \( f(x) = \sqrt{7x+4} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            $$ f'(x) = \frac{7}{2\sqrt{7x+4}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 17 -->
+                <div class="example-box">
+                    <p class="font-bold">17. أجد مشتقة \( y = (\frac{x}{x+1})^2 \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>1. <strong>مشتقة الخارجي (القوة):</strong> \(2(\frac{x}{x+1})^1 \dots\)</p>
+                            <p>2. <strong>مشتقة الداخلي (القسمة):</strong> \(\frac{(x+1)(1) - (x)(1)}{(x+1)^2} =
+                                \frac{1}{(x+1)^2}\)</p>
+                            <p>3. <strong>الضرب:</strong></p>
+                            $$ \frac{dy}{dx} = 2\left(\frac{x}{x+1}\right) \cdot \frac{1}{(x+1)^2} = \frac{2x}{(x+1)^3}
+                            $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 18 -->
+                <div class="student-task-box">
+                    <p class="font-bold">18. أجد مشتقة \( f(x) = \frac{1}{\sqrt[3]{x}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>تجهيز: \( f(x) = x^{-1/3} \)</p>
+                            $$ f'(x) = -\frac{1}{3}x^{-4/3} = \frac{-1}{3\sqrt[3]{x^4}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 19 -->
+                <div class="homework-box">
+                    <p class="font-bold">19. أجد مشتقة \( y = \sqrt{1+\sqrt{1+x}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة ما تحت الجذر الخارجي (\(1+\sqrt{1+x}\)) هي \(0 + \frac{1}{2\sqrt{1+x}}\).</p>
+                            $$ \frac{dy}{dx} = \frac{\frac{1}{2\sqrt{1+x}}}{2\sqrt{1+\sqrt{1+x}}} =
+                            \frac{1}{4\sqrt{1+x}\sqrt{1+\sqrt{1+x}}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 20 -->
+                <div class="example-box">
+                    <p class="font-bold">20. أجد مشتقة \( f(x) = (x^2(x+1))^3 \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>الأفضل: تبسيط الأسس أولاً.</strong></p>
+                            <p>تجهيز: \( f(x) = (x^3+x^2)^3 \)</p>
+                            <p>اشتقاق:</p>
+                            $$ f'(x) = 3(x^3+x^2)^2 \cdot (3x^2+2x) $$
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- الجزء الثاني: القواعد السريعة (الجذر و 1/اقتران) -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h3>ثانياً: قواعد سريعة (تطبيقات على قاعدة السلسلة)</h3>
+
+            <div class="explanation">
+                <h4>مفهوم أساسي: مشتقة الجذر التربيعي</h4>
+                <p>إذا كان \(f(x) = \sqrt{g(x)}\)، يمكننا اشتقاقها كـ \( [g(x)]^{1/2} \) باستخدام قاعدة السلسلة:</p>
+                $$ f'(x) = \frac{1}{2}[g(x)]^{-1/2} \cdot g'(x) $$
+                <p>وبترتيبها، نحصل على القاعدة السريعة والمهمة جداً:</p>
+                <p class="text-lg text-center font-bold my-2">
+                    \( f'(x) = \frac{g'(x)}{2\sqrt{g(x)}} \)
+                </p>
+                <p class="text-lg text-center font-bold my-2">
+                    المشتقة = (مشتقة ما تحت الجذر) \(\div\) (2 \(\times\) الجذر نفسه)
+                </p>
+            </div>
+
+            <div class="explanation" style="border-color: #f59e0b;"> <!-- Amber border for the second rule -->
+                <h4>مفهوم أساسي: مشتقة (ثابت / اقتران)</h4>
+                <p>إذا كان \(f(x) = \frac{c}{g(x)}\)، يمكن استخدام قاعدة القسمة، ولكن الأسرع هو تحويلها إلى \( c \cdot
+                    [g(x)]^{-1} \) واشتقاقها بقاعدة السلسلة:</p>
+                $$ f'(x) = c \cdot (-1)[g(x)]^{-2} \cdot g'(x) $$
+                <p>وبترتيبها، نحصل على القاعدة السريعة (خصوصاً لو كان الثابت 1):</p>
+                <p class="text-lg text-center font-bold my-2">
+                    \( f'(x) = \frac{-c \cdot g'(x)}{[g(x)]^2} \)
+                </p>
+                <p class="text-lg text-center font-bold my-2">
+                    المشتقة = ((-الثابت) \(\times\) مشتقة المقام) \(\div\) (المقام)\(^{2}\)
+                </p>
+            </div>
+
+            <!-- مثال 2 (للمعلم) -->
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 2 (للمعلم) - القواعد السريعة</p>
+                <p>أجد مشتقة كل اقتران مما يأتي:</p>
+                <p> 1) \(f(x) = \sqrt{x^4 + 5x}\)
+                    <br> 2) \(y = \frac{1}{x^3 + 2x}\)
+                    <br> 3) \(g(x) = \frac{5}{x^2 - 1}\)
+                </p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>1) \(f(x) = \sqrt{x^4 + 5x}\) (قاعدة الجذر)</strong></p>
+                        <p>مشتقة ما تحت الجذر: \(4x^3 + 5\)</p>
+                        $$ f'(x) = \frac{4x^3 + 5}{2\sqrt{x^4 + 5x}} $$
+
+                        <hr class="my-4">
+                        <p><strong>2) \(y = \frac{1}{x^3 + 2x}\) (قاعدة 1/اقتران)</strong></p>
+                        <p>مشتقة المقام: \(3x^2 + 2\)</p>
+                        $$ \frac{dy}{dx} = \frac{-(3x^2 + 2)}{(x^3 + 2x)^2} $$
+
+                        <hr class="my-4">
+                        <p><strong>3) \(g(x) = \frac{5}{x^2 - 1}\) (قاعدة ثابت/اقتران)</strong></p>
+                        <p>الثابت: 5. مشتقة المقام: \(2x\).</p>
+                        $$ g'(x) = \frac{-5 \cdot (2x)}{(x^2 - 1)^2} = \frac{-10x}{(x^2 - 1)^2} $$
+                    </div>
+                </details>
+            </div>
+
+            <!-- سؤال واجب 1 -->
+            <div class="homework-box">
+                <p class="font-bold text-amber-700">سؤال واجب (1)</p>
+                <p>أجد مشتقة كل اقتران مما يأتي:</p>
+                <p> 1) \(f(x) = \sqrt{10 - 3x}\)
+                    <br> 2) \(y = \frac{1}{x^2 + 9}\)
+                    <br> 3) \(g(t) = (t^2 + 1)^4\)
+                </p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>1) \(f(x) = \sqrt{10 - 3x}\)</strong></p>
+                        $$ f'(x) = \frac{-3}{2\sqrt{10 - 3x}} $$
+                        <hr class="my-4">
+                        <p><strong>2) \(y = \frac{1}{x^2 + 9}\)</strong></p>
+                        $$ \frac{dy}{dx} = \frac{-(2x)}{(x^2 + 9)^2} $$
+                        <hr class="my-4">
+                        <p><strong>3) \(g(t) = (t^2 + 1)^4\)</strong></p>
+                        $$ g'(t) = 4(t^2 + 1)^3 \cdot (2t) = 8t(t^2 + 1)^3 $$
+                    </div>
+                </details>
+            </div>
+
+            <!-- تمرين إضافي -->
+            <div class="student-task-box">
+                <p class="font-bold text-blue-700">سؤال للصف (1ج) - تدريب على القواعد السريعة</p>
+                <p>أجد مشتقة كل اقتران مما يأتي:</p>
+                <p> 1) \(f(x) = \sqrt{1 - x^2}\)
+                    <br> 2) \(y = \frac{-4}{x^3+x}\)
+                </p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>1) \(f(x) = \sqrt{1 - x^2}\)</strong></p>
+                        $$ f'(x) = \frac{-2x}{2\sqrt{1 - x^2}} = \frac{-x}{\sqrt{1 - x^2}} $$
+                        <hr class="my-4">
+                        <p><strong>2) \(y = \frac{-4}{x^3+x}\)</strong></p>
+                        $$ \frac{dy}{dx} = \frac{-(-4) \cdot (3x^2+1)}{(x^3+x)^2} = \frac{4(3x^2+1)}{(x^3+x)^2} $$
+                    </div>
+                </details>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- بنك الأسئلة الإضافي للقواعد السريعة -->
+            <!-- =================================================================== -->
+            <div class="mt-10 p-6 bg-gray-50 rounded-lg border-t-4 border-green-300">
+                <h4 class="text-2xl font-bold text-green-800 mb-4">بنك أسئلة إضافي على القواعد السريعة</h4>
+                <p class="mb-6 text-gray-600">تدريبات متنوعة لترسيخ مفهوم قاعدة الجذر التربيعي وقاعدة (ثابت / اقتران).
+                </p>
+
+                <!-- تمارين على قاعدة الجذر التربيعي -->
+                <h5 class="text-xl font-bold text-green-700 mb-3 pb-2 border-b-2 border-green-100">تمارين على قاعدة
+                    الجذر التربيعي</h5>
+
+                <!-- سؤال 1 -->
+                <div class="student-task-box">
+                    <p class="font-bold">1. أجد مشتقة \( f(x) = \sqrt{x^3 - 4x} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة ما تحت الجذر: \(3x^2 - 4\)</p>
+                            $$ f'(x) = \frac{3x^2 - 4}{2\sqrt{x^3 - 4x}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 2 -->
+                <div class="student-task-box">
+                    <p class="font-bold">2. أجد مشتقة \( y = \sqrt{\sin(x) + 1} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة ما تحت الجذر: \(\cos(x)\)</p>
+                            $$ \frac{dy}{dx} = \frac{\cos(x)}{2\sqrt{\sin(x) + 1}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 3 -->
+                <div class="student-task-box">
+                    <p class="font-bold">3. أجد مشتقة \( g(t) = \sqrt{e^{2t}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>الطريقة الأسهل: التبسيط أولاً.</strong></p>
+                            <p>تجهيز: \( g(t) = (e^{2t})^{1/2} = e^t \)</p>
+                            <p>اشتقاق: \( g'(t) = e^t \)</p>
+                            <hr class="my-3">
+                            <p><strong>الطريقة الثانية: قاعدة الجذر.</strong></p>
+                            <p>مشتقة ما تحت الجذر (\(e^{2t}\)): \(2e^{2t}\)</p>
+                            $$ g'(t) = \frac{2e^{2t}}{2\sqrt{e^{2t}}} = \frac{e^{2t}}{e^t} = e^{2t-t} = e^t $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 4 -->
+                <div class="student-task-box">
+                    <p class="font-bold">4. أجد مشتقة \( h(x) = \sqrt{\ln(x)} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة ما تحت الجذر (\(\ln(x)\)): \(\frac{1}{x}\)</p>
+                            $$ h'(x) = \frac{1/x}{2\sqrt{\ln(x)}} = \frac{1}{2x\sqrt{\ln(x)}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 5 -->
+                <div class="student-task-box">
+                    <p class="font-bold">5. أجد مشتقة \( y = \sqrt{x^2 + a^2} \) (حيث a ثابت)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة ما تحت الجذر (\(x^2+a^2\)): \(2x + 0 = 2x\)</p>
+                            $$ \frac{dy}{dx} = \frac{2x}{2\sqrt{x^2 + a^2}} = \frac{x}{\sqrt{x^2 + a^2}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- تمارين على قاعدة ثابت على اقتران -->
+                <h5 class="text-xl font-bold text-green-700 mt-8 mb-3 pb-2 border-b-2 border-green-100">تمارين على قاعدة
+                    (ثابت / اقتران)</h5>
+
+                <!-- سؤال 6 -->
+                <div class="homework-box">
+                    <p class="font-bold">6. أجد مشتقة \( f(x) = \frac{10}{x^5 - 3x} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>الثابت: 10. مشتقة المقام: \(5x^4 - 3\)</p>
+                            $$ f'(x) = \frac{-10 \cdot (5x^4 - 3)}{(x^5 - 3x)^2} = \frac{-50x^4 + 30}{(x^5 - 3x)^2} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 7 -->
+                <div class="homework-box">
+                    <p class="font-bold">7. أجد مشتقة \( y = \frac{1}{\cos(x)} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>الطريقة 1: قاعدة (1/اقتران)</strong></p>
+                            <p>مشتقة المقام (\(\cos(x)\)): \(-\sin(x)\)</p>
+                            $$ \frac{dy}{dx} = \frac{- (-\sin(x))}{(\cos(x))^2} = \frac{\sin(x)}{\cos^2(x)} $$
+                            <p>يمكن تبسيطها إلى: \( \frac{\sin x}{\cos x} \cdot \frac{1}{\cos x} = \tan(x)\sec(x) \)</p>
+                            <hr class="my-3">
+                            <p><strong>الطريقة 2: تجهيز أولاً</strong></p>
+                            <p>تجهيز: \( y = \sec(x) \)</p>
+                            <p>اشتقاق: \( \frac{dy}{dx} = \sec(x)\tan(x) \) (نفس الإجابة)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 8 -->
+                <div class="homework-box">
+                    <p class="font-bold">8. أجد مشتقة \( g(x) = \frac{-2}{e^{3x}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>تجهيز: \( g(x) = -2e^{-3x} \)</p>
+                            <p>اشتقاق: \( g'(x) = -2 \cdot (e^{-3x} \cdot (-3)) = 6e^{-3x} = \frac{6}{e^{3x}} \)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 9 -->
+                <div class="homework-box">
+                    <p class="font-bold">9. أجد مشتقة \( h(t) = \frac{\pi}{t^2} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>تجهيز: \( h(t) = \pi t^{-2} \)</p>
+                            <p>اشتقاق: \( h'(t) = \pi (-2t^{-3}) = -2\pi t^{-3} = \frac{-2\pi}{t^3} \)</p>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 10 -->
+                <div class="homework-box">
+                    <p class="font-bold">10. أجد مشتقة \( y = \frac{1}{\sqrt{x}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>تجهيز: \( y = x^{-1/2} \)</p>
+                            <p>اشتقاق: \( \frac{dy}{dx} = -\frac{1}{2}x^{-3/2} = \frac{-1}{2\sqrt{x^3}} \)</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- تمارين إضافية (مجموعة 2) -->
+            <!-- =================================================================== -->
+            <div class="mt-10 p-6 bg-gray-100 rounded-lg border-t-4 border-blue-300">
+                <h4 class="text-2xl font-bold text-blue-800 mb-4">تمارين إضافية (مجموعة 2)</h4>
+
+                <!-- تمارين على قاعدة الجذر التربيعي -->
+                <h5 class="text-xl font-bold text-green-700 mb-3 pb-2 border-b-2 border-green-100">تمارين إضافية على
+                    قاعدة الجذر التربيعي</h5>
+
+                <!-- سؤال 11 -->
+                <div class="student-task-box">
+                    <p class="font-bold">11. أجد مشتقة \( y = \sqrt{x^2 - e^x} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة ما تحت الجذر: \(2x - e^x\)</p>
+                            $$ \frac{dy}{dx} = \frac{2x - e^x}{2\sqrt{x^2 - e^x}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 12 -->
+                <div class="student-task-box">
+                    <p class="font-bold">12. أجد مشتقة \( f(x) = 5\sqrt{\tan(x)} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>الثابت 5 يبقى كما هو. مشتقة ما تحت الجذر (\(\tan(x)\)) هي \(\sec^2(x)\).</p>
+                            $$ f'(x) = 5 \cdot \frac{\sec^2(x)}{2\sqrt{\tan(x)}} = \frac{5\sec^2(x)}{2\sqrt{\tan(x)}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 13 -->
+                <div class="student-task-box">
+                    <p class="font-bold">13. أجد مشتقة \( g(x) = \sqrt{x+\frac{1}{x}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة ما تحت الجذر (\(x+x^{-1}\)) هي \(1 - x^{-2} = 1 - \frac{1}{x^2}\).</p>
+                            $$ g'(x) = \frac{1 - \frac{1}{x^2}}{2\sqrt{x+\frac{1}{x}}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 14 -->
+                <div class="student-task-box">
+                    <p class="font-bold">14. أجد مشتقة \( y = \sqrt{8} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>\(\sqrt{8}\) هو عدد ثابت. مشتقة أي ثابت هي صفر.</p>
+                            $$ \frac{dy}{dx} = 0 $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 15 -->
+                <div class="student-task-box">
+                    <p class="font-bold">15. أجد مشتقة \( f(x) = \sqrt{x^2(x+1)} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>الأفضل: التبسيط أولاً.</strong> \(f(x) = \sqrt{x^3+x^2}\).</p>
+                            <p>مشتقة ما تحت الجذر: \(3x^2+2x\).</p>
+                            $$ f'(x) = \frac{3x^2+2x}{2\sqrt{x^3+x^2}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- تمارين على قاعدة ثابت على اقتران -->
+                <h5 class="text-xl font-bold text-green-700 mt-8 mb-3 pb-2 border-b-2 border-green-100">تمارين إضافية
+                    على قاعدة (ثابت / اقتران)</h5>
+
+                <!-- سؤال 16 -->
+                <div class="homework-box">
+                    <p class="font-bold">16. أجد مشتقة \( y = \frac{1}{\ln(x)} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة المقام (\(\ln(x)\)) هي \(\frac{1}{x}\).</p>
+                            $$ \frac{dy}{dx} = \frac{-1 \cdot (\frac{1}{x})}{(\ln x)^2} = \frac{-1}{x(\ln x)^2} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 17 -->
+                <div class="homework-box">
+                    <p class="font-bold">17. أجد مشتقة \( f(x) = \frac{2\pi}{\sin(x)} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>تجهيز: \(f(x) = 2\pi \csc(x)\).</p>
+                            <p>اشتقاق: \(f'(x) = 2\pi \cdot (-\csc(x)\cot(x)) = -2\pi\csc(x)\cot(x)\).</p>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 18 -->
+                <div class="homework-box">
+                    <p class="font-bold">18. أجد مشتقة \( g(x) = \frac{-1}{x^2 - 3x + 5} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة المقام: \(2x-3\).</p>
+                            $$ g'(x) = \frac{-(-1) \cdot (2x-3)}{(x^2 - 3x + 5)^2} = \frac{2x-3}{(x^2 - 3x + 5)^2} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 19 -->
+                <div class="homework-box">
+                    <p class="font-bold">19. أجد مشتقة \( y = \frac{1}{e^{2x} + e^{-2x}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة المقام: \(2e^{2x} - 2e^{-2x}\).</p>
+                            $$ \frac{dy}{dx} = \frac{-(2e^{2x} - 2e^{-2x})}{(e^{2x} + e^{-2x})^2} = \frac{2e^{-2x} -
+                            2e^{2x}}{(e^{2x} + e^{-2x})^2} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 20 -->
+                <div class="homework-box">
+                    <p class="font-bold">20. أجد مشتقة \( f(x) = \frac{1}{x^2} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>تجهيز: \(f(x) = x^{-2}\).</p>
+                            <p>اشتقاق: \(f'(x) = -2x^{-3} = \frac{-2}{x^3}\).</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- الجزء الثالث: الاقترانات المثلثية -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h3>ثالثاً: مشتقات الاقترانات المثلثية</h3>
+
+            <div class="explanation">
+                <h4>مفهوم أساسي: مشتقات المثلثية</h4>
+                <p><strong>ملاحظة للحفظ:</strong> كل اقتران مثلثي يبدأ بحرف "C" (cos, cot, csc) تكون مشتقته سالبة.</p>
+                <p>قواعد الاشتقاق الأساسية (مع تطبيق قاعدة السلسلة مباشرة):</p>
+                <ul class="list-disc list-inside pr-4 mt-2 grid grid-cols-2 gap-x-4">
+                    <li>\( \frac{d}{dx}[\sin(u)] = \cos(u) \cdot u' \)</li>
+                    <li>\( \frac{d}{dx}[\cos(u)] = -\sin(u) \cdot u' \)</li>
+                    <li>\( \frac{d}{dx}[\tan(u)] = \sec^2(u) \cdot u' \)</li>
+                    <li>\( \frac{d}{dx}[\cot(u)] = -\csc^2(u) \cdot u' \)</li>
+                    <li>\( \frac{d}{dx}[\sec(u)] = \sec(u)\tan(u) \cdot u' \)</li>
+                    <li>\( \frac{d}{dx}[\csc(u)] = -\csc(u)\cot(u) \cdot u' \)</li>
+                </ul>
+                <p class="text-sm mt-2">ملاحظة: \(u\) هو الاقتران الداخلي (الحشوة). إذا كانت \(u = x\)، فإن \(u' = 1\).
+                </p>
+            </div>
+
+            <!-- مثال 3 (للمعلم) -->
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 3 (للمعلم) - المثلثية مع السلسلة</p>
+                <p>أجد مشتقة كل اقتران مما يأتي:</p>
+                <p> 1) \(f(x) = \sin(5x)\)
+                    <br> 2) \(y = \cos(x^3)\)
+                    <br> 3) \(g(x) = \tan^5(x)\) (تنبيه: هذه تعني \(( \tan(x) )^5\))
+                </p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>1) \(f(x) = \sin(5x)\)</strong></p>
+                        <p>الخارجي \(\sin(\dots)\)، الداخلي \(5x\). مشتقة الداخلي \(5\).</p>
+                        $$ f'(x) = \cos(5x) \cdot 5 = 5\cos(5x) $$
+
+                        <hr class="my-4">
+                        <p><strong>2) \(y = \cos(x^3)\)</strong></p>
+                        <p>الخارجي \(\cos(\dots)\)، الداخلي \(x^3\). مشتقة الداخلي \(3x^2\).</p>
+                        $$ \frac{dy}{dx} = -\sin(x^3) \cdot (3x^2) = -3x^2\sin(x^3) $$
+
+                        <hr class="my-4">
+                        <p><strong>3) \(g(x) = \tan^5(x) = (\tan(x))^5\)</strong></p>
+                        <p>هذه "سلسلة مزدوجة". الخارجي هو القوة \((\dots)^5\). الداخلي هو \(\tan(x)\).</p>
+                        <p>مشتقة الخارجي: \(5(\dots)^4\)</p>
+                        <p>مشتقة الداخلي (\(\tan(x)\)): \(\sec^2(x)\)</p>
+                        $$ g'(x) = 5(\tan(x))^4 \cdot (\sec^2(x)) $$
+                        $$ g'(x) = 5\tan^4(x)\sec^2(x) $$
+                    </div>
+                </details>
+            </div>
+
+            <!-- مثال إضافي 3ب -->
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 3 (ب) - سلسلة مزدوجة</p>
+                <p>أجد مشتقة \(f(x) = \cos^3(4x)\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p>هذه عبارة عن 3 اقترانات متداخلة: القوة 3 (الخارجي)، ثم \(\cos\)، ثم \(4x\) (الداخلي).</p>
+                        <p>1. <strong>تجهيز:</strong> \(f(x) = (\cos(4x))^3\)</p>
+                        <p>2. <strong>نشتق القوة:</strong> \(3(\cos(4x))^2 \dots\)</p>
+                        <p>3. <strong>نشتق الكوساين:</strong> \(\dots \cdot (-\sin(4x)) \dots\)</p>
+                        <p>4. <strong>نشتق الحشوة الداخلية (4x):</strong> \(\dots \cdot (4)\)</p>
+                        <p>5. <strong>نضرب كل شيء ببعضه:</strong></p>
+                        $$ f'(x) = 3(\cos(4x))^2 \cdot (-\sin(4x)) \cdot (4) $$
+                        $$ f'(x) = -12\cos^2(4x)\sin(4x) $$
+                    </div>
+                </details>
+            </div>
+
+            <!-- سؤال للصف 2 -->
+            <div class="student-task-box">
+                <p class="font-bold text-blue-700">سؤال للصف (2)</p>
+                <p>أجد مشتقة كل اقتران مما يأتي:</p>
+                <p> a) \(y = \sec(4x)\)
+                    <br> b) \(f(x) = \sin^3(x)\) (تنبيه: \(( \sin(x) )^3\))
+                    <br> c) \(g(x) = \sqrt{\cos(x)}\)
+                </p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>a) \(y = \sec(4x)\)</strong></p>
+                        $$ \frac{dy}{dx} = \sec(4x)\tan(4x) \cdot (4) $$
+                        $$ \frac{dy}{dx} = 4\sec(4x)\tan(4x) $$
+
+                        <hr class="my-4">
+                        <p><strong>b) \(f(x) = \sin^3(x) = (\sin(x))^3\)</strong></p>
+                        <p>الخارجي (القوة): \(3(\dots)^2\)</p>
+                        <p>الداخلي (\(\sin(x)\)): \(\cos(x)\)</p>
+                        $$ f'(x) = 3(\sin(x))^2 \cdot (\cos(x)) = 3\sin^2(x)\cos(x) $$
+
+                        <hr class="my-4">
+                        <p><strong>c) \(g(x) = \sqrt{\cos(x)}\)</strong></p>
+                        <p>نستخدم قاعدة الجذر السريعة:</p>
+                        <p>مشتقة ما تحت الجذر (\(\cos(x)\)): \(-\sin(x)\)</p>
+                        $$ g'(x) = \frac{-\sin(x)}{2\sqrt{\cos(x)}} $$
+                    </div>
+                </details>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- بنك الأسئلة الإضافي للاقترانات المثلثية -->
+            <!-- =================================================================== -->
+            <div class="mt-10 p-6 bg-gray-50 rounded-lg border-t-4 border-purple-300">
+                <h4 class="text-2xl font-bold text-purple-800 mb-4">بنك أسئلة إضافي على الاقترانات المثلثية</h4>
+                <p class="mb-6 text-gray-600">تدريبات متنوعة لترسيخ مفهوم اشتقاق الدوال المثلثية مع قاعدة السلسلة.</p>
+
+                <!-- سؤال 1 -->
+                <div class="student-task-box">
+                    <p class="font-bold">1. أجد مشتقة \( f(x) = \cot(1 - 2x^2) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة الداخلي (\(1-2x^2\)): \(-4x\)</p>
+                            $$ f'(x) = -\csc^2(1 - 2x^2) \cdot (-4x) = 4x\csc^2(1 - 2x^2) $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 2 -->
+                <div class="student-task-box">
+                    <p class="font-bold">2. أجد مشتقة \( y = \csc(e^x) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة الداخلي (\(e^x\)): \(e^x\)</p>
+                            $$ \frac{dy}{dx} = -\csc(e^x)\cot(e^x) \cdot (e^x) = -e^x \csc(e^x)\cot(e^x) $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 3 -->
+                <div class="example-box">
+                    <p class="font-bold">3. أجد مشتقة \( g(t) = \sin^2(t) + \cos^2(t) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>الطريقة الأسهل: التبسيط أولاً.</strong></p>
+                            <p>نعلم من المتطابقة الأساسية أن \(\sin^2(t) + \cos^2(t) = 1\).</p>
+                            <p>إذن \(g(t) = 1\). مشتقة الثابت هي صفر.</p>
+                            $$ g'(t) = 0 $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 4 -->
+                <div class="student-task-box">
+                    <p class="font-bold">4. أجد مشتقة \( h(x) = 4\sec(\pi x) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة الداخلي (\(\pi x\)): \(\pi\)</p>
+                            $$ h'(x) = 4 \cdot (\sec(\pi x)\tan(\pi x)) \cdot (\pi) = 4\pi \sec(\pi x)\tan(\pi x) $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 5 -->
+                <div class="homework-box">
+                    <p class="font-bold">5. أجد مشتقة \( f(x) = \tan(\sqrt{x}) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة الداخلي (\(\sqrt{x}\)): \(\frac{1}{2\sqrt{x}}\)</p>
+                            $$ f'(x) = \sec^2(\sqrt{x}) \cdot \frac{1}{2\sqrt{x}} = \frac{\sec^2(\sqrt{x})}{2\sqrt{x}}
+                            $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 6 -->
+                <div class="student-task-box">
+                    <p class="font-bold">6. أجد مشتقة \( y = \sin(\cos(x)) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>الخارجي هو \(\sin\)، والداخلي هو \(\cos(x)\).</p>
+                            <p>مشتقة الداخلي (\(\cos(x)\)): \(-\sin(x)\)</p>
+                            $$ \frac{dy}{dx} = \cos(\cos(x)) \cdot (-\sin(x)) = -\sin(x)\cos(\cos(x)) $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 7 -->
+                <div class="example-box">
+                    <p class="font-bold">7. أجد مشتقة \( g(x) = \cot^4(x) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>تجهيز: \(g(x) = (\cot(x))^4\)</p>
+                            <p>مشتقة الخارجي (القوة): \(4(\cot(x))^3\)</p>
+                            <p>مشتقة الداخلي (\(\cot(x)\)): \(-\csc^2(x)\)</p>
+                            $$ g'(x) = 4\cot^3(x) \cdot (-\csc^2(x)) = -4\cot^3(x)\csc^2(x) $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 8 -->
+                <div class="homework-box">
+                    <p class="font-bold">8. أجد مشتقة \( h(t) = t^2 \sin(t) \) (دمج مع قاعدة الضرب)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>الأول: \(t^2\). مشتقته: \(2t\)</p>
+                            <p>الثاني: \(\sin(t)\). مشتقته: \(\cos(t)\)</p>
+                            $$ h'(t) = (t^2)(\cos t) + (\sin t)(2t) = t^2\cos(t) + 2t\sin(t) $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 9 -->
+                <div class="student-task-box">
+                    <p class="font-bold">9. أجد مشتقة \( f(x) = \frac{\cos(x)}{1 + \sin(x)} \) (دمج مع قاعدة القسمة)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>البسط: \(\cos(x)\). مشتقته: \(-\sin(x)\)</p>
+                            <p>المقام: \(1+\sin(x)\). مشتقته: \(\cos(x)\)</p>
+                            $$ f'(x) = \frac{(1+\sin x)(-\sin x) - (\cos x)(\cos x)}{(1+\sin x)^2} $$
+                            $$ f'(x) = \frac{-\sin x - \sin^2 x - \cos^2 x}{(1+\sin x)^2} = \frac{-\sin x - (\sin^2 x +
+                            \cos^2 x)}{(1+\sin x)^2} $$
+                            <p>بما أن \(\sin^2 x + \cos^2 x = 1\):</p>
+                            $$ f'(x) = \frac{-\sin x - 1}{(1+\sin x)^2} = \frac{-(1+\sin x)}{(1+\sin x)^2} =
+                            \frac{-1}{1+\sin x} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 10 -->
+                <div class="example-box">
+                    <p class="font-bold">10. أجد مشتقة \( y = \sin^5(3x) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>تجهيز: \(y = (\sin(3x))^5\). هذه سلسلة من 3 طبقات.</p>
+                            <p>1. مشتقة القوة 5: \(5(\sin(3x))^4\)</p>
+                            <p>2. مشتقة الـ \(\sin\): \(\cos(3x)\)</p>
+                            <p>3. مشتقة الـ \(3x\): \(3\)</p>
+                            $$ \frac{dy}{dx} = 5\sin^4(3x) \cdot \cos(3x) \cdot 3 = 15\sin^4(3x)\cos(3x) $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 11 -->
+                <div class="homework-box">
+                    <p class="font-bold">11. أجد مشتقة \( f(x) = \sqrt{\tan(x) + \sec(x)} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>باستخدام قاعدة الجذر السريعة:</p>
+                            <p>مشتقة ما تحت الجذر: \(\sec^2(x) + \sec(x)\tan(x)\)</p>
+                            $$ f'(x) = \frac{\sec^2(x) + \sec(x)\tan(x)}{2\sqrt{\tan(x) + \sec(x)}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 12 -->
+                <div class="student-task-box">
+                    <p class="font-bold">12. أجد مشتقة \( g(x) = \csc(1/x) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة الداخلي (\(1/x = x^{-1}\)): \(-x^{-2} = -1/x^2\)</p>
+                            $$ g'(x) = -\csc(1/x)\cot(1/x) \cdot (-1/x^2) = \frac{\csc(1/x)\cot(1/x)}{x^2} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 13 -->
+                <div class="example-box">
+                    <p class="font-bold">13. أجد مشتقة \( h(x) = x - \tan(x) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>نشتق كل حد على حدة:</p>
+                            $$ h'(x) = 1 - \sec^2(x) $$
+                            <p>باستخدام المتطابقة \(1+\tan^2(x)=\sec^2(x)\)، يمكن تبسيطها إلى:</p>
+                            $$ h'(x) = 1 - (1+\tan^2(x)) = -\tan^2(x) $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 14 -->
+                <div class="student-task-box">
+                    <p class="font-bold">14. أجد مشتقة \( y = \cos(\ln(x)) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة الداخلي (\(\ln(x)\)): \(1/x\)</p>
+                            $$ \frac{dy}{dx} = -\sin(\ln(x)) \cdot \frac{1}{x} = -\frac{\sin(\ln(x))}{x} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 15 -->
+                <div class="homework-box">
+                    <p class="font-bold">15. أجد مشتقة \( f(x) = e^x \sec(x) \) (دمج مع قاعدة الضرب)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>الأول: \(e^x\). مشتقته: \(e^x\)</p>
+                            <p>الثاني: \(\sec(x)\). مشتقته: \(\sec(x)\tan(x)\)</p>
+                            $$ f'(x) = (e^x)(\sec(x)\tan(x)) + (\sec(x))(e^x) $$
+                            $$ f'(x) = e^x\sec(x)(\tan(x) + 1) $$
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- الجزء الرابع: الأسي واللوغاريتمي -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h3>رابعاً: مشتقات الاقترانات الأسية واللوغاريتمية</h3>
+
+            <div class="explanation">
+                <h4>مفهوم أساسي: الطبيعي (e و ln)</h4>
+                <p><strong>تنبيه:</strong> لا تخلط بين مشتقة \(e^x\) (اقتران أسي) ومشتقة \(x^e\) (قاعدة القوة، لأن \(e\)
+                    مجرد ثابت).</p>
+                <p>1. <strong>الاقتران الأسي الطبيعي (e):</strong></p>
+                $$ \frac{d}{dx}[e^u] = e^u \cdot u' $$
+                <p class="text-sm">"مشتقته = نفسه \(\times\) مشتقة أسه".</p>
+
+                <hr class="my-3 border-blue-200">
+                <p>2. <strong>الاقتران اللوغاريتمي الطبيعي (ln):</strong></p>
+                $$ \frac{d}{dx}[\ln(u)] = \frac{u'}{u} $$
+                <p class="text-sm">"مشتقته = مشتقة ما بداخله / ما بداخله".</p>
+            </div>
+
+
+            <div class="explanation" style="border-color: #f59e0b;"> <!-- Amber border -->
+                <h4>مفهوم أساسي: الأساس العام (a و log)</h4>
+                <p>1. <strong>الاقتران الأسي العام (a):</strong></p>
+                $$ \frac{d}{dx}[a^u] = (a^u \cdot \ln a) \cdot u' $$
+                <p class="text-sm">"مشتقته = نفسه \(\times\) لن الأساس \(\times\) مشتقة أسه".</p>
+
+                <hr class="my-3 border-blue-200">
+                <p>2. <strong>الاقتران اللوغاريتمي العام (log):</strong></p>
+                $$ \frac{d}{dx}[\log_a(u)] = \left( \frac{1}{u \cdot \ln a} \right) \cdot u' $$
+                <p class="text-sm">"مشتقته = (مشتقة ما بداخله) / (ما بداخله \(\times\) لن الأساس)".</p>
+            </div>
+
+            <!-- مثال 4 (للمعلم) -->
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 4 (للمعلم) - الأسي واللوغاريتمي</p>
+                <p>أجد مشتقة كل اقتران مما يأتي:</p>
+                <p> 1) \(f(x) = e^{x^2 + 1}\)
+                    <br> 2) \(y = \ln(5x - 3)\)
+                    <br> 3) \(g(x) = 3^x\)
+                    <br> 4) \(h(x) = \log_5(x^2 + 1)\)
+                </p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>1) \(f(x) = e^{x^2 + 1}\)</strong></p>
+                        <p>مشتقة الأس (\(x^2+1\)): \(2x\)</p>
+                        $$ f'(x) = e^{x^2 + 1} \cdot (2x) = 2x e^{x^2 + 1} $$
+
+                        <hr class="my-4">
+                        <p><strong>2) \(y = \ln(5x - 3)\)</strong></p>
+                        <p>مشتقة ما بداخله (\(5x-3\)): \(5\)</p>
+                        $$ \frac{dy}{dx} = \frac{5}{5x - 3} $$
+
+                        <hr class="my-4">
+                        <p><strong>3) \(g(x) = 3^x\)</strong></p>
+                        <p>الأساس \(a=3\). مشتقة الأس (\(x\)): \(1\)</p>
+                        $$ g'(x) = (3^x \cdot \ln 3) \cdot 1 = 3^x \ln 3 $$
+
+                        <hr class="my-4">
+                        <p><strong>4) \(h(x) = \log_5(x^2 + 1)\)</strong></p>
+                        <p>الأساس \(a=5\). مشتقة ما بداخله (\(x^2+1\)): \(2x\)</p>
+                        $$ h'(x) = \frac{2x}{(x^2 + 1) \cdot \ln 5} $$
+                    </div>
+                </details>
+            </div>
+
+            <!-- مثال إضافي 4ب -->
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 4 (ب) - دمج مع السلسلة</p>
+                <p>أجد مشتقة كل اقتران مما يأتي:</p>
+                <p> 1) \(f(x) = e^{\sin(x)}\)
+                    <br> 2) \(y = \ln(\cos(x))\)
+                </p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>1) \(f(x) = e^{\sin(x)}\)</strong></p>
+                        <p>مشتقة الأس (\(\sin(x)\)): \(\cos(x)\)</p>
+                        $$ f'(x) = e^{\sin(x)} \cdot \cos(x) $$
+
+                        <hr class="my-4">
+                        <p><strong>2) \(y = \ln(\cos(x))\)</strong></p>
+                        <p>مشتقة ما بداخله (\(\cos(x)\)): \(-\sin(x)\)</p>
+                        $$ \frac{dy}{dx} = \frac{-\sin(x)}{\cos(x)} = -\tan(x) $$
+                    </div>
+                </details>
+            </div>
+
+            <!-- سؤال للصف 3 -->
+            <div class="student-task-box">
+                <p class="font-bold text-blue-700">سؤال للصف (3)</p>
+                <p>أجد مشتقة \(y = \ln(x^2 + 3x)\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        $$ \frac{dy}{dx} = \frac{2x+3}{x^2+3x} $$
+                    </div>
+                </details>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- بنك الأسئلة الإضافي للأسي واللوغاريتمي -->
+            <!-- =================================================================== -->
+            <div class="mt-10 p-6 bg-gray-50 rounded-lg border-t-4 border-orange-300">
+                <h4 class="text-2xl font-bold text-orange-800 mb-4">بنك أسئلة إضافي على الاقترانات الأسية واللوغاريتمية
+                </h4>
+                <p class="mb-6 text-gray-600">تدريبات متنوعة ومتدرجة لترسيخ مفاهيم الاشتقاق.</p>
+
+                <!-- ================== الجزء الأول: الاقتران الأسي الطبيعي (e^u) ================== -->
+                <h5 class="text-xl font-bold text-orange-700 mb-3 pb-2 border-b-2 border-orange-100">الجزء (أ): تمارين
+                    على الاقتران الأسي الطبيعي (e^u)</h5>
+
+                <div class="student-task-box">
+                    <p class="font-bold">1. أجد مشتقة \( y = e^{7x+2} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">$$ \frac{dy}{dx} = e^{7x+2} \cdot (7) = 7e^{7x+2} $$</div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">2. أجد مشتقة \( f(x) = e^{x^3} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">$$ f'(x) = e^{x^3} \cdot (3x^2) = 3x^2 e^{x^3} $$</div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">3. أجد مشتقة \( y = 5e^{-1/x} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة الأس (\(-x^{-1}\)) هي \(-(-1)x^{-2} = 1/x^2\).</p>$$ \frac{dy}{dx} = 5e^{-1/x}
+                            \cdot (\frac{1}{x^2}) = \frac{5e^{-1/x}}{x^2} $$
+                        </div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">4. أجد مشتقة \( g(x) = (e^x + 1)^4 \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>قاعدة السلسلة العامة:</p>$$ g'(x) = 4(e^x + 1)^3 \cdot (e^x) = 4e^x(e^x + 1)^3 $$
+                        </div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">5. أجد مشتقة \( y = e^{\tan(x)} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">$$ \frac{dy}{dx} = e^{\tan(x)} \cdot (\sec^2(x)) = \sec^2(x)
+                            e^{\tan(x)} $$</div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">6. أجد مشتقة \( f(x) = \sqrt{e^x + x} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>قاعدة الجذر السريعة:</p>$$ f'(x) = \frac{e^x + 1}{2\sqrt{e^x + x}} $$
+                        </div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">7. أجد مشتقة \( y = x^2 e^x \) (قاعدة الضرب)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">$$ \frac{dy}{dx} = (x^2)(e^x) + (e^x)(2x) = e^x(x^2 + 2x) $$</div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">8. أجد مشتقة \( h(x) = \frac{e^x}{x} \) (قاعدة القسمة)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">$$ h'(x) = \frac{(x)(e^x) - (e^x)(1)}{x^2} = \frac{e^x(x-1)}{x^2}
+                            $$</div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">9. أجد مشتقة \( y = e^{e^x} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة الأس (\(e^x\)) هي \(e^x\).</p>$$ \frac{dy}{dx} = e^{e^x} \cdot (e^x) = e^{x+e^x} $$
+                        </div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">10. أجد مشتقة \( f(x) = e^{2\ln(x)} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>الأفضل: التبسيط أولاً.</strong></p>
+                            <p>تجهيز: \( f(x) = e^{\ln(x^2)} = x^2 \).</p>
+                            <p>اشتقاق: \( f'(x) = 2x \).</p>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- ================== الجزء الثاني: الاقتران اللوغاريتمي الطبيعي (ln u) ================== -->
+                <h5 class="text-xl font-bold text-orange-700 mt-8 mb-3 pb-2 border-b-2 border-orange-100">الجزء (ب):
+                    تمارين على الاقتران اللوغاريتمي الطبيعي (ln u)</h5>
+
+                <div class="student-task-box">
+                    <p class="font-bold">11. أجد مشتقة \( y = \ln(x^4 + 3) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">$$ \frac{dy}{dx} = \frac{4x^3}{x^4 + 3} $$</div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">12. أجد مشتقة \( f(x) = \ln(\sin(x)) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">$$ f'(x) = \frac{\cos(x)}{\sin(x)} = \cot(x) $$</div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">13. أجد مشتقة \( y = x \ln(x) \) (قاعدة الضرب)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">$$ \frac{dy}{dx} = (x)(\frac{1}{x}) + (\ln x)(1) = 1 + \ln(x) $$
+                        </div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">14. أجد مشتقة \( g(x) = (\ln x)^3 \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>قاعدة السلسلة العامة:</p>$$ g'(x) = 3(\ln x)^2 \cdot (\frac{1}{x}) = \frac{3\ln^2(x)}{x}
+                            $$
+                        </div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">15. أجد مشتقة \( y = \ln(\frac{x+1}{x-1}) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>الأفضل: التبسيط أولاً.</strong></p>
+                            <p>تجهيز: \( y = \ln(x+1) - \ln(x-1) \).</p>$$ \frac{dy}{dx} = \frac{1}{x+1} - \frac{1}{x-1}
+                            $$
+                        </div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">16. أجد مشتقة \( f(x) = \ln(x^5) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>تجهيز: \( f(x) = 5\ln(x) \).</p>$$ f'(x) = \frac{5}{x} $$
+                        </div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">17. أجد مشتقة \( y = \ln(\sqrt{x^2+4}) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>تجهيز: \( y = \frac{1}{2}\ln(x^2+4) \).</p>$$ \frac{dy}{dx} = \frac{1}{2} \cdot
+                            \frac{2x}{x^2+4} = \frac{x}{x^2+4} $$
+                        </div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">18. أجد مشتقة \( h(x) = \frac{\ln x}{x} \) (قاعدة القسمة)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">$$ h'(x) = \frac{(x)(\frac{1}{x}) - (\ln x)(1)}{x^2} = \frac{1 -
+                            \ln x}{x^2} $$</div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">19. أجد مشتقة \( y = \ln(e^x + 1) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">$$ \frac{dy}{dx} = \frac{e^x}{e^x + 1} $$</div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">20. أجد مشتقة \( f(x) = \ln(x\sqrt{x-2}) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>تجهيز: \( f(x) = \ln(x) + \ln((x-2)^{1/2}) = \ln(x) + \frac{1}{2}\ln(x-2) \).</p>$$ f'(x)
+                            = \frac{1}{x} + \frac{1}{2} \cdot \frac{1}{x-2} = \frac{1}{x} + \frac{1}{2(x-2)} $$
+                        </div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">21. أجد مشتقة \( y = \ln(\ln x) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">$$ \frac{dy}{dx} = \frac{1}{\ln x} \cdot \frac{1}{x} = \frac{1}{x
+                            \ln x} $$</div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">22. أجد مشتقة \( g(x) = \ln(\sec x + \tan x) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة ما بداخله: \(\sec x \tan x + \sec^2 x = \sec x (\tan x + \sec x)\).</p>$$ g'(x) =
+                            \frac{\sec x (\tan x + \sec x)}{\sec x + \tan x} = \sec x $$
+                        </div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">23. أجد مشتقة \( y = \ln(x^2+2x+1) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>تجهيز: \( y = \ln((x+1)^2) = 2\ln(x+1) \).</p>$$ \frac{dy}{dx} = \frac{2}{x+1} $$
+                        </div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">24. أجد مشتقة \( f(x) = \frac{1}{\ln x} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>قاعدة (1/اقتران):</p>$$ f'(x) = \frac{-(\frac{1}{x})}{(\ln x)^2} = -\frac{1}{x(\ln x)^2}
+                            $$
+                        </div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">25. أجد مشتقة \( y = \ln(x^3(x+1)^4) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>تجهيز: \( y = \ln(x^3) + \ln((x+1)^4) = 3\ln x + 4\ln(x+1) \).</p>$$ \frac{dy}{dx} =
+                            \frac{3}{x} + \frac{4}{x+1} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- ================== الجزء الثالث: الأساس العام (a^u, log_a u) ================== -->
+                <h5 class="text-xl font-bold text-orange-700 mt-8 mb-3 pb-2 border-b-2 border-orange-100">الجزء (ج):
+                    تمارين على الأساس العام (a^u, log_a u)</h5>
+
+                <div class="student-task-box">
+                    <p class="font-bold">26. أجد مشتقة \( y = 7^x \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">$$ \frac{dy}{dx} = 7^x \ln 7 $$</div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">27. أجد مشتقة \( f(x) = 2^{x^2+x} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">$$ f'(x) = (2^{x^2+x} \ln 2) \cdot (2x+1) $$</div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">28. أجد مشتقة \( y = \log_5(x) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">$$ \frac{dy}{dx} = \frac{1}{x \ln 5} $$</div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">29. أجد مشتقة \( g(x) = \log_3(\sin x) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">$$ g'(x) = \frac{\cos x}{(\sin x) \ln 3} = \frac{\cot x}{\ln 3} $$
+                        </div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">30. أجد مشتقة \( y = 10^{\sqrt{x}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">$$ \frac{dy}{dx} = (10^{\sqrt{x}} \ln 10) \cdot
+                            (\frac{1}{2\sqrt{x}}) = \frac{10^{\sqrt{x}} \ln 10}{2\sqrt{x}} $$</div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">31. أجد مشتقة \( f(x) = \log(x^2) \) (الأساس 10)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>تجهيز: \( f(x) = 2\log(x) \).</p>$$ f'(x) = 2 \cdot \frac{1}{x \ln 10} = \frac{2}{x \ln
+                            10} $$
+                        </div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">32. أجد مشتقة \( y = x \cdot 4^x \) (قاعدة الضرب)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">$$ \frac{dy}{dx} = (x)(4^x \ln 4) + (4^x)(1) = 4^x(x \ln 4 + 1) $$
+                        </div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">33. أجد مشتقة \( h(x) = \frac{\log_2 x}{x} \) (قاعدة القسمة)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">$$ h'(x) = \frac{(x)(\frac{1}{x \ln 2}) - (\log_2 x)(1)}{x^2} =
+                            \frac{\frac{1}{\ln 2} - \log_2 x}{x^2} $$</div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">34. أجد مشتقة \( y = \log_x(e) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>تجهيز (قاعدة تغيير الأساس): \( y = \frac{\ln e}{\ln x} = \frac{1}{\ln x} \).</p>$$
+                            \frac{dy}{dx} = \frac{-(\frac{1}{x})}{(\ln x)^2} = -\frac{1}{x(\ln x)^2} $$
+                        </div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">35. أجد مشتقة \( f(x) = 5^{\log_5(x^2)} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>تجهيز (من خصائص اللوغاريتمات): \( f(x) = x^2 \).</p>$$ f'(x) = 2x $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- ================== الجزء الرابع: أسئلة دمج وتحدي ================== -->
+                <h5 class="text-xl font-bold text-orange-700 mt-8 mb-3 pb-2 border-b-2 border-orange-100">الجزء (د):
+                    أسئلة دمج وتحدي</h5>
+
+                <div class="student-task-box">
+                    <p class="font-bold">36. أجد مشتقة \( y = e^x \ln(x) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">$$ \frac{dy}{dx} = (e^x)(\frac{1}{x}) + (\ln x)(e^x) =
+                            e^x(\frac{1}{x} + \ln x) $$</div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">37. أجد مشتقة \( f(x) = \ln(x + \sqrt{x^2+1}) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة ما بداخله: \( 1 + \frac{2x}{2\sqrt{x^2+1}} = 1 + \frac{x}{\sqrt{x^2+1}} =
+                                \frac{\sqrt{x^2+1}+x}{\sqrt{x^2+1}} \).</p>$$ f'(x) =
+                            \frac{\frac{\sqrt{x^2+1}+x}{\sqrt{x^2+1}}}{x + \sqrt{x^2+1}} = \frac{1}{\sqrt{x^2+1}} $$
+                        </div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">38. أجد مشتقة \( y = \frac{e^x - e^{-x}}{e^x + e^{-x}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>م. البسط: \(e^x+e^{-x}\). م. المقام: \(e^x-e^{-x}\).</p>$$ \frac{dy}{dx} =
+                            \frac{(e^x+e^{-x})(e^x+e^{-x}) - (e^x-e^{-x})(e^x-e^{-x})}{(e^x+e^{-x})^2} $$ $$ =
+                            \frac{(e^{2x}+2+e^{-2x}) - (e^{2x}-2+e^{-2x})}{(e^x+e^{-x})^2} = \frac{4}{(e^x+e^{-x})^2} $$
+                        </div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">39. أجد مشتقة \( g(x) = \log(\cos x) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">$$ g'(x) = \frac{-\sin x}{(\cos x) \ln 10} = -\frac{\tan x}{\ln
+                            10} $$</div>
+                    </details>
+                </div>
+                <div class="student-task-box">
+                    <p class="font-bold">40. أجد مشتقة \( y = e^{x \ln 2} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>تجهيز: \( y = e^{\ln(2^x)} = 2^x \).</p>$$ \frac{dy}{dx} = 2^x \ln 2 $$
+                        </div>
+                    </details>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- الجزء الخامس: دمج المهارات (الضرب والقسمة مع السلسلة) -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h3>خامساً: دمج المهارات (الضرب والقسمة مع السلسلة)</h3>
+
+            <div class="explanation">
+                <h4>مفهوم أساسي: دمج القواعد</h4>
+                <p>الآن سنستخدم قواعد الدرس الأول (الضرب والقسمة) ولكن "المكونات" ستكون من الدرس الثاني (مثلثية وأسية).
+                </p>
+                <p>عند تطبيق قاعدة الضرب \((f \cdot g' + g \cdot f')\) أو القسمة \(( (g f' - f g') / g^2 )\)، قد نحتاج
+                    إلى استخدام قاعدة السلسلة لحساب \(f'\) أو \(g'\) أنفسهم.</p>
+            </div>
+
+            <!-- مثال 5 (للمعلم) -->
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 5 (للمعلم) - دمج القواعد</p>
+                <p>أجد مشتقة كل اقتران مما يأتي:</p>
+                <p> 1) \(f(x) = x^3 \cdot \sin(2x)\) (ضرب + سلسلة)
+                    <br> 2) \(y = \frac{e^{5x}}{x^2 + 1}\) (قسمة + سلسلة)
+                </p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>1) \(f(x) = x^3 \cdot \sin(2x)\) (قاعدة الضرب)</strong></p>
+                        <p>الأول: \(x^3\). مشتقته: \(3x^2\)</p>
+                        <p>الثاني: \(\sin(2x)\). مشتقته (بالسلسلة): \(\cos(2x) \cdot 2 = 2\cos(2x)\)</p>
+                        <p><strong>تطبيق القاعدة:</strong></p>
+                        <p>(الأول \(\times\) مشتقة الثاني) + (الثاني \(\times\) مشتقة الأول)</p>
+                        $$ f'(x) = (x^3) \cdot (2\cos(2x)) + (\sin(2x)) \cdot (3x^2) $$
+                        $$ f'(x) = 2x^3\cos(2x) + 3x^2\sin(2x) $$
+
+                        <hr class="my-4">
+                        <p><strong>2) \(y = \frac{e^{5x}}{x^2 + 1}\) (قاعدة القسمة)</strong></p>
+                        <p>البسط: \(e^{5x}\). مشتقته (بالسلسلة): \(e^{5x} \cdot 5 = 5e^{5x}\)</p>
+                        <p>المقام: \(x^2 + 1\). مشتقته: \(2x\)</p>
+                        <p><strong>تطبيق القاعدة:</strong></p>
+                        <p>( (المقام \(\times\) مشتقة البسط) - (البسط \(\times\) مشتقة المقام) ) \(\div\)
+                            (المقام)\(^{2}\)</p>
+                        $$ \frac{dy}{dx} = \frac{(x^2 + 1) \cdot (5e^{5x}) - (e^{5x}) \cdot (2x)}{(x^2 + 1)^2} $$
+                        <p>تبسيط (بأخذ \(e^{5x}\) عامل مشترك من البسط):</p>
+                        $$ \frac{dy}{dx} = \frac{e^{5x} [5(x^2 + 1) - 2x]}{(x^2 + 1)^2} $$
+                        $$ \frac{dy}{dx} = \frac{e^{5x} (5x^2 - 2x + 5)}{(x^2 + 1)^2} $$
+                    </div>
+                </details>
+            </div>
+
+            <!-- مثال إضافي 5ب -->
+            <div class="example-box">
+                <p class="text-lg font-bold text-green-800 mb-2">مثال 5 (ب) - قسمة مع مثلثية</p>
+                <p>أجد مشتقة \(h(x) = \frac{x}{\tan(x)}\)</p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>قاعدة القسمة:</strong></p>
+                        <p>البسط: \(x\). مشتقته: \(1\)</p>
+                        <p>المقام: \(\tan(x)\). مشتقته: \(\sec^2(x)\)</p>
+                        $$ h'(x) = \frac{(\tan x)(1) - (x)(\sec^2 x)}{(\tan x)^2} $$
+                        $$ h'(x) = \frac{\tan x - x\sec^2 x}{\tan^2 x} $$
+                        <hr class="my-3">
+                        <p><strong>حل آخر (أسهل):</strong></p>
+                        <p>تجهيز: \(h(x) = x \cdot \cot(x)\). الآن نستخدم قاعدة الضرب.</p>
+                        $$ h'(x) = (x)(-\csc^2 x) + (\cot x)(1) = -\boldsymbol{x}\csc^2(x) + \cot(x) $$
+                    </div>
+                </details>
+            </div>
+
+            <!-- سؤال واجب 2 -->
+            <div class="homework-box">
+                <p class="font-bold text-amber-700">سؤال واجب (2) - دمج المهارات</p>
+                <p>أجد مشتقة كل اقتران مما يأتي:</p>
+                <p> 1) \(f(x) = e^x \cdot \cos(x)\)
+                    <br> 2) \(y = \frac{\ln(x)}{x^2}\)
+                    <br> 3) \(g(x) = \ln(\sqrt{x+1})\) (تلميح: بسّط أولاً باستخدام قوانين اللوغاريتمات!)
+                </p>
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p><strong>1) \(f(x) = e^x \cdot \cos(x)\) (قاعدة الضرب)</strong></p>
+                        <p>الأول: \(e^x\). مشتقته: \(e^x\)</p>
+                        <p>الثاني: \(\cos(x)\). مشتقته: \(-\sin(x)\)</p>
+                        $$ f'(x) = (e^x)(-\sin(x)) + (\cos(x))(e^x) $$
+                        $$ f'(x) = e^x(\cos(x) - \sin(x)) $$
+                        <hr class="my-4">
+
+                        <p><strong>2) \(y = \frac{\ln(x)}{x^2}\) (قاعدة القسمة)</strong></p>
+                        <p>البسط: \(\ln(x)\). مشتقته: \(1/x\)</p>
+                        <p>المقام: \(x^2\). مشتقته: \(2x\)</p>
+                        $$ \frac{dy}{dx} = \frac{(x^2)(\frac{1}{x}) - (\ln x)(2x)}{(x^2)^2} $$
+                        $$ \frac{dy}{dx} = \frac{x - 2x \ln x}{x^4} $$
+                        <p>تبسيط (بأخذ \(x\) عامل مشترك من البسط):</p>
+                        $$ \frac{dy}{dx} = \frac{x(1 - 2 \ln x)}{x^4} = \frac{1 - 2 \ln x}{x^3} $$
+                        <hr class="my-4">
+
+                        <p><strong>3) \(g(x) = \ln(\sqrt{x+1})\)</strong></p>
+                        <p><strong>الأفضل: التبسيط أولاً.</strong></p>
+                        <p>تجهيز: \(\sqrt{x+1} = (x+1)^{1/2}\). من قوانين اللوغاريتمات، يمكن إنزال الأس:</p>
+                        $$ g(x) = \ln((x+1)^{1/2}) = \frac{1}{2}\ln(x+1) $$
+                        <p>اشتقاق (أصبحت أسهل بكثير):</p>
+                        $$ g'(x) = \frac{1}{2} \cdot \left( \frac{1}{x+1} \right) = \frac{1}{2(x+1)} $$
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- الجزء السادس: تمارين مراجعة شاملة -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h3>سادساً: تمارين مراجعة شاملة (دمج الدرس الأول والثاني)</h3>
+
+            <div class="homework-box">
+                <p class="font-bold text-amber-700">سؤال واجب (3) - مراجعة شاملة</p>
+                <p>أجد مشتقة كل اقتران مما يأتي (استخدم كل ما تعلمته):</p>
+                <p>1) \(f(x) = \sqrt{x^3 - 4x}\)</p>
+                <p>2) \(g(x) = x^5 \cdot \ln(x)\)</p>
+                <p>3) \(h(x) = \frac{\sin(x)}{e^x}\)</p>
+                <p>4) \(y = \tan(e^{2x})\)</p>
+                <p>5) \(f(x) = (\ln x)^3\)</p>
+                <p>6) \(y = \frac{1}{(x^2+1)^3}\)</p>
+                <p>7) \(g(x) = \sec^2(x) + \tan^2(x)\)</p>
+                <p>8) \(f(x) = \cos(x) \sin(x)\) (تلميح: يمكن تبسيطها بمتطابقة)</p>
+                <p>9) \(y = \log_2(x^3)\) (تلميح: بسّط أولاً)</p>
+                <p>10) \(h(x) = x^2 \cdot e^{-x} \cdot \cos(x)\) (تحدي: ضرب ثلاثة اقترانات!)</p>
+
+                <details>
+                    <summary>إظهار الحل</summary>
+                    <div class="solution-content">
+                        <p>1) \(f'(x) = \frac{3x^2 - 4}{2\sqrt{x^3 - 4x}}\)</p>
+                        <hr class="my-4">
+                        <p>2) \(g'(x) = (x^5)(\frac{1}{x}) + (\ln x)(5x^4) = x^4 + 5x^4 \ln x = x^4(1 + 5 \ln x)\)</p>
+                        <hr class="my-4">
+                        <p>3) \(h'(x) = \frac{(e^x)(\cos x) - (\sin x)(e^x)}{(e^x)^2} = \frac{e^x(\cos x - \sin
+                            x)}{e^{2x}} = \frac{\cos x - \sin x}{e^x}\)</p>
+                        <hr class="my-4">
+                        <p>4) \(y' = \sec^2(e^{2x}) \cdot (e^{2x} \cdot 2) = 2e^{2x}\sec^2(e^{2x})\)</p>
+                        <hr class="my-4">
+                        <p>5) \(f'(x) = 3(\ln x)^2 \cdot (\frac{1}{x}) = \frac{3\ln^2(x)}{x}\)</p>
+                        <hr class="my-4">
+                        <p>6) (قاعدة 1/اقتران): \(y' = \frac{-( \text{مشتقة المقام} )}{(\text{المقام})^2}\). مشتقة
+                            المقام: \(3(x^2+1)^2 \cdot (2x) = 6x(x^2+1)^2\).
+                            <br> \(y' = \frac{-6x(x^2+1)^2}{((x^2+1)^3)^2} = \frac{-6x(x^2+1)^2}{(x^2+1)^6} =
+                            \frac{-6x}{(x^2+1)^4}\)
+                            <br>(حل أسهل): \(y = (x^2+1)^{-3} \Rightarrow y' = -3(x^2+1)^{-4} \cdot (2x) =
+                            \frac{-6x}{(x^2+1)^4}\)
+                        </p>
+                        <hr class="my-4">
+                        <p>7) \(g(x) = (\sec x)^2 + (\tan x)^2\).
+                            <br> \(g'(x) = 2(\sec x) \cdot (\sec x \tan x) + 2(\tan x) \cdot (\sec^2 x)\)
+                            <br> \(g'(x) = 2\sec^2 x \tan x + 2\tan x \sec^2 x = 4\sec^2(x)\tan(x)\)
+                        </p>
+                        <hr class="my-4">
+                        <p>8) (تبسيط أولاً): \(\sin(2x) = 2\sin(x)\cos(x) \Rightarrow f(x) = \frac{1}{2}\sin(2x)\)
+                            <br> \(f'(x) = \frac{1}{2} (\cos(2x) \cdot 2) = \cos(2x)\) (أسهل بكثير من قاعدة الضرب!)
+                        </p>
+                        <hr class="my-4">
+                        <p>9) (تبسيط أولاً): \(y = 3 \log_2(x)\)
+                            <br> \(y' = 3 \cdot \left( \frac{1}{x \ln 2} \right) = \frac{3}{x \ln 2}\)
+                        </p>
+                        <hr class="my-4">
+                        <p>10) (اعتبر \( (x^2 e^{-x}) \) هو الأول و \(\cos(x)\) هو الثاني):
+                            <br> م. الأول (تحتاج قاعدة ضرب): \( (x^2)(-e^{-x}) + (e^{-x})(2x) = e^{-x}(2x - x^2) \)
+                            <br> م. الثاني: \(-\sin(x)\)
+                            <br> \( h'(x) = (x^2 e^{-x})(-\sin x) + (\cos x)(e^{-x}(2x - x^2)) \)
+                            <br> \( h'(x) = -x^2 e^{-x} \sin x + 2x e^{-x} \cos x - x^2 e^{-x} \cos x \)
+                            <br> \( h'(x) = x e^{-x} (-x \sin x + 2 \cos x - x \cos x) \)
+                        </p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- =================================================================== -->
+            <!-- بنك الأسئلة الإضافي لدمج المهارات -->
+            <div class="mt-10 p-6 bg-gray-50 rounded-lg border-t-4 border-red-300">
+                <h4 class="text-2xl font-bold text-red-800 mb-4">بنك أسئلة إضافي على دمج المهارات (Extreme)</h4>
+                <p class="mb-6 text-gray-600">تحدي الأبطال: أسئلة تتطلب دمجاً عميقاً للمهارات (سلسلة، ضرب، قسمة، جذور،
+                    لوغاريتمات).</p>
+
+                <!-- سؤال 1 -->
+                <div class="student-task-box">
+                    <p class="font-bold">1. أجد مشتقة \( y = \sin^3(\cos^2(\sqrt{x^2+1})) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>سلسلة خماسية! (قوة -> جيب -> قوة -> جيب تمام -> جذر -> كثير حدود)</p>
+                            $$ y' = 3\sin^2(\dots) \cdot \cos(\dots) \cdot 2\cos(\sqrt{x^2+1}) \cdot
+                            (-\sin(\sqrt{x^2+1})) \cdot \frac{2x}{2\sqrt{x^2+1}} $$
+                            <p>الترتيب النهائي:</p>
+                            $$ y' = \frac{-3x \sin^2(\cos^2\sqrt{x^2+1}) \cos(\cos^2\sqrt{x^2+1})
+                            \sin(2\sqrt{x^2+1})}{\sqrt{x^2+1}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 2 -->
+                <div class="student-task-box">
+                    <p class="font-bold">2. أجد مشتقة \( y = \frac{\ln(\sin^2(3x))}{\sqrt{e^x \cos x}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>بسط أولاً! \( \ln(\sin^2(3x)) = 2\ln(\sin 3x) \)</p>
+                            <p>المقام \( (e^x \cos x)^{1/2} \). استخدم قاعدة القسمة مع السلسلة.</p>
+                            $$ y' = \frac{\sqrt{e^x \cos x} \cdot (2 \cdot \frac{3\cos 3x}{\sin 3x}) - 2\ln(\sin 3x)
+                            \cdot \frac{e^x(\cos x - \sin x)}{2\sqrt{e^x \cos x}}}{e^x \cos x} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 3 -->
+                <div class="student-task-box">
+                    <p class="font-bold">3. أجد مشتقة \( y = \sqrt[3]{\frac{t^2 \sin t}{e^{2t}+1}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>اشتقاق لوغاريتمي هو الأسرع هنا، لكن بالسلسلة:</p>
+                            $$ y' = \frac{1}{3} \left( \frac{t^2 \sin t}{e^{2t}+1} \right)^{-2/3} \cdot
+                            \frac{(e^{2t}+1)(2t\sin t + t^2\cos t) - (t^2\sin t)(2e^{2t})}{(e^{2t}+1)^2} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 4 -->
+                <div class="student-task-box">
+                    <p class="font-bold">4. أجد مشتقة \( y = e^{\sqrt{x} \ln(x)} \cdot \tan^5(x^2) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>ضرب اقترانين معقدين.</p>
+                            <p>مشتقة الأول: \( e^{\dots} (\frac{\ln x}{2\sqrt{x}} + \frac{\sqrt{x}}{x}) \)</p>
+                            <p>مشتقة الثاني: \( 5\tan^4(x^2) \sec^2(x^2) (2x) \)</p>
+                            <p>طبق قاعدة الضرب: الأول \(\times\) مشتقة الثاني + الثاني \(\times\) مشتقة الأول.</p>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 5 -->
+                <div class="student-task-box">
+                    <p class="font-bold">5. أجد مشتقة \( y = \cos^4(e^{\sqrt{x}} + \ln(x^3)) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>سلسلة: قوة -> جيب تمام -> جمع (أسي + لوغاريتمي).</p>
+                            $$ y' = 4\cos^3(\dots) \cdot (-\sin(\dots)) \cdot \left( e^{\sqrt{x}}\frac{1}{2\sqrt{x}} +
+                            \frac{3}{x} \right) $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 6 -->
+                <div class="student-task-box">
+                    <p class="font-bold">6. أجد مشتقة \( y = \ln\left(\sqrt{\frac{x+1}{x-1}} \cdot e^{x^2}\right) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>تبسيط إجباري!</strong></p>
+                            $$ y = \frac{1}{2}(\ln(x+1) - \ln(x-1)) + x^2 $$
+                            $$ y' = \frac{1}{2}\left(\frac{1}{x+1} - \frac{1}{x-1}\right) + 2x = \frac{-1}{x^2-1} + 2x
+                            $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 7 -->
+                <div class="student-task-box">
+                    <p class="font-bold">7. أجد مشتقة \( y = \sec^3\left(\frac{x}{\ln x}\right) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            $$ y' = 3\sec^2\left(\frac{x}{\ln x}\right) \cdot \sec\left(\frac{x}{\ln
+                            x}\right)\tan\left(\frac{x}{\ln x}\right) \cdot \left( \frac{\ln x - 1}{(\ln x)^2} \right)
+                            $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 8 -->
+                <div class="student-task-box">
+                    <p class="font-bold">8. أجد مشتقة \( y = x^2 e^{-x} \sin(x) \ln(x) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>ضرب 4 اقترانات! \( (ABCD)' = A'BCD + AB'CD + ABC'D + ABCD' \)</p>
+                            $$ y' = (2x)e^{-x}\sin x \ln x - x^2 e^{-x} \sin x \ln x + x^2 e^{-x} \cos x \ln x + x^2
+                            e^{-x} \sin x \frac{1}{x} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 9 -->
+                <div class="student-task-box">
+                    <p class="font-bold">9. أجد مشتقة \( y = \frac{1}{\sqrt{e^x + \cos x}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>قاعدة الجذر في المقام (أو قوة -1/2):</p>
+                            $$ y' = \frac{-(e^x - \sin x)}{2(e^x + \cos x)^{3/2}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 10 -->
+                <div class="student-task-box">
+                    <p class="font-bold">10. أجد مشتقة \( y = \tan(\sin(\cos(3x))) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>ماتريوشكا الدوال المثلثية!</p>
+                            $$ y' = \sec^2(\sin(\cos 3x)) \cdot \cos(\cos 3x) \cdot (-\sin 3x) \cdot 3 $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 11 -->
+                <div class="student-task-box">
+                    <p class="font-bold">11. أجد مشتقة \( y = \ln(x + \sqrt{x^2+1}) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>هذا هو معكوس دالة الـ sinh (للمعلومة فقط).</p>
+                            $$ y' = \frac{1 + \frac{x}{\sqrt{x^2+1}}}{x + \sqrt{x^2+1}} =
+                            \frac{\frac{\sqrt{x^2+1}+x}{\sqrt{x^2+1}}}{x + \sqrt{x^2+1}} = \frac{1}{\sqrt{x^2+1}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 12 -->
+                <div class="student-task-box">
+                    <p class="font-bold">12. أجد مشتقة \( y = e^{e^{e^x}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>برج الأسس!</p>
+                            $$ y' = e^{e^{e^x}} \cdot e^{e^x} \cdot e^x $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 13 -->
+                <div class="student-task-box">
+                    <p class="font-bold">13. أجد مشتقة \( y = \ln(\ln(\ln x)) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            $$ y' = \frac{1}{\ln(\ln x)} \cdot \frac{1}{\ln x} \cdot \frac{1}{x} = \frac{1}{x \ln x
+                            \ln(\ln x)} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 14 -->
+                <div class="student-task-box">
+                    <p class="font-bold">14. أجد مشتقة \( y = \frac{\sin^2 x - \cos^2 x}{\sin^2 x + \cos^2 x} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>خدعة!</strong> المقام = 1. البسط = \(-\cos(2x)\).</p>
+                            $$ y = -\cos(2x) \implies y' = 2\sin(2x) $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 15 -->
+                <div class="student-task-box">
+                    <p class="font-bold">15. أجد مشتقة \( y = \sqrt{x} \cdot \sqrt{x+1} \cdot \sqrt{x+2} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>اشتقاق لوغاريتمي أسهل، لكن بالضرب:</p>
+                            $$ y' = y \left( \frac{1}{2x} + \frac{1}{2(x+1)} + \frac{1}{2(x+2)} \right) $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 16 -->
+                <div class="student-task-box">
+                    <p class="font-bold">16. أجد مشتقة \( y = e^{\sin(x^2+1)} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            $$ y' = e^{\sin(x^2+1)} \cdot \cos(x^2+1) \cdot 2x $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 17 -->
+                <div class="student-task-box">
+                    ```html
+                    </details>
+                </div>
+
+                <!-- سؤال 2 -->
+                <div class="student-task-box">
+                    <p class="font-bold">2. أجد مشتقة \( y = \frac{\ln(\sin^2(3x))}{\sqrt{e^x \cos x}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>بسط أولاً! \( \ln(\sin^2(3x)) = 2\ln(\sin 3x) \)</p>
+                            <p>المقام \( (e^x \cos x)^{1/2} \). استخدم قاعدة القسمة مع السلسلة.</p>
+                            $$ y' = \frac{\sqrt{e^x \cos x} \cdot (2 \cdot \frac{3\cos 3x}{\sin 3x}) - 2\ln(\sin 3x)
+                            \cdot \frac{e^x(\cos x - \sin x)}{2\sqrt{e^x \cos x}}}{e^x \cos x} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 3 -->
+                <div class="student-task-box">
+                    <p class="font-bold">3. أجد مشتقة \( y = \sqrt[3]{\frac{t^2 \sin t}{e^{2t}+1}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>اشتقاق لوغاريتمي هو الأسرع هنا، لكن بالسلسلة:</p>
+                            $$ y' = \frac{1}{3} \left( \frac{t^2 \sin t}{e^{2t}+1} \right)^{-2/3} \cdot
+                            \frac{(e^{2t}+1)(2t\sin t + t^2\cos t) - (t^2\sin t)(2e^{2t})}{(e^{2t}+1)^2} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 4 -->
+                <div class="student-task-box">
+                    <p class="font-bold">4. أجد مشتقة \( y = e^{\sqrt{x} \ln(x)} \cdot \tan^5(x^2) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>ضرب اقترانين معقدين.</p>
+                            <p>مشتقة الأول: \( e^{\dots} (\frac{\ln x}{2\sqrt{x}} + \frac{\sqrt{x}}{x}) \)</p>
+                            <p>مشتقة الثاني: \( 5\tan^4(x^2) \sec^2(x^2) (2x) \)</p>
+                            <p>طبق قاعدة الضرب: الأول \(\times\) مشتقة الثاني + الثاني \(\times\) مشتقة الأول.</p>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 5 -->
+                <div class="student-task-box">
+                    <p class="font-bold">5. أجد مشتقة \( y = \cos^4(e^{\sqrt{x}} + \ln(x^3)) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>سلسلة: قوة -> جيب تمام -> جمع (أسي + لوغاريتمي).</p>
+                            $$ y' = 4\cos^3(\dots) \cdot (-\sin(\dots)) \cdot \left( e^{\sqrt{x}}\frac{1}{2\sqrt{x}} +
+                            \frac{3}{x} \right) $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 6 -->
+                <div class="student-task-box">
+                    <p class="font-bold">6. أجد مشتقة \( y = \ln\left(\sqrt{\frac{x+1}{x-1}} \cdot e^{x^2}\right) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>تبسيط إجباري!</strong></p>
+                            $$ y = \frac{1}{2}(\ln(x+1) - \ln(x-1)) + x^2 $$
+                            $$ y' = \frac{1}{2}\left(\frac{1}{x+1} - \frac{1}{x-1}\right) + 2x = \frac{-1}{x^2-1} + 2x
+                            $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 7 -->
+                <div class="student-task-box">
+                    <p class="font-bold">7. أجد مشتقة \( y = \sec^3\left(\frac{x}{\ln x}\right) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            $$ y' = 3\sec^2\left(\frac{x}{\ln x}\right) \cdot \sec\left(\frac{x}{\ln
+                            x}\right)\tan\left(\frac{x}{\ln x}\right) \cdot \left( \frac{\ln x - 1}{(\ln x)^2} \right)
+                            $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 8 -->
+                <div class="student-task-box">
+                    <p class="font-bold">8. أجد مشتقة \( y = x^2 e^{-x} \sin(x) \ln(x) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>ضرب 4 اقترانات! \( (ABCD)' = A'BCD + AB'CD + ABC'D + ABCD' \)</p>
+                            $$ y' = (2x)e^{-x}\sin x \ln x - x^2 e^{-x} \sin x \ln x + x^2 e^{-x} \cos x \ln x + x^2
+                            e^{-x} \sin x \frac{1}{x} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 9 -->
+                <div class="student-task-box">
+                    <p class="font-bold">9. أجد مشتقة \( y = \frac{1}{\sqrt{e^x + \cos x}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>قاعدة الجذر في المقام (أو قوة -1/2):</p>
+                            $$ y' = \frac{-(e^x - \sin x)}{2(e^x + \cos x)^{3/2}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 10 -->
+                <div class="student-task-box">
+                    <p class="font-bold">10. أجد مشتقة \( y = \tan(\sin(\cos(3x))) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>ماتريوشكا الدوال المثلثية!</p>
+                            $$ y' = \sec^2(\sin(\cos 3x)) \cdot \cos(\cos 3x) \cdot (-\sin 3x) \cdot 3 $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 11 -->
+                <div class="student-task-box">
+                    <p class="font-bold">11. أجد مشتقة \( y = \ln(x + \sqrt{x^2+1}) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>هذا هو معكوس دالة الـ sinh (للمعلومة فقط).</p>
+                            $$ y' = \frac{1 + \frac{x}{\sqrt{x^2+1}}}{x + \sqrt{x^2+1}} =
+                            \frac{\frac{\sqrt{x^2+1}+x}{\sqrt{x^2+1}}}{x + \sqrt{x^2+1}} = \frac{1}{\sqrt{x^2+1}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 12 -->
+                <div class="student-task-box">
+                    <p class="font-bold">12. أجد مشتقة \( y = e^{e^{e^x}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>برج الأسس!</p>
+                            $$ y' = e^{e^{e^x}} \cdot e^{e^x} \cdot e^x $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 13 -->
+                <div class="student-task-box">
+                    <p class="font-bold">13. أجد مشتقة \( y = \ln(\ln(\ln x)) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            $$ y' = \frac{1}{\ln(\ln x)} \cdot \frac{1}{\ln x} \cdot \frac{1}{x} = \frac{1}{x \ln x
+                            \ln(\ln x)} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 14 -->
+                <div class="student-task-box">
+                    <p class="font-bold">14. أجد مشتقة \( y = \frac{\sin^2 x - \cos^2 x}{\sin^2 x + \cos^2 x} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p><strong>خدعة!</strong> المقام = 1. البسط = \(-\cos(2x)\).</p>
+                            $$ y = -\cos(2x) \implies y' = 2\sin(2x) $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 15 -->
+                <div class="student-task-box">
+                    <p class="font-bold">15. أجد مشتقة \( y = \sqrt{x} \cdot \sqrt{x+1} \cdot \sqrt{x+2} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>اشتقاق لوغاريتمي أسهل، لكن بالضرب:</p>
+                            $$ y' = y \left( \frac{1}{2x} + \frac{1}{2(x+1)} + \frac{1}{2(x+2)} \right) $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 16 -->
+                <div class="student-task-box">
+                    <p class="font-bold">16. أجد مشتقة \( y = e^{\sin(x^2+1)} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            $$ y' = e^{\sin(x^2+1)} \cdot \cos(x^2+1) \cdot 2x $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 17 -->
+                <div class="student-task-box">
+                    <p class="font-bold">17. أجد مشتقة \( y = \ln\left( \frac{\sqrt{x+1}}{\sqrt[3]{x-1}} \right) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>بسط: \( y = \frac{1}{2}\ln(x+1) - \frac{1}{3}\ln(x-1) \)</p>
+                            $$ y' = \frac{1}{2(x+1)} - \frac{1}{3(x-1)} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 18 -->
+                <div class="student-task-box">
+                    <p class="font-bold">18. أجد مشتقة \( y = \csc(e^{\sqrt{x}}) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            $$ y' = -\csc(e^{\sqrt{x}})\cot(e^{\sqrt{x}}) \cdot e^{\sqrt{x}} \cdot \frac{1}{2\sqrt{x}}
+                            $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 19 -->
+                <div class="student-task-box">
+                    <p class="font-bold">19. أجد مشتقة \( y = x^x \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>اشتقاق لوغاريتمي: \( \ln y = x \ln x \)</p>
+                            $$ \frac{y'}{y} = 1 + \ln x \implies y' = x^x(1 + \ln x) $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 20 -->
+                <div class="student-task-box">
+                    <p class="font-bold">20. أجد مشتقة \( y = (\sin x)^{\cos x} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>اشتقاق لوغاريتمي: \( \ln y = \cos x \ln(\sin x) \)</p>
+                            $$ \frac{y'}{y} = -\sin x \ln(\sin x) + \cos x \cdot \frac{\cos x}{\sin x} $$
+                            $$ y' = (\sin x)^{\cos x} [-\sin x \ln(\sin x) + \cos x \cot x] $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 21 -->
+                <div class="student-task-box">
+                    <p class="font-bold">21. أجد مشتقة \( y = x^{\sqrt{x}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>اشتقاق لوغاريتمي: \( \ln y = \sqrt{x} \ln x \)</p>
+                            $$ \frac{y'}{y} = \frac{1}{2\sqrt{x}}\ln x + \sqrt{x}\frac{1}{x} = \frac{\ln x +
+                            2}{2\sqrt{x}} $$
+                            $$ y' = x^{\sqrt{x}} \left( \frac{\ln x + 2}{2\sqrt{x}} \right) $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 22 -->
+                <div class="student-task-box">
+                    <p class="font-bold">22. أجد مشتقة \( y = \frac{e^x - e^{-x}}{e^x + e^{-x}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>هذا هو \( \tanh(x) \). مشتقته \( \text{sech}^2(x) \).</p>
+                            $$ y' = \frac{(e^x+e^{-x})^2 - (e^x-e^{-x})^2}{(e^x+e^{-x})^2} = \frac{4}{(e^x+e^{-x})^2} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 23 -->
+                <div class="student-task-box">
+                    <p class="font-bold">23. أجد مشتقة \( y = \ln\left(\frac{x^2+1}{x^2-1}\right) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>بسط: \( \ln(x^2+1) - \ln(x^2-1) \)</p>
+                            $$ y' = \frac{2x}{x^2+1} - \frac{2x}{x^2-1} = \frac{-4x}{x^4-1} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 24 -->
+                <div class="student-task-box">
+                    <p class="font-bold">24. أجد مشتقة \( y = x \sqrt{1-x^2} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            $$ y' = \sqrt{1-x^2} + x \cdot \frac{-2x}{2\sqrt{1-x^2}} = \frac{1-2x^2}{\sqrt{1-x^2}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 25 -->
+                <div class="student-task-box">
+                    <p class="font-bold">25. أجد مشتقة \( y = \sin(\ln(\cos x)) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            $$ y' = \cos(\ln(\cos x)) \cdot \frac{1}{\cos x} \cdot (-\sin x) = -\tan x \cos(\ln(\cos x))
+                            $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 26 -->
+                <div class="student-task-box">
+                    <p class="font-bold">26. أجد مشتقة \( y = e^{\sin^2 x} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            $$ y' = e^{\sin^2 x} \cdot 2\sin x \cos x = \sin(2x) e^{\sin^2 x} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 27 -->
+                <div class="student-task-box">
+                    <p class="font-bold">27. أجد مشتقة \( y = \ln(\sec x + \tan x) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>مشتقة مشهورة!</p>
+                            $$ y' = \frac{\sec x \tan x + \sec^2 x}{\sec x + \tan x} = \sec x $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 28 -->
+                <div class="student-task-box">
+                    <p class="font-bold">28. أجد مشتقة \( y = \frac{x}{\ln x} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            $$ y' = \frac{1 \cdot \ln x - x \cdot (1/x)}{(\ln x)^2} = \frac{\ln x - 1}{(\ln x)^2} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 29 -->
+                <div class="student-task-box">
+                    <p class="font-bold">29. أجد مشتقة \( y = \sqrt{x + \sqrt{x}} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            $$ y' = \frac{1 + \frac{1}{2\sqrt{x}}}{2\sqrt{x + \sqrt{x}}} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 30 -->
+                <div class="student-task-box">
+                    <p class="font-bold">30. أجد مشتقة \( y = x^{(x^2)} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>اشتقاق لوغاريتمي: \( \ln y = x^2 \ln x \)</p>
+                            $$ \frac{y'}{y} = 2x \ln x + x^2 \cdot \frac{1}{x} = x(2\ln x + 1) $$
+                            $$ y' = x^{(x^2)} \cdot x(2\ln x + 1) $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 31 -->
+                <div class="student-task-box">
+                    <p class="font-bold">31. أجد مشتقة \( y = \tan^3(e^x) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            $$ y' = 3\tan^2(e^x) \cdot \sec^2(e^x) \cdot e^x $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 32 -->
+                <div class="student-task-box">
+                    <p class="font-bold">32. أجد مشتقة \( y = \log_3(\sqrt[4]{x}) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>بسط: \( y = \frac{1}{4}\log_3 x \)</p>
+                            $$ y' = \frac{1}{4x \ln 3} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 33 -->
+                <div class="student-task-box">
+                    <p class="font-bold">33. أجد مشتقة \( y = e^{x e^x} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>الأس هو \( u = x e^x \). مشتقته \( u' = e^x + x e^x \).</p>
+                            $$ y' = e^{x e^x} (e^x + x e^x) = e^{x(e^x+1)} (1+x) $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 34 -->
+                <div class="student-task-box">
+                    <p class="font-bold">34. أجد مشتقة \( y = \frac{\sin x}{x} \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            $$ y' = \frac{x \cos x - \sin x}{x^2} $$
+                        </div>
+                    </details>
+                </div>
+
+                <!-- سؤال 35 -->
+                <div class="student-task-box">
+                    <p class="font-bold">35. أجد مشتقة \( y = \ln( \sqrt{ \frac{1+\sin x}{1-\sin x} } ) \)</p>
+                    <details>
+                        <summary>إظهار الحل</summary>
+                        <div class="solution-content">
+                            <p>بسط: \( y = \frac{1}{2} [ \ln(1+\sin x) - \ln(1-\sin x) ] \)</p>
+                            $$ y' = \frac{1}{2} [ \frac{\cos x}{1+\sin x} - \frac{-\cos x}{1-\sin x} ] $$
+                            <p>بعد توحيد المقامات والتبسيط: \( y' = \sec x \)</p>
+                        </div>
+                    </details>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ملخص القوانين -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8 border-t-4 border-gray-600">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">ملخص قوانين الاشتقاق</h3>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <p class="font-bold text-blue-700 mb-2">1. القواعد الأساسية:</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>\( \frac{d}{dx}(c) = 0 \)</li>
+                        <li>\( \frac{d}{dx}(x^n) = n x^{n-1} \)</li>
+                        <li>\( \frac{d}{dx}(cf(x)) = c f'(x) \)</li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="font-bold text-blue-700 mb-2">2. الضرب والقسمة:</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>\( (fg)' = f g' + g f' \)</li>
+                        <li>\( (\frac{f}{g})' = \frac{g f' - f g'}{g^2} \)</li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="font-bold text-blue-700 mb-2">3. السلسلة والجذور:</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>\( \frac{d}{dx}[g(x)]^n = n[g(x)]^{n-1} g'(x) \)</li>
+                        <li>\( \frac{d}{dx}\sqrt{g(x)} = \frac{g'(x)}{2\sqrt{g(x)}} \)</li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="font-bold text-blue-700 mb-2">4. المثلثية:</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>\( (\sin u)' = \cos u \cdot u' \)</li>
+                        <li>\( (\cos u)' = -\sin u \cdot u' \)</li>
+                        <li>\( (\tan u)' = \sec^2 u \cdot u' \)</li>
+                    </ul>
+                </div>
+                <div class="col-span-2">
+                    <p class="font-bold text-blue-700 mb-2">5. الأسي واللوغاريتمي:</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1 grid md:grid-cols-2">
+                        <li>\( (e^u)' = e^u \cdot u' \)</li>
+                        <li>\( (\ln u)' = \frac{u'}{u} \)</li>
+                        <li>\( (a^u)' = a^u \ln a \cdot u' \)</li>
+                        <li>\( (\log_a u)' = \frac{u'}{u \ln a} \)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- زر العودة للأعلى -->
+        <button id="back-to-top-btn"
+            class="fixed bottom-6 left-6 bg-blue-600 text-white w-14 h-14 rounded-full shadow-lg hover:bg-blue-700 transition-transform transform hover:scale-110 hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+            </svg>
+        </button>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const backToTopBtn = document.getElementById('back-to-top-btn');
+
+            window.onscroll = function () {
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    backToTopBtn.classList.remove('hidden');
+                } else {
+                    backToTopBtn.classList.add('hidden');
+                }
+            };
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+    </body>
+
+</html>
+```
