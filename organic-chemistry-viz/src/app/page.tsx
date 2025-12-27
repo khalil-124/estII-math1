@@ -18,7 +18,7 @@ const featuredChapters = [
     description: "Learn to draw and interpret structural formulas of organic molecules.",
     icon: "🔗",
     color: "#06b6d4",
-    available: false
+    available: true
   },
   {
     id: 3,

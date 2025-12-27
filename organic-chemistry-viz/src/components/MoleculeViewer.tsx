@@ -3,6 +3,26 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Mobile detection hook
+function useIsMobile() {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(
+                window.innerWidth < 768 ||
+                'ontouchstart' in window ||
+                navigator.maxTouchPoints > 0
+            );
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    return isMobile;
+}
+
 interface MoleculeViewerProps {
     moleculeName: string;
     smilesOrPdb?: string;
@@ -292,7 +312,8 @@ export default function MoleculeViewer({
     const [viewStyle, setViewStyle] = useState<ViewStyle>('stick');
     const [isLoading, setIsLoading] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
-    const [isRotating, setIsRotating] = useState(false); // Start with no rotation for better interaction
+    const [isRotating, setIsRotating] = useState(false);
+    const isMobile = useIsMobile();
 
     const molecule = moleculeData[moleculeName.toLowerCase()];
     const hasMolecule = !!molecule;
@@ -304,6 +325,14 @@ export default function MoleculeViewer({
         const loadViewer = async () => {
             setIsLoading(true);
 
+            // Wait for DOM to be ready (important for mobile)
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            if (!containerRef.current) {
+                setIsLoading(false);
+                return;
+            }
+
             try {
                 // Dynamically import 3Dmol
                 const $3Dmol = await import('3dmol');
@@ -313,10 +342,19 @@ export default function MoleculeViewer({
                     viewerRef.current.clear();
                 }
 
-                // Create new viewer
-                const viewer = $3Dmol.createViewer(containerRef.current, {
+                // Ensure container has dimensions
+                const container = containerRef.current;
+                const rect = container.getBoundingClientRect();
+                if (rect.width === 0 || rect.height === 0) {
+                    console.warn('Container has no dimensions, retrying...');
+                    await new Promise(resolve => setTimeout(resolve, 200));
+                }
+
+                // Create new viewer with mobile-optimized options
+                const viewer = $3Dmol.createViewer(container, {
                     backgroundColor: 'rgba(10, 10, 15, 0.95)',
-                    antialias: true,
+                    antialias: !isMobile, // Disable antialiasing on mobile for performance
+                    disableFog: isMobile, // Disable fog on mobile
                 });
 
                 viewerRef.current = viewer;
@@ -325,6 +363,16 @@ export default function MoleculeViewer({
                 applyStyle(viewer, viewStyle, molecule.color);
                 viewer.zoomTo();
                 viewer.render();
+
+                // Force a resize to ensure proper rendering on mobile
+                if (isMobile) {
+                    setTimeout(() => {
+                        if (viewerRef.current) {
+                            viewerRef.current.resize();
+                            viewerRef.current.render();
+                        }
+                    }, 100);
+                }
 
                 // Stop rotation when user interacts with the viewer
                 const stopRotationOnInteraction = () => {
@@ -637,9 +685,12 @@ export default function MoleculeViewer({
                     ref={containerRef}
                     style={{
                         width: '100%',
-                        height: `${height}px`,
+                        height: isMobile ? '280px' : `${height}px`,
                         position: 'relative',
-                        zIndex: 1
+                        zIndex: 1,
+                        touchAction: 'none', // Prevent scroll interference on mobile
+                        WebkitUserSelect: 'none',
+                        userSelect: 'none',
                     }}
                 />
             </div>

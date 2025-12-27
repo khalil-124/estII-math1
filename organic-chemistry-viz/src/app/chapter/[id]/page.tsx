@@ -1,9 +1,17 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
-import { chapter1 } from '@/data/chapters/chapter1';
+import { chapter1, ChapterData } from '@/data/chapters/chapter1';
+import { chapter2 } from '@/data/chapters/chapter2';
+
+// Chapter data lookup
+const chapters: Record<string, ChapterData> = {
+    '1': chapter1,
+    '2': chapter2,
+};
 import InteractiveQuiz from '@/components/InteractiveQuiz';
 import InteractiveInfoBox from '@/components/InteractiveInfoBox';
 import MiniQuiz from '@/components/MiniQuiz';
@@ -65,14 +73,18 @@ const getDiagramForSection = (sectionId: string) => {
     }
 };
 
-export default function Chapter1Page() {
-    const [currentSection, setCurrentSection] = useState(chapter1.sections[0].id);
+export default function ChapterPage() {
+    const params = useParams();
+    const chapterId = params.id as string;
+    const chapter = chapters[chapterId] || chapter1;
+
+    const [currentSection, setCurrentSection] = useState(chapter.sections[0]?.id || '');
     const [completedSections, setCompletedSections] = useState<Set<string>>(new Set());
 
     // Track scroll position to update current section
     useEffect(() => {
         const handleScroll = () => {
-            const sections = chapter1.sections.map(s => ({
+            const sections = chapter.sections.map(s => ({
                 id: s.id,
                 element: document.getElementById(s.id)
             }));
@@ -90,7 +102,7 @@ export default function Chapter1Page() {
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [chapter]);
 
     // Mark section as complete
     const markSectionComplete = (sectionId: string) => {
@@ -99,11 +111,11 @@ export default function Chapter1Page() {
 
     // Get mini quiz for a section if exists
     const getMiniQuizForSection = (sectionId: string) => {
-        return chapter1.miniQuizzes.find(q => q.afterSection === sectionId);
+        return chapter.miniQuizzes.find(q => q.afterSection === sectionId);
     };
 
     // Calculate progress
-    const progress = (completedSections.size / chapter1.sections.length) * 100;
+    const progress = (completedSections.size / chapter.sections.length) * 100;
 
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId);
@@ -116,7 +128,7 @@ export default function Chapter1Page() {
         <LayoutWrapper
             progress={progress}
             currentSection={currentSection}
-            sections={chapter1.sections.map(s => ({ id: s.id, title: s.title }))}
+            sections={chapter.sections.map(s => ({ id: s.id, title: s.title }))}
             onSectionClick={scrollToSection}
             showToolbar={true}
         >
@@ -127,10 +139,10 @@ export default function Chapter1Page() {
                 animate={{ opacity: 1, y: 0 }}
                 className="chapter-header"
             >
-                <div className="chapter-number">Chapter 1</div>
-                <h1>{chapter1.title}</h1>
+                <div className="chapter-number">Chapter {chapter.id}</div>
+                <h1>{chapter.title}</h1>
                 <p style={{ fontSize: '1.25rem', maxWidth: '800px', color: 'var(--neutral-300)' }}>
-                    {chapter1.subtitle}
+                    {chapter.subtitle}
                 </p>
                 <div style={{
                     display: 'flex',
@@ -139,13 +151,13 @@ export default function Chapter1Page() {
                     flexWrap: 'wrap'
                 }}>
                     <span className="badge" style={{ background: 'rgba(139, 92, 246, 0.2)', color: 'var(--primary-400)' }}>
-                        ⏱️ {chapter1.estimatedTime} min read
+                        ⏱️ {chapter.estimatedTime} min read
                     </span>
                     <span className="badge" style={{ background: 'rgba(16, 185, 129, 0.2)', color: 'var(--accent-emerald)' }}>
-                        📖 {chapter1.sections.length} sections
+                        📖 {chapter.sections.length} sections
                     </span>
                     <span className="badge" style={{ background: 'rgba(245, 158, 11, 0.2)', color: '#f59e0b' }}>
-                        📝 {chapter1.quiz.length} quiz questions
+                        📝 {chapter.quiz.length} quiz questions
                     </span>
                 </div>
             </motion.div>
