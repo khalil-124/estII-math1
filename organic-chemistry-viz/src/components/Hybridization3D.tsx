@@ -1,10 +1,26 @@
 'use client';
 
-import { useRef, useState, Suspense } from 'react';
+import { useRef, useState, Suspense, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, Html, Line } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import * as THREE from 'three';
+
+// Hook to detect if on mobile device
+function useIsMobile() {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    return isMobile;
+}
 
 // Atom sphere component
 function Atom({ position, color, label, size = 0.4 }: {
@@ -270,7 +286,7 @@ function SPStructure({ color }: { color: string }) {
 }
 
 // Main scene
-function Scene({ activeType, color }: { activeType: number; color: string }) {
+function Scene({ activeType, color, isMobile }: { activeType: number; color: string; isMobile: boolean }) {
     return (
         <>
             <ambientLight intensity={0.5} />
@@ -284,10 +300,17 @@ function Scene({ activeType, color }: { activeType: number; color: string }) {
             <OrbitControls
                 enableZoom={true}
                 enablePan={false}
-                minDistance={3}
-                maxDistance={8}
+                minDistance={isMobile ? 4 : 3}
+                maxDistance={isMobile ? 10 : 8}
                 autoRotate
                 autoRotateSpeed={0.5}
+                // Touch support
+                touches={{
+                    ONE: THREE.TOUCH.ROTATE,
+                    TWO: THREE.TOUCH.DOLLY_PAN
+                }}
+                // Enable touch rotation
+                enableRotate={true}
             />
         </>
     );
@@ -308,6 +331,7 @@ interface Hybridization3DProps {
 
 export default function Hybridization3D({ title }: Hybridization3DProps) {
     const [activeTab, setActiveTab] = useState(0);
+    const isMobile = useIsMobile();
 
     const hybridizations = [
         {
@@ -374,7 +398,7 @@ export default function Hybridization3D({ title }: Hybridization3DProps) {
                     fontSize: '0.75rem',
                     color: 'var(--neutral-400)'
                 }}>
-                    🖱️ Drag to rotate
+                    {isMobile ? '👆 Touch to rotate' : '🖱️ Drag to rotate'}
                 </span>
             </div>
 
@@ -422,16 +446,17 @@ export default function Hybridization3D({ title }: Hybridization3DProps) {
             {/* 3D Canvas */}
             <div style={{
                 background: 'linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%)',
-                borderRadius: '16px',
-                height: '350px',
-                overflow: 'hidden'
+                borderRadius: isMobile ? '12px' : '16px',
+                height: isMobile ? '280px' : '350px',
+                overflow: 'hidden',
+                touchAction: 'none' // Prevent scroll interference on mobile
             }}>
                 <Canvas
-                    camera={{ position: [0, 0, 5], fov: 50 }}
-                    style={{ background: 'transparent' }}
+                    camera={{ position: [0, 0, isMobile ? 6 : 5], fov: 50 }}
+                    style={{ background: 'transparent', touchAction: 'none' }}
                 >
                     <Suspense fallback={<Loader />}>
-                        <Scene activeType={activeTab} color={current.color} />
+                        <Scene activeType={activeTab} color={current.color} isMobile={isMobile} />
                     </Suspense>
                 </Canvas>
             </div>
