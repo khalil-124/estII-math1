@@ -4,17 +4,13 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
-import { chapter1, ChapterData } from '@/data/chapters/chapter1';
-import { chapter2 } from '@/data/chapters/chapter2';
-
-// Chapter data lookup
-const chapters: Record<string, ChapterData> = {
-    '1': chapter1,
-    '2': chapter2,
-};
+import { chapters, chapter1 } from '@/data/chapters';
+import { ChapterData } from '@/data/types';
 import InteractiveQuiz from '@/components/InteractiveQuiz';
+import ContentRenderer from '@/components/ContentRenderer';
 import InteractiveInfoBox from '@/components/InteractiveInfoBox';
 import MiniQuiz from '@/components/MiniQuiz';
+import MoleculeComparisonTable from '@/components/MoleculeComparisonTable';
 import ConceptDiagram from '@/components/ConceptDiagram';
 import TextToSpeech from '@/components/TextToSpeech';
 import Flashcards from '@/components/Flashcards';
@@ -22,6 +18,23 @@ import Glossary from '@/components/Glossary';
 import LearningPaths from '@/components/LearningPaths';
 import GameCenter from '@/components/GameCenter';
 import LayoutWrapper from '@/components/LayoutWrapper';
+import {
+    SkeletalFormula,
+    FunctionalGroupDiagram,
+    AminoAcidDiagram,
+    OxidationLevelDiagram,
+    WedgeDashDiagram,
+    AbbreviationsDiagram,
+    HybridizationDiagram,
+    BondPolarityDiagram,
+    MassSpectrumViewer,
+    NMRSpectrumViewer,
+    IRSpectrumViewer,
+    DBECalculator
+} from '@/components/diagrams';
+import QuickCheck from '@/components/QuickCheck';
+import OnePageSummary from '@/components/OnePageSummary';
+import { ExamTip, PlainEnglish, CommonQuestion, ComparisonCard } from '@/components/LearningAids';
 
 // Dynamic import for MoleculeViewer (client-side only)
 const MoleculeViewer = dynamic(() => import('@/components/MoleculeViewer'), {
@@ -76,7 +89,8 @@ const getDiagramForSection = (sectionId: string) => {
 export default function ChapterPage() {
     const params = useParams();
     const chapterId = params.id as string;
-    const chapter = chapters[chapterId] || chapter1;
+
+    const chapter = chapters[chapterId];
 
     const [currentSection, setCurrentSection] = useState(chapter.sections[0]?.id || '');
     const [completedSections, setCompletedSections] = useState<Set<string>>(new Set());
@@ -132,6 +146,40 @@ export default function ChapterPage() {
             onSectionClick={scrollToSection}
             showToolbar={true}
         >
+            {/* Back Button */}
+            <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                style={{ marginBottom: '1.5rem' }}
+            >
+                <a
+                    href="/"
+                    style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.5rem',
+                        color: 'var(--primary-400)',
+                        textDecoration: 'none',
+                        fontSize: '0.95rem',
+                        fontWeight: 500,
+                        padding: '0.5rem 1rem',
+                        background: 'rgba(139, 92, 246, 0.1)',
+                        borderRadius: '10px',
+                        border: '1px solid rgba(139, 92, 246, 0.2)',
+                        transition: 'all 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(139, 92, 246, 0.2)';
+                        e.currentTarget.style.transform = 'translateX(-4px)';
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'rgba(139, 92, 246, 0.1)';
+                        e.currentTarget.style.transform = 'translateX(0)';
+                    }}
+                >
+                    ← Back to Home
+                </a>
+            </motion.div>
 
             {/* Chapter Header */}
             <motion.div
@@ -189,7 +237,7 @@ export default function ChapterPage() {
                     display: 'grid',
                     gap: '0.75rem'
                 }}>
-                    {chapter1.learningObjectives.map((objective, index) => (
+                    {chapter.learningObjectives.map((objective, index) => (
                         <motion.li
                             key={index}
                             initial={{ opacity: 0, x: -20 }}
@@ -211,18 +259,16 @@ export default function ChapterPage() {
                 className="section-card"
                 style={{ marginBottom: '2rem' }}
             >
-                <p style={{
+                <div style={{
                     fontSize: '1.1rem',
                     lineHeight: 1.8,
-                    color: 'var(--neutral-300)',
-                    margin: 0
                 }}>
-                    {chapter1.introduction}
-                </p>
+                    <ContentRenderer content={chapter.introduction} />
+                </div>
             </motion.div>
 
             {/* Sections */}
-            {chapter1.sections.map((section, sectionIndex) => {
+            {chapter.sections.map((section, sectionIndex) => {
                 const miniQuiz = getMiniQuizForSection(section.id);
                 const diagram = getDiagramForSection(section.id);
 
@@ -278,15 +324,7 @@ export default function ChapterPage() {
 
                         {/* Content */}
                         <div style={{ marginBottom: '2rem' }}>
-                            {section.content.split('\n\n').map((paragraph, pIndex) => (
-                                <p key={pIndex} style={{
-                                    color: 'var(--neutral-300)',
-                                    lineHeight: 1.8,
-                                    marginBottom: '1rem'
-                                }}>
-                                    {paragraph}
-                                </p>
-                            ))}
+                            <ContentRenderer content={section.content} />
                         </div>
 
                         {/* Interactive Diagram (if applicable) */}
@@ -295,6 +333,213 @@ export default function ChapterPage() {
                         ) : diagram ? (
                             <ConceptDiagram type={diagram.type as 'hybridization' | 'bonding' | 'electronegativity'} title={diagram.title} />
                         ) : null}
+
+                        {/* Inline SVG Diagrams from section data */}
+                        {section.diagrams && section.diagrams.length > 0 && (
+                            <div style={{
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                                gap: '1.5rem',
+                                justifyContent: 'center',
+                                marginBottom: '2rem',
+                                padding: '1rem',
+                                background: 'rgba(139, 92, 246, 0.05)',
+                                borderRadius: '16px',
+                            }}>
+                                {section.diagrams.map((diag, diagIndex) => (
+                                    <div key={diagIndex} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                        {diag.type === 'skeletal' && (
+                                            <SkeletalFormula {...(diag.props as { molecule: 'methane' | 'ethane' | 'propane' | 'butane' | 'pentane' | 'hexane' | 'cyclohexane' | 'benzene'; showLabels?: boolean; highlightCarbons?: boolean })} />
+                                        )}
+                                        {diag.type === 'functional-group' && (
+                                            <FunctionalGroupDiagram {...(diag.props as { group: 'alcohol' | 'aldehyde' | 'ketone' | 'carboxylic-acid' | 'ester' | 'ether' | 'amine' | 'amide' | 'alkene' | 'alkyne' | 'nitrile' | 'thiol' })} />
+                                        )}
+                                        {diag.type === 'amino-acid' && (
+                                            <AminoAcidDiagram {...(diag.props as { name: string; structure: 'glycine' | 'alanine' | 'phenylalanine' })} />
+                                        )}
+                                        {diag.type === 'oxidation' && (
+                                            <OxidationLevelDiagram {...(diag.props as { showLevel?: 0 | 1 | 2 | 3 | 4 | 'all'; interactive?: boolean })} />
+                                        )}
+                                        {diag.type === 'wedge-dash' && (
+                                            <WedgeDashDiagram {...(diag.props as { molecule?: 'methane' | 'bromochlorofluoromethane'; showLegend?: boolean })} />
+                                        )}
+                                        {diag.type === 'abbreviations' && (
+                                            <AbbreviationsDiagram {...(diag.props as { showAll?: boolean; highlightAbbr?: string })} />
+                                        )}
+                                        {diag.type === 'hybridization' && (
+                                            <HybridizationDiagram {...(diag.props as { type?: 'sp3' | 'sp2' | 'sp' | 'comparison'; interactive?: boolean })} />
+                                        )}
+                                        {diag.type === 'polarity' && (
+                                            <BondPolarityDiagram {...(diag.props as { type?: 'scale' | 'molecules' | 'comparison' })} />
+                                        )}
+                                        {diag.caption && (
+                                            <div style={{
+                                                marginTop: '0.5rem',
+                                                fontSize: '0.85rem',
+                                                color: 'var(--neutral-400)',
+                                                textAlign: 'center',
+                                                fontStyle: 'italic',
+                                            }}>
+                                                {diag.caption}
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
+                        {/* Chapter 3: Spectroscopy Diagrams - ACCURATE DATA FROM TEXTBOOK */}
+
+                        {/* MS: 4-Bromoanisole - Bromine 1:1 isotope pattern (Page 7) */}
+                        {section.id === 'ms-introduction' && (
+                            <MassSpectrumViewer
+                                peaks={[
+                                    { mz: 186, intensity: 100, label: 'M⁺ (⁷⁹Br)', isM: true },
+                                    { mz: 188, intensity: 98, label: 'M+2 (⁸¹Br)' },
+                                    { mz: 171, intensity: 35, label: '-CH₃' },
+                                    { mz: 77, intensity: 55, label: 'C₆H₅⁺' },
+                                ]}
+                                molecularWeight={186}
+                                moleculeName="4-Bromoanisole"
+                                formula="C₇H₇BrO"
+                                halogen="Br"
+                            />
+                        )}
+
+                        {/* MS: Topanol 354 - M+1 carbon isotope (Page 8) */}
+                        {section.id === 'ms-isotopes' && (
+                            <MassSpectrumViewer
+                                peaks={[
+                                    { mz: 236, intensity: 75, label: 'M⁺', isM: true },
+                                    { mz: 237, intensity: 12, label: 'M+1 (¹³C)' },
+                                    { mz: 221, intensity: 100, label: 'M-15 (base)', isBase: true },
+                                    { mz: 57, intensity: 65, label: 't-Bu⁺ (C₄H₉)' },
+                                    { mz: 41, intensity: 30, label: 'C₃H₅⁺' },
+                                ]}
+                                molecularWeight={236}
+                                moleculeName="Topanol 354 (BHT)"
+                                formula="C₁₅H₂₄O₂"
+                            />
+                        )}
+
+                        {/* MS: Hexan-2-one - Fragmentation example */}
+                        {section.id === 'ms-fragmentation' && (
+                            <MassSpectrumViewer
+                                peaks={[
+                                    { mz: 100, intensity: 25, label: 'M⁺', isM: true },
+                                    { mz: 85, intensity: 40, label: 'M-15 (CH₃)' },
+                                    { mz: 71, intensity: 30, label: 'M-29 (C₂H₅)' },
+                                    { mz: 58, intensity: 55, label: 'McLafferty' },
+                                    { mz: 57, intensity: 70, label: 'C₄H₉⁺' },
+                                    { mz: 43, intensity: 100, label: 'CH₃CO⁺', isBase: true },
+                                    { mz: 29, intensity: 35, label: 'CHO⁺' },
+                                    { mz: 15, intensity: 15, label: 'CH₃⁺' },
+                                ]}
+                                molecularWeight={100}
+                                moleculeName="Hexan-2-one (α-Cleavage Example)"
+                                formula="C₆H₁₂O"
+                            />
+                        )}
+
+                        {/* ¹³C NMR: Lactic Acid - 3 signals (Page 14) */}
+                        {section.id === 'nmr-13c-introduction' && (
+                            <NMRSpectrumViewer
+                                peaks={[
+                                    { ppm: 178.5, intensity: 50, label: 'COOH', carbon: 'Carbonyl carbon (quaternary, weak)' },
+                                    { ppm: 69.2, intensity: 85, label: 'CHOH', carbon: 'Methine carbon attached to OH' },
+                                    { ppm: 20.5, intensity: 100, label: 'CH₃', carbon: 'Methyl carbon (highest intensity)' },
+                                ]}
+                                moleculeName="Lactic Acid"
+                                formula="C₃H₆O₃"
+                                type="13C"
+                            />
+                        )}
+
+                        {/* ¹³C NMR: BHT - Symmetry example (Page 16) */}
+                        {section.id === 'nmr-symmetry' && (
+                            <NMRSpectrumViewer
+                                peaks={[
+                                    { ppm: 152.3, intensity: 45, label: 'C-O', carbon: 'Phenolic C (C-1, 1C)' },
+                                    { ppm: 135.6, intensity: 55, label: 'C-t-Bu', carbon: 'C-2,6 bearing t-butyl (2C)' },
+                                    { ppm: 128.5, intensity: 50, label: 'C-CH₃', carbon: 'C-4 bearing methyl (1C)' },
+                                    { ppm: 125.4, intensity: 95, label: 'Ar-H', carbon: 'C-3,5 aromatic CH (2C)' },
+                                    { ppm: 34.2, intensity: 65, label: 'C(CH₃)₃', carbon: 'Quaternary t-butyl C (2C)' },
+                                    { ppm: 30.3, intensity: 100, label: 't-Bu CH₃', carbon: 't-Butyl methyls (6C, highest)' },
+                                    { ppm: 21.2, intensity: 80, label: 'Ar-CH₃', carbon: 'Para-methyl (1C)' },
+                                ]}
+                                moleculeName="BHT (15 carbons → 7 signals)"
+                                formula="C₁₅H₂₄O"
+                                type="13C"
+                            />
+                        )}
+
+                        {/* IR: Hexan-2-one - Simple ketone (Page 21) */}
+                        {section.id === 'ir-introduction' && (
+                            <IRSpectrumViewer
+                                peaks={[
+                                    { wavenumber: 2960, intensity: 'medium', bondType: 'C-H stretch (CH₃, CH₂)' },
+                                    { wavenumber: 2870, intensity: 'medium', bondType: 'C-H stretch' },
+                                    { wavenumber: 1720, intensity: 'strong', bondType: 'C=O stretch (ketone)' },
+                                    { wavenumber: 1460, intensity: 'medium', bondType: 'C-H bend' },
+                                    { wavenumber: 1360, intensity: 'weak', bondType: 'CH₃ symmetric bend' },
+                                ]}
+                                moleculeName="Hexan-2-one"
+                                formula="C₆H₁₂O"
+                            />
+                        )}
+
+                        {section.id === 'dbe-calculation' && (
+                            <DBECalculator />
+                        )}
+
+                        {/* ¹H NMR: Ethyl Acetate - Integration example (Page 18) */}
+                        {section.id === 'nmr-1h-introduction' && (
+                            <NMRSpectrumViewer
+                                peaks={[
+                                    { ppm: 4.12, intensity: 45, label: 'OCH₂', carbon: 'Quartet (2H)' },
+                                    { ppm: 2.04, intensity: 75, label: 'CH₃CO', carbon: 'Singlet (3H)' },
+                                    { ppm: 1.26, intensity: 75, label: 'CH₃', carbon: 'Triplet (3H)' },
+                                ]}
+                                moleculeName="Ethyl Acetate"
+                                formula="C₄H₈O₂"
+                                type="1H"
+                            />
+                        )}
+
+                        {/* IR: Benzoic Acid - Carboxylic acid O-H pattern (Page 25) */}
+                        {section.id === 'ir-hydrogen-bonding' && (
+                            <IRSpectrumViewer
+                                peaks={[
+                                    { wavenumber: 2900, intensity: 'broad', bondType: 'O-H stretch (carboxylic acid, very broad 2500-3300)' },
+                                    { wavenumber: 3070, intensity: 'medium', bondType: 'Aromatic C-H stretch' },
+                                    { wavenumber: 1690, intensity: 'strong', bondType: 'C=O stretch (conjugated acid)' },
+                                    { wavenumber: 1600, intensity: 'medium', bondType: 'C=C aromatic stretch' },
+                                    { wavenumber: 1450, intensity: 'medium', bondType: 'C-C aromatic ring' },
+                                    { wavenumber: 1320, intensity: 'strong', bondType: 'C-O stretch' },
+                                    { wavenumber: 940, intensity: 'broad', bondType: 'O-H out-of-plane bend (dimer)' },
+                                    { wavenumber: 710, intensity: 'strong', bondType: 'C-H aromatic bend' },
+                                ]}
+                                moleculeName="Benzoic Acid"
+                                formula="C₇H₆O₂"
+                            />
+                        )}
+
+                        {/* MS: Compound X - Problem solving example (Page 34) */}
+                        {section.id === 'problem-solving-strategy' && (
+                            <MassSpectrumViewer
+                                peaks={[
+                                    { mz: 181, intensity: 85, label: 'M⁺ (⁷⁹Br)', isM: true },
+                                    { mz: 183, intensity: 83, label: 'M+2 (⁸¹Br)' },
+                                    { mz: 101, intensity: 60, label: 'M - Br' },
+                                    { mz: 73, intensity: 100, label: 'Dioxolane⁺', isBase: true },
+                                    { mz: 45, intensity: 35, label: 'CHO₂⁺' },
+                                ]}
+                                molecularWeight={181}
+                                moleculeName="Compound X (Cyclic Acetal)"
+                                formula="C₅H₉BrO₂"
+                                halogen="Br"
+                            />
+                        )}
 
                         {/* Fun Fact */}
                         {section.funFact && (
@@ -317,23 +562,16 @@ export default function ChapterPage() {
                             </InteractiveInfoBox>
                         )}
 
-                        {/* Molecules */}
+                        {/* Molecules - Premium Comparison Table */}
                         {section.molecules && section.molecules.length > 0 && (
-                            <div style={{
-                                display: 'grid',
-                                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                                gap: '1.5rem',
-                                marginBottom: '2rem'
-                            }}>
-                                {section.molecules.map((molecule, mIndex) => (
-                                    <MoleculeViewer
-                                        key={mIndex}
-                                        moleculeName={molecule.name}
-                                        description={molecule.description}
-                                        height={300}
-                                    />
-                                ))}
-                            </div>
+                            <MoleculeComparisonTable
+                                title={`🔬 ${section.title} - Interactive Molecules`}
+                                molecules={section.molecules.map((mol, idx) => ({
+                                    ...mol,
+                                    level: section.id === 'oxidation-levels' ? idx : undefined,
+                                }))}
+                                showLevels={section.id === 'oxidation-levels'}
+                            />
                         )}
 
                         {/* Key Points */}
@@ -366,6 +604,27 @@ export default function ChapterPage() {
                             </div>
                         )}
 
+                        {/* Exam Tip */}
+                        {section.examTip && (
+                            <ExamTip>{section.examTip}</ExamTip>
+                        )}
+
+                        {/* Plain English Translation */}
+                        {section.plainEnglish && (
+                            <PlainEnglish
+                                technical={section.plainEnglish.technical}
+                                simple={section.plainEnglish.simple}
+                            />
+                        )}
+
+                        {/* Quick Check - Section Review */}
+                        {section.quickCheck && section.quickCheck.length > 0 && (
+                            <QuickCheck
+                                title={`🧪 Quick Check: ${section.title}`}
+                                questions={section.quickCheck}
+                            />
+                        )}
+
                         {/* Mini Quiz after section (if exists) */}
                         {miniQuiz && (
                             <MiniQuiz
@@ -376,6 +635,9 @@ export default function ChapterPage() {
                     </motion.div>
                 );
             })}
+
+            {/* One Page Summary - Quick Reference */}
+            {chapter.id === 2 && <OnePageSummary chapterId={chapter.id} />}
 
             {/* Section Divider */}
             <div style={{
@@ -407,8 +669,8 @@ export default function ChapterPage() {
                     Practice key concepts with interactive flashcards. Click to flip!
                 </p>
                 <Flashcards
-                    cards={chapter1.flashcards}
-                    title={`Chapter 1 Flashcards`}
+                    cards={chapter.flashcards}
+                    title={`Chapter ${chapter.id} Flashcards`}
                 />
             </motion.div>
 
@@ -435,8 +697,8 @@ export default function ChapterPage() {
                     Quick reference for key terms and concepts covered in this chapter.
                 </p>
                 <Glossary
-                    terms={chapter1.glossary}
-                    title={`Chapter 1 Terms`}
+                    terms={chapter.glossary}
+                    title={`Chapter ${chapter.id} Terms`}
                 />
             </motion.div>
 
@@ -463,12 +725,12 @@ export default function ChapterPage() {
                     Reinforce your learning with fun interactive games. Match terms, test your memory, and more!
                 </p>
                 <GameCenter
-                    pairs={chapter1.flashcards.map((card, i) => ({
+                    pairs={chapter.flashcards.map((card, i) => ({
                         id: String(i + 1),
                         term: card.front,
                         definition: card.back
                     }))}
-                    title="Chapter 1 Games"
+                    title={`Chapter ${chapter.id} Games`}
                 />
             </motion.div>
 
@@ -489,13 +751,14 @@ export default function ChapterPage() {
                         Test Your Knowledge
                     </h2>
                     <p style={{ color: 'var(--neutral-400)' }}>
-                        You've covered all the content! Now test your understanding with these {chapter1.quiz.length} practice questions.
+                        You've covered all the content! Now test your understanding with these {chapter.quiz.length} practice questions.
                     </p>
                 </div>
 
                 <InteractiveQuiz
-                    title="Chapter 1 Quiz"
-                    questions={chapter1.quiz}
+                    key={chapter.id}
+                    title={`Chapter ${chapter.id} Quiz`}
+                    questions={chapter.quiz}
                 />
             </motion.div>
 
@@ -518,8 +781,7 @@ export default function ChapterPage() {
                     Congratulations!
                 </h2>
                 <p style={{ color: 'var(--neutral-300)', maxWidth: '600px', margin: '0 auto 1.5rem' }}>
-                    You've completed Chapter 1: What is Organic Chemistry? You now understand the
-                    fundamentals of carbon chemistry, bonding, and hybridization.
+                    You've completed Chapter {chapter.id}: {chapter.title}! Great job mastering this content.
                 </p>
                 <div style={{
                     display: 'flex',
