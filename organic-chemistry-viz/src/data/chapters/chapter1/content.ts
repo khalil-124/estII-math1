@@ -30,7 +30,14 @@ export const sections: ChapterSection[] = [
       three-dimensional structures. This versatility allows for an almost infinite variety of molecules, 
       each with its own unique properties. Your DNA, the blueprint of life, is an organic molecule containing 
       millions of atoms arranged in a precise sequence.`,
+    video: {
+      type: 'hls' as const,
+      url: 'https://vz-2adfd2e0-f8c.b-cdn.net/29a26116-53ac-4d1a-adc1-cab5c741aeb4/playlist.m3u8',
+      duration: '5:30'
+    },
     molecules: [
+      { name: "11-cis-Retinal", description: "The light-sensitive molecule in your eyes - before light hits it" },
+      { name: "all-trans-Retinal", description: "The same molecule AFTER absorbing light - shape changed!" },
       { name: "Serotonin", description: "The 'happiness' neurotransmitter that regulates mood" },
       { name: "Caffeine", description: "The stimulant that helps you stay awake" }
     ],
@@ -41,7 +48,32 @@ export const sections: ChapterSection[] = [
       "Biological processes depend entirely on organic molecules"
     ],
     funFact: "Your eyes contain about 120 million rod cells, each packed with millions of retinal molecules. Every second, billions of these molecules are changing shape in response to light!",
-    realWorldConnection: "LASIK eye surgery works by reshaping the cornea, but your ability to see still depends on the retinal molecules unchanged since birth."
+    realWorldConnection: "LASIK eye surgery works by reshaping the cornea, but your ability to see still depends on the retinal molecules unchanged since birth.",
+    quickCheck: [
+      {
+        question: "Which organic molecule is responsible for vision by changing shape when light hits it?",
+        options: ["Serotonin", "Caffeine", "11-cis-retinal", "DNA"],
+        correctIndex: 2,
+        explanation: "11-cis-retinal changes from cis to trans configuration when it absorbs light, triggering the signals your brain interprets as vision."
+      },
+      {
+        question: "What neurotransmitter affects your mood, sleep, and appetite?",
+        options: ["Caffeine", "Serotonin", "Retinal", "Menthol"],
+        correctIndex: 1,
+        explanation: "Serotonin is the 'happiness' neurotransmitter. Antidepressants often work by altering serotonin levels in the brain."
+      },
+      {
+        question: "How many bonds can carbon form with other atoms?",
+        options: ["2", "3", "4", "6"],
+        correctIndex: 2,
+        explanation: "Carbon can form 4 stable covalent bonds, which allows it to create chains, rings, and complex 3D structures - the basis of all organic chemistry!"
+      }
+    ],
+    simulation: {
+      type: 'vision' as const,
+      title: 'Vision Simulator',
+      description: 'See how light triggers vision at the molecular level by transforming 11-cis-retinal to all-trans-retinal'
+    }
   },
   {
     id: "organic-compounds",
@@ -68,6 +100,11 @@ export const sections: ChapterSection[] = [
       Why is carbon so special? It's in the "Goldilocks" position of the periodic table—not too big, not too small, 
       not too electronegative. This allows it to form stable bonds with many elements and create the molecular 
       diversity that life requires.`,
+    video: {
+      type: 'hls' as const,
+      url: 'https://vz-2adfd2e0-f8c.b-cdn.net/1c53dca0-7041-4cf0-b86f-fe95b983ac1c/playlist.m3u8',
+      duration: '10:00'
+    },
     molecules: [
       { name: "Methane", description: "The simplest organic molecule (CH₄)" },
       { name: "Ethanol", description: "Simple alcohol found in beverages" }
@@ -79,7 +116,78 @@ export const sections: ChapterSection[] = [
       "Carbon's 'Goldilocks' position makes it ideal for stable bonding"
     ],
     funFact: "Over 10 million organic compounds are known, and thousands more are discovered every year! In contrast, there are only about 100,000 known inorganic compounds.",
-    commonMistake: "Not all carbon-containing compounds are organic. CO₂, carbonates (like limestone), and cyanides are considered inorganic by convention."
+    commonMistake: "Not all carbon-containing compounds are organic. CO₂, carbonates (like limestone), and cyanides are considered inorganic by convention.",
+    quickCheck: [
+      {
+        question: "Who disproved the 'vital force' theory by synthesizing urea in the lab?",
+        options: ["Marie Curie", "Friedrich Wöhler", "Louis Pasteur", "Albert Einstein"],
+        correctIndex: 1,
+        explanation: "Friedrich Wöhler synthesized urea from inorganic ammonium cyanate in 1828, proving organic compounds don't need a 'life force' to be made."
+      },
+      {
+        question: "What is the simplest organic compound?",
+        options: ["Ethanol", "Carbon dioxide", "Methane (CH₄)", "Water"],
+        correctIndex: 2,
+        explanation: "Methane (CH₄) is the simplest organic compound - just one carbon bonded to four hydrogens. It's the main component of natural gas."
+      },
+      {
+        question: "Which of these is NOT considered an organic compound?",
+        options: ["Methane", "Ethanol", "Carbon dioxide", "Benzene"],
+        correctIndex: 2,
+        explanation: "CO₂, carbonates, and cyanides are considered inorganic by convention, even though they contain carbon."
+      }
+    ],
+    drugDiscovery: {
+      title: 'The Aspirin Legend – From Willow Bark to the Lab',
+      subtitle: 'How chemistry improved on nature\'s remedy',
+      story: [
+        {
+          phase: 'from-nature',
+          title: '🌿 From Nature (Vitalism Root)',
+          year: 'Ancient - 1800s',
+          content: `For thousands of years, humans used Willow Bark (لحاء شجر الصفصاف) to treat pain and fever. 
+            Even Hippocrates recommended it in ancient Greece. People believed the "secret of healing" 
+            existed only in this living tree - a perfect example of vitalism thinking.`,
+          molecule: 'Salicin'
+        },
+        {
+          phase: 'the-problem',
+          title: '⚗️ The Chemical Problem',
+          year: '1820s-1890s',
+          content: `Scientists isolated the active compound: Salicin, which the body converts to Salicylic Acid. 
+            While effective, Salicylic Acid was extremely bitter and caused severe stomach irritation. 
+            This is where organic chemistry stepped in to improve what nature provided.`,
+          molecule: 'Salicylic Acid'
+        },
+        {
+          phase: 'breakthrough',
+          title: '💊 The Hoffmann Breakthrough',
+          year: '1897',
+          content: `Felix Hoffmann at Bayer made a simple but brilliant modification: he added an acetyl group 
+            (-COCH₃) to the hydroxyl group of Salicylic Acid, creating Acetylsalicylic Acid (C₉H₈O₄) - 
+            known worldwide as Aspirin. The result: more effective, less toxic, and easier on the stomach.`,
+          molecule: 'Aspirin'
+        }
+      ],
+      keyInsight: `This story perfectly illustrates the defeat of vitalism: instead of depending on the "life force" 
+        in willow bark, chemists used their understanding of molecular structure to CREATE something better 
+        than nature provided. The acetyl group was the key - a simple change that transformed medicine.`,
+      academicReference: {
+        title: 'Aspirin: The Remarkable Story of a Wonder Drug',
+        author: 'Diarmuid Jeffreys',
+        quote: '"The story of Aspirin is the story of modern medicine itself—the transition from herbs to high-science."'
+      },
+      interactiveIdeas: [
+        {
+          name: 'The Acetyl Switch',
+          description: 'Drag the acetyl group onto the correct oxygen atom to synthesize Aspirin!'
+        },
+        {
+          name: 'COX-2 Inhibition',
+          description: 'See how Aspirin irreversibly inhibits the COX enzyme by transferring its acetyl group.'
+        }
+      ]
+    }
   },
   {
     id: "colors-of-organic-chemistry",
@@ -93,32 +201,59 @@ export const sections: ChapterSection[] = [
       single and double bonds (called CONJUGATED systems) are often colored because these electrons 
       are easily excited by visible light.
       
-      STUNNING EXAMPLES:
-      
-      • AZULENE: A beautiful deep blue LIQUID with a peppery smell! Unlike most blue compounds, 
-        azulene is a small molecule with just 10 carbons. Its unusual color comes from its 
-        non-alternating ring structure.
-      
-      • DDQ (Dichlorodicyanoquinone): Forms stunning orange-amber needle crystals. Used by 
-        chemists as an oxidizing agent in synthesis.
-      
-      • DIAZOMETHANE: A bright YELLOW gas. It's also explosive and toxic—a reminder that 
-        colorful doesn't mean safe! Organic chemists handle it with extreme care.
-      
-      • 9-NITROSOJULOLIDINE: Green prisms with a remarkable steel-blue metallic lustre.
-      
-      • CHLOROPHYLL: The molecule that makes plants green! It captures sunlight energy 
-        for photosynthesis. Its green color comes from a magnesium ion held in an organic ring.
-      
-      • BETA-CAROTENE: The orange pigment in carrots! It's also why flamingos are pink 
-        (they eat shrimp that ate algae containing carotenoids).
-      
       THE CONJUGATION RULE:
-      Generally, the more conjugated double bonds a molecule has, the longer the wavelength 
-      of light it absorbs, and the more "red-shifted" its color becomes:
-      • Few conjugated bonds → absorbs UV (colorless)
-      • Medium conjugation → absorbs blue/violet (appears yellow/orange)
-      • Extensive conjugation → absorbs across visible spectrum (appears red, purple, or blue)`,
+      See the interactive diagram below to understand how conjugation length affects the color we see!`,
+    conjugationDiagram: true,
+    colorExamples: [
+      {
+        name: "Azulene",
+        description: "A beautiful deep blue LIQUID with a peppery smell! Unusual for a small organic molecule (10 carbons).",
+        color: "#0000FF", // Deep Blue
+        type: "liquid",
+        pdbId: "azulene",
+        structure2d: "/molecules/azulene-2d.svg"
+      },
+      {
+        name: "DDQ",
+        description: "Forms stunning orange-amber needle crystals. Used as an oxidizing agent.",
+        color: "#FF8C00", // Dark Orange
+        type: "crystal",
+        pdbId: "ddq"
+      },
+      {
+        name: "Diazomethane",
+        description: "A bright YELLOW gas. Explosive and toxic - colorful doesn't mean safe!",
+        color: "#FFD700", // Yellow
+        type: "gas",
+        pdbId: "diazomethane"
+      },
+      {
+        name: "9-Nitrosojulolidine",
+        description: "Green prisms with a remarkable steel-blue metallic lustre.",
+        color: "#2E8B57", // Sea Green
+        type: "crystal",
+        pdbId: "nitrosojulolidine"
+      },
+      {
+        name: "Chlorophyll",
+        description: "The molecule that makes plants green! Captures sunlight energy for photosynthesis.",
+        color: "#008000", // Green
+        type: "solid",
+        pdbId: "chlorophyll"
+      },
+      {
+        name: "Beta-Carotene",
+        description: "The orange pigment in carrots! Also makes flamingos pink (from their diet).",
+        color: "#FF4500", // Orange Red
+        type: "solid",
+        pdbId: "beta_carotene"
+      }
+    ],
+    video: {
+      type: 'hls' as const,
+      url: 'https://vz-2adfd2e0-f8c.b-cdn.net/3cd3146b-3c0f-4527-b63c-6b2d8f779343/playlist.m3u8',
+      duration: '12:00'
+    },
     molecules: [
       { name: "Azulene", description: "A beautiful deep blue liquid - unusual for a small organic molecule!" },
       { name: "Benzene", description: "Colorless - not enough conjugation to absorb visible light" }
@@ -131,7 +266,27 @@ export const sections: ChapterSection[] = [
       "Diazomethane is yellow but highly dangerous"
     ],
     funFact: "The deep blue color of azulene was known to 15th-century alchemists who distilled it from chamomile. The name comes from the Arabic 'lazaward' meaning blue!",
-    realWorldConnection: "Food coloring, fabric dyes, and the pigments in your TV screen all rely on organic chemists' understanding of how molecular structure creates color."
+    realWorldConnection: "Food coloring, fabric dyes, and the pigments in your TV screen all rely on organic chemists' understanding of how molecular structure creates color.",
+    quickCheck: [
+      {
+        question: "What structural feature makes organic compounds colorful?",
+        options: ["Single bonds only", "Conjugated double bond systems", "Ionic bonds", "Small molecular size"],
+        correctIndex: 1,
+        explanation: "Conjugated systems (alternating single and double bonds) allow electrons to absorb visible light, creating color."
+      },
+      {
+        question: "Azulene is unique because it is:",
+        options: ["A colorless gas", "A blue liquid", "A red solid", "A green crystal"],
+        correctIndex: 1,
+        explanation: "Azulene is a rare example of a small organic molecule (just 10 carbons) that's a beautiful deep blue LIQUID!"
+      },
+      {
+        question: "More conjugated double bonds generally means the compound absorbs:",
+        options: ["Shorter wavelength light (UV)", "Longer wavelength light (visible/red)", "No light at all", "Radio waves"],
+        correctIndex: 1,
+        explanation: "More conjugation means longer wavelength absorption - the color shifts toward red as conjugation increases."
+      }
+    ]
   },
   {
     id: "synthetic-dyes",
@@ -161,6 +316,11 @@ export const sections: ChapterSection[] = [
       • Aniline: Benzene with an -NH₂ group (basis of many dyes)
       
       These aromatic building blocks remain essential in pharmaceuticals, polymers, and materials today.`,
+    video: {
+      type: 'hls' as const,
+      url: 'https://vz-2adfd2e0-f8c.b-cdn.net/e7874c2d-9dc0-4631-9199-bb507cfc38b3/playlist.m3u8',
+      duration: '15:00'
+    },
     molecules: [
       { name: "Benzene", description: "The parent aromatic compound - a hexagonal ring" }
     ],
@@ -171,7 +331,27 @@ export const sections: ChapterSection[] = [
       "German chemical industry (BASF, Bayer) grew from dye chemistry"
     ],
     funFact: "The jeans you might be wearing are colored with INDIGO, now made synthetically. Natural indigo from plants was once so valuable it was called 'blue gold'!",
-    realWorldConnection: "Many modern drugs were discovered from dye research. Sulfa antibiotics, the first antibacterial drugs, came from work on azo dyes."
+    realWorldConnection: "Many modern drugs were discovered from dye research. Sulfa antibiotics, the first antibacterial drugs, came from work on azo dyes.",
+    quickCheck: [
+      {
+        question: "Who accidentally discovered the first synthetic dye (Mauveine)?",
+        options: ["Marie Curie", "William Henry Perkin", "Albert Einstein", "Louis Pasteur"],
+        correctIndex: 1,
+        explanation: "18-year-old William Perkin discovered Mauveine in 1856 while trying to make quinine. His purple dye launched the chemical industry!"
+      },
+      {
+        question: "What year was Mauveine discovered?",
+        options: ["1776", "1856", "1920", "1950"],
+        correctIndex: 1,
+        explanation: "1856 - this discovery launched the 'mauve decade' of fashion and the German chemical industry (BASF, Bayer)."
+      },
+      {
+        question: "What type of structural unit is found in most synthetic dyes?",
+        options: ["Sugar rings", "Benzene rings (aromatic)", "Alkane chains", "Sulfur atoms"],
+        correctIndex: 1,
+        explanation: "Aromatic compounds (benzene rings) are key building blocks in dyes because of their stability and ability to absorb visible light."
+      }
+    ]
   },
   {
     id: "smell-and-pheromones",
@@ -228,6 +408,11 @@ export const sections: ChapterSection[] = [
       thioacetone, the smell evacuated the entire city! People vomited in the streets from the stench. 
       In 1967, scientists repeated the experiment near Oxford, and workers at an Esso research station 
       400 meters away complained within seconds. This demonstrates just how sensitive our smell is!`,
+    video: {
+      type: 'hls' as const,
+      url: 'https://vz-2adfd2e0-f8c.b-cdn.net/effe4764-155a-457a-8fd3-f2b40c313f19/playlist.m3u8',
+      duration: '14:00'
+    },
     molecules: [
       { name: "Limonene", description: "Mirror-image forms smell like oranges vs lemons!" },
       { name: "Muscone", description: "Musk deer pheromone - 15-membered ring" },
@@ -243,7 +428,33 @@ export const sections: ChapterSection[] = [
       "Stereochemistry—the 3D arrangement of atoms—matters for biology"
     ],
     funFact: "Humans can distinguish over 1 trillion different smells! Your olfactory system has about 400 different receptor types that work in combinations.",
-    commonMistake: "Don't assume mirror-image molecules behave the same way. In biology and medicine, the 'handedness' of a molecule is often critical for its activity."
+    commonMistake: "Don't assume mirror-image molecules behave the same way. In biology and medicine, the 'handedness' of a molecule is often critical for its activity.",
+    quickCheck: [
+      {
+        question: "(R)-limonene smells like oranges. What does (S)-limonene smell like?",
+        options: ["Also oranges", "Lemons", "Nothing - it's odorless", "Mint"],
+        correctIndex: 1,
+        explanation: "Mirror-image molecules (enantiomers) can smell completely different! Same atoms, different 3D arrangement, different smell."
+      },
+      {
+        question: "Which functional group creates strong odors like in skunk spray and garlic?",
+        options: ["Alcohols (-OH)", "Thiols (-SH)", "Amines (-NH₂)", "Ketones (C=O)"],
+        correctIndex: 1,
+        explanation: "Thiols (-SH groups) are notorious for their strong smells. Skunk spray contains 2-butene-1-thiol!"
+      },
+      {
+        question: "What is a pheromone?",
+        options: ["A type of vitamin", "A chemical communication molecule", "A protein", "A type of sugar"],
+        correctIndex: 1,
+        explanation: "Pheromones are chemical signals that insects and other animals use to communicate - for mating, marking trails, or sounding alarms."
+      },
+      {
+        question: "The insect pheromone frontalin has two enantiomers. One attracts beetles, the other:",
+        options: ["Also attracts them", "Repels them", "Kills them", "Has no effect"],
+        correctIndex: 1,
+        explanation: "One enantiomer attracts bark beetles while its mirror image REPELS them! This is used in pest control to protect forests."
+      }
+    ]
   },
   {
     id: "stereochemistry-intro",
@@ -278,6 +489,11 @@ export const sections: ChapterSection[] = [
       
       Understanding stereochemistry is essential for understanding how drugs work and how enzymes 
       recognize their substrates with exquisite specificity.`,
+    video: {
+      type: 'hls' as const,
+      url: 'https://vz-2adfd2e0-f8c.b-cdn.net/3486a75c-78ee-422c-a14b-685873952501/playlist.m3u8',
+      duration: '11:00'
+    },
     keyPoints: [
       "Chirality = molecular handedness (non-superimposable mirror images)",
       "A carbon with 4 different groups is a chiral center",
@@ -286,7 +502,27 @@ export const sections: ChapterSection[] = [
       "Modern drug development studies each enantiomer separately"
     ],
     funFact: "All amino acids in your proteins are 'left-handed' (L-configuration), and all sugars in DNA are 'right-handed' (D-configuration). Life chose specific handedness billions of years ago!",
-    commonMistake: "Enantiomers rotate plane-polarized light in opposite directions, but this optical activity doesn't predict which one is biologically active—you have to test them!"
+    commonMistake: "Enantiomers rotate plane-polarized light in opposite directions, but this optical activity doesn't predict which one is biologically active—you have to test them!",
+    quickCheck: [
+      {
+        question: "What does 'chiral' mean?",
+        options: ["Colorful", "Handedness - non-superimposable mirror images", "Magnetic", "Radioactive"],
+        correctIndex: 1,
+        explanation: "Chirality comes from Greek for 'hand'. Like your left and right hands, chiral molecules are mirror images that can't be superimposed."
+      },
+      {
+        question: "The thalidomide tragedy showed that:",
+        options: ["All drugs are dangerous", "Enantiomers can have very different biological effects", "Natural products are safer", "Only one enantiomer exists"],
+        correctIndex: 1,
+        explanation: "One thalidomide enantiomer was safe, the other caused birth defects. This tragedy led to strict pharmaceutical regulations."
+      },
+      {
+        question: "What creates a chiral center in a carbon atom?",
+        options: ["Being bonded to oxygen", "Having four DIFFERENT groups attached", "Being in a ring", "Having double bonds"],
+        correctIndex: 1,
+        explanation: "A carbon bonded to four DIFFERENT groups creates a chiral center - the source of molecular handedness."
+      }
+    ]
   },
   {
     id: "atomic-structure-review",
@@ -317,6 +553,11 @@ export const sections: ChapterSection[] = [
       The octet rule states that atoms are most stable when their outer shell has 8 electrons (or 2 for 
       hydrogen). Carbon needs 4 more electrons to complete its octet, so it shares electrons 
       by forming 4 covalent bonds.`,
+    video: {
+      type: 'hls' as const,
+      url: 'https://vz-2adfd2e0-f8c.b-cdn.net/94e0612a-1a23-474e-8491-ca21b66ec4fa/playlist.m3u8',
+      duration: '08:00'
+    },
     keyPoints: [
       "Electrons orbit the nucleus in shells (energy levels)",
       "Carbon has 6 electrons: 2 in the first shell, 4 in the second",
@@ -325,7 +566,27 @@ export const sections: ChapterSection[] = [
       "Carbon forms 4 bonds to complete its octet"
     ],
     funFact: "If an atom were the size of a football stadium, the nucleus would be the size of a marble at the center—atoms are mostly empty space!",
-    commonMistake: "Don't confuse shells with orbitals. Shells are energy levels; orbitals are specific regions within shells where electrons are likely to be found."
+    commonMistake: "Don't confuse shells with orbitals. Shells are energy levels; orbitals are specific regions within shells where electrons are likely to be found.",
+    quickCheck: [
+      {
+        question: "How many valence electrons does carbon have?",
+        options: ["2", "4", "6", "8"],
+        correctIndex: 1,
+        explanation: "Carbon has 4 valence electrons in its outer shell. This is why carbon forms 4 bonds!"
+      },
+      {
+        question: "The octet rule states that atoms are most stable when their outer shell has:",
+        options: ["2 electrons", "4 electrons", "6 electrons", "8 electrons"],
+        correctIndex: 3,
+        explanation: "Atoms 'want' 8 electrons in their outer shell (2 for hydrogen). Carbon shares 4 electrons to complete its octet."
+      },
+      {
+        question: "Which particles are found in the nucleus of an atom?",
+        options: ["Electrons only", "Protons and neutrons", "Neutrons only", "Electrons and protons"],
+        correctIndex: 1,
+        explanation: "The nucleus contains protons (positive) and neutrons (neutral). Electrons orbit outside the nucleus."
+      }
+    ]
   },
   {
     id: "chemical-bonding",
@@ -356,6 +617,11 @@ export const sections: ChapterSection[] = [
       LEWIS STRUCTURES (electron dot structures) show bonding:
       • Each line represents 2 shared electrons (a bonding pair)
       • Dots around atoms represent non-bonding electrons (lone pairs)`,
+    video: {
+      type: 'hls' as const,
+      url: 'https://vz-2adfd2e0-f8c.b-cdn.net/5469430a-05ae-42dc-b550-dcfd9f46f151/playlist.m3u8',
+      duration: '09:00'
+    },
     molecules: [
       { name: "Methane", description: "Perfect example of 4 covalent C-H bonds" },
       { name: "Ethanol", description: "Contains C-C, C-H, C-O, and O-H bonds" }
@@ -368,7 +634,27 @@ export const sections: ChapterSection[] = [
       "Lewis structures show bonding and lone pairs"
     ],
     realWorldConnection: "Diamond is incredibly hard because it's a giant network of carbon atoms, each forming 4 strong covalent bonds with its neighbors in 3D.",
-    commonMistake: "When drawing Lewis structures, don't forget lone pairs! Nitrogen has 1 lone pair, oxygen has 2, and halogens have 3."
+    commonMistake: "When drawing Lewis structures, don't forget lone pairs! Nitrogen has 1 lone pair, oxygen has 2, and halogens have 3.",
+    quickCheck: [
+      {
+        question: "In organic chemistry, bonds are typically formed by:",
+        options: ["Electron transfer (ionic)", "Electron sharing (covalent)", "Magnetic attraction", "Nuclear fusion"],
+        correctIndex: 1,
+        explanation: "Organic chemistry is based on covalent bonds where atoms SHARE electrons. Ionic bonds are rare in organic compounds."
+      },
+      {
+        question: "Each line in a Lewis structure represents:",
+        options: ["1 electron", "2 shared electrons", "4 electrons", "An ionic bond"],
+        correctIndex: 1,
+        explanation: "Each line = 2 shared electrons (a bonding pair). That's why carbon with 4 lines has 8 electrons around it!"
+      },
+      {
+        question: "How many lone pairs does oxygen typically have?",
+        options: ["0", "1", "2", "3"],
+        correctIndex: 2,
+        explanation: "Oxygen has 2 lone pairs (4 non-bonding electrons). Remember: N has 1 lone pair, O has 2, halogens have 3."
+      }
+    ]
   },
   {
     id: "hybridization",
@@ -475,7 +761,33 @@ export const sections: ChapterSection[] = [
       "Pi bonds are more reactive than sigma bonds"
     ],
     realWorldConnection: "Trans fats are unhealthy because the trans configuration makes fat molecules straighter, allowing them to pack tightly and clog arteries.",
-    funFact: "Your ability to see depends on pi bonds! Light causes cis-to-trans isomerization of a double bond in retinal—without this, vision wouldn't work."
+    funFact: "Your ability to see depends on pi bonds! Light causes cis-to-trans isomerization of a double bond in retinal—without this, vision wouldn't work.",
+    quickCheck: [
+      {
+        question: "A single bond consists of:",
+        options: ["1 pi bond", "1 sigma bond", "1 sigma + 1 pi bond", "2 pi bonds"],
+        correctIndex: 1,
+        explanation: "Single bonds are always sigma (σ) bonds - formed by head-on orbital overlap."
+      },
+      {
+        question: "A double bond (C=C) consists of:",
+        options: ["2 sigma bonds", "2 pi bonds", "1 sigma + 1 pi bond", "1 sigma bond only"],
+        correctIndex: 2,
+        explanation: "Double bonds = 1 sigma bond + 1 pi bond. The pi bond is weaker and more reactive."
+      },
+      {
+        question: "Why can't you rotate around a C=C double bond?",
+        options: ["It's too heavy", "The pi bond prevents rotation", "Carbon doesn't like rotation", "There's no reason - you can rotate"],
+        correctIndex: 1,
+        explanation: "The pi bond requires parallel p orbitals. Rotation would break the pi bond, so it's locked in place!"
+      },
+      {
+        question: "What causes cis-trans isomerism?",
+        options: ["Different molecular formulas", "Restricted rotation around double bonds", "Different numbers of atoms", "Ionic bonding"],
+        correctIndex: 1,
+        explanation: "Because double bonds can't rotate, groups can be 'locked' on the same side (cis) or opposite sides (trans)."
+      }
+    ]
   },
   {
     id: "electronegativity-polarity",
@@ -516,7 +828,27 @@ export const sections: ChapterSection[] = [
       "Polarity determines solubility, boiling point, and reactivity"
     ],
     commonMistake: "A molecule with polar bonds is not necessarily polar! Symmetry can cause polar bonds to cancel (like in CO₂ or CCl₄).",
-    realWorldConnection: "Water's polarity makes it the 'universal solvent'—it dissolves polar and ionic compounds but not oils (nonpolar). This is why oil and water don't mix!"
+    realWorldConnection: "Water's polarity makes it the 'universal solvent'—it dissolves polar and ionic compounds but not oils (nonpolar). This is why oil and water don't mix!",
+    quickCheck: [
+      {
+        question: "Which element is MOST electronegative?",
+        options: ["Carbon", "Oxygen", "Fluorine", "Hydrogen"],
+        correctIndex: 2,
+        explanation: "Fluorine (4.0) is the most electronegative element - it pulls shared electrons toward itself most strongly."
+      },
+      {
+        question: "CO₂ has polar C=O bonds but is a nonpolar molecule because:",
+        options: ["The bonds aren't really polar", "The linear geometry causes bond polarities to cancel", "Carbon is more electronegative than oxygen", "It's a gas"],
+        correctIndex: 1,
+        explanation: "CO₂ is linear, so the two polar C=O bond dipoles point in opposite directions and cancel out!"
+      },
+      {
+        question: "Why doesn't oil mix with water?",
+        options: ["Oil is too heavy", "Oil is nonpolar, water is polar", "Oil is lighter than water", "They have the same density"],
+        correctIndex: 1,
+        explanation: "'Like dissolves like' - polar water dissolves polar things, but oil is nonpolar, so they don't mix."
+      }
+    ]
   },
   {
     id: "periodic-table-organic",
@@ -558,7 +890,27 @@ export const sections: ChapterSection[] = [
       "Agricultural chemicals rely on diverse element combinations"
     ],
     funFact: "Prozac (fluoxetine) and Lipitor (atorvastatin) both contain fluorine atoms. About 20% of pharmaceutical drugs contain fluorine!",
-    realWorldConnection: "The Heck, Suzuki, and Negishi reactions (Nobel 2010) allow chemists to connect carbon atoms in ways that were previously impossible, enabling synthesis of complex medicines."
+    realWorldConnection: "The Heck, Suzuki, and Negishi reactions (Nobel 2010) allow chemists to connect carbon atoms in ways that were previously impossible, enabling synthesis of complex medicines.",
+    quickCheck: [
+      {
+        question: "Which element is commonly added to drugs to make them more stable?",
+        options: ["Sodium", "Fluorine", "Calcium", "Iron"],
+        correctIndex: 1,
+        explanation: "About 20% of pharmaceutical drugs contain fluorine! It makes molecules more stable and resistant to metabolism."
+      },
+      {
+        question: "The 2010 Nobel Prize in Chemistry was for:",
+        options: ["Vitamin synthesis", "Plastic discovery", "Palladium-catalyzed cross-coupling", "DNA sequencing"],
+        correctIndex: 2,
+        explanation: "The Heck, Suzuki, and Negishi reactions use palladium to connect carbon atoms - essential for drug synthesis."
+      },
+      {
+        question: "Which elements are MOST common in organic molecules? (CHNOPS)",
+        options: ["Carbon, Gold, Iron", "Carbon, Hydrogen, Oxygen, Nitrogen, Sulfur, Phosphorus", "Only Carbon and Hydrogen", "All metals"],
+        correctIndex: 1,
+        explanation: "CHNOPS - Carbon, Hydrogen, Nitrogen, Oxygen, Phosphorus, and Sulfur are the most common elements in organic/biological molecules."
+      }
+    ]
   },
   {
     id: "organic-chemistry-and-industry",
@@ -639,7 +991,27 @@ export const sections: ChapterSection[] = [
       "Over 350 million tons of plastics produced annually"
     ],
     funFact: "Denatonium (Bitrex) is so bitter that chemists who work with it can taste it on their hands even after washing multiple times. It's detected at 10 parts per BILLION!",
-    realWorldConnection: "Next time you use shower gel, remember: every ingredient was designed by organic chemists. The foam, the scent, the color, the preservation—all chemistry in action."
+    realWorldConnection: "Next time you use shower gel, remember: every ingredient was designed by organic chemists. The foam, the scent, the color, the preservation—all chemistry in action.",
+    quickCheck: [
+      {
+        question: "Bulk chemicals are characterized by:",
+        options: ["Small production, high price", "Large production, low price", "Only natural sources", "Being used only in medicine"],
+        correctIndex: 1,
+        explanation: "Bulk chemicals (like ethylene, benzene) are produced in millions of tons at low cost from petroleum."
+      },
+      {
+        question: "What is denatonium benzoate (Bitrex) used for?",
+        options: ["Flavoring food", "Making products taste bitter to prevent poisoning", "Coloring plastics", "Fuel additive"],
+        correctIndex: 1,
+        explanation: "Bitrex is the bitterest substance known - added to cleaners, antifreeze, and nail polish to prevent accidental ingestion. It saves children's lives!"
+      },
+      {
+        question: "How many tons of plastics are produced globally each year?",
+        options: ["1 million", "50 million", "Over 350 million", "1 billion"],
+        correctIndex: 2,
+        explanation: "Over 350 million tons of plastics are produced annually - showing the massive scale of the petrochemical industry."
+      }
+    ]
   },
   {
     id: "world-of-perfumery",
@@ -686,7 +1058,27 @@ export const sections: ChapterSection[] = [
       "Only one of menthol's 8 stereoisomers gives cooling"
     ],
     funFact: "Natural vanilla extract requires 600 hand-pollinated orchid flowers to make just 1 kg—synthetic vanillin is 50 times cheaper and chemically identical!",
-    realWorldConnection: "Your perfume is a carefully designed mixture that unfolds over time: top notes (first smell), heart notes (main character), and base notes (lasting impression)."
+    realWorldConnection: "Your perfume is a carefully designed mixture that unfolds over time: top notes (first smell), heart notes (main character), and base notes (lasting impression).",
+    quickCheck: [
+      {
+        question: "How many organic molecules does rose oil contain?",
+        options: ["About 10", "About 50", "Over 300", "Just 1"],
+        correctIndex: 2,
+        explanation: "Rose oil contains over 300 different organic molecules! Natural scents are incredibly complex mixtures."
+      },
+      {
+        question: "(+)-carvone smells like caraway. (−)-carvone smells like:",
+        options: ["Also caraway", "Spearmint", "Roses", "Nothing"],
+        correctIndex: 1,
+        explanation: "Same atoms, different handedness, different smell! This shows how important stereochemistry is for biological activity."
+      },
+      {
+        question: "Synthetic vanillin is preferred over natural because:",
+        options: ["It smells better", "It's cheaper, consistent, and more sustainable", "Natural vanilla is toxic", "It lasts longer"],
+        correctIndex: 1,
+        explanation: "Synthetic vanillin is 50 times cheaper, has consistent quality, and doesn't require rainforest destruction for vanilla farms."
+      }
+    ]
   },
   {
     id: "organic-chemistry-and-medicine",
@@ -748,7 +1140,27 @@ export const sections: ChapterSection[] = [
       "Organic chemistry is essential at every step"
     ],
     funFact: "The Pfizer-BioNTech COVID-19 vaccine uses mRNA wrapped in lipid nanoparticles—organic chemistry helped save millions of lives during the pandemic!",
-    realWorldConnection: "Understanding organic chemistry helps you understand why some drugs have food interactions (e.g., grapefruit with statins) or why timing of doses matters."
+    realWorldConnection: "Understanding organic chemistry helps you understand why some drugs have food interactions (e.g., grapefruit with statins) or why timing of doses matters.",
+    quickCheck: [
+      {
+        question: "Penicillin's unusual structure includes:",
+        options: ["A 5-membered ring", "A strained 4-membered β-lactam ring", "No rings", "A 6-membered benzene ring"],
+        correctIndex: 1,
+        explanation: "The β-lactam ring (4-membered) is strained and reactive - key to how penicillin kills bacteria!"
+      },
+      {
+        question: "How long does it typically take to bring a new drug to market?",
+        options: ["1-2 years", "5-6 years", "About 12 years", "20+ years"],
+        correctIndex: 2,
+        explanation: "It takes about 12 years and $2.6 billion to develop a new drug - from target discovery through clinical trials."
+      },
+      {
+        question: "Lipitor (atorvastatin) was once the best-selling drug earning:",
+        options: ["$1 million/year", "$100 million/year", "$12 billion/year", "$1 trillion/year"],
+        correctIndex: 2,
+        explanation: "Lipitor earned $12 billion per year at its peak - showing the massive economic impact of pharmaceutical organic chemistry."
+      }
+    ]
   },
   {
     id: "what-organic-chemists-do",
@@ -793,6 +1205,26 @@ export const sections: ChapterSection[] = [
       "Curly arrows show electron movement in reactions"
     ],
     funFact: "Dorothy Hodgkin used X-ray crystallography to determine the structures of penicillin, vitamin B12, and insulin. She won the Nobel Prize in 1964!",
-    realWorldConnection: "Every drug you take was first synthesized by organic chemists, its structure determined by analytical chemists, and its mechanism studied to ensure safety and efficacy."
+    realWorldConnection: "Every drug you take was first synthesized by organic chemists, its structure determined by analytical chemists, and its mechanism studied to ensure safety and efficacy.",
+    quickCheck: [
+      {
+        question: "The four main activities of organic chemists are:",
+        options: ["Mining, refining, selling, marketing", "Synthesis, analysis, mechanism, discovery", "Reading, writing, testing, publishing", "Mixing, heating, cooling, filtering"],
+        correctIndex: 1,
+        explanation: "Organic chemists synthesize (make), analyze (determine structure), understand mechanism (how reactions work), and discover new molecules."
+      },
+      {
+        question: "Which technique allows chemists to 'see' individual atoms in a molecule?",
+        options: ["Microscopy", "NMR Spectroscopy", "Photography", "Weighing"],
+        correctIndex: 1,
+        explanation: "NMR (Nuclear Magnetic Resonance) spectroscopy lets chemists 'see' how atoms are connected in a molecule."
+      },
+      {
+        question: "Curly arrows in organic chemistry show:",
+        options: ["Molecular weight", "How electrons move during reactions", "Temperature changes", "Physical movement of molecules"],
+        correctIndex: 1,
+        explanation: "Curly arrows show electron movement - a powerful tool you'll master to understand and predict organic reactions!"
+      }
+    ]
   }
 ];

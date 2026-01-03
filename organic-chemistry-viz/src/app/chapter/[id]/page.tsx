@@ -18,6 +18,7 @@ import Glossary from '@/components/Glossary';
 import LearningPaths from '@/components/LearningPaths';
 import GameCenter from '@/components/GameCenter';
 import LayoutWrapper from '@/components/LayoutWrapper';
+import { CourseView, ChapterLanding } from '@/components/course';
 import {
     SkeletalFormula,
     FunctionalGroupDiagram,
@@ -30,10 +31,30 @@ import {
     MassSpectrumViewer,
     NMRSpectrumViewer,
     IRSpectrumViewer,
-    DBECalculator
+    DBECalculator,
+    PropaneFragmentation,
+    AcetoneFragmentation,
+    EthanolFragmentation,
+    CyclopropaneFragmentation,
+    ButanoneFragmentation,
+    // Chapter 4: Orbital Theory Components
+    HybridizationWizard,
+    VSEPRLaboratory,
+    BondOrderCalculator,
+    RotationSimulator,
+    // Chapter 5: Organic Reactions Components
+    NucleoElectroIdentifier,
+    CurlyArrowSimulator,
+    HOMOLUMOVisualizer,
+    DrugDiscoveryReactions,
+    // Chapter 6: Carbonyl Chemistry Components
+    CarbonylAdditionSimulator,
+    ReagentComparisonTool
 } from '@/components/diagrams';
 import QuickCheck from '@/components/QuickCheck';
 import OnePageSummary from '@/components/OnePageSummary';
+import ColorMoleculesGrid from '@/components/content/ColorMoleculesGrid';
+import ConjugationDiagram from '@/components/content/ConjugationDiagram';
 import { ExamTip, PlainEnglish, CommonQuestion, ComparisonCard } from '@/components/LearningAids';
 
 // Dynamic import for MoleculeViewer (client-side only)
@@ -50,6 +71,78 @@ const MoleculeViewer = dynamic(() => import('@/components/MoleculeViewer'), {
             color: 'var(--neutral-400)'
         }}>
             Loading 3D viewer...
+        </div>
+    )
+});
+
+// Dynamic import for VisionSimulator (client-side only)
+const VisionSimulator = dynamic(() => import('@/components/simulations/VisionSimulator'), {
+    ssr: false,
+    loading: () => (
+        <div style={{
+            height: '300px',
+            background: 'var(--gradient-card)',
+            borderRadius: '20px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'var(--neutral-400)'
+        }}>
+            Loading simulation...
+        </div>
+    )
+});
+
+// Dynamic import for DrugDockingSimulator (client-side only)
+const DrugDockingSimulator = dynamic(() => import('@/components/simulations/DrugDockingSimulator'), {
+    ssr: false,
+    loading: () => (
+        <div style={{
+            height: '400px',
+            background: 'var(--gradient-card)',
+            borderRadius: '20px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'var(--neutral-400)'
+        }}>
+            Loading DNA Docking Challenge...
+        </div>
+    )
+});
+
+// Dynamic import for DrugDiscoveryPanel (client-side only)
+const DrugDiscoveryPanel = dynamic(() => import('@/components/simulations/DrugDiscoveryPanel'), {
+    ssr: false,
+    loading: () => (
+        <div style={{
+            height: '500px',
+            background: 'var(--gradient-card)',
+            borderRadius: '20px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'var(--neutral-400)'
+        }}>
+            Loading Drug Discovery Application...
+        </div>
+    )
+});
+
+// Dynamic import for AspirinDiscoveryPanel (client-side only)
+const AspirinDiscoveryPanel = dynamic(() => import('@/components/simulations/AspirinDiscoveryPanel'), {
+    ssr: false,
+    loading: () => (
+        <div style={{
+            height: '300px',
+            background: 'var(--gradient-card)',
+            borderRadius: '16px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'var(--neutral-400)'
+        }}>
+            Loading Aspirin Discovery Story...
         </div>
     )
 });
@@ -89,14 +182,17 @@ const getDiagramForSection = (sectionId: string) => {
 export default function ChapterPage() {
     const params = useParams();
     const chapterId = params.id as string;
+    const [viewMode, setViewMode] = useState<'selection' | 'reading' | 'course'>('selection');
 
     const chapter = chapters[chapterId];
 
-    const [currentSection, setCurrentSection] = useState(chapter.sections[0]?.id || '');
+    // All hooks must be called before any conditional returns
+    const [currentSection, setCurrentSection] = useState(chapter?.sections[0]?.id || '');
     const [completedSections, setCompletedSections] = useState<Set<string>>(new Set());
 
     // Track scroll position to update current section
     useEffect(() => {
+        if (!chapter) return;
         const handleScroll = () => {
             const sections = chapter.sections.map(s => ({
                 id: s.id,
@@ -138,6 +234,23 @@ export default function ChapterPage() {
         }
     };
 
+    // For Chapter 1, show mode selection first (after all hooks)
+    if (chapterId === '1') {
+        if (viewMode === 'selection') {
+            return (
+                <ChapterLanding
+                    chapter={chapter}
+                    onModeSelect={(mode) => setViewMode(mode)}
+                />
+            );
+        }
+
+        if (viewMode === 'course') {
+            return <CourseView chapter={chapter} onModeSwitch={() => setViewMode('reading')} />;
+        }
+        // Reading mode continues with the full page view below
+    }
+
     return (
         <LayoutWrapper
             progress={progress}
@@ -146,11 +259,17 @@ export default function ChapterPage() {
             onSectionClick={scrollToSection}
             showToolbar={true}
         >
-            {/* Back Button */}
+            {/* Navigation Buttons */}
             <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                style={{ marginBottom: '1.5rem' }}
+                style={{
+                    marginBottom: '1.5rem',
+                    display: 'flex',
+                    gap: '0.75rem',
+                    flexWrap: 'wrap',
+                    alignItems: 'center'
+                }}
             >
                 <a
                     href="/"
@@ -179,6 +298,35 @@ export default function ChapterPage() {
                 >
                     ← Back to Home
                 </a>
+
+                {/* Mode Switch Button - Only for Chapter 1 */}
+                {chapterId === '1' && (
+                    <button
+                        onClick={() => setViewMode('course')}
+                        style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '0.5rem',
+                            color: 'var(--accent-emerald)',
+                            fontSize: '0.95rem',
+                            fontWeight: 500,
+                            padding: '0.5rem 1rem',
+                            background: 'rgba(16, 185, 129, 0.1)',
+                            borderRadius: '10px',
+                            border: '1px solid rgba(16, 185, 129, 0.2)',
+                            cursor: 'pointer',
+                            transition: 'all 0.2s ease'
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.background = 'rgba(16, 185, 129, 0.2)';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.background = 'rgba(16, 185, 129, 0.1)';
+                        }}
+                    >
+                        🎓 Switch to Course Mode
+                    </button>
+                )}
             </motion.div>
 
             {/* Chapter Header */}
@@ -541,6 +689,32 @@ export default function ChapterPage() {
                             />
                         )}
 
+                        {/* Detailed MS Examples - Interactive Fragmentation Analyses */}
+                        {section.id === 'ms-example-propane' && <PropaneFragmentation />}
+                        {section.id === 'ms-example-acetone' && <AcetoneFragmentation />}
+                        {section.id === 'ms-example-ethanol' && <EthanolFragmentation />}
+                        {section.id === 'ms-example-cyclopropane' && <CyclopropaneFragmentation />}
+                        {section.id === 'ms-example-butanone' && <ButanoneFragmentation />}
+
+                        {/* Chapter 4: Orbital Theory Interactive Components */}
+                        {section.id === 'molecular-orbitals' && <BondOrderCalculator />}
+                        {section.id === 'hybridization' && <HybridizationWizard />}
+                        {section.id === 'vsepr-theory' && <VSEPRLaboratory />}
+                        {section.id === 'molecular-rotation' && <RotationSimulator />}
+
+                        {/* Chapter 5: Organic Reactions Interactive Components */}
+                        {section.id === 'nucleophiles-electrophiles' && <NucleoElectroIdentifier />}
+                        {section.id === 'homo-lumo' && <HOMOLUMOVisualizer />}
+                        {section.id === 'curly-arrows' && <CurlyArrowSimulator />}
+                        {section.id === 'making-breaking-bonds' && <CurlyArrowSimulator />}
+                        {section.id === 'reaction-types-overview' && <DrugDiscoveryReactions />}
+
+                        {/* Chapter 6: Carbonyl Chemistry Interactive Components */}
+                        {section.id === 'cyanohydrin' && <CarbonylAdditionSimulator />}
+                        {section.id === 'hydride-reduction' && <ReagentComparisonTool />}
+                        {section.id === 'grignard-reaction' && <CarbonylAdditionSimulator />}
+                        {section.id === 'hydration-hemiacetal' && <CarbonylAdditionSimulator />}
+
                         {/* Fun Fact */}
                         {section.funFact && (
                             <InteractiveInfoBox type="funFact">
@@ -562,17 +736,8 @@ export default function ChapterPage() {
                             </InteractiveInfoBox>
                         )}
 
-                        {/* Molecules - Premium Comparison Table */}
-                        {section.molecules && section.molecules.length > 0 && (
-                            <MoleculeComparisonTable
-                                title={`🔬 ${section.title} - Interactive Molecules`}
-                                molecules={section.molecules.map((mol, idx) => ({
-                                    ...mol,
-                                    level: section.id === 'oxidation-levels' ? idx : undefined,
-                                }))}
-                                showLevels={section.id === 'oxidation-levels'}
-                            />
-                        )}
+
+
 
                         {/* Key Points */}
                         {section.keyPoints && (
@@ -617,6 +782,47 @@ export default function ChapterPage() {
                             />
                         )}
 
+                        {/* Featured Molecules - Synced with Course Mode */}
+                        {section.molecules && section.molecules.length > 0 && (
+                            <div style={{ marginTop: '2.5rem' }}>
+                                <MoleculeComparisonTable
+                                    title="🧪 Featured Molecules"
+                                    molecules={section.molecules.map((mol, idx) => ({
+                                        ...mol,
+                                        level: section.id === 'oxidation-levels' ? idx : undefined,
+                                    }))}
+                                    showLevels={section.id === 'oxidation-levels'}
+                                />
+                            </div>
+                        )}
+
+                        {/* Interactive Simulation - Synced with Course Mode */}
+                        {section.simulation && section.simulation.type === 'vision' && (
+                            <div style={{ marginTop: '2rem' }}>
+                                <VisionSimulator />
+                            </div>
+                        )}
+
+                        {section.simulation && section.simulation.type === 'drug-docking' && (
+                            <div style={{ marginTop: '2rem' }}>
+                                <DrugDockingSimulator />
+                            </div>
+                        )}
+
+                        {/* Drug Discovery Panel - for Lesson 1 (organic-chemistry-and-you) */}
+                        {section.id === 'organic-chemistry-and-you' && (
+                            <div style={{ marginTop: '2rem' }}>
+                                <DrugDiscoveryPanel sectionId={section.id} />
+                            </div>
+                        )}
+
+                        {/* Drug Discovery Story Panel (e.g., Aspirin for Lesson 2) */}
+                        {section.drugDiscovery && (
+                            <div style={{ marginTop: '2rem' }}>
+                                <AspirinDiscoveryPanel drugDiscovery={section.drugDiscovery} />
+                            </div>
+                        )}
+
                         {/* Quick Check - Section Review */}
                         {section.quickCheck && section.quickCheck.length > 0 && (
                             <QuickCheck
@@ -631,6 +837,16 @@ export default function ChapterPage() {
                                 questions={miniQuiz.questions}
                                 onComplete={() => console.log(`Completed mini quiz: ${miniQuiz.id}`)}
                             />
+                        )}
+
+                        {/* Conjugation Diagram */}
+                        {section.conjugationDiagram && (
+                            <ConjugationDiagram />
+                        )}
+
+                        {/* Color Examples Grid */}
+                        {section.colorExamples && (
+                            <ColorMoleculesGrid examples={section.colorExamples} />
                         )}
                     </motion.div>
                 );
@@ -731,6 +947,7 @@ export default function ChapterPage() {
                         definition: card.back
                     }))}
                     title={`Chapter ${chapter.id} Games`}
+                    chapterId={chapter.id}
                 />
             </motion.div>
 

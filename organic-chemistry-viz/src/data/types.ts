@@ -2,6 +2,13 @@ export interface ChapterSection {
     id: string;
     title: string;
     content: string;
+    // Video configuration for Bunny Stream or other sources
+    video?: {
+        type: 'bunny' | 'youtube' | 'mp4';
+        url: string;
+        duration?: string; // e.g., "5:30"
+        thumbnail?: string;
+    };
     molecules?: {
         name: string;
         description: string;
@@ -23,6 +30,12 @@ export interface ChapterSection {
         correctIndex: number;
         explanation: string;
     }[];
+    // Interactive simulation for this section
+    simulation?: {
+        type: 'vision' | 'reaction' | 'drug-docking' | 'custom';
+        title?: string;
+        description?: string;
+    };
     // Learning aids
     examTip?: string;
     plainEnglish?: {
@@ -30,6 +43,38 @@ export interface ChapterSection {
         simple: string;
     };
     difficulty?: 'fundamental' | 'important' | 'advanced';
+    // Drug Discovery section (e.g., Aspirin story, Cisplatin, etc.)
+    drugDiscovery?: {
+        title: string;
+        subtitle?: string;
+        story: {
+            phase: string;
+            title: string;
+            year: string;
+            content: string;
+            molecule?: string;
+        }[];
+        keyInsight?: string;
+        academicReference?: {
+            title: string;
+            author: string;
+            quote?: string;
+        };
+        interactiveIdeas?: {
+            name: string;
+            description: string;
+        }[];
+    };
+    // Color examples for "Colors of Organic Chemistry" section
+    colorExamples?: {
+        name: string;
+        description: string;
+        color: string;
+        type: 'liquid' | 'solid' | 'gas' | 'crystal';
+        structure2d?: string; // Image path or SMILES
+        pdbId?: string; // For 3D viewer
+    }[];
+    conjugationDiagram?: boolean;
 }
 
 export interface ChapterQuiz {

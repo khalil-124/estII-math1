@@ -26,7 +26,7 @@ const featuredChapters = [
     description: "Master spectroscopic techniques to identify unknown compounds.",
     icon: "🔬",
     color: "#10b981",
-    available: false
+    available: true
   },
   {
     id: 4,
@@ -34,7 +34,7 @@ const featuredChapters = [
     description: "Explore 3D molecular geometry and its importance in chemistry.",
     icon: "💎",
     color: "#f59e0b",
-    available: false
+    available: true
   },
   {
     id: 5,
@@ -42,7 +42,7 @@ const featuredChapters = [
     description: "Introduction to how and why organic reactions occur.",
     icon: "⚡",
     color: "#f43f5e",
-    available: false
+    available: true
   },
   {
     id: 6,
@@ -50,7 +50,7 @@ const featuredChapters = [
     description: "Understand carbonyl chemistry and nucleophilic attack.",
     icon: "🎯",
     color: "#3b82f6",
-    available: false
+    available: true
   }
 ];
 
