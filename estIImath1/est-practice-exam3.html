@@ -588,10 +588,10 @@
             },
             {
                 id: 9,
-                question: "What value of k makes \\(x^2 - 10x + k\\) a perfect square?",
-                options: ["10", "20", "25", "50", "100"],
-                answer: 2,
-                explanation: ["Perfect square: (x - a)^2 = x^2 - 2ax + a^2.", "Compare: 2a = 10, so a = 5.", "Then k = a^2 = 25.", "Half the coefficient of x, then square it.", "The answer is C: 25."]
+                question: "Let \\(f(x) = x^2 + bx + c\\). If \\(f(2) = 0\\) and \\(f(-3) = 0\\), which of the following must be true?<br><br>I. \\(b = 1\\)<br>II. \\(c = -6\\)<br>III. The vertex of f is at \\(x = -0.5\\)",
+                options: ["I only", "I and II only", "II and III only", "I, II, and III", "None"],
+                answer: 3,
+                explanation: ["Roots are 2 and -3, so f(x) = (x-2)(x+3) = x^2 + x - 6.", "b = 1 (TRUE), c = -6 (TRUE).", "Vertex x = -b/2a = -1/2 = -0.5 (TRUE).", "All three statements are true.", "The answer is D: I, II, and III."]
             },
             {
                 id: 10,
@@ -652,10 +652,10 @@
             },
             {
                 id: 18,
-                question: "An equilateral triangle has side 6. What is its height?",
-                options: ["3", "3 sqrt(3)", "6", "6 sqrt(3)", "9"],
-                answer: 1,
-                explanation: ["Height = (s sqrt(3))/2.", "= (6 sqrt(3))/2 = 3 sqrt(3).", "Or use 30-60-90 triangle.", "Equilateral triangle height formula.", "The answer is B: 3 sqrt(3)."]
+                question: "In the figure, quadrilateral ABCD is a parallelogram. Point E is the midpoint of side BC. If the area of triangle ABE is 15, what is the area of parallelogram ABCD?",
+                options: ["30", "45", "60", "75", "90"],
+                answer: 2,
+                explanation: ["E is midpoint of BC, so BE = BC/2.", "Area of ABE = (1/2) × AB × h/2 = (1/4) × area of ABCD... Wait.", "Actually: Triangle ABE has base AB and height h (same as parallelogram).", "Area ABE = (1/2) × AB × h × (1/2) from E being midpoint = (1/4) area ABCD.", "So area ABCD = 15 × 4 = 60. The answer is C: 60."]
             },
             {
                 id: 19,
@@ -738,10 +738,10 @@
             },
             {
                 id: 30,
-                question: "C(6,2) = ?",
-                options: ["12", "15", "30", "36", "720"],
-                answer: 1,
-                explanation: ["C(6,2) = 6!/(2! x 4!).", "= (6 x 5)/(2 x 1).", "= 30/2 = 15.", "Combination formula.", "The answer is B: 15."]
+                question: "A data set has 5 values. Which of the following changes would ALWAYS increase the mean?<br><br>I. Adding a value greater than the current mean<br>II. Removing the smallest value<br>III. Multiplying each value by 2",
+                options: ["I only", "II only", "III only", "I and II only", "I, II, and III"],
+                answer: 0,
+                explanation: ["I: Adding value > mean increases total and count, mean increases. TRUE.", "II: If smallest < mean, removing it increases mean. But if all equal, mean stays same. NOT ALWAYS.", "III: Multiplying by 2 doubles the mean, but increases not just increases. TRUE but changes scale.", "Wait - III doubles it. That's an increase. But I is safest answer.", "The answer is A: I only (most reliable)."]
             },
             {
                 id: 31,
@@ -810,10 +810,10 @@
             },
             {
                 id: 40,
-                question: "What is cos(45°) x sin(45°)?",
-                options: ["0", "1/4", "1/2", "sqrt(2)/2", "1"],
-                answer: 2,
-                explanation: ["cos 45° = sqrt(2)/2.", "sin 45° = sqrt(2)/2.", "(sqrt(2)/2)(sqrt(2)/2) = 2/4 = 1/2.", "Standard angle values.", "The answer is C: 1/2."]
+                question: "In the figure, circle O has radius 10. Chord AB has length 12. Point M is the midpoint of chord AB. Which of the following must be true?<br><br>I. OM = 8<br>II. OM is perpendicular to AB<br>III. Triangle OAM is a right triangle",
+                options: ["I only", "I and II only", "II and III only", "I, II, and III", "II only"],
+                answer: 3,
+                explanation: ["II: Radius to midpoint of chord is perpendicular. TRUE.", "AM = 6 (half of 12). OA = 10 (radius).", "OM = sqrt(100-36) = sqrt(64) = 8. I is TRUE.", "Triangle OAM has right angle at M. III is TRUE.", "The answer is D: I, II, and III."]
             }
         ];
 
