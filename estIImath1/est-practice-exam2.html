@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EST II Math Level 1 - Practice Exam 2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Times+New+Roman&family=Outfit:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --est-gray: #6b6b6b;
+            --est-dark: #333;
+            --est-light: #f5f5f5;
+            --est-border: #ccc;
+            --correct: #22c55e;
+            --incorrect: #ef4444;
+            --selected: #3b82f6;
+        }
+
+        body {
+            font-family: 'Times New Roman', Georgia, serif;
+            background: #fff;
+            color: #000;
+            line-height: 1.6;
+        }
+
+        .est-header {
+            background: linear-gradient(135deg, #888 0%, #666 100%);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #333;
+        }
+
+        .est-logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+        }
+
+        .est-logo span {
+            color: #ddd;
+        }
+
+        .high-school {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.5rem;
+            color: #fff;
+            font-style: italic;
+            letter-spacing: 3px;
+        }
+
+        .timer-bar {
+            background: linear-gradient(135deg, #1e3a5f 0%, #0f2540 100%);
+            padding: 12px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .timer {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .timer-icon {
+            font-size: 1.2rem;
+        }
+
+        .timer.warning {
+            color: #fbbf24;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .progress-info {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+        }
+
+        .cover-page {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .cover-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .cover-subtitle {
+            font-size: 1.8rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .cover-info {
+            background: #f5f5f5;
+            border: 2px solid #ccc;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .cover-info h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .cover-info p {
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #1e3a5f 0%, #0f2540 100%);
+            color: white;
+            border: none;
+            padding: 20px 60px;
+            font-size: 1.3rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 30px;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .exam-container {
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 40px;
+        }
+
+        .exam-container.active {
+            display: flex;
+            gap: 30px;
+        }
+
+        .questions-section {
+            flex: 1;
+        }
+
+        .navigator-section {
+            width: 200px;
+            position: sticky;
+            top: 80px;
+            height: fit-content;
+        }
+
+        .question-container {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .question-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .question-number {
+            background: #333;
+            color: white;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            flex: 1;
+        }
+
+        .graph-container {
+            margin: 20px 0;
+            text-align: center;
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .graph-container img {
+            max-width: 100%;
+            height: auto;
+            max-height: 300px;
+        }
+
+        .options-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-item:hover {
+            background: #f5f5f5;
+            border-color: #999;
+        }
+
+        .option-item.selected {
+            background: #e0e7ff;
+            border-color: var(--selected);
+        }
+
+        .option-item.correct {
+            background: #dcfce7;
+            border-color: var(--correct);
+        }
+
+        .option-item.incorrect {
+            background: #fee2e2;
+            border-color: var(--incorrect);
+        }
+
+        .option-letter {
+            font-weight: bold;
+            margin-right: 15px;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid currentColor;
+            border-radius: 50%;
+            font-size: 0.85rem;
+        }
+
+        .option-text {
+            flex: 1;
+        }
+
+        .explanation-box {
+            display: none;
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .explanation-box.show {
+            display: block;
+        }
+
+        .explanation-title {
+            font-weight: bold;
+            color: #166534;
+            margin-bottom: 8px;
+        }
+
+        .explanation-step {
+            display: flex;
+            gap: 10px;
+            margin: 8px 0;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            background: #166534;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .navigator-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #333;
+        }
+
+        .navigator-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 5px;
+        }
+
+        .nav-item {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .nav-item:hover {
+            background: #f0f0f0;
+        }
+
+        .nav-item.answered {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .nav-item.correct-review {
+            background: var(--correct);
+            color: white;
+        }
+
+        .nav-item.incorrect-review {
+            background: var(--incorrect);
+            color: white;
+        }
+
+        .submit-section {
+            text-align: center;
+            padding: 30px;
+            margin-top: 20px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            color: white;
+            border: none;
+            padding: 15px 50px;
+            font-size: 1.2rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .results-container {
+            display: none;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 40px;
+            text-align: center;
+            background: #f5f5f5;
+            border-radius: 12px;
+        }
+
+        .results-container.active {
+            display: block;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1e3a5f 0%, #0f2540 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: white;
+        }
+
+        .score-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .score-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .results-details {
+            margin: 30px 0;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .review-btn {
+            background: var(--selected);
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            font-size: 1rem;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .est-footer {
+            background: #333;
+            color: #fff;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="est-header">
+        <div class="est-logo">est<span>°</span></div>
+        <div class="high-school">HIGH SCHOOL</div>
+    </header>
+
+    <div class="cover-page" id="coverPage">
+        <h1 class="cover-title">EST II Mathematics</h1>
+        <h2 class="cover-subtitle">Level 1 - Practice Exam 2</h2>
+        <div class="cover-info">
+            <h3>Exam Information</h3>
+            <p><strong>Total Questions:</strong> 40 multiple-choice questions</p>
+            <p><strong>Time Allowed:</strong> 60 minutes</p>
+            <p><strong>Calculator:</strong> Scientific or graphing calculators are permitted</p>
+            <p><strong>Scoring:</strong> Each correct answer is worth 1 point</p>
+        </div>
+        <div class="cover-info">
+            <h3>Instructions</h3>
+            <p>Read each question carefully before selecting your answer</p>
+            <p>You may skip questions and return to them later</p>
+            <p>Use the question navigator to track your progress</p>
+            <p>Click "Submit Exam" when you are finished</p>
+        </div>
+        <button class="start-btn" onclick="startExam()">Start Exam</button>
+    </div>
+
+    <div class="timer-bar" id="timerBar" style="display: none;">
+        <div class="timer" id="timer">
+            <span class="timer-icon">&#9201;</span>
+            <span id="timeDisplay">60:00</span>
+        </div>
+        <div class="progress-info">
+            <span id="answeredCount">0</span> / 40 Answered
+        </div>
+    </div>
+
+    <div class="exam-container" id="examContainer">
+        <div class="questions-section" id="questionsSection"></div>
+        <div class="navigator-section">
+            <div class="navigator-title">Questions</div>
+            <div class="navigator-grid" id="navigatorGrid"></div>
+        </div>
+    </div>
+
+    <div class="results-container" id="resultsContainer">
+        <h2>Exam Complete!</h2>
+        <div class="score-circle">
+            <div class="score-number" id="scoreNumber">0</div>
+            <div class="score-label">out of 40</div>
+        </div>
+        <div class="results-details">
+            <div class="result-row"><span>Correct Answers:</span><span id="correctCount">0</span></div>
+            <div class="result-row"><span>Incorrect Answers:</span><span id="incorrectCount">0</span></div>
+            <div class="result-row"><span>Unanswered:</span><span id="unansweredCount">0</span></div>
+            <div class="result-row"><span>Percentage:</span><span id="percentageScore">0%</span></div>
+        </div>
+        <button class="review-btn" onclick="reviewAnswers()">Review Answers</button>
+    </div>
+
+    <footer class="est-footer">
+        <span>ESTII-HS Math L1</span>
+        <span>Practice Exam 2</span>
+        <span>2026</span>
+    </footer>
+
+    <script>
+        const questions = [
+            // ===== Q1-11: ALGEBRA & FUNCTIONS (27.5%) =====
+            {
+                id: 1,
+                question: "If \\(f(x) = 2x - 3\\) and \\(g(x) = x + 4\\), what is \\(f(g(2))\\)?",
+                options: ["9", "11", "13", "15", "17"],
+                answer: 0,
+                explanation: ["Find g(2) = 2 + 4 = 6.", "Then f(g(2)) = f(6) = 2(6) - 3.", "= 12 - 3 = 9.", "This is function composition: f(g(x)).", "The answer is A: 9."]
+            },
+            {
+                id: 2,
+                question: "What is the vertex of \\(y = x^2 - 8x + 12\\)?",
+                options: ["(4, -4)", "(4, 4)", "(-4, -4)", "(-4, 4)", "(2, -4)"],
+                answer: 0,
+                explanation: ["Vertex x-coordinate: x = -b/2a = 8/2 = 4.", "Substitute: y = 16 - 32 + 12 = -4.", "Vertex = (4, -4).", "Or complete the square: (x-4)^2 - 4.", "The answer is A: (4, -4)."]
+            },
+            {
+                id: 3,
+                question: "If \\(4^x = 32\\), what is \\(x\\)?",
+                options: ["2", "2.5", "3", "3.5", "4"],
+                answer: 1,
+                explanation: ["4^x = 32.", "Rewrite: 2^(2x) = 2^5.", "So 2x = 5, x = 2.5.", "Verify: 4^2.5 = 4^2 * 4^0.5 = 16 * 2 = 32.", "The answer is B: 2.5."]
+            },
+            {
+                id: 4,
+                question: "Solve: \\(|3x - 6| = 12\\)",
+                options: ["x = 2 or x = 6", "x = -2 or x = 6", "x = 2 or x = -6", "x = -2 or x = -6", "x = 6 only"],
+                answer: 1,
+                explanation: ["Case 1: 3x - 6 = 12, so 3x = 18, x = 6.", "Case 2: 3x - 6 = -12, so 3x = -6, x = -2.", "Solutions: x = 6 or x = -2.", "Both values satisfy the original equation.", "The answer is B: x = -2 or x = 6."]
+            },
+            {
+                id: 5,
+                question: "Factor completely: \\(x^2 - 5x - 14\\)",
+                options: ["(x-7)(x+2)", "(x+7)(x-2)", "(x-7)(x-2)", "(x+7)(x+2)", "(x-14)(x+1)"],
+                answer: 0,
+                explanation: ["Find factors of -14 that sum to -5.", "-7 and +2: (-7)(2) = -14, -7 + 2 = -5.", "Factor: (x - 7)(x + 2).", "Check: x^2 + 2x - 7x - 14 = x^2 - 5x - 14.", "The answer is A: (x-7)(x+2)."]
+            },
+            {
+                id: 6,
+                question: "If \\(f(x) = x^2 - 1\\), what is \\(f(a+1)\\)?",
+                options: ["a^2 + 2a", "a^2 + 2a + 1", "a^2 - 1", "a^2 + 1", "a^2 + 2a - 1"],
+                answer: 0,
+                explanation: ["Substitute (a+1) for x in f(x) = x^2 - 1.", "f(a+1) = (a+1)^2 - 1.", "= a^2 + 2a + 1 - 1.", "= a^2 + 2a.", "The answer is A: a^2 + 2a."]
+            },
+            {
+                id: 7,
+                question: "Simplify: \\(\\frac{x^3 y^2}{x y^4}\\)",
+                options: ["\\(\\frac{x^2}{y^2}\\)", "x^2 y^2", "x^4 y^6", "x y^2", "\\(\\frac{x}{y}\\)"],
+                answer: 0,
+                explanation: ["Apply exponent rules: x^3/x^1 = x^2.", "y^2/y^4 = y^(-2) = 1/y^2.", "Combined result: x^2/y^2.", "Subtract exponents when dividing.", "The answer is A: x^2/y^2."]
+            },
+            {
+                id: 8,
+                question: "Solve: \\(2(x - 3) + 4 = 3(x + 1) - 5\\)",
+                options: ["x = -2", "x = 0", "x = 2", "x = 4", "x = 6"],
+                answer: 1,
+                explanation: ["Expand: 2x - 6 + 4 = 3x + 3 - 5.", "Simplify: 2x - 2 = 3x - 2.", "Subtract 2x: -2 = x - 2.", "Add 2: 0 = x.", "The answer is B: x = 0."]
+            },
+            {
+                id: 9,
+                question: "If \\(x^2 + 4x + k\\) is a perfect square trinomial, what is \\(k\\)?",
+                options: ["2", "4", "8", "16", "64"],
+                answer: 1,
+                explanation: ["Perfect square form: (x + a)^2 = x^2 + 2ax + a^2.", "Compare: 2a = 4, so a = 2.", "Then k = a^2 = 4.", "Check: (x+2)^2 = x^2 + 4x + 4.", "The answer is B: 4."]
+            },
+            {
+                id: 10,
+                question: "If \\(2x + 3y = 12\\) and \\(x - y = 1\\), what is \\(x\\)?",
+                options: ["2", "3", "4", "5", "6"],
+                answer: 1,
+                explanation: ["From x - y = 1: x = y + 1.", "Substitute: 2(y + 1) + 3y = 12.", "2y + 2 + 3y = 12, so 5y = 10, y = 2.", "Then x = 2 + 1 = 3.", "The answer is B: 3."]
+            },
+            {
+                id: 11,
+                question: "What is the range of \\(f(x) = -x^2 + 4\\)?",
+                options: ["y <= 4", "y >= 4", "y <= -4", "y >= -4", "All real numbers"],
+                answer: 0,
+                explanation: ["Parabola opens downward (coefficient -1 < 0).", "Vertex at x = 0: f(0) = 4.", "Maximum value is 4.", "All y-values are at most 4.", "The answer is A: y <= 4."]
+            },
+            // ===== Q12-20: GEOMETRY (22.5%) =====
+            {
+                id: 12,
+                question: "A triangle has sides 5, 12, and 13. What type of triangle is it?",
+                options: ["Acute", "Right", "Obtuse", "Isosceles", "Equilateral"],
+                answer: 1,
+                explanation: ["Check Pythagorean theorem: 5^2 + 12^2 = 25 + 144 = 169.", "13^2 = 169.", "Since 5^2 + 12^2 = 13^2, it's a right triangle.", "This is a Pythagorean triple (5-12-13).", "The answer is B: Right."]
+            },
+            {
+                id: 13,
+                question: "The angles of a triangle are in ratio 2:3:4. What is the largest angle?",
+                options: ["60 deg", "70 deg", "80 deg", "90 deg", "100 deg"],
+                answer: 2,
+                explanation: ["Sum of angles = 180 deg.", "Total parts = 2 + 3 + 4 = 9.", "Each part = 180/9 = 20 deg.", "Largest angle = 4 x 20 = 80 deg.", "The answer is C: 80 deg."]
+            },
+            {
+                id: 14,
+                question: "What is the area of a triangle with base 10 and height 7?",
+                options: ["17", "35", "70", "140", "350"],
+                answer: 1,
+                explanation: ["Area formula: A = (1/2) x base x height.", "A = (1/2) x 10 x 7.", "= 5 x 7 = 35.", "Half of base times height.", "The answer is B: 35."]
+            },
+            {
+                id: 15,
+                question: "A rectangle has perimeter 28 and width 5. What is its length?",
+                options: ["7", "9", "11", "14", "18"],
+                answer: 1,
+                explanation: ["Perimeter formula: P = 2(L + W) = 28.", "L + W = 14.", "L + 5 = 14.", "L = 9.", "The answer is B: 9."]
+            },
+            {
+                id: 16,
+                question: "Two angles of a triangle are 45 deg and 65 deg. What is the third angle?",
+                options: ["60 deg", "65 deg", "70 deg", "75 deg", "80 deg"],
+                answer: 2,
+                explanation: ["Sum of triangle angles = 180 deg.", "Third angle = 180 - 45 - 65.", "= 180 - 110 = 70 deg.", "All angles must sum to 180 deg.", "The answer is C: 70 deg."]
+            },
+            {
+                id: 17,
+                question: "The exterior angle of a regular polygon is 40 deg. How many sides does it have?",
+                options: ["6", "8", "9", "10", "12"],
+                answer: 2,
+                explanation: ["Sum of exterior angles = 360 deg.", "n x 40 = 360.", "n = 360/40 = 9.", "The polygon has 9 sides (nonagon).", "The answer is C: 9."]
+            },
+            {
+                id: 18,
+                question: "A square has diagonal length \\(10\\sqrt{2}\\). What is its side length?",
+                options: ["5", "10", "10 sqrt(2)", "20", "5 sqrt(2)"],
+                answer: 1,
+                explanation: ["For a square, diagonal = s * sqrt(2).", "10 sqrt(2) = s * sqrt(2).", "s = 10.", "Diagonal-to-side ratio is sqrt(2).", "The answer is B: 10."]
+            },
+            {
+                id: 19,
+                question: "What is the area of a circle with diameter 14?",
+                options: ["7 pi", "14 pi", "49 pi", "98 pi", "196 pi"],
+                answer: 2,
+                explanation: ["Radius = diameter/2 = 14/2 = 7.", "Area = pi * r^2 = pi * 49.", "= 49 pi.", "Remember to use radius, not diameter.", "The answer is C: 49 pi."]
+            },
+            {
+                id: 20,
+                question: "An arc subtends a central angle of 60 deg in a circle with radius 6. What is the arc length?",
+                options: ["pi", "2 pi", "3 pi", "6 pi", "12 pi"],
+                answer: 1,
+                explanation: ["Arc length = (angle/360) x 2 pi r.", "= (60/360) x 2 pi (6).", "= (1/6) x 12 pi = 2 pi.", "Fraction of full circumference.", "The answer is B: 2 pi."]
+            },
+            // ===== Q21-25: COORDINATE GEOMETRY (12.5%) =====
+            {
+                id: 21,
+                question: "What is the slope of the line \\(3x - 2y = 8\\)?",
+                options: ["3/2", "-3/2", "2/3", "-2/3", "3"],
+                answer: 0,
+                explanation: ["Convert to slope-intercept form.", "-2y = -3x + 8.", "y = (3/2)x - 4.", "Slope m = 3/2.", "The answer is A: 3/2."]
+            },
+            {
+                id: 22,
+                question: "Line L passes through (0, 5) with slope -2. What is its equation?",
+                options: ["y = -2x + 5", "y = 2x + 5", "y = -2x - 5", "y = 5x - 2", "y = -5x + 2"],
+                answer: 0,
+                explanation: ["y-intercept is 5 (passes through (0,5)).", "Slope m = -2.", "y = mx + b = -2x + 5.", "Direct application of slope-intercept form.", "The answer is A: y = -2x + 5."]
+            },
+            {
+                id: 23,
+                question: "What is the y-intercept of \\(x + 2y = 10\\)?",
+                options: ["2", "5", "10", "-5", "-10"],
+                answer: 1,
+                explanation: ["Set x = 0 to find y-intercept.", "0 + 2y = 10.", "y = 5.", "The y-intercept is 5.", "The answer is B: 5."]
+            },
+            {
+                id: 24,
+                question: "What is the equation of the line through (2, 3) and (4, 7)?",
+                options: ["y = 2x - 1", "y = 2x + 1", "y = x + 1", "y = x - 1", "y = 3x - 3"],
+                answer: 0,
+                explanation: ["Slope m = (7-3)/(4-2) = 4/2 = 2.", "Using point-slope form: y - 3 = 2(x - 2).", "y = 2x - 4 + 3 = 2x - 1.", "Verify: 2(4) - 1 = 7.", "The answer is A: y = 2x - 1."]
+            },
+            {
+                id: 25,
+                question: "Triangle has vertices A(0,0), B(6,0), C(3,4). What is its area?",
+                options: ["6", "12", "18", "24", "48"],
+                answer: 1,
+                explanation: ["Base AB lies on x-axis, length = 6.", "Height from C to AB = 4 (y-coordinate of C).", "Area = (1/2)(6)(4) = 12.", "Base-height formula for triangles.", "The answer is B: 12."]
+            },
+            // ===== Q26-32: STATISTICS & PROBABILITY (17.5%) =====
+            {
+                id: 26,
+                question: "What is the mean of {3, 5, 7, 9, 11}?",
+                options: ["5", "6", "7", "8", "9"],
+                answer: 2,
+                explanation: ["Sum = 3 + 5 + 7 + 9 + 11 = 35.", "Count = 5.", "Mean = 35/5 = 7.", "This is an arithmetic sequence, mean = middle term.", "The answer is C: 7."]
+            },
+            {
+                id: 27,
+                question: "In how many ways can 4 books be arranged on a shelf?",
+                options: ["4", "8", "16", "24", "64"],
+                answer: 3,
+                explanation: ["This is 4! (4 factorial).", "4! = 4 x 3 x 2 x 1 = 24.", "Each position has decreasing choices.", "Permutations of n items = n!", "The answer is D: 24."]
+            },
+            {
+                id: 28,
+                question: "A coin is flipped 3 times. What is P(exactly 2 heads)?",
+                options: ["1/8", "1/4", "3/8", "1/2", "5/8"],
+                answer: 2,
+                explanation: ["Total outcomes = 2^3 = 8.", "Favorable outcomes: HHT, HTH, THH = 3.", "P = 3/8.", "Or use C(3,2) x (1/2)^3 = 3/8.", "The answer is C: 3/8."]
+            },
+            {
+                id: 29,
+                question: "Two dice are rolled. What is P(sum = 7)?",
+                options: ["1/12", "1/9", "1/6", "1/4", "1/3"],
+                answer: 2,
+                explanation: ["Total outcomes = 36.", "Sum 7: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) = 6 ways.", "P = 6/36 = 1/6.", "7 is the most common sum when rolling two dice.", "The answer is C: 1/6."]
+            },
+            {
+                id: 30,
+                question: "From 8 students, choose 2 for a committee. How many ways?",
+                options: ["16", "28", "36", "56", "64"],
+                answer: 1,
+                explanation: ["This is C(8,2) = 8!/(2! x 6!).", "= (8 x 7)/(2 x 1) = 28.", "Order doesn't matter in a committee.", "Use combinations, not permutations.", "The answer is B: 28."]
+            },
+            {
+                id: 31,
+                question: "What is the mode of {2, 3, 3, 4, 4, 4, 5}?",
+                options: ["2", "3", "4", "5", "3.5"],
+                answer: 2,
+                explanation: ["Count each value: 2(1), 3(2), 4(3), 5(1).", "4 appears most frequently (3 times).", "Mode = 4.", "Mode is the most common value.", "The answer is C: 4."]
+            },
+            {
+                id: 32,
+                question: "For data {10, 12, 14, 16, 18}, what is the median?",
+                options: ["12", "13", "14", "15", "16"],
+                answer: 2,
+                explanation: ["Data is already sorted.", "n = 5 (odd), median is middle value.", "Position: (5+1)/2 = 3rd value.", "3rd value = 14.", "The answer is C: 14."]
+            },
+            // ===== Q33-37: NUMERATIONS & OPERATIONS (12.5%) =====
+            {
+                id: 33,
+                question: "In an arithmetic sequence, \\(a_1 = 5\\) and \\(d = 3\\). What is \\(a_{10}\\)?",
+                options: ["27", "30", "32", "35", "38"],
+                answer: 2,
+                explanation: ["Formula: a_n = a_1 + (n-1)d.", "a_10 = 5 + 9(3) = 5 + 27.", "= 32.", "The 10th term is 32.", "The answer is C: 32."]
+            },
+            {
+                id: 34,
+                question: "Simplify: \\(\\sqrt{75} + \\sqrt{27}\\)",
+                options: ["sqrt(102)", "8 sqrt(3)", "10 sqrt(3)", "12 sqrt(3)", "102"],
+                answer: 1,
+                explanation: ["sqrt(75) = sqrt(25 x 3) = 5 sqrt(3).", "sqrt(27) = sqrt(9 x 3) = 3 sqrt(3).", "5 sqrt(3) + 3 sqrt(3) = 8 sqrt(3).", "Add like radicals.", "The answer is B: 8 sqrt(3)."]
+            },
+            {
+                id: 35,
+                question: "If x:y = 2:5 and y:z = 3:4, what is x:z?",
+                options: ["3:10", "6:20", "2:4", "3:8", "6:8"],
+                answer: 0,
+                explanation: ["Make y common: x:y = 6:15, y:z = 15:20.", "Now x:y:z = 6:15:20.", "x:z = 6:20 = 3:10.", "Chain ratio method.", "The answer is A: 3:10."]
+            },
+            {
+                id: 36,
+                question: "What is 15% of 240?",
+                options: ["24", "30", "36", "40", "48"],
+                answer: 2,
+                explanation: ["15% = 0.15.", "0.15 x 240 = 36.", "Or: 10% = 24, 5% = 12, total = 36.", "Mental math strategy.", "The answer is C: 36."]
+            },
+            {
+                id: 37,
+                question: "Simplify: \\(\\frac{2^4 \\times 2^3}{2^5}\\)",
+                options: ["2", "4", "8", "16", "32"],
+                answer: 1,
+                explanation: ["Numerator: 2^(4+3) = 2^7.", "Divide: 2^(7-5) = 2^2.", "2^2 = 4.", "Use exponent rules.", "The answer is B: 4."]
+            },
+            // ===== Q38-40: TRIGONOMETRY (7.5%) =====
+            {
+                id: 38,
+                question: "In a right triangle, the side opposite angle A is 8 and hypotenuse is 17. What is sin A?",
+                options: ["8/15", "8/17", "15/17", "17/8", "15/8"],
+                answer: 1,
+                explanation: ["sin A = opposite/hypotenuse.", "sin A = 8/17.", "This is a direct application of SOH.", "Adjacent side = sqrt(289-64) = 15.", "The answer is B: 8/17."]
+            },
+            {
+                id: 39,
+                question: "If \\(\\tan \\theta = 3/4\\) (theta acute), what is \\(\\cos \\theta\\)?",
+                options: ["3/5", "4/5", "3/4", "4/3", "5/4"],
+                answer: 1,
+                explanation: ["tan = opp/adj = 3/4.", "Hypotenuse = sqrt(9 + 16) = 5.", "cos = adj/hyp = 4/5.", "Use Pythagorean theorem first.", "The answer is B: 4/5."]
+            },
+            {
+                id: 40,
+                question: "What is the value of \\(\\sin 30° \\times \\cos 60°\\)?",
+                options: ["0", "1/4", "1/2", "sqrt(3)/4", "1"],
+                answer: 1,
+                explanation: ["sin 30 deg = 1/2.", "cos 60 deg = 1/2.", "(1/2) x (1/2) = 1/4.", "Standard angle values.", "The answer is B: 1/4."]
+            }
+        ];
+
+        let timeRemaining = 60 * 60;
+        let timerInterval = null;
+        let userAnswers = new Array(40).fill(null);
+        let examSubmitted = false;
+
+        function startExam() {
+            document.getElementById('coverPage').style.display = 'none';
+            document.getElementById('timerBar').style.display = 'flex';
+            document.getElementById('examContainer').classList.add('active');
+            renderQuestions();
+            renderNavigator();
+            startTimer();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                updateTimerDisplay();
+                if (timeRemaining <= 0) { clearInterval(timerInterval); submitExam(); }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            document.getElementById('timeDisplay').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            if (timeRemaining <= 300) document.getElementById('timer').classList.add('warning');
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsSection');
+            let html = '';
+            questions.forEach((q, index) => {
+                const explanationSteps = q.explanation.map((step, i) => `<div class="explanation-step"><span class="step-num">${i + 1}</span><span>${step}</span></div>`).join('');
+                html += `
+                    <div class="question-container" id="question-${q.id}">
+                        <div class="question-header">
+                            <div class="question-number">${q.id}</div>
+                            <div class="question-text">${q.question}</div>
+                        </div>
+                        <ul class="options-list">
+                            ${q.options.map((opt, optIndex) => `
+                                <li class="option-item" data-question="${index}" data-option="${optIndex}" onclick="selectOption(${index}, ${optIndex})">
+                                    <span class="option-letter">${String.fromCharCode(65 + optIndex)}</span>
+                                    <span class="option-text">${opt}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                        <div class="explanation-box" id="explanation-${q.id}">
+                            <div class="explanation-title">Correct Answer: ${String.fromCharCode(65 + q.answer)}</div>
+                            ${explanationSteps}
+                        </div>
+                    </div>
+                `;
+            });
+            html += `<div class="submit-section"><button class="submit-btn" onclick="submitExam()">Submit Exam</button></div>`;
+            container.innerHTML = html;
+            if (window.MathJax) MathJax.typesetPromise();
+        }
+
+        function renderNavigator() {
+            const container = document.getElementById('navigatorGrid');
+            let html = '';
+            for (let i = 1; i <= 40; i++) html += `<div class="nav-item" id="nav-${i}" onclick="scrollToQuestion(${i})">${i}</div>`;
+            container.innerHTML = html;
+        }
+
+        function selectOption(questionIndex, optionIndex) {
+            const question = questions[questionIndex];
+            const options = document.querySelectorAll(`[data-question="${questionIndex}"]`);
+            if (options[0].classList.contains('correct') || options[0].classList.contains('incorrect')) return;
+            userAnswers[questionIndex] = optionIndex;
+            options.forEach((opt, idx) => {
+                opt.classList.remove('selected');
+                opt.style.pointerEvents = 'none';
+                if (idx === question.answer) opt.classList.add('correct');
+                else if (idx === optionIndex && idx !== question.answer) opt.classList.add('incorrect');
+            });
+            const nav = document.getElementById(`nav-${questionIndex + 1}`);
+            nav.classList.add('answered');
+            if (optionIndex === question.answer) nav.classList.add('correct-review');
+            else nav.classList.add('incorrect-review');
+            document.getElementById(`explanation-${question.id}`).classList.add('show');
+            if (window.MathJax) MathJax.typesetPromise([document.getElementById(`explanation-${question.id}`)]);
+            updateAnsweredCount();
+        }
+
+        function updateAnsweredCount() {
+            document.getElementById('answeredCount').textContent = userAnswers.filter(a => a !== null).length;
+        }
+
+        function scrollToQuestion(id) {
+            document.getElementById(`question-${id}`).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function submitExam() {
+            if (examSubmitted) return;
+            examSubmitted = true;
+            clearInterval(timerInterval);
+            let correct = 0, incorrect = 0, unanswered = 0;
+            questions.forEach((q, i) => {
+                if (userAnswers[i] === null) unanswered++;
+                else if (userAnswers[i] === q.answer) correct++;
+                else incorrect++;
+            });
+            document.getElementById('examContainer').classList.remove('active');
+            document.getElementById('timerBar').style.display = 'none';
+            document.getElementById('resultsContainer').classList.add('active');
+            document.getElementById('scoreNumber').textContent = correct;
+            document.getElementById('correctCount').textContent = correct;
+            document.getElementById('incorrectCount').textContent = incorrect;
+            document.getElementById('unansweredCount').textContent = unanswered;
+            document.getElementById('percentageScore').textContent = Math.round((correct / 40) * 100) + '%';
+        }
+
+        function reviewAnswers() {
+            document.getElementById('resultsContainer').classList.remove('active');
+            document.getElementById('examContainer').classList.add('active');
+            document.getElementById('timerBar').style.display = 'flex';
+            document.getElementById('timeDisplay').textContent = 'Review Mode';
+            document.getElementById('timer').classList.remove('warning');
+            questions.forEach((q, index) => {
+                const options = document.querySelectorAll(`[data-question="${index}"]`);
+                options.forEach((opt, optIndex) => {
+                    opt.classList.remove('selected');
+                    if (optIndex === q.answer) opt.classList.add('correct');
+                    else if (userAnswers[index] === optIndex) opt.classList.add('incorrect');
+                });
+                document.getElementById(`explanation-${q.id}`).classList.add('show');
+                const nav = document.getElementById(`nav-${q.id}`);
+                nav.classList.remove('answered');
+                nav.classList.add(userAnswers[index] === q.answer ? 'correct-review' : userAnswers[index] !== null ? 'incorrect-review' : '');
+            });
+            if (window.MathJax) MathJax.typesetPromise();
+        }
+    </script>
+</body>
+
+</html>

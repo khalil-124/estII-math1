@@ -1,0 +1,91 @@
+Chapter 31
+Nuclear Energy; Effects and Uses 
+of Radiation
+© 2016 Pearson Education, Ltd.
+
+Radiation includes alpha, beta, and gamma rays; X rays; 
+and protons, neutrons, pions, and other particles.
+All these forms of radiation are called ionizing radiation, 
+because they ionize material that they go through.
+This ionization can cause damage to materials, including 
+biological tissue.
+31-4 Passage of Radiation Through Matter; 
+Radiation Damage
+© 2016 Pearson Education, Ltd.
+31-5 Measurement of Radiation—Dosimetry
+Radiation damages biological tissue, but it can also be used to treat cancer and 
+other diseases.
+It is important to be able to measure the amount, or dose, of radiation received. 
+The source activity is the number of disintegrations per second, often measured 
+in curies, Ci.
+1 Ci = 3.70 × 1010 disintegrations per second
+The SI unit for source activity is the becquerel (Bq):
+1 Bq = 1 disintegration/s
+© 2016 Pearson Education, Ltd.
+31-5 Measurement of Radiation—Dosimetry
+© 2016 Pearson Education, Ltd.
+Another measurement is the absorbed dose—the effect 
+the radiation has on the absorbing material.
+The rad, a unit of dosage, is the amount of radiation that 
+deposits energy at a rate of 1.00 × 10−2 J/kg in any 
+material.
+The SI unit for dose is the gray, Gy:
+1 Gy = 1 J/kg = 100 rad
+© 2016 Pearson Education, Ltd.
+
+31-5 Measurement of Radiation—Dosimetry
+© 2016 Pearson Education, Ltd.
+The effect on tissue of 
+different types of 
+radiation varies, alpha 
+rays being the most 
+damaging. To get the 
+effective dose, the dose is 
+multiplied by the relative 
+biological effectiveness.
+31-5 Measurement of Radiation—Dosimetry
+If the dose is measured in rad, the effective dose is
+in rem; if the dose is grays, the effective dose is in
+sieverts, Sv.
+Natural background radiation is about 0.3 rem per year. 
+The maximum for radiation workers is 5 rem in any one 
+year, and below 2 rem per year averaged over 5 years.
+A short dose of 1000 rem is almost always fatal; a short 
+dose of 400 rem has about a 50% fatality rate.
+© 2016 Pearson Education, Ltd.
+© 2016 Pearson Education, Ltd.
+
+© 2016 Pearson Education, Ltd.
+
+© 2016 Pearson Education, Ltd.
+
+31-6 Radiation Therapy
+© 2016 Pearson Education, Ltd.
+Cancer is sometimes treated 
+with radiation therapy to 
+destroy the cells. In order to 
+minimize the damage to 
+healthy tissue, the radiation 
+source is often rotated so
+it goes through different
+parts of the body on
+its way to the tumor.
+Radioactive tracers can also be detected using 
+tomographic techniques, where a three-dimensional 
+image is gradually built up through successive scans.
+31-8 Emission Tomography: PET and SPECT
+© 2016 Pearson Education, Ltd.
+
+31-9 Nuclear Magnetic Resonance (NMR) and 
+Magnetic Resonance Imaging (MRI)
+© 2016 Pearson Education, Ltd.
+The object to be examined is placed in a static magnetic 
+field, and radio frequency (RF) electromagnetic radiation 
+is applied. 
+
+© 2016 Pearson Education, Ltd.
+
+© 2016 Pearson Education, Ltd.
+
+© 2016 Pearson Education, Ltd.
+

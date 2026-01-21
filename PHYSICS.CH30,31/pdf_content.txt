@@ -1,0 +1,150 @@
+Chapter 30
+Nuclear Physics and Radioactivity
+© 2016 Pearson Education, Ltd.
+
+30-1 Structure and Properties of the Nucleus
+Nucleus is made of protons and neutrons
+Proton has positive charge; here is its mass:
+mp = 1.67262 × 10−27 kg
+Neutron is electrically neutral, and slightly more massive 
+than the proton:
+mn = 1.67493 × 10−27 kg
+© 2016 Pearson Education, Ltd.
+30-1 Structure and Properties of the Nucleus
+Neutrons and protons are collectively called nucleons.
+The different nuclei are referred to as nuclides.
+Number of protons: atomic number, Z
+Number of nucleons: atomic mass number, A
+Neutron number: N = A − Z
+© 2016 Pearson Education, Ltd.
+A and Z are sufficient to specify a nuclide. Nuclides are 
+symbolized as follows:
+X is the chemical symbol for the element; it contains the 
+same information as Z but in a more easily recognizable 
+form.
+30-1 Structure and Properties of the Nucleus
+© 2016 Pearson Education, Ltd.
+
+Nuclei with the same Z—so they are the same element—
+but different N are called isotopes. 
+For many elements, several different isotopes exist
+in nature. 
+Natural abundance is the percentage of a particular 
+element that consists of a particular isotope in nature.
+30-1 Structure and Properties of the Nucleus
+© 2016 Pearson Education, Ltd.
+30-1 Structure and Properties of the Nucleus
+Because of wave-particle duality, the size of the nucleus is somewhat fuzzy. 
+Measurements of high-energy electron scattering yield:
+© 2016 Pearson Education, Ltd.
+(30-1)
+
+30-1 Structure and Properties of the Nucleus
+Masses of atoms are measured with reference to the 
+carbon-12 atom, which is assigned a mass of exactly 
+12u. A u is a unified atomic mass unit.
+1 u = 1.6605 × 10−27 kg = 931.5 MeV/c2
+© 2016 Pearson Education, Ltd.
+From the following table, you can see that the electron is 
+considerably less massive than a nucleon.
+30-1 Structure and Properties of the Nucleus
+© 2016 Pearson Education, Ltd.
+
+30-3 Radioactivity
+Towards the end of the 19th century, minerals were found 
+that would darken a photographic plate even in the 
+absence of light.
+This phenomenon is now called radioactivity. 
+Marie and Pierre Curie isolated two new elements that 
+were highly radioactive; they are now called polonium 
+and radium.
+© 2016 Pearson Education, Ltd.
+30-3 Radioactivity
+Radioactive rays were observed to be of three types:
+1. Alpha rays, which could barely penetrate a piece of 
+paper
+2. Beta rays, which could penetrate 3 mm of aluminum
+3. Gamma rays, which could penetrate several 
+centimeters of lead
+We now know that alpha rays are helium nuclei, beta 
+rays are electrons, and gamma rays are electromagnetic 
+radiation.
+© 2016 Pearson Education, Ltd.
+30-8 Half-Life and Rate of Decay
+Nuclear decay is a random process; the decay of any 
+nucleus is not influenced by the decay of any other.
+© 2016 Pearson Education, Ltd.
+
+30-8 Half-Life and Rate of Decay
+Therefore, the number of decays in a short time interval 
+is proportional to the number of nuclei present and to
+the time:
+Here, λ is a constant characteristic of that particular 
+nuclide, called the decay constant.
+© 2016 Pearson Education, Ltd.
+(30-3a)
+30-8 Half-Life and Rate of Decay
+This equation can be solved, using calculus, for N as a 
+function of time:
+© 2016 Pearson Education, Ltd.
+(30-4)
+
+© 2016 Pearson Education, Ltd.
+
+30-8 Half-Life and Rate of Decay
+The half-life is the time it takes for half the nuclei in a 
+given sample to decay. It is related to the decay constant:
+© 2016 Pearson Education, Ltd.
+(30-6)
+Activity 
+• The number of decays per second, or decay rate R, is the magnitude of and 
+is also called the activity of the sample.
+where
+© 2016 Pearson Education, Ltd.
+The unit of  activity is the number of disintegrations per second, often measured 
+in curies, Ci.
+1 Ci = 3.70 × 1010 disintegrations per second
+The SI unit for source activity is the becquerel (Bq):
+1 Bq = 1 disintegration/s
+
+© 2016 Pearson Education, Ltd.
+
+Mean Life
+• The mean life of an isotope is then given by
+© 2016 Pearson Education, Ltd.
+
+© 2016 Pearson Education, Ltd.
+
+30-11 Radioactive Dating
+© 2016 Pearson Education, Ltd.
+Radioactive dating can be done by analyzing the fraction 
+of carbon in organic material that is carbon-14.
+The ratio of carbon-14 to carbon-12 in the atmosphere 
+has been roughly constant over thousands of years. A 
+living plant or tree will be constantly exchanging carbon 
+with the atmosphere, and will have the same carbon ratio 
+in its tissues.
+30-11 Radioactive Dating
+© 2016 Pearson Education, Ltd.
+When the plant dies, this exchange stops. Carbon-14 has 
+a half-life of about 5730 years; it gradually decays away 
+and becomes a smaller and smaller fraction of the total 
+carbon in the plant tissue.
+This fraction can be measured, and the age of the
+tissue deduced. 
+Objects older than about 60,000 years cannot be dated 
+this way—there is too little carbon-14 left. 
+30-11 Radioactive Dating
+© 2016 Pearson Education, Ltd.
+Other isotopes are useful for geologic time scale dating.
+Uranium-238 has a half-life of 4.5 × 109 years, and has 
+been used to date the oldest rocks on Earth as about
+4 billion years old.
+© 2016 Pearson Education, Ltd.
+
+© 2016 Pearson Education, Ltd.
+
+© 2016 Pearson Education, Ltd.
+
+© 2016 Pearson Education, Ltd.
+

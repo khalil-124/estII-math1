@@ -1,0 +1,1883 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 30: Nuclear Physics and Radioactivity</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin-top: 25px;
+        }
+
+        .section {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .formula-box {
+            background-color: #e8f4fc;
+            border-left: 5px solid var(--accent-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 1.1em;
+            color: var(--primary-color);
+            overflow-x: auto;
+        }
+
+        .key-point {
+            background-color: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .key-point strong {
+            color: #166534;
+        }
+
+        /* Problem Styles */
+        .problem-card {
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .problem-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            font-weight: bold;
+        }
+
+        .problem-body {
+            padding: 20px;
+        }
+
+        .btn-solution {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .btn-solution:hover {
+            background-color: #2980b9;
+        }
+
+        .solution-content {
+            display: none;
+            background-color: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            padding: 20px;
+            margin-top: 15px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .solution-content.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .part-header {
+            background: linear-gradient(135deg, #1a252f, #2c3e50);
+            color: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            margin: 40px 0 20px 0;
+            text-align: center;
+        }
+
+        .part-header h2 {
+            color: white;
+            border: none;
+            margin: 0;
+        }
+
+        .mcq-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .mcq-item {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .answer-reveal {
+            background: #d1fae5;
+            padding: 8px 15px;
+            border-radius: 6px;
+            margin-top: 10px;
+            display: inline-block;
+            font-weight: bold;
+            color: #065f46;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px dashed #ccc;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Physics Chapter 30</h1>
+            <p>Nuclear Physics and Radioactivity - Comprehensive Guide</p>
+        </header>
+
+        <!-- ==================== PART 1: THEORY ==================== -->
+        <div class="part-header">
+            <h2>Part 1: Detailed Chapter Explanation</h2>
+        </div>
+
+        <!-- Section 1 -->
+        <div class="section">
+            <h2>1. Structure and Properties of the Nucleus</h2>
+            <p>The nucleus is the dense core of an atom, composed of <strong>nucleons</strong>:</p>
+            <ul>
+                <li><strong>Protons (\(p\))</strong>: Positively charged. Mass \(m_p \approx 1.67262 \times 10^{-27}\)
+                    kg.</li>
+                <li><strong>Neutrons (\(n\))</strong>: Neutral (no charge). Slightly heavier than protons. Mass \(m_n
+                    \approx 1.67493 \times 10^{-27}\) kg.</li>
+            </ul>
+
+            <h3>Particle Mass Comparison</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Particle</th>
+                        <th>Symbol</th>
+                        <th>Mass (kg)</th>
+                        <th>Mass (u)</th>
+                        <th>Charge</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Proton</td>
+                        <td>\(p\)</td>
+                        <td>\(1.67262 \times 10^{-27}\)</td>
+                        <td>1.007276</td>
+                        <td>+e</td>
+                    </tr>
+                    <tr>
+                        <td>Neutron</td>
+                        <td>\(n\)</td>
+                        <td>\(1.67493 \times 10^{-27}\)</td>
+                        <td>1.008665</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Electron</td>
+                        <td>\(e^-\)</td>
+                        <td>\(9.109 \times 10^{-31}\)</td>
+                        <td>0.000549</td>
+                        <td>-e</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><em>Note: The electron is approximately 1836 times lighter than a proton!</em></p>
+
+            <div class="key-point">
+                <strong>Key Notation:</strong> A nuclide is represented as:
+                <div class="formula-box" style="text-align: center; font-size: 1.5em;">
+                    \({}_{Z}^{A}X\)
+                </div>
+                <ul>
+                    <li>\(X\): Chemical symbol of the element.</li>
+                    <li>\(Z\) (Atomic Number): Number of protons. Determines the element.</li>
+                    <li>\(A\) (Atomic Mass Number): Total number of nucleons (\(A = Z + N\)).</li>
+                    <li>\(N\) (Neutron Number): \(N = A - Z\).</li>
+                </ul>
+            </div>
+
+            <!-- Quick Check: Notation -->
+            <div class="mcq-grid" style="margin-top: 20px;">
+                <div class="mcq-item">
+                    <p><strong>✓ Quick Check:</strong> In \({}_{92}^{238}U\), what does "92" represent?</p>
+                    <p>A) Neutrons &nbsp; B) Protons &nbsp; C) Nucleons &nbsp; D) Electrons</p>
+                    <div class="answer-reveal">Answer: B (Protons = Atomic Number Z)</div>
+                </div>
+                <div class="mcq-item">
+                    <p><strong>✓ Quick Check:</strong> How many neutrons are in \({}_{26}^{56}Fe\)?</p>
+                    <p>A) 26 &nbsp; B) 30 &nbsp; C) 56 &nbsp; D) 82</p>
+                    <div class="answer-reveal">Answer: B (N = A - Z = 56 - 26 = 30)</div>
+                </div>
+            </div>
+
+            <h3>Isotopes</h3>
+            <p>Nuclei with the same \(Z\) (same element) but different \(N\) (and thus different \(A\)).</p>
+            <p><em>Example:</em> Carbon-12 (\({}^{12}C\)) and Carbon-14 (\({}^{14}C\)).</p>
+            <p><strong>Natural Abundance:</strong> The percentage of a specific isotope found naturally on Earth.</p>
+
+            <!-- Quick Check: Isotopes -->
+            <div class="mcq-grid" style="margin-top: 15px;">
+                <div class="mcq-item">
+                    <p><strong>✓ Quick Check:</strong> Two isotopes of the same element have:</p>
+                    <p>A) Same Z, different N &nbsp; B) Same N, different Z &nbsp; C) Same A &nbsp; D) Different Z and N
+                    </p>
+                    <div class="answer-reveal">Answer: A</div>
+                </div>
+            </div>
+
+            <h3>Nuclear Radius</h3>
+            <p>The nucleus is roughly spherical. Its radius \(r\) depends on the mass number \(A\):</p>
+            <div class="formula-box">
+                \[r \approx r_0 \cdot A^{1/3}\]
+                Where \(r_0 \approx 1.2 \times 10^{-15}\) m = 1.2 fm (femtometers).
+            </div>
+
+            <!-- Quick Check: Radius -->
+            <div class="mcq-grid" style="margin-top: 15px;">
+                <div class="mcq-item">
+                    <p><strong>✓ Quick Check:</strong> If nucleus A has \(A = 27\) and nucleus B has \(A = 64\), the
+                        ratio \(r_A / r_B\) is:</p>
+                    <p>A) 27/64 &nbsp; B) 3/4 &nbsp; C) 9/16 &nbsp; D) 1/2</p>
+                    <div class="answer-reveal">Answer: B (\(27^{1/3}/64^{1/3} = 3/4\))</div>
+                </div>
+            </div>
+
+            <h3>Atomic Mass Units (u)</h3>
+            <p>Masses are often measured in unified atomic mass units (u), based on Carbon-12 being exactly 12.0000 u.
+            </p>
+            <div class="formula-box">
+                \[1 \text{ u} = 1.6605 \times 10^{-27} \text{ kg} = 931.5 \text{ MeV}/c^2\]
+            </div>
+            <p><strong>Mass-Energy Equivalence:</strong> \(E = mc^2\). The rest energy of 1 u is 931.5 MeV.</p>
+
+            <!-- Quick Check: Mass -->
+            <div class="mcq-grid" style="margin-top: 15px;">
+                <div class="mcq-item">
+                    <p><strong>✓ Quick Check:</strong> The atomic mass unit is defined based on which isotope?</p>
+                    <p>A) Hydrogen-1 &nbsp; B) Oxygen-16 &nbsp; C) Carbon-12 &nbsp; D) Uranium-238</p>
+                    <div class="answer-reveal">Answer: C</div>
+                </div>
+                <div class="mcq-item">
+                    <p><strong>✓ Quick Check:</strong> A mass defect of 0.02 u corresponds to how much energy?</p>
+                    <p>A) 0.02 MeV &nbsp; B) 18.6 MeV &nbsp; C) 931.5 MeV &nbsp; D) 46.6 MeV</p>
+                    <div class="answer-reveal">Answer: B (\(0.02 \times 931.5 = 18.63\) MeV)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="section">
+            <h2>2. Radioactivity</h2>
+            <p>Radioactivity is the spontaneous emission of radiation by an unstable nucleus.</p>
+
+            <h3>Historical Discovery</h3>
+            <div class="key-point">
+                <p>Towards the end of the 19th century, scientists discovered that certain minerals could darken
+                    photographic plates even in the absence of light. This phenomenon is now called
+                    <strong>radioactivity</strong>.
+                </p>
+                <p><strong>Marie and Pierre Curie</strong> isolated two new highly radioactive elements:
+                    <strong>Polonium (Po)</strong> and <strong>Radium (Ra)</strong>. Marie Curie won two Nobel Prizes
+                    for this groundbreaking work.
+                </p>
+            </div>
+
+            <h3>Types of Radiation</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Symbol</th>
+                        <th>Identity</th>
+                        <th>Penetrating Power</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Alpha</td>
+                        <td>\(\alpha\)</td>
+                        <td>Helium Nucleus (\({}_{2}^{4}He\))</td>
+                        <td>Low (stopped by paper)</td>
+                    </tr>
+                    <tr>
+                        <td>Beta</td>
+                        <td>\(\beta\)</td>
+                        <td>Electron (\(e^-\)) or Positron (\(e^+\))</td>
+                        <td>Medium (stopped by 3mm Al)</td>
+                    </tr>
+                    <tr>
+                        <td>Gamma</td>
+                        <td>\(\gamma\)</td>
+                        <td>High energy photon</td>
+                        <td>High (stopped by cm of Lead)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Quick Check: Radiation -->
+            <div class="mcq-grid" style="margin-top: 20px;">
+                <div class="mcq-item">
+                    <p><strong>✓ Quick Check:</strong> Which radiation is stopped by a sheet of paper?</p>
+                    <p>A) Alpha &nbsp; B) Beta &nbsp; C) Gamma &nbsp; D) All of them</p>
+                    <div class="answer-reveal">Answer: A</div>
+                </div>
+                <div class="mcq-item">
+                    <p><strong>✓ Quick Check:</strong> Alpha particles are identical to:</p>
+                    <p>A) Electrons &nbsp; B) Protons &nbsp; C) Helium nuclei &nbsp; D) Photons</p>
+                    <div class="answer-reveal">Answer: C</div>
+                </div>
+                <div class="mcq-item">
+                    <p><strong>✓ Quick Check:</strong> When a nucleus emits a gamma ray, its atomic number Z:</p>
+                    <p>A) Increases by 1 &nbsp; B) Decreases by 2 &nbsp; C) Decreases by 1 &nbsp; D) Stays the same</p>
+                    <div class="answer-reveal">Answer: D (Gamma is just energy, no particle)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="section">
+            <h2>3. Decay Laws and Half-Life</h2>
+            <p>Radioactive decay is a random, probabilistic process.</p>
+
+            <h3>Decay Rate (Activity)</h3>
+            <p>The rate at which nuclei decay is proportional to the number of nuclei present:</p>
+            <div class="formula-box">
+                \[\frac{\Delta N}{\Delta t} = -\lambda N\]
+            </div>
+            <p>\(\lambda\) (Lambda): Decay constant (probability of decay per unit time).</p>
+
+            <h3>Exponential Decay Law</h3>
+            <p>The number of parent nuclei \(N\) remaining at time \(t\) is:</p>
+            <div class="formula-box">
+                \[N(t) = N_0 e^{-\lambda t}\]
+            </div>
+
+            <h3>Half-Life (\(T_{1/2}\))</h3>
+            <p>The time required for half of the nuclei in a sample to decay.</p>
+            <div class="formula-box">
+                \[T_{1/2} = \frac{\ln 2}{\lambda} \approx \frac{0.693}{\lambda}\]
+            </div>
+
+            <!-- Quick Check: Half-Life -->
+            <div class="mcq-grid" style="margin-top: 15px;">
+                <div class="mcq-item">
+                    <p><strong>✓ Quick Check:</strong> If a sample starts with 800 nuclei, how many remain after 2
+                        half-lives?</p>
+                    <p>A) 400 &nbsp; B) 200 &nbsp; C) 100 &nbsp; D) 50</p>
+                    <div class="answer-reveal">Answer: B (\(800 \div 2 \div 2 = 200\))</div>
+                </div>
+                <div class="mcq-item">
+                    <p><strong>✓ Quick Check:</strong> If \(T_{1/2} = 10\) days, what fraction remains after 30 days?
+                    </p>
+                    <p>A) 1/2 &nbsp; B) 1/4 &nbsp; C) 1/8 &nbsp; D) 1/16</p>
+                    <div class="answer-reveal">Answer: C (3 half-lives → \((1/2)^3 = 1/8\))</div>
+                </div>
+            </div>
+
+            <h3>Mean Life (\(\tau\))</h3>
+            <p>The average lifetime of a nucleus.</p>
+            <div class="formula-box">
+                \[\tau = \frac{1}{\lambda} = \frac{T_{1/2}}{0.693}\]
+            </div>
+
+            <!-- Quick Check: Mean Life -->
+            <div class="mcq-grid" style="margin-top: 15px;">
+                <div class="mcq-item">
+                    <p><strong>✓ Quick Check:</strong> Mean life \(\tau\) is related to decay constant \(\lambda\) by:
+                    </p>
+                    <p>A) \(\tau = \lambda\) &nbsp; B) \(\tau = 1/\lambda\) &nbsp; C) \(\tau = 0.693\lambda\) &nbsp; D)
+                        \(\tau = \lambda^2\)</p>
+                    <div class="answer-reveal">Answer: B</div>
+                </div>
+            </div>
+
+            <h3>Activity (\(R\))</h3>
+            <p>The number of decays per second.</p>
+            <div class="formula-box">
+                \[R = \left| \frac{\Delta N}{\Delta t} \right| = \lambda N = R_0 e^{-\lambda t}\]
+            </div>
+            <p><strong>Units:</strong></p>
+            <ul>
+                <li><strong>Becquerel (Bq):</strong> 1 decay/s (SI Unit).</li>
+                <li><strong>Curie (Ci):</strong> \(1 \text{ Ci} = 3.70 \times 10^{10}\) Bq.</li>
+            </ul>
+
+            <!-- Quick Check: Activity -->
+            <div class="mcq-grid" style="margin-top: 15px;">
+                <div class="mcq-item">
+                    <p><strong>✓ Quick Check:</strong> The SI unit for activity is:</p>
+                    <p>A) Curie &nbsp; B) Becquerel &nbsp; C) Roentgen &nbsp; D) Gray</p>
+                    <div class="answer-reveal">Answer: B</div>
+                </div>
+                <div class="mcq-item">
+                    <p><strong>✓ Quick Check:</strong> If a sample has \(N = 10^{20}\) nuclei and \(\lambda = 10^{-5}
+                        \text{ s}^{-1}\), the activity is:</p>
+                    <p>A) \(10^{15}\) Bq &nbsp; B) \(10^{25}\) Bq &nbsp; C) \(10^{-25}\) Bq &nbsp; D) \(10^{5}\) Bq</p>
+                    <div class="answer-reveal">Answer: A (\(R = \lambda N = 10^{-5} \times 10^{20} = 10^{15}\))</div>
+                </div>
+                <div class="mcq-item">
+                    <p><strong>✓ Quick Check:</strong> 1 Curie equals approximately:</p>
+                    <p>A) 1 Bq &nbsp; B) \(3.7 \times 10^{10}\) Bq &nbsp; C) \(10^6\) Bq &nbsp; D) \(10^{-10}\) Bq</p>
+                    <div class="answer-reveal">Answer: B</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="section">
+            <h2>4. Radioactive Dating</h2>
+            <p><strong>Carbon-14 Dating:</strong> Used for organic materials up to ~60,000 years old. Living things
+                maintain a constant ratio of \({}^{14}C/{}^{12}C\). Upon death, \({}^{14}C\) decays (\(T_{1/2} \approx
+                5730\) yr) and is not replaced.</p>
+            <p><strong>Geological Dating:</strong> Uses isotopes with very long half-lives (e.g., Uranium-238, \(T_{1/2}
+                = 4.5 \times 10^9\) yr) to date rocks.</p>
+
+            <!-- Quick Check: Dating -->
+            <div class="mcq-grid" style="margin-top: 20px;">
+                <div class="mcq-item">
+                    <p><strong>✓ Quick Check:</strong> The half-life of Carbon-14 is approximately:</p>
+                    <p>A) 573 years &nbsp; B) 5730 years &nbsp; C) 57,300 years &nbsp; D) 4.5 billion years</p>
+                    <div class="answer-reveal">Answer: B</div>
+                </div>
+                <div class="mcq-item">
+                    <p><strong>✓ Quick Check:</strong> A sample has 1/4 of its original C-14. Its age is approximately:
+                    </p>
+                    <p>A) 5730 years &nbsp; B) 11,460 years &nbsp; C) 17,190 years &nbsp; D) 2,865 years</p>
+                    <div class="answer-reveal">Answer: B (2 half-lives = \(2 \times 5730\))</div>
+                </div>
+                <div class="mcq-item">
+                    <p><strong>✓ Quick Check:</strong> C-14 dating cannot be used for samples older than ~60,000 years
+                        because:</p>
+                    <p>A) C-14 is too stable &nbsp; B) Too little C-14 remains to measure &nbsp; C) C-14 wasn't present
+                        in the past &nbsp; D) The formula doesn't work</p>
+                    <div class="answer-reveal">Answer: B</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== PART 2: PDF SOLUTIONS ==================== -->
+    <div class="part-header">
+        <h2>Part 2: Solutions to PDF Questions</h2>
+    </div>
+
+    <div class="section">
+        <p>Here are the detailed solutions for every problem and example found in the lecture slides.</p>
+
+        <!-- Question 4 -->
+        <div class="problem-card">
+            <div class="problem-header">Question 4 (Slide 6): Nuclear Radius</div>
+            <div class="problem-body">
+                <p>(a) What is the approximate radius of a \({}_{48}^{112}Cd\) nucleus?</p>
+                <p>(b) Approximately what is the value of \(A\) for a nucleus whose radius is \(3.7 \times
+                    10^{-15}\) m?</p>
+                <button class="btn-solution" onclick="toggleSolution('q4')">Show Solution</button>
+                <div id="q4" class="solution-content">
+                    <p><strong>Formula:</strong> \(r \approx (1.2 \times 10^{-15} \text{ m}) A^{1/3}\)</p>
+                    <hr>
+                    <p><strong>(a)</strong> For Cadmium-112, \(A = 112\).</p>
+                    <p>\[r \approx (1.2 \times 10^{-15}) (112)^{1/3}\]</p>
+                    <p>\[(112)^{1/3} \approx 4.82\]</p>
+                    <p>\[r \approx 5.78 \times 10^{-15} \text{ m} \approx \boxed{5.8 \text{ fm}}\]</p>
+                    <hr>
+                    <p><strong>(b)</strong> Given \(r = 3.7 \times 10^{-15}\) m.</p>
+                    <p>\[A^{1/3} = \frac{3.7}{1.2} \approx 3.083\]</p>
+                    <p>\[A = (3.083)^3 \approx \boxed{29}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 37 -->
+        <div class="problem-card">
+            <div class="problem-header">Question 37 (Slide 14): Decay Constant</div>
+            <div class="problem-body">
+                <p>(a) What is the decay constant of \({}_{92}^{238}U\) whose half-life is \(4.5 \times 10^9\) yr?
+                </p>
+                <p>(b) The decay constant of a given nucleus is \(3.2 \times 10^{-5} \text{ s}^{-1}\). What is its
+                    half-life?</p>
+                <button class="btn-solution" onclick="toggleSolution('q37')">Show Solution</button>
+                <div id="q37" class="solution-content">
+                    <p><strong>Formula:</strong> \(\lambda = \frac{0.693}{T_{1/2}}\)</p>
+                    <hr>
+                    <p><strong>(a)</strong></p>
+                    <p>\[\lambda = \frac{0.693}{4.5 \times 10^9 \text{ yr}} \approx \boxed{1.54 \times 10^{-10}
+                        \text{ yr}^{-1}}\]</p>
+                    <hr>
+                    <p><strong>(b)</strong></p>
+                    <p>\[T_{1/2} = \frac{0.693}{3.2 \times 10^{-5}} \approx 21656 \text{ s} \approx \boxed{6.0
+                        \text{ hours}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example 30-9 -->
+        <div class="problem-card">
+            <div class="problem-header">Example 30-9 (Slide 17): Activity Calculation</div>
+            <div class="problem-body">
+                <p>The isotope \({}_{6}^{14}C\) has a half-life of 5730 yr. If a sample contains \(1.00 \times
+                    10^{22}\) carbon-14 nuclei, what is the activity of the sample?</p>
+                <button class="btn-solution" onclick="toggleSolution('ex309')">Show Solution</button>
+                <div id="ex309" class="solution-content">
+                    <p><strong>Step 1:</strong> Convert half-life to seconds.</p>
+                    <p>\[T_{1/2} = 5730 \text{ yr} \times 3.156 \times 10^7 \text{ s/yr} \approx 1.81 \times 10^{11}
+                        \text{ s}\]</p>
+                    <hr>
+                    <p><strong>Step 2:</strong> Calculate decay constant \(\lambda\).</p>
+                    <p>\[\lambda = \frac{0.693}{1.81 \times 10^{11}} \approx 3.83 \times 10^{-12} \text{ s}^{-1}\]
+                    </p>
+                    <hr>
+                    <p><strong>Step 3:</strong> Calculate Activity \(R = \lambda N\).</p>
+                    <p>\[R = (3.83 \times 10^{-12})(1.00 \times 10^{22}) = \boxed{3.83 \times 10^{10} \text{ Bq}}\]
+                    </p>
+                    <p>(Approx 1.03 Ci)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 49 -->
+        <div class="problem-card">
+            <div class="problem-header">Question 49 (Slide 17): Finding Half-Life from Activity Drop</div>
+            <div class="problem-body">
+                <p>The activity of a sample drops by a factor of 6.0 in 9.4 minutes. What is its half-life?</p>
+                <button class="btn-solution" onclick="toggleSolution('q49')">Show Solution</button>
+                <div id="q49" class="solution-content">
+                    <p><strong>Given:</strong> \(\frac{R_0}{R} = 6.0\), \(t = 9.4\) min.</p>
+                    <p>\[\frac{R_0}{R} = e^{\lambda t}\]</p>
+                    <p>\[\ln(6.0) = \lambda t\]</p>
+                    <p>\[\lambda = \frac{1.792}{9.4} \approx 0.1906 \text{ min}^{-1}\]</p>
+                    <hr>
+                    <p>\[T_{1/2} = \frac{0.693}{0.1906} \approx \boxed{3.6 \text{ minutes}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example 30-11 -->
+        <div class="problem-card">
+            <div class="problem-header">Example 30-11 (Slide 19): Nitrogen-13 Decay</div>
+            <div class="problem-body">
+                <p>A laboratory has 1.49 μg of pure \({}_{7}^{13}N\) which has a half-life of 10.0 min (600 s).</p>
+                <ol type="a">
+                    <li>How many nuclei are present initially?</li>
+                    <li>What is the rate of decay (activity) initially?</li>
+                    <li>What is the activity after 1.00 h?</li>
+                    <li>After approximately how long will the activity drop to less than 1 decay/s?</li>
+                </ol>
+                <button class="btn-solution" onclick="toggleSolution('ex3011')">Show Solution</button>
+                <div id="ex3011" class="solution-content">
+                    <p><strong>(a) Initial Nuclei \(N_0\):</strong></p>
+                    <p>Atomic mass of \({}^{13}N \approx 13\) g/mol. Mass \(m = 1.49 \times 10^{-6}\) g.</p>
+                    <p>Moles = \(\frac{1.49 \times 10^{-6}}{13} \approx 1.146 \times 10^{-7}\) mol.</p>
+                    <p>\[N_0 = (1.146 \times 10^{-7}) \times (6.022 \times 10^{23}) \approx \boxed{6.90 \times
+                        10^{16} \text{ nuclei}}\]</p>
+                    <hr>
+                    <p><strong>(b) Initial Activity \(R_0\):</strong></p>
+                    <p>\(\lambda = 0.693 / 600 = 1.155 \times 10^{-3} \text{ s}^{-1}\)</p>
+                    <p>\[R_0 = \lambda N_0 = (1.155 \times 10^{-3})(6.90 \times 10^{16}) \approx \boxed{7.97 \times
+                        10^{13} \text{ Bq}}\]</p>
+                    <hr>
+                    <p><strong>(c) Activity after 1 hour (3600 s):</strong></p>
+                    <p>1 hour = 6 half-lives. \(R = R_0 / 2^6 = R_0 / 64\)</p>
+                    <p>\[R \approx \boxed{1.25 \times 10^{12} \text{ Bq}}\]</p>
+                    <hr>
+                    <p><strong>(d) Time to reach \(R = 1\):</strong></p>
+                    <p>\[t = \frac{\ln(R_0)}{\lambda} = \frac{\ln(7.97 \times 10^{13})}{1.155 \times 10^{-3}}
+                        \approx 27700 \text{ s} \approx \boxed{7.7 \text{ hours}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example 30-13 -->
+        <div class="problem-card">
+            <div class="problem-header">Example 30-13 (Slide 23): Carbon Dating</div>
+            <div class="problem-body">
+                <p>An ancient animal bone fragment contains 200 g of carbon and registers an activity of 16
+                    decays/s. What is its age?</p>
+                <button class="btn-solution" onclick="toggleSolution('ex3013')">Show Solution</button>
+                <div id="ex3013" class="solution-content">
+                    <p><strong>Step 1:</strong> Estimate Initial Activity (\(R_0\)).</p>
+                    <p>Living ratio is approx \(R/m \approx 0.23\) Bq/g.</p>
+                    <p>\[R_0 \approx 0.23 \times 200 = 46 \text{ decays/s}\]</p>
+                    <hr>
+                    <p><strong>Step 2:</strong> Current Activity \(R = 16\) decays/s.</p>
+                    <p>\[e^{\lambda t} = \frac{R_0}{R} = \frac{46}{16} = 2.875\]</p>
+                    <p>\[\lambda t = \ln(2.875) \approx 1.056\]</p>
+                    <hr>
+                    <p><strong>Step 3:</strong> Using \(\lambda = 0.693 / 5730 \approx 1.21 \times 10^{-4} \text{
+                        yr}^{-1}\):</p>
+                    <p>\[t = \frac{1.056}{1.21 \times 10^{-4}} \approx \boxed{8730 \text{ years}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 42 -->
+        <div class="problem-card">
+            <div class="problem-header">Question 42 (Slide 24): Iodine-131 Activity</div>
+            <div class="problem-body">
+                <p>The iodine isotope \({}^{131}I\) (\(T_{1/2} = 8.02\) days) is used in hospitals. If 782 μg are
+                    ingested, determine the activity:</p>
+                <ol type="a">
+                    <li>Immediately</li>
+                    <li>1.50 h later</li>
+                    <li>3.0 months later</li>
+                </ol>
+                <button class="btn-solution" onclick="toggleSolution('q42')">Show Solution</button>
+                <div id="q42" class="solution-content">
+                    <p><strong>Constants:</strong> \(T_{1/2} = 8.02\) d = \(6.93 \times 10^5\) s. Atomic Mass ≈ 131
+                        g/mol.</p>
+                    <hr>
+                    <p><strong>(a) Initial Activity:</strong></p>
+                    <p>Mass = \(7.82 \times 10^{-4}\) g. Moles = \(\frac{7.82 \times 10^{-4}}{131} = 5.97 \times
+                        10^{-6}\) mol.</p>
+                    <p>\(N_0 = 5.97 \times 10^{-6} \times 6.022 \times 10^{23} = 3.59 \times 10^{18}\) nuclei.</p>
+                    <p>\(\lambda = 0.693 / (6.93 \times 10^5) \approx 1.00 \times 10^{-6} \text{ s}^{-1}\).</p>
+                    <p>\[R_0 = \lambda N_0 = \boxed{3.59 \times 10^{12} \text{ Bq}}\]</p>
+                    <hr>
+                    <p><strong>(b) After 1.5 hours:</strong> Time is very small compared to half-life.</p>
+                    <p>\[R \approx \boxed{3.57 \times 10^{12} \text{ Bq}}\]</p>
+                    <hr>
+                    <p><strong>(c) After 3.0 months (~90 days):</strong></p>
+                    <p>Number of half-lives = 90 / 8.02 ≈ 11.2.</p>
+                    <p>\[R = R_0 (1/2)^{11.2} \approx \boxed{1.5 \times 10^9 \text{ Bq}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 43 -->
+        <div class="problem-card">
+            <div class="problem-header">Question 43 (Slide 25): Nuclei Count from Activity</div>
+            <div class="problem-body">
+                <p>How many nuclei of \({}_{92}^{238}U\) remain in a rock if the activity registers 420 decays per
+                    second?</p>
+                <button class="btn-solution" onclick="toggleSolution('q43')">Show Solution</button>
+                <div id="q43" class="solution-content">
+                    <p><strong>Given:</strong> \(R = 420\) Bq. \(T_{1/2} = 4.5 \times 10^9\) yr.</p>
+                    <p><strong>Step 1:</strong> Convert half-life to seconds.</p>
+                    <p>\(T_{1/2} = 4.5 \times 10^9 \times 3.156 \times 10^7 = 1.42 \times 10^{17}\) s.</p>
+                    <hr>
+                    <p><strong>Step 2:</strong> Calculate \(\lambda\).</p>
+                    <p>\(\lambda = 0.693 / (1.42 \times 10^{17}) \approx 4.88 \times 10^{-18} \text{ s}^{-1}\).</p>
+                    <hr>
+                    <p><strong>Step 3:</strong> Calculate \(N = R / \lambda\).</p>
+                    <p>\[N = \frac{420}{4.88 \times 10^{-18}} \approx \boxed{8.6 \times 10^{19} \text{ nuclei}}\]
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 46 -->
+        <div class="problem-card">
+            <div class="problem-header">Question 46 (Slide 26): Mass from Activity</div>
+            <div class="problem-body">
+                <p>Calculate the mass of a sample of pure \({}_{19}^{40}K\) with an initial decay rate of \(2.4
+                    \times 10^5 \text{ s}^{-1}\). The half-life is \(1.248 \times 10^9\) yr.</p>
+                <button class="btn-solution" onclick="toggleSolution('q46')">Show Solution</button>
+                <div id="q46" class="solution-content">
+                    <p><strong>Step 1:</strong> Calculate \(\lambda\).</p>
+                    <p>\(T_{1/2} = 1.248 \times 10^9 \times 3.156 \times 10^7 \approx 3.94 \times 10^{16}\) s.</p>
+                    <p>\(\lambda = 0.693 / (3.94 \times 10^{16}) \approx 1.76 \times 10^{-17} \text{ s}^{-1}\).</p>
+                    <hr>
+                    <p><strong>Step 2:</strong> Calculate Number of Nuclei.</p>
+                    <p>\(N = R / \lambda = (2.4 \times 10^5) / (1.76 \times 10^{-17}) \approx 1.36 \times 10^{22}\)
+                        nuclei.</p>
+                    <hr>
+                    <p><strong>Step 3:</strong> Calculate Mass.</p>
+                    <p>Moles = \(N / N_A = (1.36 \times 10^{22}) / (6.022 \times 10^{23}) \approx 0.0226\) mol.</p>
+                    <p>\[Mass = 0.0226 \times 40 \approx \boxed{0.90 \text{ g}}\]</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ==================== PART 3: PRACTICE QUESTIONS ==================== -->
+    <div class="part-header">
+        <h2>Part 3: 20 Additional Practice Questions</h2>
+    </div>
+
+    <div class="section">
+        <h2>Multiple Choice (Conceptual)</h2>
+        <div class="mcq-grid">
+
+            <div class="mcq-item">
+                <p><strong>1.</strong> Two isotopes of the same element have:</p>
+                <p>A) Same number of neutrons, different protons.<br>
+                    B) Same number of protons, different neutrons.<br>
+                    C) Same number of protons and neutrons.<br>
+                    D) Different numbers of both.</p>
+                <div class="answer-reveal">Answer: B</div>
+            </div>
+
+            <div class="mcq-item">
+                <p><strong>2.</strong> The radius of a nucleus with mass number 64 is approximately how many times
+                    the radius of a nucleus with mass number 8?</p>
+                <p>A) 2 &nbsp; B) 4 &nbsp; C) 8 &nbsp; D) 1.5</p>
+                <div class="answer-reveal">Answer: A (Since \(r \propto A^{1/3}\), \(64^{1/3}=4\), \(8^{1/3}=2\).
+                    Ratio = 2)</div>
+            </div>
+
+            <div class="mcq-item">
+                <p><strong>3.</strong> Which type of radiation consists of helium nuclei?</p>
+                <p>A) Alpha &nbsp; B) Beta &nbsp; C) Gamma &nbsp; D) X-rays</p>
+                <div class="answer-reveal">Answer: A</div>
+            </div>
+
+            <div class="mcq-item">
+                <p><strong>4.</strong> If the half-life of a substance is T, how much of the substance remains after
+                    time 3T?</p>
+                <p>A) 1/3 &nbsp; B) 1/6 &nbsp; C) 1/8 &nbsp; D) 1/9</p>
+                <div class="answer-reveal">Answer: C (\((1/2)^3 = 1/8\))</div>
+            </div>
+
+            <div class="mcq-item">
+                <p><strong>5.</strong> Which force holds the protons and neutrons together in the nucleus?</p>
+                <p>A) Gravitational &nbsp; B) Electrostatic &nbsp; C) Strong Nuclear &nbsp; D) Weak Nuclear</p>
+                <div class="answer-reveal">Answer: C</div>
+            </div>
+
+            <div class="mcq-item">
+                <p><strong>6.</strong> Beta decay involves the emission of:</p>
+                <p>A) A proton &nbsp; B) A neutron &nbsp; C) An electron or positron &nbsp; D) A helium nucleus</p>
+                <div class="answer-reveal">Answer: C</div>
+            </div>
+
+            <div class="mcq-item">
+                <p><strong>7.</strong> The atomic mass unit (u) is defined based on which isotope?</p>
+                <p>A) Hydrogen-1 &nbsp; B) Oxygen-16 &nbsp; C) Carbon-12 &nbsp; D) Uranium-238</p>
+                <div class="answer-reveal">Answer: C</div>
+            </div>
+
+            <div class="mcq-item">
+                <p><strong>8.</strong> When a nucleus emits a Gamma ray, its Atomic Number (Z):</p>
+                <p>A) Increases by 1 &nbsp; B) Decreases by 2 &nbsp; C) Decreases by 1 &nbsp; D) Remains the same
+                </p>
+                <div class="answer-reveal">Answer: D</div>
+            </div>
+
+            <div class="mcq-item">
+                <p><strong>9.</strong> The SI unit for radioactivity (activity) is:</p>
+                <p>A) Curie &nbsp; B) Becquerel &nbsp; C) Roentgen &nbsp; D) Joule</p>
+                <div class="answer-reveal">Answer: B</div>
+            </div>
+
+            <div class="mcq-item">
+                <p><strong>10.</strong> The "Mean Life" (\(\tau\)) of a radioactive sample is related to the decay
+                    constant \(\lambda\) by:</p>
+                <p>A) \(\tau = \lambda\) &nbsp; B) \(\tau = \lambda \ln 2\) &nbsp; C) \(\tau = 1 / \lambda\) &nbsp;
+                    D) \(\tau = 0.693 / \lambda\)</p>
+                <div class="answer-reveal">Answer: C</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Calculation Problems</h2>
+
+        <div class="problem-card">
+            <div class="problem-header">11. Binding Energy</div>
+            <div class="problem-body">
+                <p>Calculate the binding energy (in MeV) of a particle if its mass defect is 0.030 u.</p>
+                <button class="btn-solution" onclick="toggleSolution('p11')">Show Solution</button>
+                <div id="p11" class="solution-content">
+                    <p>\[E = 0.030 \times 931.5 = \boxed{27.945 \text{ MeV}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header">12. Activity After 1 Hour</div>
+            <div class="problem-body">
+                <p>A radioactive sample has a half-life of 20 minutes. If the initial activity is 1000 decays/s,
+                    what is the activity after 1 hour?</p>
+                <button class="btn-solution" onclick="toggleSolution('p12')">Show Solution</button>
+                <div id="p12" class="solution-content">
+                    <p>1 hour = 60 mins = 3 half-lives.</p>
+                    <p>\[R = \frac{1000}{2^3} = \frac{1000}{8} = \boxed{125 \text{ decays/s}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header">13. Nuclear Radius of Lead-208</div>
+            <div class="problem-body">
+                <p>Find the radius of a Lead-208 nucleus (\(^{208}Pb\)).</p>
+                <button class="btn-solution" onclick="toggleSolution('p13')">Show Solution</button>
+                <div id="p13" class="solution-content">
+                    <p>\[r = 1.2 \times 10^{-15} \times (208)^{1/3} \approx 1.2 \times 5.925 \approx \boxed{7.11
+                        \text{ fm}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header">14. Activity in Curies</div>
+            <div class="problem-body">
+                <p>A sample contains \(4.0 \times 10^{20}\) nuclei and decays with \(\lambda = 2.0 \times 10^{-5}
+                    \text{ s}^{-1}\). What is the initial activity in Curies?</p>
+                <button class="btn-solution" onclick="toggleSolution('p14')">Show Solution</button>
+                <div id="p14" class="solution-content">
+                    <p>\(R = \lambda N = (2.0 \times 10^{-5})(4.0 \times 10^{20}) = 8.0 \times 10^{15}\) Bq.</p>
+                    <p>\[R = \frac{8.0 \times 10^{15}}{3.7 \times 10^{10}} \approx \boxed{216,216 \text{ Ci}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header">15. Half-Life from Percent Remaining</div>
+            <div class="problem-body">
+                <p>If 75% of a radioactive sample decays in 12 hours, what is the half-life?</p>
+                <button class="btn-solution" onclick="toggleSolution('p15')">Show Solution</button>
+                <div id="p15" class="solution-content">
+                    <p>Remaining = 25% = 1/4. This takes 2 half-lives.</p>
+                    <p>\[2 \times T_{1/2} = 12 \text{ h} \Rightarrow T_{1/2} = \boxed{6 \text{ hours}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header">16. Nuclear Reaction Identification</div>
+            <div class="problem-body">
+                <p>Identify the missing particle in this reaction: \({}_{88}^{226}Ra \rightarrow {}_{86}^{222}Rn +
+                    ?\)</p>
+                <button class="btn-solution" onclick="toggleSolution('p16')">Show Solution</button>
+                <div id="p16" class="solution-content">
+                    <p>Conservation of Z: \(88 \rightarrow 86 + 2\).</p>
+                    <p>Conservation of A: \(226 \rightarrow 222 + 4\).</p>
+                    <p>The particle is \(\boxed{{}_{2}^{4}He}\) (Alpha particle).</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header">17. Decay Constant Calculation</div>
+            <div class="problem-body">
+                <p>Calculate the decay constant for a material with a half-life of 5000 years.</p>
+                <button class="btn-solution" onclick="toggleSolution('p17')">Show Solution</button>
+                <div id="p17" class="solution-content">
+                    <p>\[\lambda = \frac{0.693}{5000} = \boxed{1.386 \times 10^{-4} \text{ yr}^{-1}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header">18. Age from Carbon-14 Activity</div>
+            <div class="problem-body">
+                <p>A bone has a C-14 activity of 4 decays/min/g. Modern wood has 16 decays/min/g. How old is the
+                    bone? (\(T_{1/2} = 5730\) yr)</p>
+                <button class="btn-solution" onclick="toggleSolution('p18')">Show Solution</button>
+                <div id="p18" class="solution-content">
+                    <p>\(\frac{4}{16} = \frac{1}{4} = (1/2)^n \Rightarrow n = 2\) half-lives.</p>
+                    <p>\[Age = 2 \times 5730 = \boxed{11,460 \text{ years}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header">19. Neutron Number</div>
+            <div class="problem-body">
+                <p>Determine the number of neutrons in \({}_{92}^{235}U\).</p>
+                <button class="btn-solution" onclick="toggleSolution('p19')">Show Solution</button>
+                <div id="p19" class="solution-content">
+                    <p>\[N = A - Z = 235 - 92 = \boxed{143}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header">20. Activity After 10 Days</div>
+            <div class="problem-body">
+                <p>If the activity of a source is 500 Bq today, and the half-life is 2 days, what will the activity
+                    be in 10 days?</p>
+                <button class="btn-solution" onclick="toggleSolution('p20')">Show Solution</button>
+                <div id="p20" class="solution-content">
+                    <p>10 days = 5 half-lives.</p>
+                    <p>\[R = \frac{500}{2^5} = \frac{500}{32} = \boxed{15.625 \text{ Bq}}\]</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ==================== PART 4: GRADUATED PRACTICE ==================== -->
+    <div class="part-header">
+        <h2>Part 4: Graduated Practice Problems</h2>
+        <p style="opacity: 0.9; margin-top: 10px;">5 Questions per Topic • Easy ⭐ to Challenge ⭐⭐⭐⭐⭐</p>
+    </div>
+
+    <!-- TOPIC A: Nuclear Structure & Notation -->
+    <div class="section">
+        <h2>🔬 Topic A: Nuclear Structure & Notation</h2>
+        <p><strong>Core Formula:</strong> \(N = A - Z\) where Z = protons, A = mass number, N = neutrons</p>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #22c55e, #16a34a);">⭐ Level 1:
+                Basic Identification</div>
+            <div class="problem-body">
+                <p>What is the number of protons in a Helium nucleus \({}_{2}^{4}He\)?</p>
+                <button class="btn-solution" onclick="toggleSolution('a1')">Show Solution</button>
+                <div id="a1" class="solution-content">
+                    <p><strong>Solution:</strong></p>
+                    <p>In the notation \({}_{Z}^{A}X\), the subscript \(Z\) represents the number of protons.</p>
+                    <p>\[Z = \boxed{2 \text{ protons}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #84cc16, #65a30d);">⭐⭐ Level 2:
+                Finding Neutrons</div>
+            <div class="problem-body">
+                <p>Find the number of neutrons in Uranium-238 (\({}_{92}^{238}U\)).</p>
+                <button class="btn-solution" onclick="toggleSolution('a2')">Show Solution</button>
+                <div id="a2" class="solution-content">
+                    <p><strong>Given:</strong> \(A = 238\), \(Z = 92\)</p>
+                    <hr>
+                    <p><strong>Formula:</strong> \(N = A - Z\)</p>
+                    <hr>
+                    <p><strong>Solution:</strong></p>
+                    <p>\[N = 238 - 92 = \boxed{146 \text{ neutrons}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #eab308, #ca8a04);">⭐⭐⭐ Level 3:
+                Comparing Isotopes</div>
+            <div class="problem-body">
+                <p>Two isotopes of nitrogen are \({}^{14}N\) and \({}^{15}N\). Compare them in terms of protons and
+                    neutrons.</p>
+                <button class="btn-solution" onclick="toggleSolution('a3')">Show Solution</button>
+                <div id="a3" class="solution-content">
+                    <p><strong>Key Insight:</strong> Nitrogen always has \(Z = 7\) (same element).</p>
+                    <hr>
+                    <table>
+                        <tr>
+                            <th>Isotope</th>
+                            <th>Protons (Z)</th>
+                            <th>Neutrons (N = A - Z)</th>
+                        </tr>
+                        <tr>
+                            <td>\({}^{14}N\)</td>
+                            <td>7</td>
+                            <td>14 - 7 = 7</td>
+                        </tr>
+                        <tr>
+                            <td>\({}^{15}N\)</td>
+                            <td>7</td>
+                            <td>15 - 7 = 8</td>
+                        </tr>
+                    </table>
+                    <p><strong>Conclusion:</strong> Isotopes have the same number of protons but different neutron
+                        counts.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #f97316, #ea580c);">⭐⭐⭐⭐ Level 4:
+                Reverse Identification</div>
+            <div class="problem-body">
+                <p>An unknown element \(X\) has mass number \(A = 56\) and contains 30 neutrons. Identify the
+                    element and write its nuclear notation.</p>
+                <button class="btn-solution" onclick="toggleSolution('a4')">Show Solution</button>
+                <div id="a4" class="solution-content">
+                    <p><strong>Given:</strong> \(A = 56\), \(N = 30\)</p>
+                    <hr>
+                    <p><strong>Step 1:</strong> Find atomic number Z.</p>
+                    <p>\[Z = A - N = 56 - 30 = 26\]</p>
+                    <hr>
+                    <p><strong>Step 2:</strong> Identify the element.</p>
+                    <p>Element with \(Z = 26\) is <strong>Iron (Fe)</strong>.</p>
+                    <p>\[\boxed{{}_{26}^{56}Fe}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #ef4444, #dc2626);">⭐⭐⭐⭐⭐ Level
+                5: Challenge Problem</div>
+            <div class="problem-body">
+                <p>A nucleus has equal numbers of protons and neutrons, and its total mass is \(6.64 \times
+                    10^{-26}\) kg. Identify this element.</p>
+                <p><em>(Given: \(1 \text{ u} = 1.66 \times 10^{-27}\) kg)</em></p>
+                <button class="btn-solution" onclick="toggleSolution('a5')">Show Solution</button>
+                <div id="a5" class="solution-content">
+                    <p><strong>Step 1:</strong> Calculate the mass number A.</p>
+                    <p>\[A \approx \frac{m}{1 \text{ u}} = \frac{6.64 \times 10^{-26}}{1.66 \times 10^{-27}} = 40\]
+                    </p>
+                    <hr>
+                    <p><strong>Step 2:</strong> Find Z using the constraint \(Z = N\).</p>
+                    <p>Since \(A = Z + N = 2Z\):</p>
+                    <p>\[Z = \frac{40}{2} = 20\]</p>
+                    <hr>
+                    <p><strong>Step 3:</strong> Identify the element.</p>
+                    <p>Element with \(Z = 20\) is <strong>Calcium (Ca)</strong>.</p>
+                    <p>\[\boxed{{}_{20}^{40}Ca}\]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOPIC B: Nuclear Radius -->
+    <div class="section">
+        <h2>📏 Topic B: Nuclear Radius</h2>
+        <p><strong>Core Formula:</strong> \(r = r_0 \cdot A^{1/3}\) where \(r_0 \approx 1.2 \times 10^{-15}\) m =
+            1.2 fm</p>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #22c55e, #16a34a);">⭐ Level 1:
+                Direct Calculation</div>
+            <div class="problem-body">
+                <p>What is the radius of a nucleus with mass number \(A = 8\)?</p>
+                <button class="btn-solution" onclick="toggleSolution('b1')">Show Solution</button>
+                <div id="b1" class="solution-content">
+                    <p><strong>Formula:</strong> \(r = r_0 \cdot A^{1/3}\)</p>
+                    <hr>
+                    <p>\[r = (1.2 \times 10^{-15}) \times (8)^{1/3}\]</p>
+                    <p>\[r = (1.2 \times 10^{-15}) \times 2 = \boxed{2.4 \times 10^{-15} \text{ m} = 2.4 \text{
+                        fm}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #84cc16, #65a30d);">⭐⭐ Level 2:
+                Larger Nucleus</div>
+            <div class="problem-body">
+                <p>Calculate the radius of a Cadmium-112 nucleus (\({}^{112}Cd\)).</p>
+                <button class="btn-solution" onclick="toggleSolution('b2')">Show Solution</button>
+                <div id="b2" class="solution-content">
+                    <p><strong>Given:</strong> \(A = 112\)</p>
+                    <hr>
+                    <p>\[(112)^{1/3} \approx 4.82\]</p>
+                    <p>\[r = (1.2 \times 10^{-15}) \times 4.82 \approx \boxed{5.78 \text{ fm}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #eab308, #ca8a04);">⭐⭐⭐ Level 3:
+                Ratio Problem</div>
+            <div class="problem-body">
+                <p>What is the ratio of the radius of \({}^{27}Al\) to the radius of \({}^{125}Te\)?</p>
+                <button class="btn-solution" onclick="toggleSolution('b3')">Show Solution</button>
+                <div id="b3" class="solution-content">
+                    <p><strong>Analysis:</strong></p>
+                    <p>\[\frac{r_{Al}}{r_{Te}} = \frac{r_0 (27)^{1/3}}{r_0 (125)^{1/3}} =
+                        \left(\frac{27}{125}\right)^{1/3}\]</p>
+                    <hr>
+                    <p><strong>Calculation:</strong></p>
+                    <p>\(27^{1/3} = 3\) and \(125^{1/3} = 5\)</p>
+                    <p>\[\frac{r_{Al}}{r_{Te}} = \frac{3}{5} = \boxed{0.6}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #f97316, #ea580c);">⭐⭐⭐⭐ Level 4:
+                Finding A from Radius</div>
+            <div class="problem-body">
+                <p>A nucleus has radius \(r = 3.7 \times 10^{-15}\) m. What is its mass number \(A\)?</p>
+                <button class="btn-solution" onclick="toggleSolution('b4')">Show Solution</button>
+                <div id="b4" class="solution-content">
+                    <p><strong>Step 1:</strong> Rearrange the formula.</p>
+                    <p>\[A^{1/3} = \frac{r}{r_0} = \frac{3.7 \times 10^{-15}}{1.2 \times 10^{-15}} \approx 3.08\]
+                    </p>
+                    <hr>
+                    <p><strong>Step 2:</strong> Cube both sides.</p>
+                    <p>\[A = (3.08)^3 \approx \boxed{29}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #ef4444, #dc2626);">⭐⭐⭐⭐⭐ Level
+                5: Nuclear Density</div>
+            <div class="problem-body">
+                <p>Prove that nuclear density is approximately constant for all nuclei and calculate its value.</p>
+                <button class="btn-solution" onclick="toggleSolution('b5')">Show Solution</button>
+                <div id="b5" class="solution-content">
+                    <p><strong>Step 1:</strong> Volume of nucleus (sphere).</p>
+                    <p>\[V = \frac{4}{3}\pi r^3 = \frac{4}{3}\pi (r_0 A^{1/3})^3 = \frac{4}{3}\pi r_0^3 A\]</p>
+                    <hr>
+                    <p><strong>Step 2:</strong> Mass of nucleus.</p>
+                    <p>\[m \approx A \times m_u = A \times (1.66 \times 10^{-27} \text{ kg})\]</p>
+                    <hr>
+                    <p><strong>Step 3:</strong> Density calculation.</p>
+                    <p>\[\rho = \frac{m}{V} = \frac{A \times 1.66 \times 10^{-27}}{\frac{4}{3}\pi r_0^3 A} =
+                        \frac{1.66 \times 10^{-27}}{\frac{4}{3}\pi (1.2 \times 10^{-15})^3}\]</p>
+                    <p>\[\rho = \frac{1.66 \times 10^{-27}}{7.24 \times 10^{-45}} \approx \boxed{2.3 \times 10^{17}
+                        \text{ kg/m}^3}\]</p>
+                    <p><strong>✓ Key insight:</strong> The A cancels! Density is independent of A — constant for all
+                        nuclei!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOPIC C: Half-Life & Decay -->
+    <div class="section">
+        <h2>⏱️ Topic C: Half-Life & Decay</h2>
+        <p><strong>Core Formulas:</strong></p>
+        <div class="formula-box">
+            \[T_{1/2} = \frac{0.693}{\lambda}\] \[N = N_0 \left(\frac{1}{2}\right)^{t/T_{1/2}} = N_0 e^{-\lambda
+            t}\]
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #22c55e, #16a34a);">⭐ Level 1:
+                One Half-Life</div>
+            <div class="problem-body">
+                <p>A sample contains 1000 nuclei. How many remain after one half-life?</p>
+                <button class="btn-solution" onclick="toggleSolution('c1')">Show Solution</button>
+                <div id="c1" class="solution-content">
+                    <p>After each half-life, half the nuclei remain:</p>
+                    <p>\[N = \frac{1000}{2} = \boxed{500 \text{ nuclei}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #84cc16, #65a30d);">⭐⭐ Level 2:
+                Multiple Half-Lives</div>
+            <div class="problem-body">
+                <p>A sample has a half-life of 4 hours. If it starts with 800 nuclei, how many remain after 12
+                    hours?</p>
+                <button class="btn-solution" onclick="toggleSolution('c2')">Show Solution</button>
+                <div id="c2" class="solution-content">
+                    <p><strong>Step 1:</strong> Number of half-lives.</p>
+                    <p>\[n = \frac{12}{4} = 3\]</p>
+                    <hr>
+                    <p><strong>Step 2:</strong> Calculate remaining nuclei.</p>
+                    <p>\[N = 800 \times \left(\frac{1}{2}\right)^3 = \frac{800}{8} = \boxed{100 \text{ nuclei}}\]
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #eab308, #ca8a04);">⭐⭐⭐ Level 3:
+                Finding Half-Life</div>
+            <div class="problem-body">
+                <p>The decay constant of an isotope is \(\lambda = 0.0231 \text{ day}^{-1}\). What is its half-life?
+                </p>
+                <button class="btn-solution" onclick="toggleSolution('c3')">Show Solution</button>
+                <div id="c3" class="solution-content">
+                    <p><strong>Formula:</strong> \(T_{1/2} = \frac{0.693}{\lambda}\)</p>
+                    <hr>
+                    <p>\[T_{1/2} = \frac{0.693}{0.0231} = \boxed{30 \text{ days}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #f97316, #ea580c);">⭐⭐⭐⭐ Level 4:
+                Activity Drop</div>
+            <div class="problem-body">
+                <p>The activity of a sample drops by a factor of 6.0 in 9.4 minutes. What is its half-life?</p>
+                <button class="btn-solution" onclick="toggleSolution('c4')">Show Solution</button>
+                <div id="c4" class="solution-content">
+                    <p><strong>Given:</strong> \(\frac{R_0}{R} = 6\), \(t = 9.4\) min</p>
+                    <hr>
+                    <p><strong>Step 1:</strong> Find \(\lambda\).</p>
+                    <p>\[\frac{R_0}{R} = e^{\lambda t} \Rightarrow \ln(6) = \lambda t\]</p>
+                    <p>\[\lambda = \frac{1.792}{9.4} = 0.1906 \text{ min}^{-1}\]</p>
+                    <hr>
+                    <p><strong>Step 2:</strong> Calculate half-life.</p>
+                    <p>\[T_{1/2} = \frac{0.693}{0.1906} = \boxed{3.6 \text{ minutes}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #ef4444, #dc2626);">⭐⭐⭐⭐⭐ Level
+                5: Percentage Remaining</div>
+            <div class="problem-body">
+                <p>A Co-60 sample (\(T_{1/2} = 5.27\) years) has decayed to 35% of its original amount. How much
+                    time has passed?</p>
+                <button class="btn-solution" onclick="toggleSolution('c5')">Show Solution</button>
+                <div id="c5" class="solution-content">
+                    <p><strong>Given:</strong> \(\frac{N}{N_0} = 0.35\)</p>
+                    <hr>
+                    <p><strong>Step 1:</strong> Find \(\lambda\).</p>
+                    <p>\[\lambda = \frac{0.693}{5.27} = 0.1315 \text{ yr}^{-1}\]</p>
+                    <hr>
+                    <p><strong>Step 2:</strong> Use exponential decay law.</p>
+                    <p>\[0.35 = e^{-\lambda t} \Rightarrow \ln(0.35) = -\lambda t\]</p>
+                    <p>\[-1.05 = -0.1315 \times t\]</p>
+                    <hr>
+                    <p><strong>Step 3:</strong> Solve for t.</p>
+                    <p>\[t = \frac{1.05}{0.1315} = \boxed{7.98 \text{ years}}\]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOPIC D: Activity -->
+    <div class="section">
+        <h2>⚡ Topic D: Activity (Decay Rate)</h2>
+        <p><strong>Core Formulas:</strong></p>
+        <div class="formula-box">
+            \[R = \lambda N\] \[1 \text{ Ci} = 3.7 \times 10^{10} \text{ Bq}\]
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #22c55e, #16a34a);">⭐ Level 1:
+                Unit Conversion</div>
+            <div class="problem-body">
+                <p>Convert 2 Ci to Bq.</p>
+                <button class="btn-solution" onclick="toggleSolution('d1')">Show Solution</button>
+                <div id="d1" class="solution-content">
+                    <p>\[R = 2 \times 3.7 \times 10^{10} = \boxed{7.4 \times 10^{10} \text{ Bq}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #84cc16, #65a30d);">⭐⭐ Level 2:
+                Direct Calculation</div>
+            <div class="problem-body">
+                <p>A sample contains \(5 \times 10^{18}\) nuclei with \(\lambda = 4 \times 10^{-6} \text{ s}^{-1}\).
+                    What is its activity?</p>
+                <button class="btn-solution" onclick="toggleSolution('d2')">Show Solution</button>
+                <div id="d2" class="solution-content">
+                    <p>\[R = \lambda N = (4 \times 10^{-6})(5 \times 10^{18}) = \boxed{2 \times 10^{13} \text{
+                        Bq}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #eab308, #ca8a04);">⭐⭐⭐ Level 3:
+                C-14 Activity</div>
+            <div class="problem-body">
+                <p>C-14 has a half-life of 5730 years. If a sample contains \(1 \times 10^{22}\) nuclei, what is its
+                    activity in Bq?</p>
+                <button class="btn-solution" onclick="toggleSolution('d3')">Show Solution</button>
+                <div id="d3" class="solution-content">
+                    <p><strong>Step 1:</strong> Convert half-life to seconds.</p>
+                    <p>\[T_{1/2} = 5730 \times 3.156 \times 10^7 = 1.81 \times 10^{11} \text{ s}\]</p>
+                    <hr>
+                    <p><strong>Step 2:</strong> Calculate \(\lambda\).</p>
+                    <p>\[\lambda = \frac{0.693}{1.81 \times 10^{11}} = 3.83 \times 10^{-12} \text{ s}^{-1}\]</p>
+                    <hr>
+                    <p><strong>Step 3:</strong> Calculate activity.</p>
+                    <p>\[R = (3.83 \times 10^{-12})(1 \times 10^{22}) = \boxed{3.83 \times 10^{10} \text{ Bq}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #f97316, #ea580c);">⭐⭐⭐⭐ Level 4:
+                Finding N from Activity</div>
+            <div class="problem-body">
+                <p>How many Tc-99m nuclei (\(T_{1/2} = 6\) hours) are needed to produce an activity of 1.0 mCi?</p>
+                <button class="btn-solution" onclick="toggleSolution('d4')">Show Solution</button>
+                <div id="d4" class="solution-content">
+                    <p><strong>Step 1:</strong> Convert activity.</p>
+                    <p>\[R = 1 \text{ mCi} = 10^{-3} \times 3.7 \times 10^{10} = 3.7 \times 10^{7} \text{ Bq}\]</p>
+                    <hr>
+                    <p><strong>Step 2:</strong> Calculate \(\lambda\).</p>
+                    <p>\[T_{1/2} = 6 \times 3600 = 21600 \text{ s}\]</p>
+                    <p>\[\lambda = \frac{0.693}{21600} = 3.21 \times 10^{-5} \text{ s}^{-1}\]</p>
+                    <hr>
+                    <p><strong>Step 3:</strong> Calculate N.</p>
+                    <p>\[N = \frac{R}{\lambda} = \frac{3.7 \times 10^{7}}{3.21 \times 10^{-5}} = \boxed{1.15 \times
+                        10^{12} \text{ nuclei}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #ef4444, #dc2626);">⭐⭐⭐⭐⭐ Level
+                5: Ordering Activity</div>
+            <div class="problem-body">
+                <p>A lab needs I-131 (\(T_{1/2} = 8.02\) days) with activity 50 mCi in 2 days. What activity must be
+                    ordered today?</p>
+                <button class="btn-solution" onclick="toggleSolution('d5')">Show Solution</button>
+                <div id="d5" class="solution-content">
+                    <p><strong>Key Insight:</strong> We need \(R = 50\) mCi after \(t = 2\) days. Find \(R_0\) now.
+                    </p>
+                    <hr>
+                    <p><strong>Step 1:</strong> Calculate \(\lambda\).</p>
+                    <p>\[\lambda = \frac{0.693}{8.02} = 0.0864 \text{ day}^{-1}\]</p>
+                    <hr>
+                    <p><strong>Step 2:</strong> Reverse the decay formula.</p>
+                    <p>\[R = R_0 e^{-\lambda t} \Rightarrow R_0 = R \cdot e^{\lambda t}\]</p>
+                    <p>\[R_0 = 50 \times e^{(0.0864)(2)} = 50 \times 1.189 = \boxed{59.4 \text{ mCi}}\]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOPIC E: Carbon Dating -->
+    <div class="section">
+        <h2>🦴 Topic E: Carbon-14 Dating</h2>
+        <p><strong>Key Facts:</strong> C-14 half-life = <strong>5730 years</strong>. Used for organic materials up
+            to ~60,000 years.</p>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #22c55e, #16a34a);">⭐ Level 1:
+                One Half-Life</div>
+            <div class="problem-body">
+                <p>An ancient wood sample has C-14 activity equal to half that of fresh wood. How old is it?</p>
+                <button class="btn-solution" onclick="toggleSolution('e1')">Show Solution</button>
+                <div id="e1" class="solution-content">
+                    <p>Ratio = 1/2 = one half-life has passed.</p>
+                    <p>\[Age = 1 \times 5730 = \boxed{5730 \text{ years}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #84cc16, #65a30d);">⭐⭐ Level 2:
+                Integer Half-Lives</div>
+            <div class="problem-body">
+                <p>A charcoal fragment has C-14 activity = 1/8 of that in living wood. How old is it?</p>
+                <button class="btn-solution" onclick="toggleSolution('e2')">Show Solution</button>
+                <div id="e2" class="solution-content">
+                    <p>\[\frac{1}{8} = \left(\frac{1}{2}\right)^3 \Rightarrow n = 3 \text{ half-lives}\]</p>
+                    <p>\[Age = 3 \times 5730 = \boxed{17,190 \text{ years}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #eab308, #ca8a04);">⭐⭐⭐ Level 3:
+                Percentage Remaining</div>
+            <div class="problem-body">
+                <p>A mummy contains 60% of the C-14 found in living tissue. How old is it?</p>
+                <button class="btn-solution" onclick="toggleSolution('e3')">Show Solution</button>
+                <div id="e3" class="solution-content">
+                    <p><strong>Given:</strong> \(\frac{N}{N_0} = 0.60\)</p>
+                    <hr>
+                    <p><strong>Solution:</strong></p>
+                    <p>\[\lambda = \frac{0.693}{5730} = 1.21 \times 10^{-4} \text{ yr}^{-1}\]</p>
+                    <p>\[0.60 = e^{-\lambda t} \Rightarrow \ln(0.60) = -\lambda t\]</p>
+                    <p>\[t = \frac{0.511}{1.21 \times 10^{-4}} = \boxed{4,220 \text{ years}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #f97316, #ea580c);">⭐⭐⭐⭐ Level 4:
+                Activity-Based Dating</div>
+            <div class="problem-body">
+                <p>A bone (200g carbon) has total activity 16 decays/s. Standard living activity is 0.23 Bq/g. What
+                    is the bone's age?</p>
+                <button class="btn-solution" onclick="toggleSolution('e4')">Show Solution</button>
+                <div id="e4" class="solution-content">
+                    <p><strong>Step 1:</strong> Original activity.</p>
+                    <p>\[R_0 = 0.23 \times 200 = 46 \text{ Bq}\]</p>
+                    <hr>
+                    <p><strong>Step 2:</strong> Activity ratio.</p>
+                    <p>\[\frac{R}{R_0} = \frac{16}{46} = 0.348\]</p>
+                    <hr>
+                    <p><strong>Step 3:</strong> Calculate age.</p>
+                    <p>\[t = \frac{-\ln(0.348)}{1.21 \times 10^{-4}} = \frac{1.056}{1.21 \times 10^{-4}} =
+                        \boxed{8,730 \text{ years}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #ef4444, #dc2626);">⭐⭐⭐⭐⭐ Level
+                5: Limitations of C-14 Dating</div>
+            <div class="problem-body">
+                <p>(a) A wood sample has 15% of its original C-14. What is its age?</p>
+                <p>(b) Can C-14 dating be used for samples 100,000 years old? Explain with a calculation.</p>
+                <button class="btn-solution" onclick="toggleSolution('e5')">Show Solution</button>
+                <div id="e5" class="solution-content">
+                    <p><strong>Part (a):</strong></p>
+                    <p>\[t = \frac{-\ln(0.15)}{1.21 \times 10^{-4}} = \frac{1.897}{1.21 \times 10^{-4}} =
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== PART 5: REAL-WORLD APPLICATIONS ==================== -->
+    <div class="part-header">
+        <h2>Part 5: Real-World Applications</h2>
+        <p style="opacity: 0.9; margin-top: 10px;">Medical, Industrial & Archaeological Applications</p>
+    </div>
+
+    <!-- APPLICATION A: Medical Imaging -->
+    <div class="section">
+        <h2>🏥 Application A: Nuclear Medicine</h2>
+        <p>Radioactive isotopes are widely used in medical diagnosis and treatment.</p>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #22c55e, #16a34a);">⭐ Level 1:
+                Thyroid Scan Basics</div>
+            <div class="problem-body">
+                <p>A hospital uses Iodine-131 (\(T_{1/2} = 8.02\) days) for thyroid scans. If a patient receives a dose
+                    with activity 5.0 mCi, what will the activity be after 24 hours?</p>
+                <button class="btn-solution" onclick="toggleSolution('app1')">Show Solution</button>
+                <div id="app1" class="solution-content">
+                    <p><strong>Given:</strong> \(R_0 = 5.0\) mCi, \(T_{1/2} = 8.02\) days, \(t = 1\) day</p>
+                    <hr>
+                    <p><strong>Step 1:</strong> Calculate \(\lambda\).</p>
+                    <p>\[\lambda = \frac{0.693}{8.02} = 0.0864 \text{ day}^{-1}\]</p>
+                    <hr>
+                    <p><strong>Step 2:</strong> Apply decay formula.</p>
+                    <p>\[R = R_0 e^{-\lambda t} = 5.0 \times e^{-0.0864 \times 1}\]</p>
+                    <p>\[R = 5.0 \times 0.917 = \boxed{4.59 \text{ mCi}}\]</p>
+                    <p><em>Clinical Note: The activity decreases slowly because 1 day is much less than the
+                            half-life.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #84cc16, #65a30d);">⭐⭐ Level 2: PET
+                Scan Isotope</div>
+            <div class="problem-body">
+                <p>Fluorine-18 is used in PET scans with \(T_{1/2} = 110\) minutes. A hospital receives a shipment of 50
+                    mCi at 6:00 AM. How much activity remains at 9:00 AM when the patient arrives?</p>
+                <button class="btn-solution" onclick="toggleSolution('app2')">Show Solution</button>
+                <div id="app2" class="solution-content">
+                    <p><strong>Given:</strong> \(R_0 = 50\) mCi, \(T_{1/2} = 110\) min, \(t = 180\) min (3 hours)</p>
+                    <hr>
+                    <p><strong>Step 1:</strong> Number of half-lives.</p>
+                    <p>\[n = \frac{180}{110} = 1.636\]</p>
+                    <hr>
+                    <p><strong>Step 2:</strong> Calculate remaining activity.</p>
+                    <p>\[R = R_0 \times \left(\frac{1}{2}\right)^{1.636} = 50 \times 0.322 = \boxed{16.1 \text{ mCi}}\]
+                    </p>
+                    <p><em>Clinical Note: This is why PET scan isotopes must be produced nearby - they decay
+                            quickly!</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #eab308, #ca8a04);">⭐⭐⭐ Level 3:
+                Cancer Treatment Planning</div>
+            <div class="problem-body">
+                <p>A cancer patient needs radiation therapy using Cobalt-60 (\(T_{1/2} = 5.27\) years). The treatment
+                    requires a minimum activity of 1000 Ci. If the hospital installs a source with 1500 Ci today, for
+                    how many years can it be used before replacement?</p>
+                <button class="btn-solution" onclick="toggleSolution('app3')">Show Solution</button>
+                <div id="app3" class="solution-content">
+                    <p><strong>Given:</strong> \(R_0 = 1500\) Ci, \(R_{min} = 1000\) Ci, \(T_{1/2} = 5.27\) yr</p>
+                    <hr>
+                    <p><strong>Step 1:</strong> Calculate \(\lambda\).</p>
+                    <p>\[\lambda = \frac{0.693}{5.27} = 0.1315 \text{ yr}^{-1}\]</p>
+                    <hr>
+                    <p><strong>Step 2:</strong> Find time when \(R = 1000\) Ci.</p>
+                    <p>\[1000 = 1500 \times e^{-0.1315 t}\]</p>
+                    <p>\[\frac{1000}{1500} = e^{-0.1315 t}\]</p>
+                    <p>\[\ln(0.667) = -0.1315 t\]</p>
+                    <p>\[t = \frac{0.405}{0.1315} = \boxed{3.08 \text{ years}}\]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #f97316, #ea580c);">⭐⭐⭐⭐ Level 4:
+                Technetium-99m Preparation</div>
+            <div class="problem-body">
+                <p>A nuclear pharmacy needs to prepare a dose of Tc-99m (\(T_{1/2} = 6.0\) hours) with activity 20 mCi
+                    at 10:00 AM for a patient. The pharmacy receives the isotope at 6:00 AM. What initial activity
+                    should be ordered?</p>
+                <button class="btn-solution" onclick="toggleSolution('app4')">Show Solution</button>
+                <div id="app4" class="solution-content">
+                    <p><strong>Given:</strong> Need \(R = 20\) mCi at \(t = 4\) hours, \(T_{1/2} = 6\) hr</p>
+                    <hr>
+                    <p><strong>Step 1:</strong> Calculate \(\lambda\).</p>
+                    <p>\[\lambda = \frac{0.693}{6} = 0.1155 \text{ hr}^{-1}\]</p>
+                    <hr>
+                    <p><strong>Step 2:</strong> Work backwards to find \(R_0\).</p>
+                    <p>\[R = R_0 e^{-\lambda t} \Rightarrow R_0 = R \times e^{\lambda t}\]</p>
+                    <p>\[R_0 = 20 \times e^{0.1155 \times 4} = 20 \times 1.588 = \boxed{31.8 \text{ mCi}}\]</p>
+                    <p><em>The pharmacy must order about 60% more than needed to account for decay!</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #ef4444, #dc2626);">⭐⭐⭐⭐⭐ Level 5:
+                Radiation Dose Calculation</div>
+            <div class="problem-body">
+                <p>A patient receives a thyroid treatment with 150 mCi of I-131. The thyroid gland (mass 20g) absorbs
+                    90% of the iodine. Given that each decay releases 0.5 MeV of absorbed energy, calculate the total
+                    absorbed dose in Gray (Gy) over the first 24 hours.</p>
+                <p><em>(1 Gy = 1 J/kg, 1 MeV = \(1.6 \times 10^{-13}\) J)</em></p>
+                <button class="btn-solution" onclick="toggleSolution('app5')">Show Solution</button>
+                <div id="app5" class="solution-content">
+                    <p><strong>Step 1:</strong> Activity absorbed by thyroid.</p>
+                    <p>\[R_0 = 0.90 \times 150 = 135 \text{ mCi} = 135 \times 3.7 \times 10^7 = 5.0 \times 10^9 \text{
+                        Bq}\]</p>
+                    <hr>
+                    <p><strong>Step 2:</strong> Total decays in 24 hours.</p>
+                    <p>\(\lambda = 0.693/(8.02 \times 24) = 0.0036 \text{ hr}^{-1}\)</p>
+                    <p>Average activity ≈ \(R_0 \times 0.958 = 4.79 \times 10^9\) Bq</p>
+                    <p>Total decays = \(4.79 \times 10^9 \times 86400 = 4.14 \times 10^{14}\) decays</p>
+                    <hr>
+                    <p><strong>Step 3:</strong> Energy deposited.</p>
+                    <p>\[E = 4.14 \times 10^{14} \times 0.5 \times 1.6 \times 10^{-13} = 33.1 \text{ J}\]</p>
+                    <hr>
+                    <p><strong>Step 4:</strong> Dose in Gray.</p>
+                    <p>\[D = \frac{E}{m} = \frac{33.1}{0.020} = \boxed{1655 \text{ Gy}}\]</p>
+                    <p><em>This high dose is intentional for destroying thyroid cancer cells!</em></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- APPLICATION B: Archaeological Dating -->
+    <div class="section">
+        <h2>🏛️ Application B: Archaeological Dating</h2>
+        <p>Carbon-14 dating helps archaeologists determine the age of organic artifacts.</p>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #22c55e, #16a34a);">⭐ Level 1: Dead
+                Sea Scrolls</div>
+            <div class="problem-body">
+                <p>A fragment from the Dead Sea Scrolls shows C-14 activity of 78% compared to living material. Estimate
+                    the age of the scrolls.</p>
+                <button class="btn-solution" onclick="toggleSolution('arch1')">Show Solution</button>
+                <div id="arch1" class="solution-content">
+                    <p><strong>Given:</strong> \(\frac{R}{R_0} = 0.78\), \(T_{1/2} = 5730\) yr</p>
+                    <hr>
+                    <p>\[\lambda = \frac{0.693}{5730} = 1.21 \times 10^{-4} \text{ yr}^{-1}\]</p>
+                    <p>\[0.78 = e^{-\lambda t} \Rightarrow \ln(0.78) = -\lambda t\]</p>
+                    <p>\[t = \frac{0.248}{1.21 \times 10^{-4}} = \boxed{2050 \text{ years}}\]</p>
+                    <p><em>This matches historical records placing them around 100 BCE - 100 CE!</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #84cc16, #65a30d);">⭐⭐ Level 2:
+                Egyptian Mummy</div>
+            <div class="problem-body">
+                <p>Linen wrappings from an Egyptian mummy have C-14 activity of 8.1 decays/min per gram. Fresh linen has
+                    15.3 decays/min per gram. How old is the mummy?</p>
+                <button class="btn-solution" onclick="toggleSolution('arch2')">Show Solution</button>
+                <div id="arch2" class="solution-content">
+                    <p><strong>Given:</strong> \(R = 8.1\), \(R_0 = 15.3\) decays/min/g</p>
+                    <hr>
+                    <p>\[\frac{R}{R_0} = \frac{8.1}{15.3} = 0.529\]</p>
+                    <p>\[0.529 = e^{-\lambda t} \Rightarrow \ln(0.529) = -1.21 \times 10^{-4} \times t\]</p>
+                    <p>\[t = \frac{0.636}{1.21 \times 10^{-4}} = \boxed{5260 \text{ years}}\]</p>
+                    <p><em>This dates to around 3240 BCE - the Old Kingdom period of Egypt!</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #eab308, #ca8a04);">⭐⭐⭐ Level 3:
+                Prehistoric Cave Painting</div>
+            <div class="problem-body">
+                <p>Charcoal from a prehistoric cave painting contains only 12% of the original C-14. Estimate the age of
+                    the painting.</p>
+                <button class="btn-solution" onclick="toggleSolution('arch3')">Show Solution</button>
+                <div id="arch3" class="solution-content">
+                    <p><strong>Given:</strong> \(\frac{N}{N_0} = 0.12\)</p>
+                    <hr>
+                    <p>\[0.12 = e^{-\lambda t}\]</p>
+                    <p>\[\ln(0.12) = -1.21 \times 10^{-4} \times t\]</p>
+                    <p>\[t = \frac{2.12}{1.21 \times 10^{-4}} = \boxed{17,520 \text{ years}}\]</p>
+                    <p><em>This is from the Late Paleolithic era, similar to the famous Lascaux cave paintings!</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #f97316, #ea580c);">⭐⭐⭐⭐ Level 4:
+                Volcanic Rock Dating</div>
+            <div class="problem-body">
+                <p>A volcanic rock contains Potassium-40 (\(T_{1/2} = 1.25 \times 10^9\) years) and its decay product
+                    Argon-40. Analysis shows the K-40/Ar-40 ratio is 3:1. How old is the rock?</p>
+                <button class="btn-solution" onclick="toggleSolution('arch4')">Show Solution</button>
+                <div id="arch4" class="solution-content">
+                    <p><strong>Key Insight:</strong> If K-40/Ar-40 = 3:1, then 25% of original K-40 has decayed.</p>
+                    <p>Remaining K-40 = 75% = 0.75 of original.</p>
+                    <hr>
+                    <p>\[\lambda = \frac{0.693}{1.25 \times 10^9} = 5.54 \times 10^{-10} \text{ yr}^{-1}\]</p>
+                    <p>\[0.75 = e^{-\lambda t}\]</p>
+                    <p>\[\ln(0.75) = -5.54 \times 10^{-10} \times t\]</p>
+                    <p>\[t = \frac{0.288}{5.54 \times 10^{-10}} = \boxed{5.2 \times 10^8 \text{ years}}\]</p>
+                    <p><em>About 520 million years old - from the Cambrian period!</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #ef4444, #dc2626);">⭐⭐⭐⭐⭐ Level 5:
+                Uranium-Lead Dating</div>
+            <div class="problem-body">
+                <p>A meteorite sample contains uranium and lead isotopes. The ratio of Pb-206 to U-238 is 0.45. Given
+                    U-238 has \(T_{1/2} = 4.5 \times 10^9\) years, calculate the age of the meteorite.</p>
+                <button class="btn-solution" onclick="toggleSolution('arch5')">Show Solution</button>
+                <div id="arch5" class="solution-content">
+                    <p><strong>Given:</strong> Pb-206/U-238 = 0.45</p>
+                    <hr>
+                    <p><strong>Step 1:</strong> Relate to original U-238.</p>
+                    <p>If current U = 1, then original U = 1 + 0.45 = 1.45 (Pb came from decayed U)</p>
+                    <p>\[\frac{N}{N_0} = \frac{1}{1.45} = 0.69\]</p>
+                    <hr>
+                    <p><strong>Step 2:</strong> Calculate age.</p>
+                    <p>\[\lambda = \frac{0.693}{4.5 \times 10^9} = 1.54 \times 10^{-10} \text{ yr}^{-1}\]</p>
+                    <p>\[0.69 = e^{-\lambda t}\]</p>
+                    <p>\[t = \frac{\ln(0.69)}{-1.54 \times 10^{-10}} = \frac{0.371}{1.54 \times 10^{-10}}\]</p>
+                    <p>\[t = \boxed{2.41 \times 10^9 \text{ years}}\]</p>
+                    <p><em>About 2.4 billion years old - from the Proterozoic eon!</em></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- APPLICATION C: Industrial & Safety -->
+    <div class="section">
+        <h2>🏭 Application C: Industrial & Safety Applications</h2>
+        <p>Radioactivity is used in industry for quality control, leak detection, and safety monitoring.</p>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #22c55e, #16a34a);">⭐ Level 1: Smoke
+                Detector</div>
+            <div class="problem-body">
+                <p>A smoke detector contains 0.9 μCi of Americium-241 (\(T_{1/2} = 432\) years). How much activity will
+                    remain after 50 years?</p>
+                <button class="btn-solution" onclick="toggleSolution('ind1')">Show Solution</button>
+                <div id="ind1" class="solution-content">
+                    <p><strong>Given:</strong> \(R_0 = 0.9\) μCi, \(T_{1/2} = 432\) yr, \(t = 50\) yr</p>
+                    <hr>
+                    <p>Number of half-lives: \(n = 50/432 = 0.116\)</p>
+                    <p>\[R = 0.9 \times \left(\frac{1}{2}\right)^{0.116} = 0.9 \times 0.923 = \boxed{0.83 \text{ μCi}}\]
+                    </p>
+                    <p><em>Smoke detectors remain effective for decades because Am-241 has a long half-life!</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #84cc16, #65a30d);">⭐⭐ Level 2:
+                Pipeline Leak Detection</div>
+            <div class="problem-body">
+                <p>Engineers inject 2.0 mCi of Na-24 (\(T_{1/2} = 15\) hours) into an oil pipeline to detect leaks. What
+                    activity will a leak detector measure after 45 hours if all the tracer has accumulated at the leak
+                    point?</p>
+                <button class="btn-solution" onclick="toggleSolution('ind2')">Show Solution</button>
+                <div id="ind2" class="solution-content">
+                    <p><strong>Given:</strong> \(R_0 = 2.0\) mCi, \(t = 45\) hr = 3 half-lives</p>
+                    <hr>
+                    <p>\[R = 2.0 \times \left(\frac{1}{2}\right)^3 = 2.0 \times 0.125 = \boxed{0.25 \text{ mCi}}\]</p>
+                    <p><em>The short half-life ensures the radioactivity doesn't persist in the environment!</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #eab308, #ca8a04);">⭐⭐⭐ Level 3:
+                Nuclear Power Plant Safety</div>
+            <div class="problem-body">
+                <p>After a reactor shutdown, I-131 (\(T_{1/2} = 8.02\) days) is a major concern. If the initial I-131
+                    activity is 10,000 Ci, how long until it drops below the safety limit of 100 Ci?</p>
+                <button class="btn-solution" onclick="toggleSolution('ind3')">Show Solution</button>
+                <div id="ind3" class="solution-content">
+                    <p><strong>Given:</strong> \(R_0 = 10000\) Ci, \(R = 100\) Ci</p>
+                    <hr>
+                    <p>\[\frac{R}{R_0} = \frac{100}{10000} = 0.01\]</p>
+                    <p>\[0.01 = e^{-\lambda t}\]</p>
+                    <p>\[\lambda = 0.693/8.02 = 0.0864 \text{ day}^{-1}\]</p>
+                    <p>\[\ln(0.01) = -0.0864 \times t\]</p>
+                    <p>\[t = \frac{4.605}{0.0864} = \boxed{53.3 \text{ days}}\]</p>
+                    <p><em>This is about 6.6 half-lives. The contaminated area needs isolation for nearly 2 months!</em>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #f97316, #ea580c);">⭐⭐⭐⭐ Level 4:
+                Radiation Worker Exposure</div>
+            <div class="problem-body">
+                <p>A radiation worker is exposed to a Co-60 source at a distance of 1m for 30 minutes. The source
+                    activity is 500 mCi. If the exposure rate constant for Co-60 is 1.32 R·cm²/(mCi·hr), what is the
+                    worker's exposure in Roentgens?</p>
+                <button class="btn-solution" onclick="toggleSolution('ind4')">Show Solution</button>
+                <div id="ind4" class="solution-content">
+                    <p><strong>Given:</strong> Distance \(d = 100\) cm, \(R = 500\) mCi, \(t = 0.5\) hr</p>
+                    <p>Exposure rate constant \(\Gamma = 1.32\) R·cm²/(mCi·hr)</p>
+                    <hr>
+                    <p><strong>Formula:</strong> Exposure rate \(= \frac{\Gamma \times A}{d^2}\)</p>
+                    <p>\[Rate = \frac{1.32 \times 500}{100^2} = \frac{660}{10000} = 0.066 \text{ R/hr}\]</p>
+                    <hr>
+                    <p><strong>Total Exposure:</strong></p>
+                    <p>\[Exposure = 0.066 \times 0.5 = \boxed{0.033 \text{ R} = 33 \text{ mR}}\]</p>
+                    <p><em>This is below typical occupational limits of 100 mR/week.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card">
+            <div class="problem-header" style="background: linear-gradient(135deg, #ef4444, #dc2626);">⭐⭐⭐⭐⭐ Level 5:
+                Nuclear Waste Storage</div>
+            <div class="problem-body">
+                <p>Cesium-137 (\(T_{1/2} = 30.2\) years) from nuclear waste must decay to 0.1% of its original activity
+                    before being considered safe. How long must the waste be stored?</p>
+                <button class="btn-solution" onclick="toggleSolution('ind5')">Show Solution</button>
+                <div id="ind5" class="solution-content">
+                    <p><strong>Given:</strong> \(\frac{R}{R_0} = 0.001\) (0.1%)</p>
+                    <hr>
+                    <p><strong>Method 1: Using half-lives</strong></p>
+                    <p>\[\left(\frac{1}{2}\right)^n = 0.001\]</p>
+                    <p>\[n = \frac{\ln(0.001)}{\ln(0.5)} = \frac{-6.91}{-0.693} = 9.97 \approx 10 \text{ half-lives}\]
+                    </p>
+                    <p>\[t = 10 \times 30.2 = \boxed{302 \text{ years}}\]</p>
+                    <hr>
+                    <p><strong>Method 2: Using \(\lambda\)</strong></p>
+                    <p>\[\lambda = 0.693/30.2 = 0.0229 \text{ yr}^{-1}\]</p>
+                    <p>\[t = \frac{-\ln(0.001)}{0.0229} = \frac{6.91}{0.0229} = 302 \text{ years}\]</p>
+                    <p><em>Nuclear waste storage facilities must be designed to last for centuries!</em></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="section"
+        style="background: linear-gradient(135deg, #1e3a5f, #2c5282); color: white; text-align: center;">
+        <h2 style="color: white; border: none;">🎓 Chapter Summary</h2>
+        <p>✅ Nuclear Notation: \(N = A - Z\)</p>
+        <p>✅ Nuclear Radius: \(r = r_0 A^{1/3}\)</p>
+        <p>✅ Radiation Types: α (Helium nuclei), β (electrons), γ (photons)</p>
+        <p>✅ Half-Life: \(T_{1/2} = \frac{0.693}{\lambda}\)</p>
+        <p>✅ Activity: \(R = \lambda N\)</p>
+        <p>✅ Carbon-14 Dating: \(T_{1/2} = 5730\) years</p>
+    </div>
+
+    <div class="section" style="text-align: center; color: #777;">
+        <p>End of Chapter 30 Comprehensive Guide</p>
+    </div>
+
+    </div>
+
+    <script>
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+            } else {
+                el.classList.add('show');
+            }
+        }
+    </script>
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</body>
+
+</html>
