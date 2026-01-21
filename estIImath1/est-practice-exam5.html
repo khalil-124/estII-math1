@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>EST II Math Level 1 - Exam 5 (Geometry & Visuals)</title>
+    <!-- Basic styles and scripts copied from Exam 3 for consistency - shortened for brevity in this step -->
+    <link href="https://fonts.googleapis.com/css2?family=Times+New+Roman&family=Outfit:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        /* [Detailed CSS would go here, matching Exam 3] */
+        body {
+            font-family: 'Times New Roman', serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .question {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+
+        .options li {
+            padding: 10px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            margin: 5px 0;
+            border-radius: 4px;
+        }
+
+        .options li:hover {
+            background: #f9f9f9;
+        }
+
+        .explanation {
+            display: none;
+            background: #e6fffa;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 4px;
+            border: 1px solid #b2f5ea;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Exam 5: Geometry & Visuals Focus</h1>
+        <p>This exam focuses on spatial reasoning, geometric properties, and graph interpretation.</p>
+
+        <div id="questions-container"></div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                id: 1,
+                question: "In the circle above, chord AB is parallel to chord CD. If arc AC measures 40°, what is the measure of arc BD?",
+                hasGraph: true,
+                graphImage: "images/ex5_q1_circle_parallel.png", // Placeholder
+                options: ["20°", "40°", "80°", "100°", "140°"],
+                answer: 1,
+                explanation: "<strong>Key Concept:</strong> Parallel chords intercept congruent arcs.<br>Since AB || CD, the arcs between them are equal. Measure of arc AC = Measure of arc BD = 40°."
+            },
+            {
+                id: 2,
+                question: "Triangle XYZ has vertices X(0,0), Y(a, b), and Z(c, 0). If the triangle is isosceles with XY = YZ, which of the following must be true?",
+                hasGraph: true,
+                graphImage: "images/ex5_q2_isosceles_coord.png", // Placeholder
+                options: ["a = c", "a = c/2", "b = c", "b = c/2", "a = b"],
+                answer: 1,
+                explanation: "<strong>Key Concept:</strong> Properties of Isosceles Triangles in Coordinate Plane.<br>Since the base XZ is on the x-axis from 0 to c, the midpoint is at x = c/2. For the triangle to be isosceles (XY=YZ), the vertex Y must lie on the perpendicular bisector of the base. Thus, the x-coordinate of Y, which is 'a', must be half of 'c'. So a = c/2."
+            },
+            {
+                id: 3,
+                question: "Which of the following describes the equation of a circle with center (2, -3) and radius 5?",
+                options: ["(x - 2)² + (y + 3)² = 5", "(x + 2)² + (y - 3)² = 25", "(x - 2)² + (y + 3)² = 25", "(x - 2)² + (y - 3)² = 5", "(x + 2)² + (y + 3)² = 10"],
+                answer: 2,
+                explanation: "<strong>Key Concept:</strong> Equation of a Circle (Conics).<br>Formula: (x - h)² + (y - k)² = r².<br>Center (h,k) = (2, -3) → (x - 2)² + (y + 3)².<br>Radius r = 5 → r² = 25.<br>Result: (x - 2)² + (y + 3)² = 25. This matches the Syllabus (Section E: Conics)."
+            }
+            // Logic to add more questions...
+        ];
+
+        const container = document.getElementById('questions-container');
+        questions.forEach((q, idx) => {
+            const div = document.createElement('div');
+            div.className = 'question';
+            div.innerHTML = `
+                <h3>Question ${q.id}</h3>
+                <p>${q.question}</p>
+                ${q.hasGraph ? `<div style='background:#eee; height:200px; display:flex; align-items:center; justify-content:center; margin:10px 0;'>[Image Placeholder: ${q.graphImage}]</div>` : ''}
+                <ul class="options">
+                    ${q.options.map(opt => `<li>${opt}</li>`).join('')}
+                </ul>
+                <button onclick="this.nextElementSibling.style.display='block'">Show Explanation</button>
+                <div class="explanation">${q.explanation}</div>
+            `;
+            container.appendChild(div);
+        });
+    </script>
+</body>
+
+</html>

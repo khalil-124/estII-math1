@@ -1,0 +1,348 @@
+Comprehensive Guide: EST II HS Math Level 1
+
+Domain: Algebra and Functions
+
+This document provides a highly detailed breakdown of the Algebra and Functions domain for the EST II HS Math Level 1 exam. It is based on the 2026 Assessment Specifications and the official Sample Test provided.
+
+I. Assessment Specifications (2026)
+
+Weight: 25% – 30% of the total exam score.
+Focus: Conceptual understanding, procedural fluency, and applying algebraic reasoning to solve problems.
+
+Key Topics to Master:
+
+Expressions: Manipulating algebraic terms, factoring, and simplification.
+
+Equations:
+
+Linear Equations (solving for $x$).
+
+Quadratic Equations (factoring, quadratic formula, discriminant).
+
+Rational Equations (dealing with fractions and variables in denominators).
+
+Systems of Equations (2 variables, 3 variables).
+
+Inequalities:
+
+Linear inequalities and their graphs on a number line.
+
+Absolute value inequalities (distance concepts).
+
+Systems of inequalities (identifying solution regions).
+
+Functions:
+
+Function notation $f(x)$.
+
+Domain and Range.
+
+Composition of functions $f(g(x))$.
+
+Transformations (shifting up/down/left/right, reflecting).
+
+Polynomial functions (roots, degrees, end behavior).
+
+Inverse functions.
+
+Exponents & Radicals: Laws of exponents, fractional exponents, and solving exponential equations.
+
+II. Question Analysis: Algebra and Functions
+
+Below is a detailed extraction of every question from the sample exam that falls under "Algebra and Functions." For each question, we analyze the concept, the nature of the question, and the focus you need to have.
+
+1. Polynomials & Graphs
+
+Question 1
+
+The Prompt: A graph of a polynomial curve crossing the x-axis at specific points. You are asked which statement is "true."
+
+Nature of Question: Visual Graph Analysis.
+
+Detailed Focus:
+
+Roots (x-intercepts): You must identify where the graph crosses the x-axis (e.g., at $x = -1, 0, 1$). If the graph crosses at $x=1$, then $P(1) = 0$.
+
+Degree: Count the number of "turns" or roots. 3 roots usually imply an odd degree (like 3).
+
+Constant Term: This is the y-intercept (where $x=0$). If it passes through the origin $(0,0)$, the constant term is 0.
+
+Strategy: Check each option against the visual features of the graph.
+
+Question 2
+
+The Prompt: "The graph of a function $g$ cuts the x-axis two times and has a positive y-intercept."
+
+Nature of Question: Matching Properties to Equations.
+
+Detailed Focus:
+
+Roots: "Cuts x-axis two times" means the equation should have exactly two real solutions (roots).
+
+Y-intercept: To find the y-intercept of an equation, plug in $x=0$ and see if the result is positive.
+
+Strategy:
+
+Look at the factored forms in the options (e.g., $(x-1)(x-2)$).
+
+Count the factors to see how many roots there are.
+
+Calculate $g(0)$ for the remaining options to check the sign.
+
+2. Algebraic Manipulation & Ratios
+
+Question 6
+
+The Prompt: "If the ratio of $x$ to $y$ is 2 and the ratio of $y$ to $z$ is 1..."
+
+Nature of Question: Variable Substitution.
+
+Detailed Focus:
+
+Translate text to algebra: $x/y = 2 \rightarrow x = 2y$.
+
+Translate text to algebra: $y/z = 1 \rightarrow y = z$.
+
+Combine them: If $x = 2y$ and $y = z$, then substituting $z$ for $y$ gives $x = 2z$.
+
+Strategy: Express all variables in terms of one single variable (usually the one at the end of the chain, like $z$) to compare them easily.
+
+3. Exponents & Powers
+
+Question 10
+
+The Prompt: $625^{3x} \cdot 10^{6} = 5^{24} \cdot 2^{y}$. Find $y/x$.
+
+Nature of Question: Prime Factorization & Equating Exponents.
+
+Detailed Focus:
+
+Base Breakdown: You must know that $625 = 5^4$ and $10 = 2 \cdot 5$.
+
+Laws of Exponents: $(a^b)^c = a^{bc}$ and $a^b \cdot a^c = a^{b+c}$.
+
+Goal: Rewrite the entire equation so the base is only 2 and 5 on both sides. Then, equate the powers of 2 to find $y$, and the powers of 5 to find $x$.
+
+Strategy: Break everything down to prime bases immediately.
+
+Question 26
+
+The Prompt: Find the value of $\frac{8^{2x}}{128^{y}}$ given a linear equation $12x - 14y = 3$.
+
+Nature of Question: Rewriting Bases to match a Linear Expression.
+
+Detailed Focus:
+
+Recognize that 8 and 128 are powers of 2 ($8=2^3$, $128=2^7$).
+
+Rewrite the expression: $\frac{2^{3(2x)}}{2^{7(y)}} = \frac{2^{6x}}{2^{7y}} = 2^{6x - 7y}$.
+
+Notice the connection to the given equation: $12x - 14y = 3$ is exactly double $6x - 7y$.
+
+Strategy: Don't try to solve for $x$ and $y$ individually; you can't. Look for the pattern in the exponents.
+
+4. Rational Expressions & Equations
+
+Question 16
+
+The Prompt: "What is/are the root(s) of $\frac{x^{2}+4x-77}{x^{2}-x-42}$?"
+
+Nature of Question: Rational Functions (Zeros vs. Undefined Points).
+
+Detailed Focus:
+
+Roots: A fraction is zero only when the Numerator is zero.
+
+Restrictions: The Denominator cannot be zero.
+
+Factoring: You must factor both top and bottom.
+
+Top: $(x+11)(x-7)$
+
+Bottom: $(x-7)(x+6)$
+
+Trap: $x=7$ makes both zero, so it is a "hole," not a root. The only root is $x = -11$.
+
+Strategy: Factor everything first. Cancel common terms carefully to identify holes vs. vertical asymptotes vs. roots.
+
+Question 29
+
+The Prompt: Solve $\frac{2}{3x-1} = -\frac{3}{4}$.
+
+Nature of Question: Solving Rational Equations.
+
+Detailed Focus:
+
+Cross-multiplication: $2(4) = -3(3x-1)$.
+
+Linear Algebra: Distribute and solve for $x$.
+
+Strategy: Cross-multiply to eliminate fractions immediately.
+
+5. Quadratic Equations & Conditions
+
+Question 18
+
+The Prompt: Given $y = 3x^2 + 7x + c$. Check statements about roots.
+
+Nature of Question: Quadratic Theory (Vieta's Formulas & Discriminant).
+
+Detailed Focus:
+
+Product of Roots: Formula is $c/a$. Here, $c/3$. If $c > 0$, product is positive.
+
+Discriminant ($\Delta$): $\Delta = b^2 - 4ac$. For two real solutions, $\Delta > 0$. Here, $7^2 - 4(3)(c) > 0 \rightarrow 49 - 12c > 0$.
+
+Sum of Roots: Formula is $-b/a$. Here, $-7/3$. This depends only on $a$ and $b$, not $c$.
+
+Strategy: Memorize Vieta's formulas (Sum/Product of roots) and the Discriminant rules.
+
+Question 40
+
+The Prompt: For which value of $b$ does $3x^2 + bx + 3 = 0$ have two distinct real solutions?
+
+Nature of Question: Discriminant Application.
+
+Detailed Focus:
+
+Condition: $b^2 - 4ac > 0$.
+
+Plug in: $b^2 - 4(3)(3) > 0 \rightarrow b^2 - 36 > 0$.
+
+Result: $b^2 > 36$, meaning $b > 6$ or $b < -6$.
+
+Strategy: Test the Roman Numeral values (I, II, III) against the inequality $b^2 > 36$.
+
+Question 23
+
+The Prompt: Compare $y = -3x^2 + 12$ with other options (same y-intercept, one common x-intercept).
+
+Nature of Question: Comparing Quadratic Features.
+
+Detailed Focus:
+
+Y-intercept: Set $x=0$. ($y=12$).
+
+X-intercepts: Set $y=0$. ($3x^2=12 \rightarrow x^2=4 \rightarrow x = \pm 2$).
+
+You need an option with y-intercept 12 and exactly one root equal to 2 or -2.
+
+Strategy: Systematically check the y-intercept of options first (eliminate wrong ones), then solve for the roots of the remaining options.
+
+6. Linear Equations & Systems
+
+Question 19
+
+The Prompt: Solve a complex linear equation with brackets: $7x^2 + 3(x-5) + 2 = 7(x^2 + 7x - 4)$.
+
+Nature of Question: Simplifying and Solving.
+
+Detailed Focus:
+
+Expansion: Distribute the 3 and the 7 into the parentheses.
+
+Cancellation: Notice $7x^2$ is on both sides? Cancel them out immediately. It becomes a linear equation.
+
+Solve: Isolate $x$.
+
+Strategy: Don't panic at the $x^2$. Look for terms that cancel out on both sides.
+
+Question 24
+
+The Prompt: System of equations has "infinitely many solutions."
+
+$x + 2y = 5$
+
+$4x + by = c$
+
+Nature of Question: Systems Criteria.
+
+Detailed Focus:
+
+Infinite Solutions: The lines are identical (overlapping).
+
+Ratio Method: The coefficients must be proportional.
+
+Compare x-coefficients: $1x$ vs $4x$ (Ratio is $\times 4$).
+
+Apply ratio to everything: $2y \times 4 = 8y$ (so $b=8$) and $5 \times 4 = 20$ (so $c=20$).
+
+Strategy: Identify the multiplier between the equations.
+
+7. Functions
+
+Question 21
+
+The Prompt: Graph of $f(x)$ provided. Find the max value of $g(x) = 1 - f(x)$.
+
+Nature of Question: Function Transformations.
+
+Detailed Focus:
+
+Interpretation: $g(x) = 1 - f(x)$ means "Take the value of $f(x)$, make it negative (flip over x-axis), then add 1 (shift up 1)."
+
+Shortcut: Find the minimum value of $f(x)$ on the graph. If $f(x)$ is minimum, then $1 - f(x)$ will be maximum.
+
+Strategy: Read the specific y-values from the graph and perform the arithmetic $1 - y$.
+
+8. Inequalities
+
+Question 36
+
+The Prompt: Interval notation for $|2x - 12| > |x| + 1$.
+
+Nature of Question: Absolute Value Inequality.
+
+Detailed Focus:
+
+Squaring Method: Since both sides are positive, you can sometimes square both sides (carefully) or test critical regions.
+
+Case Analysis: Test regions defined by the zeros ($x=6$ and $x=0$).
+
+Case 1: $x > 6$
+
+Case 2: $0 < x < 6$
+
+Case 3: $x < 0$
+
+Strategy: For multiple choice, Test Values. Pick a number like $x=0$, $x=10$, $x=-10$ and see if they work, then eliminate options.
+
+Question 37
+
+The Prompt: Which point does not belong to the solution set of $6(x+2y) < 2x - 3(y-1)$.
+
+Nature of Question: Verification of Solutions.
+
+Detailed Focus:
+
+Simplification: First, simplify the inequality.
+
+$6x + 12y < 2x - 3y + 3$
+
+$4x + 15y < 3$
+
+Substitution: Plug in the $(x, y)$ coordinates from the choices.
+
+Example A (-17, 2): $4(-17) + 15(2) = -68 + 30 = -38$. Is $-38 < 3$? Yes. (So A works).
+
+You are looking for the one that implies "False".
+
+Strategy: Simplify first, then plug in.
+
+III. Summary of Algebra Focus for 2026
+
+To score high in this section, ensure you can:
+
+Read Graphs: Don't just look at shapes; look at intercepts ($x=0, y=0$), turning points, and symmetry.
+
+Factor Quickly: Quadratics $(ax^2+bx+c)$ and difference of squares $(a^2-b^2)$ appear frequently.
+
+Know the Rules:
+
+Discriminant: $\Delta > 0$ (2 roots), $\Delta = 0$ (1 root), $\Delta < 0$ (no real roots).
+
+Infinite Solutions: Equations are multiples of each other.
+
+No Solution: Slopes are same, intercepts are different (Parallel lines).
+
+Function Shifts: $f(x) + k$ vs $f(x+k)$.

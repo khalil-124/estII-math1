@@ -516,7 +516,7 @@
             font-size: .9rem;
             font-weight: 700;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(139, 92, 246, .4);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, .3);
             z-index: 50;
             display: flex;
             align-items: center;
@@ -538,7 +538,7 @@
             height: 48px;
             font-size: 1.5rem;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(16, 185, 129, .4);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, .3);
         }
 
         /* Mobile Responsive Styles */
@@ -853,23 +853,23 @@
 </head>
 
 <body>
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <button class="menu-toggle" onclick="toggleMenu()">â˜°</button>
     <div class="container">
         <aside class="sidebar">
             <div class="logo">
-                <h1>📊 <span>EST</span> MATH</h1>
+                <h1>&#128202; <span>EST</span> MATH</h1>
                 <p style="font-size:.75rem;color:var(--muted);margin-top:.25rem">Statistics & Data Analysis</p>
             </div>
             <nav class="nav">
-                <button class="nav-btn active" onclick="showTheory()">📚 Theory Hub</button>
+                <button class="nav-btn active" onclick="showTheory()">&#128218; Theory Hub</button>
                 <div class="nav-section">Practice Sections</div>
                 <button class="nav-btn" onclick="showQuiz('A')">Section A: Descriptive</button>
                 <button class="nav-btn" onclick="showQuiz('B')">Section B: Data Rep</button>
                 <button class="nav-btn" onclick="showQuiz('C')">Section C: Bivariate</button>
                 <button class="nav-btn" onclick="showQuiz('D')">Section D: Probability</button>
                 <div class="nav-section">Test Yourself</div>
-                <button class="nav-btn" onclick="showExam()" style="background:var(--orange);color:#fff">📝 Exam (10
-                    Random)</button>
+                <button class="nav-btn" onclick="showExam()" style="background:var(--orange);color:#fff">&#128221; Exam
+                    (10 Random)</button>
             </nav>
             <div class="timer-box">
                 <div class="timer" id="timer">60:00</div>
@@ -881,52 +881,52 @@
                 <div class="theory-header">
                     <div class="theory-badge">2026 Specification</div>
                     <h1>EST Level 1 Data Analysis</h1>
-                    <p>200 Practice Questions with Detailed Explanations</p>
+                    <p>200 Practice Questions &bull; 100% Level 1 &bull; 2026 EST Specs</p>
                     <button class="print-btn" onclick="printTheory()"
-                        style="position:relative;bottom:auto;right:auto;margin-top:1rem">🖨️ Print Theory</button>
+                        style="position:relative;bottom:auto;right:auto;margin-top:1rem">&#128424; Print Theory</button>
                 </div>
                 <div class="theory-grid">
                     <div class="theory-card">
-                        <h3>📊 Descriptive Statistics</h3>
+                        <h3>&#128202; Descriptive Statistics</h3>
                         <p><strong>Central Tendency:</strong> Mean, Median, Mode</p>
                         <p><strong>Spread:</strong> Range, IQR, Variance, SD</p>
                         <div class="formula">\(\bar{x} = \frac{\sum x_i}{n}\) &nbsp; \(\sigma =
                             \sqrt{\frac{\sum(x-\bar{x})^2}{n}}\)</div>
                     </div>
                     <div class="theory-card">
-                        <h3>📈 Bivariate Data</h3>
+                        <h3>&#128200; Bivariate Data</h3>
                         <p><strong>Regression:</strong> \(y = ax + b\)</p>
-                        <p><strong>Correlation:</strong> r ∈ [-1, 1]</p>
+                        <p><strong>Correlation:</strong> r &in; [-1, 1]</p>
                         <div class="formula">\(r^2\) = % variance explained</div>
                     </div>
                     <div class="theory-card">
-                        <h3>📉 Data Representation</h3>
+                        <h3>&#128201; Data Representation</h3>
                         <p>Histograms, Box Plots, Stem-Leaf, Scatter</p>
                         <div class="formula">Right Skew: Mean > Median</div>
                     </div>
                     <div class="theory-card">
-                        <h3>🎲 Probability</h3>
+                        <h3>&#127922; Probability</h3>
                         <p>Permutations vs Combinations</p>
                         <div class="formula">\(P_n^r = \frac{n!}{(n-r)!}\) &nbsp; \(C_n^r = \frac{n!}{r!(n-r)!}\)</div>
                     </div>
                 </div>
 
                 <div class="theory-full">
-                    <h2>📊 Section A: Descriptive Statistics (Q1-50)</h2>
+                    <h2>&#128202; Section A: Descriptive Statistics (50 Questions)</h2>
 
                     <h3>1. Measures of Center</h3>
                     <p><strong>Mean (Arithmetic Average):</strong> The sum of all values divided by the count.</p>
                     <div class="formula">$$\bar{x} = \frac{\sum x_i}{n} = \frac{x_1 + x_2 + ... + x_n}{n}$$</div>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> Find the mean of {4, 8, 9, 12, 17}
+                        <strong>&#128221; Worked Example:</strong> Find the mean of {4, 8, 9, 12, 17}
                         <br>$$\bar{x} = \frac{4 + 8 + 9 + 12 + 17}{5} = \frac{50}{5} = 10$$
                     </div>
 
                     <p><strong>Median:</strong> The middle value when data is ordered. For even \(n\), average the two
                         middle values.</p>
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> Find median of {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+                        <strong>&#128221; Worked Example:</strong> Find median of {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
                         <br>Middle values: 5 and 6 (even count)
                         <br>$$\text{Median} = \frac{5 + 6}{2} = 5.5$$
                     </div>
@@ -934,10 +934,10 @@
                     <p><strong>Mode:</strong> The most frequently occurring value. A dataset can be unimodal, bimodal,
                         or have no mode.</p>
 
-                    <div class="tip"><strong>💡 When to use which:</strong>
-                        <br>• Mean: For symmetric data without outliers
-                        <br>• Median: For skewed data or data with outliers (e.g., house prices)
-                        <br>• Mode: For categorical data or finding most common value
+                    <div class="tip"><strong>&#128161; When to use which:</strong>
+                        <br>&bull; Mean: For symmetric data without outliers
+                        <br>&bull; Median: For skewed data or data with outliers (e.g., house prices)
+                        <br>&bull; Mode: For categorical data or finding most common value
                     </div>
 
                     <h3>2. Measures of Spread</h3>
@@ -946,71 +946,32 @@
                     <p><strong>Interquartile Range (IQR):</strong> The range of the middle 50% of data.</p>
                     <div class="formula">$$IQR = Q_3 - Q_1$$</div>
 
-                    <p><strong>Variance:</strong> Average of squared deviations from the mean.</p>
-                    <div class="formula">$$\sigma^2 = \frac{\sum(x_i - \bar{x})^2}{n} \quad \text{(population)} \qquad
-                        s^2 = \frac{\sum(x_i - \bar{x})^2}{n-1} \quad \text{(sample)}$$</div>
 
-                    <p><strong>Standard Deviation:</strong> Square root of variance.</p>
-                    <div class="formula">$$\sigma = \sqrt{\sigma^2} \qquad s = \sqrt{s^2}$$</div>
+                    <div class="tip"><strong>&#128161; Level 1 Note:</strong> Standard Deviation, Variance, Z-Score, and
+                        Normal
+                        Distribution are covered in EST Level 2, not Level 1.</div>
 
-                    <div class="example">
-                        <strong>📝 Worked Example:</strong> If \(\sigma^2 = 16\), find \(\sigma\)
-                        <br>$$\sigma = \sqrt{16} = 4$$
-                    </div>
-
-                    <div class="warning"><strong>⚠️ Key Facts:</strong>
-                        <br>• SD = 0 means all values are identical
-                        <br>• SD can NEVER be negative
-                        <br>• SD ≤ Range always
-                    </div>
-
-                    <h3>3. Transformations</h3>
-                    <p>If \(y = ax + b\):</p>
-                    <div class="formula">$$\bar{y} = a\bar{x} + b \qquad \sigma_y = |a| \cdot \sigma_x$$</div>
-
-                    <div class="example">
-                        <strong>📝 Worked Example:</strong> Data is multiplied by 3 and then 5 is added. How do mean and
-                        SD change?
-                        <br>• Mean is multiplied by 3, then 5 is added: \(\bar{y} = 3\bar{x} + 5\)
-                        <br>• SD is only multiplied by 3 (adding doesn't change spread): \(\sigma_y = 3\sigma_x\)
-                    </div>
-
-                    <h3>4. Z-Score & Empirical Rule</h3>
-                    <p><strong>Z-Score:</strong> How many standard deviations from the mean.</p>
-                    <div class="formula">$$z = \frac{x - \mu}{\sigma}$$</div>
-
-                    <div class="example">
-                        <strong>📝 Worked Example:</strong> \(\mu = 50\), \(\sigma = 10\). Find z-score for \(x = 70\)
-                        <br>$$z = \frac{70 - 50}{10} = \frac{20}{10} = 2$$
-                        <br>This means 70 is 2 standard deviations above the mean.
-                    </div>
-
-                    <p><strong>Empirical Rule (68-95-99.7):</strong> For normal distributions:</p>
-                    <div class="formula">
-                        68% of data within \(\mu \pm 1\sigma\)<br>
-                        95% of data within \(\mu \pm 2\sigma\)<br>
-                        99.7% of data within \(\mu \pm 3\sigma\)
-                    </div>
 
                     <h3>5. Outliers</h3>
-                    <p>Using the 1.5×IQR rule:</p>
+                    <p>Using the 1.5Ã—IQR rule:</p>
                     <div class="formula">
                         $$\text{Lower Fence} = Q_1 - 1.5 \times IQR$$
                         $$\text{Upper Fence} = Q_3 + 1.5 \times IQR$$
                     </div>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> \(Q_1 = 30\), \(Q_3 = 50\). Is 85 an outlier?
+                        <strong>&#128221; Worked Example:</strong> \(Q_1 = 30\), \(Q_3 = 50\). Is 85 an outlier?
                         <br>\(IQR = 50 - 30 = 20\)
                         <br>\(\text{Upper Fence} = 50 + 1.5(20) = 50 + 30 = 80\)
-                        <br>Since \(85 > 80\), yes, 85 is an outlier! ✓
+                        <br>Since \(85 > 80\), yes, 85 is an outlier! âœ“
                     </div>
 
                     <h3>6. Weighted Mean</h3>
                     <div class="formula">$$\bar{x}_w = \frac{\sum w_i x_i}{\sum w_i}$$</div>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> Calculate weighted mean: 10 (weight 0.2), 20 (weight 0.8)
+                        <strong>&#128221; Worked Example:</strong> Calculate weighted mean: 10 (weight 0.2), 20 (weight
+                        0.8)
                         <br>$$\bar{x}_w = 10(0.2) + 20(0.8) = 2 + 16 = 18$$
                     </div>
 
@@ -1018,48 +979,49 @@
                     <div class="formula">$$CV = \frac{\sigma}{\mu} \times 100\%$$</div>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> \(\mu = 100\), \(\sigma = 5\). Find CV.
+                        <strong>&#128221; Worked Example:</strong> \(\mu = 100\), \(\sigma = 5\). Find CV.
                         <br>$$CV = \frac{5}{100} \times 100\% = 5\%$$
                     </div>
                 </div>
 
                 <div class="theory-full">
-                    <h2>📉 Section B: Data Representation (Q51-100)</h2>
+                    <h2>ðŸ“‰ Section B: Data Representation (Q51-100)</h2>
 
                     <h3>1. Box Plots (Box-and-Whisker)</h3>
                     <p>Shows the <strong>5-number summary</strong>: Min, Q1, Median, Q3, Max</p>
                     <div class="formula">
-                        📊 Box Plot Structure:<br>
-                        • Line inside box = <strong>Median</strong> (NOT mean!)<br>
-                        • Box edges = Q1 and Q3<br>
-                        • Whiskers = Min and Max (or 1.5×IQR fences)<br>
-                        • Points beyond whiskers = Outliers
+                        ðŸ“Š Box Plot Structure:<br>
+                        â€¢ Line inside box = <strong>Median</strong> (NOT mean!)<br>
+                        â€¢ Box edges = Q1 and Q3<br>
+                        â€¢ Whiskers = Min and Max (or 1.5Ã—IQR fences)<br>
+                        â€¢ Points beyond whiskers = Outliers
                     </div>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> A box plot shows whiskers from 10 to 90. What is the range?
+                        <strong>&#128221; Worked Example:</strong> A box plot shows whiskers from 10 to 90. What is the
+                        range?
                         <br>$$\text{Range} = \text{Max} - \text{Min} = 90 - 10 = 80$$
                     </div>
 
-                    <div class="tip"><strong>💡 Reading Skewness from Box Plot:</strong>
-                        <br>• Median closer to Q1 → Right (positive) skew
-                        <br>• Median closer to Q3 → Left (negative) skew
-                        <br>• Median in center → Symmetric
+                    <div class="tip"><strong>ðŸ’¡ Reading Skewness from Box Plot:</strong>
+                        <br>â€¢ Median closer to Q1 â†’ Right (positive) skew
+                        <br>â€¢ Median closer to Q3 â†’ Left (negative) skew
+                        <br>â€¢ Median in center â†’ Symmetric
                     </div>
 
-                    <div class="warning"><strong>⚠️ What Box Plots DON'T show:</strong> Mode, Mean, Sample size (n)
+                    <div class="warning"><strong>âš ï¸ What Box Plots DON'T show:</strong> Mode, Mean, Sample size (n)
                     </div>
 
                     <h3>2. Histograms</h3>
                     <p>For <strong>continuous (quantitative) data</strong>. Bars touch (no gaps).</p>
                     <div class="formula">
-                        • Bar height = Frequency of that class<br>
-                        • Bar width = Class width (bin width)<br>
-                        • Bar area ∝ Frequency
+                        â€¢ Bar height = Frequency of that class<br>
+                        â€¢ Bar width = Class width (bin width)<br>
+                        â€¢ Bar area âˆ Frequency
                     </div>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> Classes are 0-9, 10-19, 20-29. What is the bin width?
+                        <strong>&#128221; Worked Example:</strong> Classes are 0-9, 10-19, 20-29. What is the bin width?
                         <br>$$\text{Bin Width} = 10 - 0 = 10$$
                     </div>
 
@@ -1067,38 +1029,38 @@
                     <div class="formula">
                         <strong>Right Skew (Positive):</strong> Tail points right, Mean > Median<br>
                         <strong>Left Skew (Negative):</strong> Tail points left, Mean < Median<br>
-                            <strong>Symmetric:</strong> Mean ≈ Median
+                            <strong>Symmetric:</strong> Mean â‰ˆ Median
                     </div>
 
-                    <div class="tip"><strong>💡 Memory Trick:</strong> "The mean chases the tail"</div>
+                    <div class="tip"><strong>ðŸ’¡ Memory Trick:</strong> "The mean chases the tail"</div>
 
                     <h3>4. Pie Charts</h3>
-                    <div class="formula">$$\text{Angle} = \text{Percentage} \times 360°$$</div>
+                    <div class="formula">$$\text{Angle} = \text{Percentage} \times 360Â°$$</div>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> A sector represents 25%. What is its angle?
-                        <br>$$\text{Angle} = 0.25 \times 360° = 90°$$
+                        <strong>&#128221; Worked Example:</strong> A sector represents 25%. What is its angle?
+                        <br>$$\text{Angle} = 0.25 \times 360Â° = 90Â°$$
                     </div>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> 10 boys and 20 girls. What angle for boys?
+                        <strong>&#128221; Worked Example:</strong> 10 boys and 20 girls. What angle for boys?
                         <br>Boys = \(\frac{10}{30} = \frac{1}{3}\)
-                        <br>$$\text{Angle} = \frac{1}{3} \times 360° = 120°$$
+                        <br>$$\text{Angle} = \frac{1}{3} \times 360Â° = 120Â°$$
                     </div>
 
                     <h3>5. Stem-and-Leaf Plots</h3>
                     <p>Shows individual data values while displaying distribution shape.</p>
                     <div class="example">
-                        <strong>📝 Example:</strong> Stem 4 with leaves 1, 3, 5 represents: 41, 43, 45
+                        <strong>ðŸ“ Example:</strong> Stem 4 with leaves 1, 3, 5 represents: 41, 43, 45
                     </div>
 
-                    <div class="tip"><strong>💡 Advantage:</strong> Preserves original data values (unlike histograms)
+                    <div class="tip"><strong>ðŸ’¡ Advantage:</strong> Preserves original data values (unlike histograms)
                     </div>
 
                     <h3>6. Cumulative Frequency (Ogive)</h3>
                     <p>Y-axis = cumulative (running) frequency. Used to find median and percentiles.</p>
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> \(n = 100\). Where is the median on the ogive?
+                        <strong>&#128221; Worked Example:</strong> \(n = 100\). Where is the median on the ogive?
                         <br>Median is at 50th percentile = cumulative frequency of 50
                     </div>
 
@@ -1110,57 +1072,60 @@
                 </div>
 
                 <div class="theory-full">
-                    <h2>📈 Section C: Bivariate Data (Q101-150)</h2>
+                    <h2>ðŸ“ˆ Section C: Bivariate Data (Q101-150)</h2>
 
                     <h3>1. Linear Regression</h3>
                     <div class="formula">$$\hat{y} = ax + b$$</div>
                     <p>Where:
-                        <br>• \(a\) = slope = rate of change = \(\frac{\Delta y}{\Delta x}\)
-                        <br>• \(b\) = y-intercept = value when \(x = 0\)
+                        <br>â€¢ \(a\) = slope = rate of change = \(\frac{\Delta y}{\Delta x}\)
+                        <br>â€¢ \(b\) = y-intercept = value when \(x = 0\)
                     </p>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> Given \(\hat{y} = 2.5x + 12\). If \(x = 4\), find
+                        <strong>&#128221; Worked Example:</strong> Given \(\hat{y} = 2.5x + 12\). If \(x = 4\), find
                         \(\hat{y}\)
                         <br>$$\hat{y} = 2.5(4) + 12 = 10 + 12 = 22$$
                     </div>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> Find slope between \((1, 2)\) and \((3, 8)\)
+                        <strong>&#128221; Worked Example:</strong> Find slope between \((1, 2)\) and \((3, 8)\)
                         <br>$$m = \frac{y_2 - y_1}{x_2 - x_1} = \frac{8 - 2}{3 - 1} = \frac{6}{2} = 3$$
                     </div>
 
-                    <div class="tip"><strong>💡 Slope Interpretation:</strong>
+                    <div class="tip"><strong>ðŸ’¡ Slope Interpretation:</strong>
                         <br>Slope of -3 means: For every 1 unit increase in x, y decreases by 3.
                     </div>
 
                     <h3>2. Correlation Coefficient (r)</h3>
                     <div class="formula">$$-1 \leq r \leq 1$$</div>
                     <p>
-                        • \(|r|\) = strength (closer to 1 = stronger)<br>
-                        • Sign = direction (+ = positive, - = negative)<br>
-                        • \(r = 0\) means no LINEAR relationship
+                        â€¢ \(|r|\) = strength (closer to 1 = stronger)<br>
+                        â€¢ Sign = direction (+ = positive, - = negative)<br>
+                        â€¢ \(r = 0\) means no LINEAR relationship
                     </p>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> Which r indicates strongest relationship: 0.8, -0.9, 0.1, 0?
+                        <strong>&#128221; Worked Example:</strong> Which r indicates strongest relationship: 0.8, -0.9,
+                        0.1,
+                        0?
                         <br>Answer: \(r = -0.9\) because \(|-0.9| = 0.9\) is largest.
                     </div>
 
-                    <div class="warning"><strong>⚠️ CRITICAL:</strong> Correlation ≠ Causation!<br>
+                    <div class="warning"><strong>âš ï¸ CRITICAL:</strong> Correlation â‰  Causation!<br>
                         Example: Ice cream sales correlate with shark attacks (lurking variable: temperature)
                     </div>
 
-                    <h3>3. Coefficient of Determination (r²)</h3>
+                    <h3>3. Coefficient of Determination (rÂ²)</h3>
                     <div class="formula">$$r^2 = \text{Proportion of variance in y explained by x}$$</div>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> If \(r = 0.5\), what percent of variance is explained?
+                        <strong>&#128221; Worked Example:</strong> If \(r = 0.5\), what percent of variance is
+                        explained?
                         <br>$$r^2 = 0.5^2 = 0.25 = 25\%$$
                     </div>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> \(r^2 = 0.81\), slope is negative. Find \(r\).
+                        <strong>&#128221; Worked Example:</strong> \(r^2 = 0.81\), slope is negative. Find \(r\).
                         <br>$$r = -\sqrt{0.81} = -0.9$$
                         <br>(Negative because slope is negative)
                     </div>
@@ -1169,38 +1134,39 @@
                     <div class="formula">$$\text{Residual} = \text{Actual} - \text{Predicted} = y - \hat{y}$$</div>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> Line is \(y = x\). For point \((2, 3)\), find residual.
+                        <strong>&#128221; Worked Example:</strong> Line is \(y = x\). For point \((2, 3)\), find
+                        residual.
                         <br>Predicted: \(\hat{y} = 2\)
                         <br>$$\text{Residual} = 3 - 2 = 1$$
                     </div>
 
-                    <div class="tip"><strong>💡 Key Facts:</strong>
-                        <br>• Sum of residuals = 0 (for LSRL)
-                        <br>• Positive residual = actual > predicted (underestimate)
-                        <br>• Random residual plot = good model fit
+                    <div class="tip"><strong>ðŸ’¡ Key Facts:</strong>
+                        <br>â€¢ Sum of residuals = 0 (for LSRL)
+                        <br>â€¢ Positive residual = actual > predicted (underestimate)
+                        <br>â€¢ Random residual plot = good model fit
                     </div>
 
                     <h3>5. Interpolation vs Extrapolation</h3>
                     <div class="formula">
-                        <strong>Interpolation:</strong> Predicting WITHIN the data range → Safe ✓<br>
-                        <strong>Extrapolation:</strong> Predicting OUTSIDE the data range → Risky ⚠️
+                        <strong>Interpolation:</strong> Predicting WITHIN the data range â†’ Safe âœ“<br>
+                        <strong>Extrapolation:</strong> Predicting OUTSIDE the data range â†’ Risky âš ï¸
                     </div>
 
                     <h3>6. Important Properties</h3>
-                    <p>• LSRL always passes through \((\bar{x}, \bar{y})\)</p>
-                    <p>• Correlation is symmetric: \(corr(x,y) = corr(y,x)\)</p>
-                    <p>• \(r\) can NEVER exceed 1 or be less than -1</p>
+                    <p>â€¢ LSRL always passes through \((\bar{x}, \bar{y})\)</p>
+                    <p>â€¢ Correlation is symmetric: \(corr(x,y) = corr(y,x)\)</p>
+                    <p>â€¢ \(r\) can NEVER exceed 1 or be less than -1</p>
                 </div>
 
                 <div class="theory-full">
-                    <h2>🎲 Section D: Probability (Q151-200)</h2>
+                    <h2>ðŸŽ² Section D: Probability (Q151-200)</h2>
 
                     <h3>1. Factorials</h3>
                     <div class="formula">$$n! = n \times (n-1) \times (n-2) \times ... \times 1$$</div>
                     <p><strong>Special case:</strong> \(0! = 1\) (by definition)</p>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> Evaluate \(5!\)
+                        <strong>&#128221; Worked Example:</strong> Evaluate \(5!\)
                         <br>$$5! = 5 \times 4 \times 3 \times 2 \times 1 = 120$$
                     </div>
 
@@ -1208,13 +1174,14 @@
                     <div class="formula">$$_nP_r = \frac{n!}{(n-r)!}$$</div>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> How many ways to choose President, VP, Secretary from 10
+                        <strong>&#128221; Worked Example:</strong> How many ways to choose President, VP, Secretary from
+                        10
                         people?
                         <br>$$_{10}P_3 = 10 \times 9 \times 8 = 720$$
                     </div>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> Arrange 5 people in a line.
+                        <strong>&#128221; Worked Example:</strong> Arrange 5 people in a line.
                         <br>$$5! = 120 \text{ ways}$$
                     </div>
 
@@ -1222,27 +1189,27 @@
                     <div class="formula">$$_nC_r = \binom{n}{r} = \frac{n!}{r!(n-r)!}$$</div>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> Choose a committee of 3 from 10 people.
+                        <strong>&#128221; Worked Example:</strong> Choose a committee of 3 from 10 people.
                         <br>$$_{10}C_3 = \frac{10!}{3! \cdot 7!} = \frac{10 \times 9 \times 8}{3 \times 2 \times 1} =
                         120$$
                     </div>
 
-                    <div class="tip"><strong>💡 Key Identities:</strong>
-                        <br>• \(_nC_0 = 1\) and \(_nC_n = 1\)
-                        <br>• \(_nC_r = _nC_{n-r}\)
-                        <br>• \(_nP_1 = n\)
+                    <div class="tip"><strong>ðŸ’¡ Key Identities:</strong>
+                        <br>â€¢ \(_nC_0 = 1\) and \(_nC_n = 1\)
+                        <br>â€¢ \(_nC_r = _nC_{n-r}\)
+                        <br>â€¢ \(_nP_1 = n\)
                     </div>
 
                     <h3>4. Counting with Repetition</h3>
                     <div class="formula">$$\text{With Repetition: } n^r$$</div>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> 3-digit codes using digits 1-9 (with repetition).
+                        <strong>&#128221; Worked Example:</strong> 3-digit codes using digits 1-9 (with repetition).
                         <br>$$9 \times 9 \times 9 = 9^3 = 729$$
                     </div>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> 3-digit codes using digits 1-9 (NO repetition).
+                        <strong>&#128221; Worked Example:</strong> 3-digit codes using digits 1-9 (NO repetition).
                         <br>$$9 \times 8 \times 7 = 504$$
                     </div>
 
@@ -1251,7 +1218,7 @@
                     <div class="formula">$$P(A') = 1 - P(A) \quad \text{(Complement)}$$</div>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> P(drawing an Ace from a deck)?
+                        <strong>&#128221; Worked Example:</strong> P(drawing an Ace from a deck)?
                         <br>$$P(\text{Ace}) = \frac{4}{52} = \frac{1}{13}$$
                     </div>
 
@@ -1260,7 +1227,7 @@
                     <div class="formula">$$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$</div>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> P(Red OR King) in a deck?
+                        <strong>&#128221; Worked Example:</strong> P(Red OR King) in a deck?
                         <br>$$P(R \cup K) = \frac{26}{52} + \frac{4}{52} - \frac{2}{52} = \frac{28}{52}$$
                         <br>(Subtract 2 red kings to avoid double counting)
                     </div>
@@ -1269,7 +1236,8 @@
                     <div class="formula">$$P(A \cap B) = P(A) \times P(B)$$</div>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> P(Rain) = 0.2, P(Traffic) = 0.5. If independent, P(Both)?
+                        <strong>&#128221; Worked Example:</strong> P(Rain) = 0.2, P(Traffic) = 0.5. If independent,
+                        P(Both)?
                         <br>$$P(R \cap T) = 0.2 \times 0.5 = 0.1$$
                     </div>
 
@@ -1280,17 +1248,17 @@
                     <div class="formula">$$\frac{n!}{n_1! \cdot n_2! \cdot ... \cdot n_k!}$$</div>
 
                     <div class="example">
-                        <strong>📝 Worked Example:</strong> Arrange the letters in "LEVEL"
-                        <br>5 letters: L appears 2×, E appears 2×, V appears 1×
+                        <strong>&#128221; Worked Example:</strong> Arrange the letters in "LEVEL"
+                        <br>5 letters: L appears 2\times, E appears 2\times, V appears 1\times
                         <br>$$\frac{5!}{2! \cdot 2!} = \frac{120}{4} = 30 \text{ ways}$$
                     </div>
 
                     <h3>8. Common Probability Values</h3>
                     <div class="formula">
-                        • \(P = 0\) → Impossible<br>
-                        • \(P = 1\) → Certain<br>
-                        • \(0 \leq P \leq 1\) always<br>
-                        • \(\sum P = 1\) for a distribution
+                        &bull; \(P = 0\) &rarr; Impossible<br>
+                        &bull; \(P = 1\) &rarr; Certain<br>
+                        &bull; \(0 \leq P \leq 1\) always<br>
+                        &bull; \(\sum P = 1\) for a distribution
                     </div>
                 </div>
             </div>
@@ -1308,7 +1276,7 @@
                 </div>
                 <div id="questionsContainer"></div>
                 <button class="submit-btn hidden" id="submitBtn" onclick="submitExam()">Submit Exam</button>
-                <button class="print-btn hidden" id="printBtn" onclick="printQuestions()">🖨️ Print PDF</button>
+                <button class="print-btn hidden" id="printBtn" onclick="printQuestions()">&#128424; Print PDF</button>
             </div>
 
             <div class="modal-overlay hidden" id="resultModal">
@@ -1326,12 +1294,12 @@
             // A: Descriptive Stats (1-50)
             { i: 1, s: "A", t: "Mean", q: "Find the mean: \\(\\bar{x} = \\frac{\\sum x}{n}\\) for {4,8,9,12,17}", o: ["8", "9", "10", "11", "12"], a: 2, r: "\\(\\bar{x} = \\frac{4+8+9+12+17}{5} = \\frac{50}{5} = 10\\)" },
             { i: 2, s: "A", t: "Missing Value", q: "Scores 78, 85, 90, 92. Need average \\(\\bar{x} = 88\\). What is the fifth score?", o: ["90", "92", "95", "97", "99"], a: 2, r: "Need total = \\(88 \\times 5 = 440\\). Have \\(78+85+90+92 = 345\\). Fifth = \\(440 - 345 = 95\\)" },
-            { i: 3, s: "A", t: "SD Concept", q: "If the standard deviation (SD) of a dataset is 0, what can you conclude?", o: ["Mean is 0", "Median is 0", "All values are identical", "Only one data point", "Range is 1"], a: 2, r: "SD = 0 means no spread, so all values must be the same." },
+            { i: 3, s: "A", t: "Median Odd", q: "Find the median of \\(\\{12, 5, 8, 3, 15\\}\\):", o: ["5", "8", "12", "3", "15"], a: 1, r: "Ordered: 3, 5, 8, 12, 15. Middle value (n=5) is 8." },
             { i: 4, s: "A", t: "Median", q: "The median of the set \\(\\{x, 3, 1, 8, 10\\}\\) is 5. Find \\(x\\):", o: ["2", "4", "5", "6", "7"], a: 2, r: "Ordered: 1, 3, x, 8, 10. For median to be 5, x must equal 5." },
             { i: 5, s: "A", t: "Skewness", q: "If Mean = 50 and Median = 60, the distribution is:", o: ["Symmetric", "Left Skewed", "Right Skewed", "Bimodal", "Uniform"], a: 1, r: "Mean < Median indicates left (negative) skew." },
             { i: 6, s: "A", t: "Range", q: "The range of \\(\\{5, 12, 9, x\\}\\) is 15. If \\(x > 12\\), find \\(x\\):", o: ["15", "17", "20", "24", "27"], a: 2, r: "Range = x - 5 = 15, so x = 20." },
             { i: 7, s: "A", t: "Mode", q: "Find the mode of \\(\\{2, 4, 4, 6, 7, 7, 7, 9\\}\\):", o: ["4", "6", "7", "9", "5.5"], a: 2, r: "7 appears 3 times (most frequent)." },
-            { i: 8, s: "A", t: "Scaling", q: "If each data value is multiplied by 3, how does the SD change?", o: ["Stays the same", "Increases by 3", "Multiplied by 3", "Multiplied by 9", "Squared"], a: 2, r: "SD scales by the absolute value of the multiplier: new SD = 3 × old SD." },
+            { i: 8, s: "A", t: "No Mode", q: "The dataset \\(\\{2, 4, 6, 8, 10\\}\\) has:", o: ["Mode = 2", "Mode = 6", "Mode = 10", "No mode", "Multiple modes"], a: 3, r: "No value repeats, so there is no mode." },
             { i: 9, s: "A", t: "Shifting", q: "If 5 is added to each data value, how does the range change?", o: ["Increases by 5", "Increases by 25", "Stays the same", "Multiplied by 5", "Becomes 0"], a: 2, r: "Adding a constant shifts all values equally, so range is unchanged." },
             { i: 10, s: "A", t: "Sum", q: "If \\(\\bar{x} = 20\\) for \\(\\{a, b, c\\}\\), find \\(a + b + c\\)", o: ["20", "40", "60", "10", "Undef"], a: 2, r: "\\(\\sum x = n \\cdot \\bar{x} = 3 \\times 20 = 60\\)" },
             { i: 11, s: "A", t: "Primes", q: "Find the mean of the first 6 primes: 2, 3, 5, 7, 11, 13", o: ["6.83", "7.0", "5.5", "9.0", "41"], a: 0, r: "\\(\\bar{x} = \\frac{2+3+5+7+11+13}{6} = \\frac{41}{6} \\approx 6.83\\)" },
@@ -1339,68 +1307,68 @@
             { i: 13, s: "A", t: "Outliers", q: "Which measure of center is MOST affected by outliers?", o: ["Mode", "Median", "Mean", "IQR", "Q1"], a: 2, r: "Mean uses all values, so extreme values (outliers) pull it strongly." },
             { i: 14, s: "A", t: "Combined Mean", q: "Set A: \\(n_1=5, \\bar{x}_1=10\\). Set B: \\(n_2=10, \\bar{x}_2=25\\). Find combined mean:", o: ["17.5", "20", "15", "22.5", "30"], a: 1, r: "\\(\\bar{x} = \\frac{5(10) + 10(25)}{15} = \\frac{300}{15} = 20\\)" },
             { i: 15, s: "A", t: "IQR", q: "\\(Q_3 - Q_1\\) is called the:", o: ["Range", "Standard Deviation", "Variance", "Interquartile Range (IQR)", "Median"], a: 3, r: "IQR = Interquartile Range = Q3 - Q1." },
-            { i: 16, s: "A", t: "Var→SD", q: "If \\(\\sigma^2 = 16\\), find \\(\\sigma\\)", o: ["256", "16", "8", "4", "2"], a: 3, r: "\\(\\sigma = \\sqrt{\\sigma^2} = \\sqrt{16} = 4\\)" },
-            { i: 17, s: "A", t: "Empirical", q: "For a normal distribution, approximately what percent of data falls within 1 standard deviation of the mean?", v: "normal", o: ["50%", "68%", "95%", "99.7%", "100%"], a: 1, r: "Empirical Rule: 68% within \\(\\mu \\pm \\sigma\\), 95% within \\(\\mu \\pm 2\\sigma\\), 99.7% within \\(\\mu \\pm 3\\sigma\\)" },
+            { i: 16, s: "A", t: "Bimodal", q: "The dataset \\(\\{3, 5, 5, 7, 9, 9\\}\\) has:", o: ["Mode = 5", "Mode = 7", "Mode = 9", "Two modes: 5 and 9", "No mode"], a: 3, r: "Both 5 and 9 appear twice. The dataset is bimodal." },
+            { i: 17, s: "A", t: "Median Even", q: "Find the median of \\(\\{2, 5, 7, 10\\}\\):", o: ["5", "6", "7", "8.5", "4"], a: 1, r: "For even n=4, median = average of middle two = \\(\\frac{5+7}{2} = 6\\)" },
             { i: 18, s: "A", t: "Outlier ID", q: "Which value is an outlier in \\(\\{20, 22, 25, 22, 24, 85, 23\\}\\)?", o: ["20", "25", "85", "22", "None"], a: 2, r: "85 is far from the cluster of values around 22-25." },
             { i: 19, s: "A", t: "Algebra", q: "If the average of \\(x\\) and \\(y\\) is 10, and the average of \\(x\\), \\(y\\), and \\(z\\) is 12, find \\(z\\):", o: ["10", "12", "14", "16", "18"], a: 3, r: "\\(x + y = 20\\). \\(x + y + z = 36\\). So \\(z = 16\\)." },
             { i: 20, s: "A", t: "Symmetry", q: "If Mean = Median, the distribution is most likely:", o: ["Right Skewed", "Left Skewed", "Symmetric", "Bimodal", "Exponential"], a: 2, r: "Mean = Median indicates a symmetric distribution." },
-            { i: 21, s: "A", t: "Test Score", q: "A student has test scores of 70, 75, and 85. What score is needed on the 4th test to have an average of 80?", o: ["80", "85", "90", "95", "100"], a: 2, r: "Need total = 80 × 4 = 320. Have 70 + 75 + 85 = 230. Need 320 - 230 = 90." },
-            { i: 22, s: "A", t: "Function Range", q: "What is the range (max - min) of the function \\(|\\sin(x)|\\)?", o: ["0", "1", "2", "π", "2π"], a: 1, r: "\\(|\\sin(x)|\\) ranges from 0 to 1, so range = 1 - 0 = 1." },
-            { i: 23, s: "A", t: "SD Sign", q: "Why can the standard deviation never be negative?", o: ["Mean is always positive", "It involves squaring", "It can be negative", "Due to central tendency", "Data must be positive"], a: 1, r: "SD is the square root of variance (sum of squared deviations), which is always non-negative." },
+            { i: 21, s: "A", t: "Test Score", q: "A student has test scores of 70, 75, and 85. What score is needed on the 4th test to have an average of 80?", o: ["80", "85", "90", "95", "100"], a: 2, r: "Need total = 80 \\times 4 = 320. Have 70 + 75 + 85 = 230. Need 320 - 230 = 90." },
+            { i: 22, s: "A", t: "Data Range", q: "The dataset \\(\\{3, 7, 12, 15, 18\\}\\) has a range of:", o: ["3", "12", "15", "18", "21"], a: 2, r: "Range = Max - Min = 18 - 3 = 15" },
+            { i: 23, s: "A", t: "Quartiles", q: "For the dataset \\(\\{2, 4, 6, 8, 10, 12, 14, 16\\}\\), what is \\(Q_1\\)?", o: ["4", "5", "6", "3", "8"], a: 1, r: "Q1 is median of lower half: {2,4,6,8}. Q1 = (4+6)/2 = 5" },
             { i: 24, s: "A", t: "New Person", q: "The mean age of 4 people is 25. A 5th person joins and the new mean is 26. What is the 5th person's age?", o: ["25", "26", "29", "30", "31"], a: 3, r: "Old total = 100. New total = 130. Fifth person = 130 - 100 = 30." },
             { i: 25, s: "A", t: "Median", q: "What is the median of the numbers 1, 2, 3, 4, 5, 6, 7, 8, 9, 10?", o: ["5", "6", "5.5", "4.5", "10"], a: 2, r: "For even n, median = average of middle two: \\(\\frac{5 + 6}{2} = 5.5\\)" },
-            { i: 26, s: "A", t: "Variance", q: "If \\(SS = 90\\) and \\(n = 10\\), find variance \\(\\sigma^2\\)", o: ["3", "9", "81", "90", "10"], a: 1, r: "\\(\\sigma^2 = \\frac{SS}{n} = \\frac{90}{10} = 9\\)" },
-            { i: 27, s: "A", t: "Consistency", q: "Dataset A has SD = 2, Dataset B has SD = 10. Which is more consistent?", o: ["A", "B", "Equal", "Cannot determine", "Need mean to decide"], a: 0, r: "Lower SD means less spread, so more consistency." },
+            { i: 26, s: "A", t: "IQR Calc", q: "For data with Q1 = 25 and Q3 = 45, what is the IQR?", o: ["10", "15", "20", "25", "70"], a: 2, r: "IQR = Q3 - Q1 = 45 - 25 = 20" },
+            { i: 27, s: "A", t: "Q3 Find", q: "For the dataset \\(\\{1, 3, 5, 7, 9, 11, 13\\}\\), what is \\(Q_3\\)?", o: ["9", "10", "11", "12", "13"], a: 2, r: "Q3 is median of upper half: {9, 11, 13}. Q3 = 11" },
             { i: 28, s: "A", t: "W.Mean", q: "Find weighted mean: \\(10 \\times 0.2 + 20 \\times 0.8\\)", o: ["12", "15", "18", "16", "14"], a: 2, r: "\\(\\bar{x}_w = 10(0.2) + 20(0.8) = 2 + 16 = 18\\)" },
-            { i: 29, s: "A", t: "Housing", q: "To describe house prices in a neighborhood with one mansion, which measure is best?", o: ["Mean", "Median", "Mode", "Range", "SD"], a: 1, r: "Median is resistant to outliers like the mansion's high price." },
+            { i: 29, s: "A", t: "Housing", q: "To describe house prices in a neighborhood with one mansion, which measure is best?", o: ["Mean", "Median", "Mode", "Range", "Maximum"], a: 1, r: "Median is resistant to outliers like the mansion's high price." },
             { i: 30, s: "A", t: "Arith Seq", q: "The mean of \\(x, x+2, x+4, x+6\\) is 15. Find \\(x\\):", o: ["10", "11", "12", "13", "14"], a: 2, r: "Mean of arithmetic sequence = middle value = \\(x + 3 = 15\\), so \\(x = 12\\)." },
-            { i: 31, s: "A", t: "Geo Mean", q: "Find the geometric mean of 4 and 16: \\(\\sqrt{4 \\times 16}\\)", o: ["8", "10", "12", "20", "64"], a: 0, r: "\\(GM = \\sqrt{4 \\times 16} = \\sqrt{64} = 8\\)" },
+            { i: 31, s: "A", t: "5-Num Sum", q: "What are the values in a 5-number summary?", o: ["Mean, Median, Mode, Range, IQR", "Min, Q1, Median, Q3, Max", "Q1, Q2, Q3, Q4, Q5", "Mean, SD, n, Min, Max", "Min, Mean, SD, Max, n"], a: 1, r: "5-number summary: Minimum, Q1, Median (Q2), Q3, Maximum" },
             { i: 32, s: "A", t: "Consecutive", q: "The mean of consecutive integers from 1 to \\(n\\) is 15. Find \\(n\\):", o: ["15", "29", "30", "31", "28"], a: 1, r: "Mean = \\(\\frac{n+1}{2} = 15\\), so \\(n = 29\\)." },
-            { i: 33, s: "A", t: "SD vs Range", q: "Can the standard deviation ever be greater than the range?", o: ["Yes", "No, never", "Only with negative data", "Only if mean = 0", "Only if n is large"], a: 1, r: "No. Range is the maximum possible spread, and SD is always ≤ range." },
+            { i: 33, s: "A", t: "Range Effect", q: "If the maximum value in a dataset is increased by 10, the range will:", o: ["Stay the same", "Increase by 10", "Decrease by 10", "Double", "Become 10"], a: 1, r: "Range = Max - Min. If Max increases by 10, Range increases by 10." },
             { i: 34, s: "A", t: "Max Int", q: "The average of 7 distinct positive integers is 10. What is the maximum possible value of one integer?", o: ["10", "13", "64", "49", "58"], a: 3, r: "Total = 70. Minimize 6 values: 1+2+3+4+5+6 = 21. Max = 70 - 21 = 49." },
-            { i: 35, s: "A", t: "Dispersion", q: "Which of the following is a measure of DISPERSION (spread)?", o: ["Mean", "Median", "Mode", "Variance", "Percentile"], a: 3, r: "Variance measures how spread out data is from the mean." },
-            { i: 36, s: "A", t: "Algebra", q: "Mean(x,1/x)=3. Mean(x²,1/x²)=:", o: ["9", "18", "34", "36", "17"], a: 4, r: "34/2=17." },
+            { i: 35, s: "A", t: "Measure Type", q: "Which of the following is a measure of CENTER (not spread)?", o: ["Range", "IQR", "Median", "Q3 - Q1", "Maximum - Minimum"], a: 2, r: "Median is a measure of center. Range and IQR measure spread." },
+            { i: 36, s: "A", t: "Mean/Median", q: "A dataset has values: 2, 4, 6, 8, 10. If each value is increased by 3, the new mean is:", o: ["6", "9", "12", "15", "18"], a: 1, r: "Original mean = 6. Adding 3 to each value adds 3 to the mean: New mean = 6 + 3 = 9" },
             { i: 37, s: "A", t: "Median Count", q: "A dataset has n = 100 values. At most, how many values can be greater than the median?", o: ["50", "At least 50", "At most 50", "About 50", "49"], a: 2, r: "By definition, at most 50% of values are above the median." },
-            { i: 38, s: "A", t: "Zero Var", q: "If variance = 0, what is the range?", o: ["0", "1", "Undefined", "Equal to mean", "Infinity"], a: 0, r: "Variance = 0 means no spread, so range = 0." },
+            { i: 38, s: "A", t: "All Same", q: "If all values in a dataset are equal to 5, the range is:", o: ["0", "5", "10", "1", "Undefined"], a: 0, r: "Range = Max - Min = 5 - 5 = 0. All identical values means no spread." },
             { i: 39, s: "A", t: "Mean Zero", q: "The mean of 5 numbers is 0. If the numbers are \\(\\{-2, -5, 3, 6, x\\}\\), find \\(x\\):", o: ["-2", "0", "2", "4", "8"], a: 0, r: "Sum must be 0. Currently: -2 + (-5) + 3 + 6 = 2. So x = -2." },
             { i: 40, s: "A", t: "Mode=Min", q: "Can the mode of a dataset equal the minimum value?", o: ["Yes", "No", "Only if range = 0", "Only with negative values", "Only if mean < 0"], a: 0, r: "Yes, for example in \\(\\{1, 1, 5\\}\\), mode = 1 = minimum." },
-            { i: 41, s: "A", t: "Pop vs Sample", q: "What is the main difference between population SD and sample SD formulas?", o: ["They are the same", "Sample uses n-1 (Bessel's correction)", "Population uses n-1", "Sample SD is always larger", "No difference"], a: 1, r: "Sample SD divides by (n-1) instead of n to correct for bias." },
-            { i: 42, s: "A", t: "Z-Score", q: "\\(\\mu=50, \\sigma=10\\). Find z-score for x=70:", o: ["1", "2", "1.5", "0.5", "3"], a: 1, r: "\\(z = \\frac{x - \\mu}{\\sigma} = \\frac{70 - 50}{10} = 2\\)" },
-            { i: 43, s: "A", t: "CV", q: "If \\(\\mu = 100\\) and \\(\\sigma = 5\\), find CV (Coefficient of Variation)", o: ["5%", "20%", "0.05", "500", "2%"], a: 0, r: "\\(CV = \\frac{\\sigma}{\\mu} \\times 100\\% = \\frac{5}{100} \\times 100\\% = 5\\%\\)" },
-            { i: 44, s: "A", t: "Mean Transform", q: "If \\(y = 2x + 5\\), then \\(\\bar{y}\\) (mean of y) equals:", o: ["Mean(x)", "2·Mean(x)", "2·Mean(x) + 5", "Mean(x) + 5", "5·Mean(x)"], a: 2, r: "Linear transformation: \\(\\bar{y} = 2\\bar{x} + 5\\)." },
-            { i: 45, s: "A", t: "SD Transform", q: "If \\(y = 2x + 5\\), then SD(y) equals:", o: ["SD(x)", "2·SD(x)", "2·SD(x) + 5", "SD(x) + 5", "5·SD(x)"], a: 1, r: "SD is only affected by scaling, not shifting: SD(y) = 2·SD(x)." },
-            { i: 46, s: "A", t: "Range Rule", q: "Estimate SD using Range Rule: \\(\\sigma \\approx \\frac{Range}{?}\\)", o: ["Range/2", "Range/4", "Range/6", "Range", "Range²"], a: 1, r: "\\(\\sigma \\approx \\frac{Range}{4}\\) (Range Rule of Thumb)" },
+            { i: 41, s: "A", t: "Which Q", q: "The 75th percentile is the same as:", o: ["Q1", "Q2", "Q3", "Q4", "Median"], a: 2, r: "The 75th percentile = Q3 (third quartile)." },
+            { i: 42, s: "A", t: "Median Pos", q: "In an ordered list of 15 numbers, the median is in position:", o: ["7", "7.5", "8", "15", "1"], a: 2, r: "Position = (n+1)/2 = (15+1)/2 = 8th position" },
+            { i: 43, s: "A", t: "Q2 = Med", q: "What is another name for Q2?", o: ["Mean", "Mode", "Median", "Range", "IQR"], a: 2, r: "Q2 = Median = 50th percentile" },
+            { i: 44, s: "A", t: "Mean Transform", q: "If \\(y = 2x + 5\\), then \\(\\bar{y}\\) (mean of y) equals:", o: ["Mean(x)", "2\\cdot Mean(x)", "2\\cdot Mean(x) + 5", "Mean(x) + 5", "5\\cdot Mean(x)"], a: 2, r: "Linear transformation: \\(\\bar{y} = 2\\bar{x} + 5\\)." },
+            { i: 45, s: "A", t: "Outlier Upper", q: "If Q3 = 40 and IQR = 20, the upper fence for outliers is:", o: ["60", "70", "80", "50", "40"], a: 1, r: "Upper fence = Q3 + 1.5 \\times IQR = 40 + 1.5(20) = 40 + 30 = 70" },
+            { i: 46, s: "A", t: "Outlier Lower", q: "If Q1 = 10 and IQR = 8, the lower fence for outliers is:", o: ["-2", "0", "2", "10", "18"], a: 0, r: "Lower fence = Q1 - 1.5 \\times IQR = 10 - 1.5(8) = 10 - 12 = -2" },
             { i: 47, s: "A", t: "Percentile", q: "The median corresponds to which percentile?", o: ["25th", "50th", "75th", "100th", "0th"], a: 1, r: "Median = 50th percentile (middle of the data)." },
-            { i: 48, s: "A", t: "Outlier Rule", q: "Lower fence for outliers is: \\(Q_1 - ? \\times IQR\\)", o: ["Q1-IQR", "Q1-1.5×IQR", "Q1-2×IQR", "Med-IQR", "Min-IQR"], a: 1, r: "Lower fence = \\(Q_1 - 1.5 \\times IQR\\)" },
+            { i: 48, s: "A", t: "Outlier Rule", q: "Lower fence for outliers is: \\(Q_1 - ? \\times IQR\\)", o: ["Q1-IQR", "Q1-1.5\\times IQR", "Q1-2\\times IQR", "Med-IQR", "Min-IQR"], a: 1, r: "Lower fence = \\(Q_1 - 1.5 \\times IQR\\)" },
             { i: 49, s: "A", t: "Deviation Sum", q: "The sum of all deviations from the mean is always:", o: ["0", "1", "SD", "Variance", "n"], a: 0, r: "\\(\\sum(x_i - \\bar{x}) = 0\\) always." },
-            { i: 50, s: "A", t: "Var Units", q: "If data is in meters, what are the units of variance?", o: ["Meters", "Meters squared", "Square root of meters", "No units", "Percent"], a: 1, r: "Variance is in squared units (meters²). SD is in original units." },
+            { i: 50, s: "A", t: "Median Affect", q: "Adding an outlier to a dataset will have the LEAST effect on:", o: ["Mean", "Range", "Maximum", "Median", "Sum"], a: 3, r: "Median is resistant to outliers - it changes very little." },
             // B: Data Rep (51-100)
             { i: 51, s: "B", t: "Box Plot", q: "In a box-and-whisker plot, the line inside the box represents:", v: "box", o: ["Mean", "Mode", "Median", "Range", "Standard Deviation"], a: 2, r: "The line inside the box is the median (Q2)." },
             { i: 52, s: "B", t: "IQR Calc", q: "If \\(Q_1 = 10\\) and \\(Q_3 = 30\\), find \\(IQR\\)", o: ["10", "20", "30", "40", "15"], a: 1, r: "\\(IQR = Q_3 - Q_1 = 30 - 10 = 20\\)" },
-            { i: 53, s: "B", t: "Hist Skew", q: "A histogram with a long tail extending to the right is called:", v: "hist", o: ["Symmetric", "Left Skewed", "Right Skewed", "Normal", "Uniform"], a: 2, r: "Tail direction = skew direction. Right tail → Right (positive) skew." },
-            { i: 54, s: "B", t: "Pie Angle", q: "A pie chart sector represents 25%. What is its angle?", o: ["25°", "45°", "90°", "100°", "180°"], a: 2, r: "Angle = 25% × 360° = 0.25 × 360 = 90°" },
+            { i: 53, s: "B", t: "Hist Skew", q: "A histogram with a long tail extending to the right is called:", v: "hist", o: ["Symmetric", "Left Skewed", "Right Skewed", "Normal", "Uniform"], a: 2, r: "Tail direction = skew direction. Right tail \\(\\to\\) Right (positive) skew." },
+            { i: 54, s: "B", t: "Pie Angle", q: "A pie chart sector represents 25%. What is its angle?", o: ["25\\(\\circ\\)", "45\\(\\circ\\)", "90\\(\\circ\\)", "100\\(\\circ\\)", "180\\(\\circ\\)"], a: 2, r: "Angle = 25% \\times 360\\(\\circ\\) = 0.25 \\times 360 = 90\\(\\circ\\)" },
             { i: 55, s: "B", t: "Stem Leaf", q: "In a stem-and-leaf plot with stem 4 and leaves 1, 3, what values are represented?", v: "stem", o: ["1, 3", "41, 43", "4.1, 4.3", "14, 34", "413"], a: 1, r: "Stem|Leaf format: 4|1 = 41, 4|3 = 43" },
-            { i: 56, s: "B", t: "Hist Area", q: "In a histogram, the area of a bar is proportional to:", o: ["Data value", "Cumulative frequency", "Frequency", "Mean", "Range"], a: 2, r: "Bar area represents frequency (height × width)." },
-            { i: 57, s: "B", t: "Box Range", q: "A box plot has whiskers extending from 10 to 90. What is the range?", v: "box57", o: ["40", "60", "80", "20", "100"], a: 2, r: "Range = Max - Min = 90 - 10 = 80" },
+            { i: 56, s: "B", t: "Hist Area", q: "In a histogram, the area of a bar is proportional to:", o: ["Data value", "Cumulative frequency", "Frequency", "Mean", "Range"], a: 2, r: "Bar area represents frequency (height \\times width)." },
+            { i: 57, s: "B", t: "Box Range", q: "A box plot has whiskers extending from 10 to 90. What is the range?", o: ["40", "60", "80", "20", "100"], a: 2, r: "Range = Max - Min = 90 - 10 = 80" },
             { i: 58, s: "B", t: "Graph Type", q: "Which graph is best for showing relationship between two continuous variables?", o: ["Bar", "Hist", "Scatter", "Pie", "Box"], a: 2, r: "Scatterplot shows relationship between two continuous variables." },
             { i: 59, s: "B", t: "Ogive", q: "In a cumulative frequency graph (ogive), the y-axis represents:", o: ["Frequency", "Data value", "Cumulative frequency", "Standard deviation", "Time"], a: 2, r: "An ogive shows cumulative frequency on the y-axis." },
-            { i: 60, s: "B", t: "Pie Boys", q: "In a class of 10 boys and 20 girls, what angle represents boys in a pie chart?", o: ["90°", "100°", "120°", "150°", "180°"], a: 2, r: "Boys = 10/30 = 1/3. Angle = (1/3) × 360° = 120°" },
-            { i: 61, s: "B", t: "Box Skew", q: "In a box plot, if the median line is closer to Q1 than Q3, the distribution is:", v: "box", o: ["Symmetric", "Right skewed", "Left skewed", "Normal", "Uniform"], a: 1, r: "More space on right side of median means right-skewed (positive skew)." },
+            { i: 60, s: "B", t: "Pie Boys", q: "In a class of 10 boys and 20 girls, what angle represents boys in a pie chart?", o: ["90\\(\\circ\\)", "100\\(\\circ\\)", "120\\(\\circ\\)", "150\\(\\circ\\)", "180\\(\\circ\\)"], a: 2, r: "Boys = 10/30 = 1/3. Angle = (1/3) \\times 360\\(\\circ\\) = 120\\(\\circ\\)" },
+            { i: 61, s: "B", t: "Box Skew", q: "In a box plot, if the median line is closer to Q1 than Q3, the distribution is:", o: ["Symmetric", "Right skewed", "Left skewed", "Normal", "Uniform"], a: 1, r: "More space on right side of median means right-skewed (positive skew)." },
             { i: 62, s: "B", t: "Bin Width", q: "A histogram has classes 0-9, 10-19, 20-29. What is the bin width?", o: ["9", "10", "11", "19", "20"], a: 1, r: "Bin width = 10 - 0 = 10 (or 19 - 9 = 10)" },
             { i: 63, s: "B", t: "Granularity", q: "Which data display shows every individual data value?", o: ["Histogram", "Box plot", "Stem-and-leaf plot", "Ogive", "Pie chart"], a: 2, r: "Stem-and-leaf plots show each individual value." },
-            { i: 64, s: "B", t: "Total Freq", q: "To find total frequency from a histogram, you:", o: ["Sum the bar heights", "Sum the bar widths", "Find the tallest bar area", "Multiply height × width", "Average the heights"], a: 0, r: "Add all bar heights to get total frequency." },
-            { i: 65, s: "B", t: "Outlier", q: "If Q1=30 and Q3=50, is 85 an outlier?", o: ["Yes", "No", "Only if <100", "IQR too small", "Unknown"], a: 0, r: "IQR=20. Upper fence = 50+1.5(20) = 80. Since 85>80, it's an outlier." },
+            { i: 64, s: "B", t: "Total Freq", q: "To find total frequency from a histogram, you:", o: ["Sum the bar heights", "Sum the bar widths", "Find the tallest bar area", "Multiply height \\times width", "Average the heights"], a: 0, r: "Add all bar heights to get total frequency." },
+            { i: 65, s: "B", t: "Outlier", q: "Based on the box plot shown, is the point 85 an outlier?", v: "box65", o: ["Yes", "No", "Only if <100", "IQR too small", "Unknown"], a: 0, r: "IQR=20. Upper fence = 50+1.5(20) = 80. Since 85>80, it's an outlier." },
             { i: 66, s: "B", t: "Bimodal", q: "A histogram with two peaks (bimodal) suggests:", o: ["Data entry error", "Two distinct groups in the data", "Mean equals median", "SD is zero", "Small sample size"], a: 1, r: "Two peaks often indicate two subpopulations." },
-            { i: 67, s: "B", t: "Dot Plot", q: "In a dot plot, if there are 5 dots stacked above the number 12, this means:", o: ["Frequency of 12 is 5", "Value is 5", "Mean is 12", "Range is 5", "Total is 5"], a: 0, r: "Each dot represents one data point, so 5 dots = frequency of 5." },
+            { i: 67, s: "B", t: "Dot Plot", q: "Based on the dot plot shown, what is the frequency of the value 12?", v: "dot", o: ["2", "3", "4", "5", "12"], a: 3, r: "Count the dots stacked above 12: there are 5 dots = frequency of 5." },
             { i: 68, s: "B", t: "% Inc", q: "A bar chart shows a value increasing from 20 to 30. What is the percent increase?", o: ["10%", "33%", "50%", "66%", "150%"], a: 2, r: "% increase = (30-20)/20 = 10/20 = 50%" },
-            { i: 69, s: "B", t: "Box n", q: "Can you determine the sample size (n) from a box plot?", o: ["Yes", "No", "Only outliers", "If symmetric", "From width"], a: 1, r: "Box plots don't show sample size - only 5-number summary." },
+            { i: 69, s: "B", t: "Box n", q: "Can you determine the sample size (n) from a box plot?", v: "box", o: ["Yes", "No", "Only outliers", "If symmetric", "From width"], a: 1, r: "Box plots don't show sample size - only 5-number summary." },
             { i: 70, s: "B", t: "IQR %", q: "What percent of data falls between Q1 and Q3?", o: ["25%", "50%", "68%", "75%", "95%"], a: 1, r: "The IQR (Q1 to Q3) contains the middle 50% of data." },
             { i: 71, s: "B", t: "Box Comp", q: "When comparing two box plots, a longer box indicates:", o: ["Higher mean", "More data", "Greater variability", "Higher range", "Skewness"], a: 2, r: "Longer box = larger IQR = greater variability in middle 50%." },
-            { i: 72, s: "B", t: "Venn", q: "In a Venn diagram: Set A = 40, Set B = 30, Intersection = 20. Find A \\(\\cup\\) B (union):", v: "venn72", o: ["70", "90", "50", "60", "100"], a: 2, r: "\\(A \\cup B = A + B - (A \\cap B) = 40 + 30 - 20 = 50\\)" },
+            { i: 72, s: "B", t: "Venn", q: "In a Venn diagram: Set A = 40, Set B = 30, Intersection = 20. Find A \\(\\cup\\) B (union):", o: ["70", "90", "50", "60", "100"], a: 2, r: "\\(A \\cup B = A + B - (A \\cap B) = 40 + 30 - 20 = 50\\)" },
             { i: 73, s: "B", t: "Double Bin", q: "If you double the bin width of a histogram, the frequency of combined bins will:", o: ["Halve", "Roughly double", "Stay the same", "Square", "Disappear"], a: 1, r: "Combining adjacent bins adds their frequencies together." },
             { i: 74, s: "B", t: "Freq Poly", q: "A line graph connecting the midpoints of histogram bars is called a:", o: ["Histogram", "Frequency polygon", "Ogive", "Scatterplot", "Bar chart"], a: 1, r: "A frequency polygon connects midpoints of bars with lines." },
-            { i: 75, s: "B", t: "Circle", q: "If points on a scatter plot form a circle, what is r?", o: ["1", "-1", "0", "0.5", "Undefined"], a: 2, r: "Circular pattern = no linear relationship = r ≈ 0" },
-            { i: 76, s: "B", t: "Scatter", q: "If y increases as x increases, the correlation is:", v: "scatterPos", o: ["Negative", "Positive", "Zero", "Undefined", "Quadratic"], a: 1, r: "Both increase together = Positive correlation (r > 0)." },
+            { i: 75, s: "B", t: "Circle", q: "If points on a scatter plot form a circle, what is r?", o: ["1", "-1", "0", "0.5", "Undefined"], a: 2, r: "Circular pattern = no linear relationship = r \\(\\approx\\) 0" },
+            { i: 76, s: "B", t: "Scatter", q: "If y increases as x increases, the correlation is:", o: ["Negative", "Positive", "Zero", "Undefined", "Quadratic"], a: 1, r: "Both increase together = Positive correlation (r > 0)." },
             { i: 77, s: "B", t: "Cum Med", q: "In a cumulative frequency graph with n = 100, at what cumulative frequency value is the median found?", o: ["25", "50", "75", "100", "10"], a: 1, r: "Median is at the 50th percentile = 50% of 100 = 50." },
             { i: 78, s: "B", t: "Pie Bad", q: "What is a major disadvantage of pie charts?", o: ["Use too many colors", "Must sum to 100%", "Difficult to compare slice sizes", "Cannot show negatives", "Both C and D"], a: 4, r: "Pie charts make it hard to compare areas, and cannot show negative values." },
             { i: 79, s: "B", t: "Stem Range", q: "A stem-and-leaf shows minimum = 12 and maximum = 58. What is the range?", o: ["70", "46", "36", "58", "12"], a: 1, r: "Range = Max - Min = 58 - 12 = 46" },
@@ -1410,17 +1378,17 @@
             { i: 83, s: "B", t: "2Way", q: "A two-way table shows 50 men were surveyed, and 20 prefer blue. What percent of men prefer blue?", o: ["20%", "40%", "50%", "10%", "100%"], a: 1, r: "\\(\\frac{20}{50} = 0.4 = 40\\%\\)" },
             { i: 84, s: "B", t: "Freq Mean", q: "Calculate the mean: Value 1 (freq 2), Value 2 (freq 5), Value 3 (freq 3)", o: ["2.0", "2.1", "2.5", "3.0", "6"], a: 1, r: "\\(\\bar{x} = \\frac{1(2) + 2(5) + 3(3)}{10} = \\frac{21}{10} = 2.1\\)" },
             { i: 85, s: "B", t: "Categorical", q: "Which graph is best for displaying categorical data?", o: ["Hist", "Bar", "Box", "Scatter", "Line"], a: 1, r: "Bar Chart is best for categorical (qualitative) data." },
-            { i: 86, s: "B", t: "Box Data", q: "A box plot shows Q1 = 20 and Q3 = 35. What percent of data falls between them?", v: "box86", o: ["25%", "50%", "75%", "100%", "68%"], a: 1, r: "The IQR (Q1 to Q3) always contains the middle 50% of data." },
-            { i: 87, s: "B", t: "Missing", q: "Which statistic can NOT be determined from a box plot?", v: "box", o: ["Median", "Range", "Mode", "IQR", "Minimum"], a: 2, r: "Box plots show 5 number summary but NOT the mode." },
+            { i: 86, s: "B", t: "Box Data", q: "A box plot shows Q1 = 20 and Q3 = 35. What percent of data falls between them?", o: ["25%", "50%", "75%", "100%", "68%"], a: 1, r: "The IQR (Q1 to Q3) always contains the middle 50% of data." },
+            { i: 87, s: "B", t: "Missing", q: "Which statistic can NOT be determined from a box plot?", o: ["Median", "Range", "Mode", "IQR", "Minimum"], a: 2, r: "Box plots show 5 number summary but NOT the mode." },
             { i: 88, s: "B", t: "Cum Calc", q: "Cumulative frequency at x=10 is 15, at x=20 is 25. How many values are between 10 and 20?", o: ["10", "15", "25", "40", "5"], a: 0, r: "Count = 25 - 15 = 10 values in that interval." },
-            { i: 89, s: "B", t: "Gold", q: "What is the best graph for showing gold prices over a 10-year period?", v: "line", o: ["Histogram", "Line graph (time series)", "Pie chart", "Venn diagram", "Stem plot"], a: 1, r: "Line graphs are best for showing change over time (time series)." },
+            { i: 89, s: "B", t: "Gold", q: "What is the best graph for showing gold prices over a 10-year period?", o: ["Histogram", "Line graph (time series)", "Pie chart", "Venn diagram", "Stem plot"], a: 1, r: "Line graphs are best for showing change over time (time series)." },
             { i: 90, s: "B", t: "Scatter Out", q: "In a scatter plot, an outlier is a point that is:", o: ["High X value", "Far from the line", "At origin", "Negative Y", "At the mean"], a: 1, r: "Outlier in scatter = point far from regression line (large residual)." },
             { i: 91, s: "B", t: "Hist vs Bar", q: "Why do histogram bars touch each other (no gaps)?", v: "hist", o: ["For aesthetics", "Data is continuous", "Data is discrete", "Sample is small", "Sample is large"], a: 1, r: "Touching bars indicate continuous data with no gaps between intervals." },
             { i: 92, s: "B", t: "Rel Freq", q: "The sum of all relative frequencies in a distribution equals:", o: ["1 (or 100%)", "100", "n", "Mean", "0"], a: 0, r: "Relative frequencies sum to 1 (or 100%)." },
             { i: 93, s: "B", t: "Pareto", q: "A bar chart with bars sorted in descending order of frequency is called a:", o: ["Histogram", "Pareto chart", "Ogive", "Box plot", "Pie chart"], a: 1, r: "A Pareto chart shows bars sorted from highest to lowest frequency." },
-            { i: 94, s: "B", t: "Pie Deg", q: "In a pie chart, 10% of the data equals how many degrees?", o: ["10", "36", "18", "90", "100"], a: 1, r: "10% × 360° = 36°" },
-            { i: 95, s: "B", t: "Whiskers", q: "In a standard box plot, the whiskers extend to:", v: "box", o: ["Q1 and Q3", "Minimum and Maximum", "Mean", "Standard deviation", "Outliers"], a: 1, r: "Whiskers extend to the minimum and maximum (or to 1.5×IQR fences)." },
-            { i: 96, s: "B", t: "Hist Height", q: "In a histogram, the height of each bar represents:", v: "hist", o: ["Bin width", "Frequency", "Midpoint", "Cumulative frequency", "Percentage"], a: 1, r: "Bar height = frequency of that class interval." },
+            { i: 94, s: "B", t: "Pie Deg", q: "In a pie chart, 10% of the data equals how many degrees?", o: ["10", "36", "18", "90", "100"], a: 1, r: "10% \\times 360^\\circ = 36^\\circ" },
+            { i: 95, s: "B", t: "Whiskers", q: "In a standard box plot, the whiskers extend to:", o: ["Q1 and Q3", "Minimum and Maximum", "Mean", "Standard deviation", "Outliers"], a: 1, r: "Whiskers extend to the minimum and maximum (or to 1.5\\times IQR fences)." },
+            { i: 96, s: "B", t: "Hist Height", q: "In a histogram, the height of each bar represents:", o: ["Bin width", "Frequency", "Midpoint", "Cumulative frequency", "Percentage"], a: 1, r: "Bar height = frequency of that class interval." },
             { i: 97, s: "B", t: "Stem Key", q: "A stem-and-leaf plot has key: 4|1 = 4.1. What is the value for 5|2?", o: ["52", "5.2", "7", "502", "0.52"], a: 1, r: "Following the key pattern, 5|2 = 5.2" },
             { i: 98, s: "B", t: "Dot Mode", q: "In a dot plot, the value with the highest stack of dots is the:", o: ["Mean", "Median", "Mode", "Range", "Outlier"], a: 2, r: "The tallest stack indicates the most frequent value = mode." },
             { i: 99, s: "B", t: "Neg Skew", q: "In a left-skewed (negatively skewed) distribution, the tail points:", v: "histL", o: ["Left", "Right", "Up", "Down", "Center"], a: 0, r: "Left skew = tail extends to the left." },
@@ -1429,38 +1397,38 @@
             { i: 101, s: "C", t: "Predict", q: "\\(\\hat{y} = 2.5x + 12\\). If x=4, find \\(\\hat{y}\\)", o: ["14.5", "22", "12", "10", "2.5"], a: 1, r: "\\(\\hat{y} = 2.5(4) + 12 = 10 + 12 = 22\\)" },
             { i: 102, s: "C", t: "Slope", q: "In the equation \\(y = -3x + 50\\), what does the slope -3 mean?", o: ["y decreases by 3 for each unit increase in x", "y is 3 less than x", "The starting value is -3", "The correlation is -3", "y increases by 3"], a: 0, r: "Slope = rate of change. For every 1 unit increase in x, y decreases by 3." },
             { i: 103, s: "C", t: "Strength", q: "Which correlation coefficient indicates the STRONGEST linear relationship?", o: ["0.8", "-0.9", "0.1", "0", "0.5"], a: 1, r: "\\(|-0.9| = 0.9\\) is the largest absolute value. Strength is measured by |r|." },
-            { i: 104, s: "C", t: "r Range", q: "The correlation coefficient \\(r\\) is always between:", o: ["0 and 1", "-1 and 1", "-10 and 10", "-∞ and +∞", "0 and 100"], a: 1, r: "\\(-1 \\leq r \\leq 1\\)" },
+            { i: 104, s: "C", t: "r Range", q: "The correlation coefficient \\(r\\) is always between:", o: ["0 and 1", "-1 and 1", "-10 and 10", "-\\(\\infty\\) and +\\(\\infty\\)", "0 and 100"], a: 1, r: "\\(-1 \\leq r \\leq 1\\)" },
             { i: 105, s: "C", t: "r=0", q: "A correlation of \\(r = 0\\) indicates:", o: ["Perfect linear relationship", "No linear relationship", "Strong negative relationship", "An error in data", "A curved relationship"], a: 1, r: "\\(r = 0\\) means no LINEAR association (there could still be a non-linear pattern)." },
             { i: 106, s: "C", t: "Scatter", q: "In a scatterplot, a line rising from left to right indicates what type of correlation?", v: "scatterPos", o: ["Positive", "Negative", "Zero", "Undefined", "Imaginary"], a: 0, r: "Upward slope = positive correlation (as x increases, y increases)." },
             { i: 107, s: "C", t: "Residual", q: "The regression line is \\(y = x\\). For point \\((2, 3)\\), what is the residual?", o: ["1", "-1", "0", "5", "2"], a: 0, r: "Residual = Actual - Predicted = \\(3 - 2 = 1\\)" },
             { i: 108, s: "C", t: "Extrap", q: "Why is extrapolation (predicting beyond data range) risky?", o: ["Calculations are hard", "The linear trend may not continue", "It gives negative numbers", "Calculators can't do it", "It changes the slope"], a: 1, r: "The relationship may change outside the observed data range." },
             { i: 109, s: "C", t: "Centroid", q: "The least-squares regression line always passes through which point?", o: ["x-axis", "y-axis", "(\\(\\bar{x}\\), \\(\\bar{y}\\))", "Origin (0,0)", "Maximum point"], a: 2, r: "The LSRL always passes through the point of means \\((\\bar{x}, \\bar{y})\\)." },
-            { i: 110, s: "C", t: "r²", q: "\\(r^2 = 0.81\\), slope is negative. Find r:", o: ["0.9", "-0.9", "0.81", "-0.81", "0.65"], a: 1, r: "\\(r = -\\sqrt{0.81} = -0.9\\) (negative because slope is negative)" },
-            { i: 111, s: "C", t: "Direct Var", q: "Which equation represents direct variation (y = kx, through origin)?", o: ["y = 2x + 1", "y = 3x", "y = x²", "y = 5", "y = 1/x"], a: 1, r: "Direct variation: \\(y = kx\\) passes through origin. Only \\(y = 3x\\) fits." },
+            { i: 110, s: "C", t: "r^2", q: "\\(r^2 = 0.81\\), slope is negative. Find r:", o: ["0.9", "-0.9", "0.81", "-0.81", "0.65"], a: 1, r: "\\(r = -\\sqrt{0.81} = -0.9\\) (negative because slope is negative)" },
+            { i: 111, s: "C", t: "Direct Var", q: "Which equation represents direct variation (y = kx, through origin)?", o: ["y = 2x + 1", "y = 3x", "y = x^2", "y = 5", "y = 1/x"], a: 1, r: "Direct variation: \\(y = kx\\) passes through origin. Only \\(y = 3x\\) fits." },
             { i: 112, s: "C", t: "Causation", q: "'Correlation does not imply _______'", o: ["Association", "Causation", "Trend", "Relationship", "Calculation"], a: 1, r: "Just because two variables are correlated doesn't mean one CAUSES the other." },
             { i: 113, s: "C", t: "Intercept", q: "In the cost equation \\(Cost = 5x + 100\\), what is the fixed cost (y-intercept)?", o: ["5", "100", "105", "500", "0"], a: 1, r: "Fixed cost = y-intercept = 100 (cost when x = 0)." },
             { i: 114, s: "C", t: "Res Calc", q: "If actual \\(y = 10\\) and predicted \\(\\hat{y} = 12\\), what is the residual?", o: ["2", "-2", "22", "120", "1.2"], a: 1, r: "Residual = Actual - Predicted = \\(10 - 12 = -2\\)" },
-            { i: 115, s: "C", t: "Weak Neg", q: "Weak negative correlation looks like:", v: "scatterNeg", o: ["Line Up", "Cloud Down", "Line Down", "Rand", "Circ"], a: 1, r: "Loose downward scatter." },
+            { i: 115, s: "C", t: "Weak Neg", q: "A scatter plot shows weak negative correlation. The points would look like:", v: "scatterNeg", o: ["Tight line going up", "Loose cloud going down", "Tight line going down", "Random cluster", "Circle"], a: 1, r: "Weak negative = loose downward scatter." },
             { i: 116, s: "C", t: "Slope 2pts", q: "Find slope between \\((1, 2)\\) and \\((3, 8)\\): \\(m = \\frac{y_2 - y_1}{x_2 - x_1}\\)", o: ["2", "3", "4", "6", "0.3"], a: 1, r: "\\(m = \\frac{8-2}{3-1} = \\frac{6}{2} = 3\\)" },
             { i: 117, s: "C", t: "Perfect r", q: "What is the value of \\(r\\) for a perfect positive linear relationship?", o: ["0", "0.5", "1", "-1", "100"], a: 2, r: "\\(r = 1\\) means perfect positive linear correlation." },
             { i: 118, s: "C", t: "LSRL", q: "The Least-Squares Regression Line minimizes:", o: ["Sum of residuals", "Sum of squared residuals", "Sum of x-values", "Slope", "Intercept"], a: 1, r: "LSRL minimizes \\(\\sum(y - \\hat{y})^2\\), the sum of squared residuals." },
             { i: 119, s: "C", t: "Indep Var", q: "In regression, the x-axis represents the:", o: ["Independent (explanatory) variable", "Dependent (response) variable", "z-score", "Title", "Legend"], a: 0, r: "x = independent variable (the predictor or explanatory variable)." },
-            { i: 120, s: "C", t: "r²", q: "If \\(r^2 = 0.5\\), this means:", o: ["r = 0.5", "50% of variation in y is explained by x", "slope = 0.5", "50% accuracy", "mean = 0.5"], a: 1, r: "\\(r^2\\) = coefficient of determination = proportion of variance explained." },
+            { i: 120, s: "C", t: "rÂ²", q: "If \\(r^2 = 0.5\\), this means:", o: ["r = 0.5", "50% of variation in y is explained by x", "slope = 0.5", "50% accuracy", "mean = 0.5"], a: 1, r: "\\(r^2\\) = coefficient of determination = proportion of variance explained." },
             { i: 121, s: "C", t: "F=ma", q: "In physics, \\(F = ma\\). If mass is constant, the graph of Force vs Acceleration is:", o: ["A curve", "A straight line through the origin", "A horizontal line", "A vertical line", "A parabola"], a: 1, r: "\\(F = ma\\) is linear with slope m, passing through origin." },
             { i: 122, s: "C", t: "Outlier", q: "If you add a point that lies exactly on the regression line, \\(r\\) will:", o: ["Get weaker (closer to 0)", "Stay the same or get stronger", "Become 0", "Become negative", "Be undefined"], a: 1, r: "Adding a point on the line reinforces the linear pattern." },
             { i: 123, s: "C", t: "Line Eq", q: "Find the equation of the line passing through \\((2, 5)\\) and \\((4, 9)\\):", o: ["y = 2x + 1", "y = 2x + 3", "y = 4x", "y = x + 3", "y = 2x - 1"], a: 0, r: "Slope = \\(\\frac{9-5}{4-2} = 2\\). Using point (2,5): \\(5 = 2(2) + b\\), so \\(b = 1\\)." },
             { i: 124, s: "C", t: "Slope 0", q: "If the slope of the regression line is 0, then \\(r\\) equals:", o: ["1", "-1", "0", "Undefined", "Infinity"], a: 2, r: "Slope = 0 means no linear relationship, so \\(r = 0\\)." },
-            { i: 125, s: "C", t: "Pos Corr", q: "Which pair of variables would likely have a POSITIVE correlation?", o: ["Speed and Time to destination", "Heating bill and Temperature outside", "Study time and Test grades", "Age of car and Resale value", "Absences and Grades"], a: 2, r: "More study time → higher grades (positive relationship)." },
+            { i: 125, s: "C", t: "Pos Corr", q: "Which pair of variables would likely have a POSITIVE correlation?", o: ["Speed and Time to destination", "Heating bill and Temperature outside", "Study time and Test grades", "Age of car and Resale value", "Absences and Grades"], a: 2, r: "More study time \\(\\to\\) higher grades (positive relationship)." },
             { i: 126, s: "C", t: "Pred Y", q: "If predicted \\(\\hat{y} = 20\\) and residual = +5, what is the actual y-value?", o: ["15", "20", "25", "100", "4"], a: 2, r: "Residual = Actual - Predicted. So Actual = 20 + 5 = 25." },
-            { i: 127, s: "C", t: "Res Plot", q: "U-shape residual plot indicates:", v: "resid", o: ["Good", "Non-Lin", "Perf", "None", "Const"], a: 1, r: "Non-linear relationship." },
+            { i: 127, s: "C", t: "Res Plot", q: "A U-shaped residual plot indicates:", o: ["Good linear fit", "Non-linear relationship", "Perfect fit", "No relationship", "Constant variance"], a: 1, r: "Non-linear relationship - linear model is not appropriate." },
             { i: 128, s: "C", t: "Require", q: "Linear regression requires what type of data for both variables?", o: ["Categorical", "Quantitative (numerical)", "Mixed", "Nominal", "Ordinal"], a: 1, r: "Both x and y must be quantitative (numerical) for linear regression." },
             { i: 129, s: "C", t: "r>1", q: "Can the correlation coefficient \\(r\\) ever be greater than 1?", o: ["Yes", "No, never", "Sometimes", "Only if slope > 1", "Only if n is large"], a: 1, r: "\\(r\\) is always between -1 and 1. It can never exceed these bounds." },
-            { i: 130, s: "C", t: "Neg m", q: "y=50-2x. As x increases, y:", v: "scatterNeg", o: ["Up", "Down", "Const", "Fluc", "0"], a: 1, r: "Decreases (negative slope)." },
+            { i: 130, s: "C", t: "Read Scatter", q: "Based on the scatter plot shown, as x increases from 50 to 150, y approximately:", v: "scatterNeg", o: ["Increases from 25 to 115", "Decreases from 115 to 25", "Stays constant", "Fluctuates randomly", "Cannot be determined"], a: 1, r: "The negative slope line shows y decreasing as x increases." },
             { i: 131, s: "C", t: "Interp", q: "Interpolation means predicting:", o: ["Future values", "Values WITHIN the data range", "Values outside the data range", "The mean", "The slope"], a: 1, r: "Interpolation = predicting inside the range of observed data (safer than extrapolation)." },
-            { i: 132, s: "C", t: "Symm r", q: "If \\(corr(x, y) = r\\), what is \\(corr(y, x)\\)?", o: ["1/r", "-r", "r", "1 - r", "r²"], a: 2, r: "Correlation is symmetric: \\(corr(x,y) = corr(y,x)\\)." },
+            { i: 132, s: "C", t: "Symm r", q: "If \\(corr(x, y) = r\\), what is \\(corr(y, x)\\)?", o: ["1/r", "-r", "r", "1 - r", "r^2"], a: 2, r: "Correlation is symmetric: \\(corr(x,y) = corr(y,x)\\)." },
             { i: 133, s: "C", t: "Slope Std", q: "Find slope of \\(3x + 2y = 10\\)", o: ["3", "-3", "-1.5", "1.5", "5"], a: 2, r: "\\(2y = -3x + 10 \\Rightarrow y = -\\frac{3}{2}x + 5\\). Slope = \\(-1.5\\)" },
             { i: 134, s: "C", t: "Cov", q: "If covariance is positive, then \\(r\\) is:", o: ["Positive", "Negative", "0", "Undefined", "1"], a: 0, r: "Covariance and r always have the same sign." },
-            { i: 135, s: "C", t: "Slope Form", q: "In the formula \\(b = r \\cdot \\frac{S_y}{S_x}\\), if \\(S_y\\) increases, the slope:", o: ["Increases", "Decreases", "Stays the same", "Becomes 0", "Becomes negative"], a: 0, r: "Slope is directly proportional to \\(S_y\\)." },
+            { i: 135, s: "C", t: "Car Value", q: "A car's value is modeled by \\(y = 25000 - 2000x\\), where x is years. What is a 3-year-old car worth?", o: ["$19,000", "$21,000", "$23,000", "$17,000", "$25,000"], a: 0, r: "\\(y = 25000 - 2000(3) = 25000 - 6000 = 19000\\)" },
             { i: 136, s: "C", t: "Y-int", q: "A line passes through \\((0, 5)\\) with slope \\(m = 2\\). What is the y-intercept?", o: ["0", "2", "5", "-5", "10"], a: 2, r: "The y-intercept is the y-value when x = 0, which is 5." },
             { i: 137, s: "C", t: "r=.95", q: "If \\(r = 0.95\\), does the data form a perfectly straight line?", o: ["Yes", "No, there is still some scatter", "Only if n is large", "Only if slope = 1", "Only if positive"], a: 1, r: "\\(r = 0.95\\) is very strong but not perfect. Points still scatter around the line." },
             { i: 138, s: "C", t: "Calc a", q: "Points \\((1, 2)\\) and \\((2, 4)\\) lie on the line \\(y = ax\\). Find \\(a\\):", o: ["2", "1", "0.5", "3", "4"], a: 0, r: "Using (1,2): \\(2 = a(1)\\), so \\(a = 2\\)." },
@@ -1470,12 +1438,12 @@
             { i: 142, s: "C", t: "Infl Pt", q: "A data point that strongly affects the regression line is called:", o: ["Outlier only", "Influential point", "Mean point", "Mode", "Residual"], a: 1, r: "Influential points have high leverage and pull the regression line toward them." },
             { i: 143, s: "C", t: "Slope Unit", q: "If y is in dollars and x is in hours, what is the unit of the slope?", o: ["Dollars", "Hours", "Dollars per hour", "Hours per dollar", "No units"], a: 2, r: "Slope = rise/run = \\(\\frac{\\Delta y}{\\Delta x}\\) = dollars/hour." },
             { i: 144, s: "C", t: "r Unit", q: "The correlation coefficient \\(r\\) has:", o: ["Y units", "X units", "Y/X units", "No units", "% units"], a: 3, r: "\\(r\\) is unitless (standardized measure)." },
-            { i: 145, s: "C", t: "Homosc", q: "Homoscedasticity means the residuals have:", o: ["Constant variance across all x", "Different variance at different x", "A curved pattern", "Linear pattern", "No meaning"], a: 0, r: "Equal spread of residuals for all values of x." },
+            { i: 145, s: "C", t: "Residuals", q: "For a good linear model, the residual plot should show:", o: ["Random scatter with no pattern", "A clear curve or pattern", "All positive values", "Increasing spread", "A straight line"], a: 0, r: "Random scatter in residuals indicates a good linear fit." },
             { i: 146, s: "C", t: "Best Fit", q: "The best-fit line has overestimates and underestimates that:", o: ["Balance out (sum to 0)", "Are all positive", "Are all negative", "Sum to the mean", "Are maximized"], a: 0, r: "Residuals sum to 0; overestimates and underestimates cancel out." },
             { i: 147, s: "C", t: "X-int", q: "For the line \\(y = 2x - 4\\), what is the x-intercept?", o: ["2", "4", "-4", "0", "-2"], a: 0, r: "Set y = 0: \\(0 = 2x - 4 \\Rightarrow x = 2\\)." },
             { i: 148, s: "C", t: "Stat Mod", q: "Statistical models are different from deterministic models because they include:", o: ["Random error", "Fixed values only", "Certainty", "Linear terms only", "Algebraic solutions"], a: 0, r: "Statistical models include random error: \\(y = f(x) + \\epsilon\\)." },
-            { i: 149, s: "C", t: "r²%", q: "If \\(r = 0.5\\), what percent of variance is explained (\\(r^2\\)%)?", o: ["25%", "50%", "5%", "2.5%", "10%"], a: 0, r: "\\(r^2 = 0.5^2 = 0.25 = 25\\%\\)" },
-            { i: 150, s: "C", t: "Pattern", q: "If a scatterplot shows a random cloud with no pattern, what is \\(r\\)?", v: "scatter", o: ["1", "-1", "0 (approximately)", "0.5", "Infinity"], a: 2, r: "Random scatter with no linear pattern means \\(r \\approx 0\\)." },
+            { i: 149, s: "C", t: "r^2%", q: "If \\(r = 0.5\\), what percent of variance is explained (\\(r^2\\)%)?", o: ["25%", "50%", "5%", "2.5%", "10%"], a: 0, r: "\\(r^2 = 0.5^2 = 0.25 = 25\\%\\)" },
+            { i: 150, s: "C", t: "Pattern", q: "If a scatterplot shows a random cloud with no pattern, what is \\(r\\)?", o: ["1", "-1", "0 (approximately)", "0.5", "Infinity"], a: 2, r: "Random scatter with no linear pattern means \\(r \\approx 0\\)." },
             // D: Probability (151-200)
             { i: 151, s: "D", t: "Factorial", q: "Evaluate \\(5! = 5 \\times 4 \\times 3 \\times 2 \\times 1\\)", o: ["5", "20", "60", "120", "25"], a: 3, r: "\\(5! = 120\\)" },
             { i: 152, s: "D", t: "Books", q: "How many ways to arrange 3 books? \\(n! = ?\\)", o: ["3", "6", "9", "1", "27"], a: 1, r: "\\(3! = 3 \\times 2 \\times 1 = 6\\)" },
@@ -1488,11 +1456,11 @@
             { i: 159, s: "D", t: "Coins", q: "Two fair coins are flipped. What is the probability of getting two heads (HH)?", o: ["1/2", "1/4", "1/8", "3/4", "1"], a: 1, r: "Sample space: {HH, HT, TH, TT}. \\(P(HH) = \\frac{1}{4}\\)" },
             { i: 160, s: "D", t: "Complement", q: "If \\(P(A) = 0.3\\), what is \\(P(A')\\) (complement of A)?", o: ["0.3", "0.6", "0.7", "0", "1"], a: 2, r: "\\(P(A') = 1 - P(A) = 1 - 0.3 = 0.7\\)" },
             { i: 161, s: "D", t: "MOM", q: "In how many distinct ways can the letters M-O-M be arranged?", o: ["6", "3", "2", "9", "1"], a: 1, r: "\\(\\frac{3!}{2!} = \\frac{6}{2} = 3\\) (divide by 2! for repeated M)" },
-            { i: 162, s: "D", t: "nCn", q: "What is \\(_nC_n\\) (choosing all n items from n)?", o: ["n", "1", "0", "n!", "n²"], a: 1, r: "\\(_nC_n = 1\\) — there is only one way to choose all items." },
-            { i: 163, s: "D", t: "nP1", q: "What is \\(_nP_1\\) (arranging 1 item from n)?", o: ["n", "1", "0", "n!", "n-1"], a: 0, r: "\\(_nP_1 = n\\) — you can pick any one of n items." },
+            { i: 162, s: "D", t: "nCn", q: "What is \\(_nC_n\\) (choosing all n items from n)?", o: ["n", "1", "0", "n!", "n^2"], a: 1, r: "\\(_nC_n = 1\\) - there is only one way to choose all items." },
+            { i: 163, s: "D", t: "nP1", q: "What is \\(_nP_1\\) (arranging 1 item from n)?", o: ["n", "1", "0", "n!", "n-1"], a: 0, r: "\\(_nP_1 = n\\) - you can pick any one of n items." },
             { i: 164, s: "D", t: "FCP", q: "You have 3 shirts and 2 pants. How many different outfits can you make?", o: ["5", "6", "9", "4", "8"], a: 1, r: "Fundamental Counting Principle: \\(3 \\times 2 = 6\\)" },
             { i: 165, s: "D", t: "Ace", q: "What is the probability of drawing an Ace from a standard 52-card deck?", o: ["1/13", "1/52", "4/52", "1/4", "1/2"], a: 0, r: "\\(P(Ace) = \\frac{4}{52} = \\frac{1}{13}\\)" },
-            { i: 166, s: "D", t: "Mut Excl", q: "If A,B mutually exclusive, P(A∩B):", v: "venn", o: ["Sum", "Prod", "0", "1", "0.5"], a: 2, r: "Mutually exclusive events cannot happen together." },
+            { i: 166, s: "D", t: "Mut Excl", q: "If A,B mutually exclusive, P(A\\cap B):", o: ["Sum", "Prod", "0", "1", "0.5"], a: 2, r: "Mutually exclusive events cannot happen together." },
             { i: 167, s: "D", t: "Subsets", q: "How many subsets does the set \\(\\{a, b, c\\}\\) have?", o: ["3", "6", "8", "9", "1"], a: 2, r: "\\(2^n = 2^3 = 8\\) subsets (including empty set and full set)" },
             { i: 168, s: "D", t: "Line", q: "In how many ways can 5 people stand in a line?", o: ["120", "24", "5", "25", "100"], a: 0, r: "\\(5! = 120\\)" },
             { i: 169, s: "D", t: "Even Die", q: "A fair die is rolled. What is P(rolling an even number)?", o: ["1/2", "1/3", "1/6", "2/3", "5/6"], a: 0, r: "Even: {2, 4, 6}. \\(P = \\frac{3}{6} = \\frac{1}{2}\\)" },
@@ -1503,22 +1471,22 @@
             { i: 174, s: "D", t: "Indep", q: "If \\(P(Rain) = 0.2\\) and \\(P(Traffic) = 0.5\\), and events are independent, find \\(P(Rain \\cap Traffic)\\)", o: ["0.7", "0.1", "0.3", "0", "0.25"], a: 1, r: "\\(P(R \\cap T) = P(R) \\times P(T) = 0.2 \\times 0.5 = 0.1\\)" },
             { i: 175, s: "D", t: "Diagonals", q: "Hexagon diagonals using \\(\\frac{n(n-3)}{2}\\):", o: ["6", "9", "12", "15", "3"], a: 1, r: "\\(\\frac{6(6-3)}{2} = \\frac{6 \\times 3}{2} = 9\\)" },
             { i: 176, s: "D", t: "TF Quiz", q: "A quiz has 5 True/False questions. How many different answer combinations are possible?", o: ["10", "25", "32", "50", "100"], a: 2, r: "\\(2^5 = 32\\) combinations (2 choices per question)" },
-            { i: 177, s: "D", t: "Inclusion", q: "What is P(drawing a Red card OR a King) from a standard deck?", v: "venn", o: ["30/52", "28/52", "1/2", "4/13", "2/52"], a: 1, r: "\\(P(R \\cup K) = \\frac{26 + 4 - 2}{52} = \\frac{28}{52}\\) (subtract 2 red kings)" },
-            { i: 178, s: "D", t: "8C8", q: "What is \\(_8C_8\\)?", o: ["0", "1", "8", "64", "Undef"], a: 1, r: "\\(_8C_8 = 1\\) — only one way to choose all 8 items." },
+            { i: 177, s: "D", t: "Inclusion", q: "What is P(drawing a Red card OR a King) from a standard deck?", o: ["30/52", "28/52", "1/2", "4/13", "2/52"], a: 1, r: "\\(P(R \\cup K) = \\frac{26 + 4 - 2}{52} = \\frac{28}{52}\\) (subtract 2 red kings)" },
+            { i: 178, s: "D", t: "8C8", q: "What is \\(_8C_8\\)?", o: ["0", "1", "8", "64", "Undef"], a: 1, r: "\\(_8C_8 = 1\\) - only one way to choose all 8 items." },
             { i: 179, s: "D", t: "LEVEL", q: "In how many distinct ways can the letters L-E-V-E-L be arranged?", o: ["120", "60", "30", "20", "10"], a: 2, r: "\\(\\frac{5!}{2! \\cdot 2!} = \\frac{120}{4} = 30\\) (divide by 2! for each repeated letter)" },
             { i: 180, s: "D", t: "Sum 7", q: "P(sum = 7) with two dice:", o: ["1/6", "1/12", "1/36", "5/36", "7/36"], a: 0, r: "6 ways: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1). \\(P = \\frac{6}{36} = \\frac{1}{6}\\)" },
-            { i: 181, s: "D", t: "P=0", q: "If \\(P(A) = 0\\), the event A is:", o: ["Certain", "Impossible", "Likely", "Unlikely", "Random"], a: 1, r: "\\(P = 0\\) means the event cannot happen — it is impossible." },
+            { i: 181, s: "D", t: "P=0", q: "If \\(P(A) = 0\\), the event A is:", o: ["Certain", "Impossible", "Likely", "Unlikely", "Random"], a: 1, r: "\\(P = 0\\) means the event cannot happen - it is impossible." },
             { i: 182, s: "D", t: "With Rep", q: "A box has 3 Red and 2 Blue balls. You pick one, replace it, then pick again. Find P(Red then Blue).", o: ["6/25", "3/10", "1/2", "5/25", "1/5"], a: 0, r: "\\(P(R) \\times P(B) = \\frac{3}{5} \\times \\frac{2}{5} = \\frac{6}{25}\\)" },
             { i: 183, s: "D", t: "No Rep", q: "A box has 3 Red and 2 Blue balls. You pick one, do NOT replace, then pick again. Find P(Red then Blue).", o: ["6/25", "3/10", "1/2", "1/5", "3/20"], a: 1, r: "\\(\\frac{3}{5} \\times \\frac{2}{4} = \\frac{6}{20} = \\frac{3}{10}\\)" },
             { i: 184, s: "D", t: "Arrange", q: "In how many ways can 4 distinct paintings be arranged on a wall?", o: ["4", "12", "24", "16", "10"], a: 2, r: "\\(4! = 24\\)" },
-            { i: 185, s: "D", t: "Geo Prob", q: "A circle with radius 2 is inside a square with side 6. A dart is thrown randomly. P(hitting the circle)?", o: ["π/9", "π/4", "1/3", "2/6", "π"], a: 0, r: "\\(P = \\frac{\\pi r^2}{s^2} = \\frac{4\\pi}{36} = \\frac{\\pi}{9}\\)" },
+            { i: 185, s: "D", t: "Geo Prob", q: "A circle with radius 2 is inside a square with side 6. A dart is thrown randomly. P(hitting the circle)?", o: ["\\(\\pi/9\\)", "\\(\\pi/4\\)", "1/3", "2/6", "\\(\\pi\\)"], a: 0, r: "\\(P = \\frac{\\pi r^2}{s^2} = \\frac{4\\pi}{36} = \\frac{\\pi}{9}\\)" },
             { i: 186, s: "D", t: "Toppings", q: "You can choose 2 pizza toppings from a menu of 5. How many combinations? \\(_5C_2\\)", o: ["5", "10", "20", "25", "15"], a: 1, r: "\\(_5C_2 = 10\\)" },
             { i: 187, s: "D", t: "Or Rule", q: "When can you simply add P(A) + P(B) to find P(A or B)?", o: ["Always", "When mutually exclusive", "When independent", "Never", "When dependent"], a: 1, r: "\\(P(A \\cup B) = P(A) + P(B)\\) only if A and B are mutually exclusive (disjoint)." },
             { i: 188, s: "D", t: "Month", q: "What is the probability that a randomly chosen month starts with the letter J?", o: ["1/4", "1/3", "1/12", "3/10", "1/6"], a: 0, r: "Jan, Jun, Jul = 3 months. \\(P = \\frac{3}{12} = \\frac{1}{4}\\)" },
             { i: 189, s: "D", t: "Fixed", q: "In how many ways can A, B, C, D be arranged if A must be first?", o: ["24", "6", "12", "4", "1"], a: 1, r: "Fix A first, arrange B, C, D: \\(3! = 6\\)" },
-            { i: 190, s: "D", t: "100C100", q: "What is \\(_{100}C_{100}\\)?", o: ["1", "100", "99", "0", "1000"], a: 0, r: "\\(_nC_n = 1\\) for any n — only one way to choose all items." },
+            { i: 190, s: "D", t: "100C100", q: "What is \\(_{100}C_{100}\\)?", o: ["1", "100", "99", "0", "1000"], a: 0, r: "\\(_nC_n = 1\\) for any n - only one way to choose all items." },
             { i: 191, s: "D", t: "Girls", q: "A family has 3 children. What is P(all are girls)?", o: ["1/3", "1/8", "1/6", "3/8", "1/2"], a: 1, r: "\\(P = \\left(\\frac{1}{2}\\right)^3 = \\frac{1}{8}\\)" },
-            { i: 192, s: "D", t: "4 Digit", q: "How many 4-digit PIN codes are possible using digits 0-9 (with repetition)?", o: ["10000", "9⁴", "5040", "40", "100"], a: 0, r: "\\(10^4 = 10000\\)" },
+            { i: 192, s: "D", t: "4 Digit", q: "How many 4-digit PIN codes are possible using digits 0-9 (with repetition)?", o: ["10000", "9^4", "5040", "40", "100"], a: 0, r: "\\(10^4 = 10000\\)" },
             { i: 193, s: "D", t: "Valid P", q: "Which of the following is NOT a valid probability?", o: ["0", "0.5", "1", "1.5", "2/3"], a: 3, r: "Probability must be between 0 and 1. \\(1.5 > 1\\), so it's invalid." },
             { i: 194, s: "D", t: "Die <3", q: "A fair die is rolled. What is P(number less than 3)?", o: ["1/6", "1/3", "1/2", "2/3", "5/6"], a: 1, r: "Numbers < 3: {1, 2}. \\(P = \\frac{2}{6} = \\frac{1}{3}\\)" },
             { i: 195, s: "D", t: "Officers", q: "From 5 people, how many ways to select President, VP, and Treasurer (different people)? \\(_5P_3\\)", o: ["10", "60", "20", "15", "120"], a: 1, r: "\\(_5P_3 = 5 \\times 4 \\times 3 = 60\\)" },
@@ -1555,8 +1523,9 @@
             mode = 'exam';
             ans = {};
 
-            // Generate 10 random questions from all 200
-            const allQuestions = shuffleArray(Q);
+            // Generate 10 random questions from all 200 (Level 1 only)
+            const level1Questions = Q.filter(q => !q.L || q.L === 1);
+            const allQuestions = shuffleArray(level1Questions);
             examQuestions = allQuestions.slice(0, EXAM_QUESTION_COUNT);
 
             // Reset timer to 15 minutes
@@ -1566,7 +1535,7 @@
             // Show quiz view
             document.getElementById('theoryView').classList.add('hidden');
             document.getElementById('quizView').classList.remove('hidden');
-            document.getElementById('sectionTitle').textContent = '📝 Random Exam';
+            document.getElementById('sectionTitle').textContent = 'Exam Mode';
             document.getElementById('questionCount').textContent = `${EXAM_QUESTION_COUNT} Random Questions`;
 
             // Update nav buttons
@@ -1581,6 +1550,8 @@
             document.getElementById('printBtn').classList.remove('hidden');
         }
 
+
+
         function showQuiz(s) {
             sec = s;
             document.getElementById('theoryView').classList.add('hidden');
@@ -1589,13 +1560,13 @@
             let qs;
             if (mode === 'exam') {
                 // Exam mode: use the random questions
-                document.getElementById('sectionTitle').textContent = `📝 Exam Mode`;
+                document.getElementById('sectionTitle').textContent = 'Exam Mode';
                 qs = examQuestions;
                 document.getElementById('questionCount').textContent = `${qs.length} Random Questions`;
             } else {
-                // Study mode: show all questions from section
+                // Study mode: show Level 1 questions only from section
                 document.getElementById('sectionTitle').textContent = `Section ${s}: ${titles[s]}`;
-                qs = Q.filter(q => q.s === s);
+                qs = Q.filter(q => q.s === s && (!q.L || q.L === 1));
                 document.getElementById('questionCount').textContent = `${qs.length} Questions`;
             }
 
@@ -1683,7 +1654,25 @@
                 <text x="265" y="70" fill="#94a3b8" font-size="10">Max</text>
             </svg></div>`;
 
-            // Random scatter (r≈0)
+            // Box plot Q65 outlier detection with Q1=30, Q3=50
+            if (type === 'box65') return `<div class="chart-container"><svg width="320" height="90">
+                <line x1="20" y1="40" x2="260" y2="40" stroke="#64748b"/>
+                <rect x="90" y="25" width="100" height="30" fill="#3b82f6" opacity="0.3" stroke="#3b82f6"/>
+                <line x1="140" y1="25" x2="140" y2="55" stroke="#10b981" stroke-width="3"/>
+                <line x1="30" y1="30" x2="30" y2="50" stroke="#64748b"/>
+                <line x1="250" y1="30" x2="250" y2="50" stroke="#64748b"/>
+                <line x1="30" y1="40" x2="90" y2="40" stroke="#64748b"/>
+                <line x1="190" y1="40" x2="250" y2="40" stroke="#64748b"/>
+                <text x="25" y="70" fill="#94a3b8" font-size="10">10</text>
+                <text x="80" y="70" fill="#f59e0b" font-size="11" font-weight="bold">Q1=30</text>
+                <text x="130" y="70" fill="#94a3b8" font-size="10">Med</text>
+                <text x="175" y="70" fill="#f59e0b" font-size="11" font-weight="bold">Q3=50</text>
+                <text x="245" y="70" fill="#94a3b8" font-size="10">70</text>
+                <circle cx="295" cy="40" r="6" fill="#ef4444" stroke="#ef4444"/>
+                <text x="290" y="60" fill="#ef4444" font-size="10" font-weight="bold">85?</text>
+            </svg></div>`;
+
+            // Random scatter (râ‰ˆ0)
             if (type === 'scatter') return `<div class="chart-container"><svg width="200" height="150">
                 <rect x="30" y="10" width="160" height="120" fill="#1e293b" stroke="#334155"/>
                 <circle cx="60" cy="30" r="4" fill="#ef4444"/>
@@ -1693,10 +1682,10 @@
                 <circle cx="90" cy="65" r="4" fill="#ef4444"/>
                 <circle cx="120" cy="35" r="4" fill="#ef4444"/>
                 <circle cx="80" cy="90" r="4" fill="#ef4444"/>
-                <text x="100" y="145" fill="#94a3b8" font-size="10" text-anchor="middle">Random Pattern (r ≈ 0)</text>
+                <text x="100" y="145" fill="#94a3b8" font-size="10" text-anchor="middle">Random Pattern (r &approx; 0)</text>
             </svg></div>`;
 
-            // Venn with specific numbers (Q72: A=40, B=30, A∩B=20)
+            // Venn with specific numbers (Q72: A=40, B=30, Aâˆ©B=20)
             if (type === 'venn72') return `<div class="chart-container"><svg width="220" height="130">
                 <circle cx="80" cy="60" r="50" fill="#3b82f6" opacity="0.3" stroke="#3b82f6"/>
                 <circle cx="140" cy="60" r="50" fill="#10b981" opacity="0.3" stroke="#10b981"/>
@@ -1704,7 +1693,7 @@
                 <text x="105" y="65" fill="#f59e0b" font-size="14" font-weight="bold">20</text>
                 <text x="160" y="65" fill="#f1f5f9" font-size="14" font-weight="bold">10</text>
                 <text x="55" y="115" fill="#94a3b8" font-size="10">A only</text>
-                <text x="100" y="115" fill="#94a3b8" font-size="10">A∩B</text>
+                <text x="100" y="115" fill="#94a3b8" font-size="10">A&cap;B</text>
                 <text x="155" y="115" fill="#94a3b8" font-size="10">B only</text>
                 <text x="45" y="20" fill="#3b82f6" font-size="11">A=40</text>
                 <text x="155" y="20" fill="#10b981" font-size="11">B=30</text>
@@ -1715,7 +1704,7 @@
                 <circle cx="70" cy="60" r="45" fill="#3b82f6" opacity="0.3" stroke="#3b82f6"/>
                 <circle cx="130" cy="60" r="45" fill="#10b981" opacity="0.3" stroke="#10b981"/>
                 <text x="50" y="65" fill="#f1f5f9" font-size="12">A</text>
-                <text x="100" y="65" fill="#f59e0b" font-size="12">∩</text>
+                <text x="100" y="65" fill="#f59e0b" font-size="12">&cap;</text>
                 <text x="150" y="65" fill="#f1f5f9" font-size="12">B</text>
             </svg></div>`;
 
@@ -1729,7 +1718,7 @@
                 <rect x="110" y="20" width="30" height="75" fill="#8b5cf6"/>
                 <rect x="145" y="40" width="30" height="55" fill="#8b5cf6"/>
                 <rect x="180" y="70" width="30" height="25" fill="#8b5cf6"/>
-                <text x="130" y="115" fill="#94a3b8" font-size="10" text-anchor="middle">Right Skewed (tail→right)</text>
+                <text x="130" y="115" fill="#94a3b8" font-size="10" text-anchor="middle">Right Skewed (tail&rarr;right)</text>
                 <path d="M200,105 L210,100 L210,110 Z" fill="#f59e0b"/>
             </svg></div>`;
 
@@ -1741,7 +1730,7 @@
                 <rect x="110" y="20" width="30" height="75" fill="#f59e0b"/>
                 <rect x="145" y="30" width="30" height="65" fill="#f59e0b"/>
                 <rect x="180" y="60" width="30" height="35" fill="#f59e0b"/>
-                <text x="130" y="115" fill="#94a3b8" font-size="10" text-anchor="middle">Left Skewed (tail←left)</text>
+                <text x="130" y="115" fill="#94a3b8" font-size="10" text-anchor="middle">Left Skewed (tailâ†left)</text>
                 <path d="M30,105 L20,100 L20,110 Z" fill="#f59e0b"/>
             </svg></div>`;
 
@@ -1760,6 +1749,26 @@
                 <text x="90" y="75" fill="#94a3b8" font-size="12">2 7 8</text>
             </svg></div>`;
 
+            // Dot plot for Q67
+            if (type === 'dot') return `<div class="chart-container"><svg width="250" height="90">
+                <line x1="30" y1="60" x2="220" y2="60" stroke="#64748b"/>
+                <text x="50" y="75" fill="#94a3b8" font-size="10">10</text>
+                <text x="90" y="75" fill="#f59e0b" font-size="11" font-weight="bold">12</text>
+                <text x="130" y="75" fill="#94a3b8" font-size="10">14</text>
+                <text x="170" y="75" fill="#94a3b8" font-size="10">16</text>
+                <circle cx="50" cy="55" r="5" fill="#3b82f6"/>
+                <circle cx="50" cy="45" r="5" fill="#3b82f6"/>
+                <circle cx="90" cy="55" r="5" fill="#10b981"/>
+                <circle cx="90" cy="45" r="5" fill="#10b981"/>
+                <circle cx="90" cy="35" r="5" fill="#10b981"/>
+                <circle cx="90" cy="25" r="5" fill="#10b981"/>
+                <circle cx="90" cy="15" r="5" fill="#10b981"/>
+                <circle cx="130" cy="55" r="5" fill="#3b82f6"/>
+                <circle cx="170" cy="55" r="5" fill="#3b82f6"/>
+                <circle cx="170" cy="45" r="5" fill="#3b82f6"/>
+                <circle cx="170" cy="35" r="5" fill="#3b82f6"/>
+            </svg></div>`;
+
             if (type === 'pie') return `<div class="chart-container"><svg width="150" height="150"><circle cx="75" cy="75" r="60" fill="#3b82f6"/><path d="M75,75 L75,15 A60,60 0 0,1 135,75 Z" fill="#10b981"/><path d="M75,75 L135,75 A60,60 0 0,1 75,135 Z" fill="#f59e0b"/><text x="75" y="155" fill="#94a3b8" font-size="10" text-anchor="middle">Pie Chart</text></svg></div>`;
 
             // Positive correlation scatter
@@ -1772,8 +1781,8 @@
                 <circle cx="130" cy="50" r="4" fill="#ef4444"/>
                 <circle cx="160" cy="30" r="4" fill="#ef4444"/>
                 <text x="100" y="145" fill="#10b981" font-size="10" text-anchor="middle">Positive Correlation (r > 0)</text>
-                <text x="35" y="85" fill="#94a3b8" font-size="9">y↑</text>
-                <text x="165" y="140" fill="#94a3b8" font-size="9">x→</text>
+                <text x="35" y="85" fill="#94a3b8" font-size="9">y&uarr;</text>
+                <text x="165" y="140" fill="#94a3b8" font-size="9">x&rarr;</text>
             </svg></div>`;
 
             // Negative correlation scatter
@@ -1807,9 +1816,9 @@
                 <path d="M30,100 Q80,100 100,70 Q120,25 140,15 Q160,25 180,70 Q200,100 250,100" fill="rgba(139,92,246,0.2)" stroke="#8b5cf6" stroke-width="2"/>
                 <rect x="100" y="15" width="80" height="85" fill="rgba(16,185,129,0.2)"/>
                 <line x1="140" y1="15" x2="140" y2="100" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3,3"/>
-                <text x="140" y="120" fill="#f59e0b" font-size="11" text-anchor="middle">μ (mean)</text>
-                <text x="100" y="120" fill="#94a3b8" font-size="9" text-anchor="middle">-1σ</text>
-                <text x="180" y="120" fill="#94a3b8" font-size="9" text-anchor="middle">+1σ</text>
+                <text x="140" y="120" fill="#f59e0b" font-size="11" text-anchor="middle">Î¼ (mean)</text>
+                <text x="100" y="120" fill="#94a3b8" font-size="9" text-anchor="middle">-1Ïƒ</text>
+                <text x="180" y="120" fill="#94a3b8" font-size="9" text-anchor="middle">+1Ïƒ</text>
                 <text x="140" y="60" fill="#10b981" font-size="12" text-anchor="middle" font-weight="bold">68%</text>
             </svg></div>`;
 
@@ -1876,7 +1885,12 @@
         }
 
         function submitExam() {
-            const qs = Q.filter(q => q.s === sec);
+            let qs;
+            if (mode === 'exam') {
+                qs = examQuestions;
+            } else {
+                qs = Q.filter(q => q.s === sec);
+            }
             let correct = 0;
             qs.forEach(q => { if (ans[q.i] === q.a) correct++; });
             const score = Math.round((correct / qs.length) * 100);
@@ -1922,7 +1936,7 @@
                 try {
                     window.print();
                 } catch (e) {
-                    alert('للطباعة: اضغط Ctrl+P');
+                    alert('For printing: Press Ctrl+P');
                 }
             }, 500);
         }
@@ -1937,7 +1951,7 @@
                 try {
                     window.print();
                 } catch (e) {
-                    alert('للطباعة: اضغط Ctrl+P');
+                    alert('For printing: Press Ctrl+P');
                 }
             }, 500);
         }
