@@ -547,10 +547,12 @@
             // ===== Q1-11: ALGEBRA & FUNCTIONS (27.5%) =====
             {
                 id: 1,
-                question: "If \\(f(x) = 2x - 3\\) and \\(g(x) = x + 4\\), what is \\(f(g(2))\\)?",
-                options: ["9", "11", "13", "15", "17"],
-                answer: 0,
-                explanation: ["Find g(2) = 2 + 4 = 6.", "Then f(g(2)) = f(6) = 2(6) - 3.", "= 12 - 3 = 9.", "This is function composition: f(g(x)).", "The answer is A: 9."]
+                question: "Based on the graph of y = f(x) shown above, what is the value of f(3)?",
+                hasGraph: true,
+                graphImage: "images/ex2_q1_read_graph.png",
+                options: ["2.5", "3", "3.5", "4", "4.5"],
+                answer: 2,
+                explanation: ["From the graph, locate x = 3 on the horizontal axis.", "Draw a vertical line up to the curve.", "Read the y-value where it intersects: y = 3.5.", "The graph shows a parabola with vertex at (2, 4).", "The answer is C: 3.5."]
             },
             {
                 id: 2,
@@ -596,10 +598,12 @@
             },
             {
                 id: 8,
-                question: "Solve: \\(2(x - 3) + 4 = 3(x + 1) - 5\\)",
-                options: ["x = -2", "x = 0", "x = 2", "x = 4", "x = 6"],
-                answer: 1,
-                explanation: ["Expand: 2x - 6 + 4 = 3x + 3 - 5.", "Simplify: 2x - 2 = 3x - 2.", "Subtract 2x: -2 = x - 2.", "Add 2: 0 = x.", "The answer is B: x = 0."]
+                question: "Based on the graph above, how many points of intersection do f(x) and g(x) have?",
+                hasGraph: true,
+                graphImage: "images/ex2_q8_intersections.png",
+                options: ["0", "1", "2", "3", "4"],
+                answer: 2,
+                explanation: ["From the graph, count where the two curves cross.", "The parabola and line intersect at two points.", "One intersection is in the second quadrant.", "Another intersection is in the first quadrant.", "The answer is C: 2."]
             },
             {
                 id: 9,
@@ -660,17 +664,19 @@
             },
             {
                 id: 17,
-                question: "The exterior angle of a regular polygon is 40 deg. How many sides does it have?",
-                options: ["6", "8", "9", "10", "12"],
+                question: "Based on the histogram above showing math test score distribution, how many students scored between 70-90 (inclusive of both ranges)?",
+                hasGraph: true,
+                graphImage: "images/ex2_q17_histogram.png",
+                options: ["12", "17", "21", "25", "37"],
                 answer: 2,
-                explanation: ["Sum of exterior angles = 360 deg.", "n x 40 = 360.", "n = 360/40 = 9.", "The polygon has 9 sides (nonagon).", "The answer is C: 9."]
+                explanation: ["Read the frequency for each bar in the 70-90 range.", "Students scoring 70-80: 12 students.", "Students scoring 80-90: 9 students.", "Total = 12 + 9 = 21 students.", "The answer is C: 21."]
             },
             {
                 id: 18,
-                question: "In the figure, triangle ABC is inscribed in a circle with center O. If AB is a diameter of the circle and angle BAC = 30°, what is the measure of angle BCA?",
+                question: "In the figure, triangle ABC is inscribed in a circle with center O. If AB is a diameter of the circle and angle BAC = 30°, what is the measure of angle ABC?",
                 options: ["30°", "45°", "60°", "90°", "120°"],
                 answer: 2,
-                explanation: ["AB is diameter, so angle ACB = 90° (inscribed in semicircle).", "In triangle ABC: angle BAC + angle ABC + angle BCA = 180°.", "30° + 90° + angle BCA = 180°.", "angle BCA = 60°.", "The answer is C: 60°."]
+                explanation: ["AB is diameter, so angle ACB = 90° (angle inscribed in semicircle).", "In triangle ABC: angle BAC + angle ABC + angle ACB = 180°.", "30° + angle ABC + 90° = 180°.", "angle ABC = 180° - 30° - 90° = 60°.", "The answer is C: 60°."]
             },
             {
                 id: 19,
@@ -689,10 +695,12 @@
             // ===== Q21-25: COORDINATE GEOMETRY (12.5%) =====
             {
                 id: 21,
-                question: "What is the slope of the line \\(3x - 2y = 8\\)?",
-                options: ["3/2", "-3/2", "2/3", "-2/3", "3"],
-                answer: 0,
-                explanation: ["Convert to slope-intercept form.", "-2y = -3x + 8.", "y = (3/2)x - 4.", "Slope m = 3/2.", "The answer is A: 3/2."]
+                question: "Based on the graph of f(x) shown above, what is the value of f(2) + f(-1)?",
+                hasGraph: true,
+                graphImage: "images/ex2_q21_piecewise.png",
+                options: ["1", "2", "3", "4", "5"],
+                answer: 2,
+                explanation: ["From the graph, locate x = 2 and read f(2).", "f(2) = 1 (green point on graph).", "Locate x = -1 and read f(-1).", "f(-1) = 2 (green point on graph).", "f(2) + f(-1) = 1 + 2 = 3. The answer is C: 3."]
             },
             {
                 id: 22,
@@ -767,10 +775,12 @@
             },
             {
                 id: 32,
-                question: "For data {10, 12, 14, 16, 18}, what is the median?",
-                options: ["12", "13", "14", "15", "16"],
+                question: "Based on the scatter plot with trend line above, what is the best estimate for y when x = 6?",
+                hasGraph: true,
+                graphImage: "images/ex2_q32_scatter.png",
+                options: ["10", "11", "13", "15", "17"],
                 answer: 2,
-                explanation: ["Data is already sorted.", "n = 5 (odd), median is middle value.", "Position: (5+1)/2 = 3rd value.", "3rd value = 14.", "The answer is C: 14."]
+                explanation: ["Find x = 6 on the horizontal axis (green dashed line).", "Follow vertically to the trend line.", "Read the corresponding y-value from the trend line.", "The trend line follows y ≈ 2x + 1, so y = 2(6) + 1 = 13.", "The answer is C: 13."]
             },
             // ===== Q33-37: NUMERATIONS & OPERATIONS (12.5%) =====
             {
