@@ -876,12 +876,14 @@
             let html = '';
             questions.forEach((q, index) => {
                 const explanationSteps = q.explanation.map((step, i) => `<div class="explanation-step"><span class="step-num">${i + 1}</span><span>${step}</span></div>`).join('');
+                const graphHtml = q.hasGraph ? `<div class="graph-container"><img src="${q.graphImage}" alt="Graph for question ${q.id}"></div>` : '';
                 html += `
                     <div class="question-container" id="question-${q.id}">
                         <div class="question-header">
                             <div class="question-number">${q.id}</div>
                             <div class="question-text">${q.question}</div>
                         </div>
+                        ${graphHtml}
                         <ul class="options-list">
                             ${q.options.map((opt, optIndex) => `
                                 <li class="option-item" data-question="${index}" data-option="${optIndex}" onclick="selectOption(${index}, ${optIndex})">
