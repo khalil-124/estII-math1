@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EST II Math Level 1 - Practice Exam 6</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Times+New+Roman&family=Outfit:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --est-gray: #6b6b6b;
+            --est-dark: #333;
+            --est-light: #f5f5f5;
+            --est-border: #ccc;
+            --correct: #22c55e;
+            --incorrect: #ef4444;
+            --selected: #3b82f6;
+        }
+
+        body {
+            font-family: 'Times New Roman', Georgia, serif;
+            background: #fff;
+            color: #000;
+            line-height: 1.6;
+        }
+
+        .est-header {
+            background: linear-gradient(135deg, #888 0%, #666 100%);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #333;
+        }
+
+        .est-logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+        }
+
+        .est-logo span {
+            color: #ddd;
+        }
+
+        .high-school {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.5rem;
+            color: #fff;
+            font-style: italic;
+            letter-spacing: 3px;
+        }
+
+        .timer-bar {
+            background: linear-gradient(135deg, #1e3a5f 0%, #0f2540 100%);
+            padding: 12px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .timer {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .timer-icon {
+            font-size: 1.2rem;
+        }
+
+        .timer.warning {
+            color: #fbbf24;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .progress-info {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+        }
+
+        .cover-page {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .cover-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .cover-subtitle {
+            font-size: 1.8rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .cover-info {
+            background: #f5f5f5;
+            border: 2px solid #ccc;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .cover-info h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .cover-info p {
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #1e3a5f 0%, #0f2540 100%);
+            color: white;
+            border: none;
+            padding: 20px 60px;
+            font-size: 1.3rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 30px;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .exam-container {
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 40px;
+        }
+
+        .exam-container.active {
+            display: flex;
+            gap: 30px;
+        }
+
+        .questions-section {
+            flex: 1;
+        }
+
+        .navigator-section {
+            width: 200px;
+            position: sticky;
+            top: 80px;
+            height: fit-content;
+        }
+
+        .question-container {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .question-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .question-number {
+            background: #333;
+            color: white;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            flex: 1;
+        }
+
+        .graph-container {
+            margin: 20px 0;
+            text-align: center;
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .graph-container img {
+            max-width: 100%;
+            height: auto;
+            max-height: 300px;
+        }
+
+        .options-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-item:hover {
+            background: #f5f5f5;
+            border-color: #999;
+        }
+
+        .option-item.selected {
+            background: #e0e7ff;
+            border-color: var(--selected);
+        }
+
+        .option-item.correct {
+            background: #dcfce7;
+            border-color: var(--correct);
+        }
+
+        .option-item.incorrect {
+            background: #fee2e2;
+            border-color: var(--incorrect);
+        }
+
+        .option-letter {
+            font-weight: bold;
+            margin-right: 15px;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid currentColor;
+            border-radius: 50%;
+            font-size: 0.85rem;
+        }
+
+        .option-text {
+            flex: 1;
+        }
+
+        .explanation-box {
+            display: none;
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .explanation-box.show {
+            display: block;
+        }
+
+        .explanation-title {
+            font-weight: bold;
+            color: #166534;
+            margin-bottom: 8px;
+        }
+
+        .explanation-step {
+            display: flex;
+            gap: 10px;
+            margin: 8px 0;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            background: #166534;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .navigator-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #333;
+        }
+
+        .navigator-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 5px;
+        }
+
+        .nav-item {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .nav-item:hover {
+            background: #f0f0f0;
+        }
+
+        .nav-item.answered {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .nav-item.current {
+            border: 2px solid #333;
+            font-weight: bold;
+        }
+
+        .nav-item.correct-review {
+            background: var(--correct);
+            color: white;
+        }
+
+        .nav-item.incorrect-review {
+            background: var(--incorrect);
+            color: white;
+        }
+
+        .submit-section {
+            text-align: center;
+            padding: 30px;
+            margin-top: 20px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            color: white;
+            border: none;
+            padding: 15px 50px;
+            font-size: 1.2rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .results-container {
+            display: none;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 40px;
+            text-align: center;
+            background: #f5f5f5;
+            border-radius: 12px;
+        }
+
+        .results-container.active {
+            display: block;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1e3a5f 0%, #0f2540 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: white;
+        }
+
+        .score-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .score-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .results-details {
+            margin: 30px 0;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .review-btn {
+            background: var(--selected);
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            font-size: 1rem;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .est-footer {
+            background: #333;
+            color: #fff;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="est-header">
+        <div class="est-logo">est<span>°</span></div>
+        <div class="high-school">HIGH SCHOOL</div>
+    </header>
+
+    <div class="cover-page" id="coverPage">
+        <h1 class="cover-title">EST II Mathematics</h1>
+        <h2 class="cover-subtitle">Level 1 - Practice Exam 6</h2>
+
+        <div class="cover-info">
+            <h3>Exam Information</h3>
+            <p><strong>Total Questions:</strong> 40 multiple-choice questions</p>
+            <p><strong>Time Allowed:</strong> 60 minutes</p>
+            <p><strong>Calculator:</strong> Scientific or graphing calculators are permitted</p>
+            <p><strong>Scoring:</strong> Each correct answer is worth 1 point</p>
+        </div>
+
+        <div class="cover-info">
+            <h3>Instructions</h3>
+            <p>• Read each question carefully before selecting your answer</p>
+            <p>• You may skip questions and return to them later</p>
+            <p>• Use the question navigator to track your progress</p>
+            <p>• Click "Submit Exam" when you are finished</p>
+        </div>
+
+        <button class="start-btn" onclick="startExam()">Start Exam</button>
+    </div>
+
+    <div class="timer-bar" id="timerBar" style="display: none;">
+        <div class="timer" id="timer">
+            <span class="timer-icon">⏱</span>
+            <span id="timeDisplay">60:00</span>
+        </div>
+        <div class="progress-info">
+            <span id="answeredCount">0</span> / 40 Answered
+        </div>
+    </div>
+
+    <div class="exam-container" id="examContainer">
+        <div class="questions-section" id="questionsSection"></div>
+        <div class="navigator-section">
+            <div class="navigator-title">Questions</div>
+            <div class="navigator-grid" id="navigatorGrid"></div>
+        </div>
+    </div>
+
+    <div class="results-container" id="resultsContainer">
+        <h2>Exam Complete!</h2>
+        <div class="score-circle">
+            <div class="score-number" id="scoreNumber">0</div>
+            <div class="score-label">out of 40</div>
+        </div>
+        <div class="results-details">
+            <div class="result-row">
+                <span>Correct Answers:</span>
+                <span id="correctCount">0</span>
+            </div>
+            <div class="result-row">
+                <span>Incorrect Answers:</span>
+                <span id="incorrectCount">0</span>
+            </div>
+            <div class="result-row">
+                <span>Unanswered:</span>
+                <span id="unansweredCount">0</span>
+            </div>
+            <div class="result-row">
+                <span>Percentage:</span>
+                <span id="percentageScore">0%</span>
+            </div>
+        </div>
+        <button class="review-btn" onclick="reviewAnswers()">Review Answers</button>
+    </div>
+
+    <footer class="est-footer">
+        <span>ESTII-HS Math L1</span>
+        <span>Practice Exam 6</span>
+        <span>2026</span>
+    </footer>
+
+    <script>
+        const questions = [
+            // Q1: Quadratic Function Graph Reading
+            {
+                id: 1,
+                question: "Based on the graph of the quadratic function f(x) shown above, what is the value of f(-1) + f(3)?",
+                hasGraph: true,
+                graphImage: "images/ex5_q1_quadratic.png",
+                options: ["4", "6", "8", "10", "12"],
+                answer: 2,
+                explanation: ["From the graph, locate x = -1 and read y-value: f(-1) = 4.", "From the graph, locate x = 3 and read y-value: f(3) = 4.", "Sum: f(-1) + f(3) = 4 + 4 = 8.", "The parabola is symmetric about x = 1.", "The answer is C: 8."]
+            },
+            // Q2: Isosceles Triangle Coordinates
+            {
+                id: 2,
+                question: "Triangle XYZ has vertices X(0, 0), Y(a, b), and Z(c, 0). If the triangle is isosceles with XY = YZ, which must be true?",
+                hasGraph: true,
+                graphImage: "images/ex5_q2_isosceles_coord.png",
+                options: ["a = c", "a = c/2", "b = c", "b = c/2", "a = b"],
+                answer: 1,
+                explanation: ["Base XZ is on x-axis from 0 to c, length = c.", "For XY = YZ, Y must be on perpendicular bisector of XZ.", "Perpendicular bisector passes through x = c/2.", "Since Y(a,b) is on this line, a = c/2.", "The answer is B: a = c/2."]
+            },
+            // Q3: Circle Equation
+            {
+                id: 3,
+                question: "Which is the equation of a circle with center (2, -3) and radius 5?",
+                options: ["\\((x-2)^2+(y+3)^2=5\\)", "\\((x+2)^2+(y-3)^2=25\\)", "\\((x-2)^2+(y+3)^2=25\\)", "\\((x-2)^2+(y-3)^2=5\\)", "\\((x+2)^2+(y+3)^2=10\\)"],
+                answer: 2,
+                explanation: ["Standard form: (x-h)² + (y-k)² = r².", "Center (2,-3): (x-2)² + (y+3)².", "Radius 5: r² = 25.", "Equation: (x-2)² + (y+3)² = 25.", "The answer is C."]
+            },
+            // Q4: Exponent Equation
+            {
+                id: 4,
+                question: "If \\(3^{2x} = 81\\), what is the value of \\(3^{x-1}\\)?",
+                options: ["1", "3", "9", "27", "81"],
+                answer: 1,
+                explanation: ["81 = 3⁴, so 3^(2x) = 3⁴.", "Therefore 2x = 4, x = 2.", "3^(x-1) = 3^(2-1) = 3¹ = 3.", "Verify: 3^(2×2) = 3⁴ = 81 ✓", "The answer is B: 3."]
+            },
+            // Q5: Infinitely Many Solutions
+            {
+                id: 5,
+                question: "For what value of k does \\(2x + 3 = k(x + 1) + x + 2\\) have infinitely many solutions?",
+                options: ["0", "1", "2", "3", "No such value"],
+                answer: 1,
+                explanation: ["Expand: kx + k + x + 2 = (k+1)x + (k+2).", "For infinite solutions: 2x + 3 ≡ (k+1)x + (k+2).", "Coefficients of x: 2 = k+1, so k = 1.", "Constants: 3 = k+2 = 3 ✓", "The answer is B: k = 1."]
+            },
+            // Q6: Quadratic with Roots Relationship
+            {
+                id: 6,
+                question: "The quadratic \\(x^2 - 6x + k = 0\\) has two real roots where one is twice the other. What is k?",
+                options: ["4", "6", "8", "9", "12"],
+                answer: 2,
+                explanation: ["Let roots be r and 2r.", "Sum: r + 2r = 3r = 6, so r = 2.", "Roots are 2 and 4.", "Product: k = 2 × 4 = 8.", "The answer is C: 8."]
+            },
+            // Q7: Simplify Rational Expression
+            {
+                id: 7,
+                question: "Simplify \\(\\frac{x^2 - 9}{x + 3}\\) for \\(x \\neq -3\\):",
+                options: ["x + 3", "x - 3", "x² - 3", "x - 9", "x + 9"],
+                answer: 1,
+                explanation: ["Factor numerator: x² - 9 = (x+3)(x-3).", "Expression = (x+3)(x-3)/(x+3).", "Cancel (x+3): = x - 3.", "Valid since x ≠ -3.", "The answer is B: x - 3."]
+            },
+            // Q8: Absolute Value Equation
+            {
+                id: 8,
+                question: "If \\(|2x - 5| = 7\\), what is the sum of all possible values of x?",
+                options: ["-1", "0", "5", "6", "12"],
+                answer: 2,
+                explanation: ["Case 1: 2x - 5 = 7, x = 6.", "Case 2: 2x - 5 = -7, x = -1.", "Sum: 6 + (-1) = 5.", "Both values satisfy the equation.", "The answer is C: 5."]
+            },
+            // Q9: Composition of Functions
+            {
+                id: 9,
+                question: "If \\(f(x) = 2x + 1\\) and \\(g(x) = x^2\\), what is \\(f(g(3))\\)?",
+                options: ["13", "19", "37", "49", "64"],
+                answer: 1,
+                explanation: ["First find g(3) = 3² = 9.", "Then f(g(3)) = f(9) = 2(9) + 1.", "= 18 + 1 = 19.", "This is function composition.", "The answer is B: 19."]
+            },
+            // Q10: Parabola Transformation
+            {
+                id: 10,
+                question: "The graph of \\(y = (x-2)^2 + 3\\) is shifted 4 units left and 2 units down. New equation?",
+                options: ["y = (x+2)² + 1", "y = (x-6)² + 1", "y = (x+2)² + 5", "y = (x-2)² - 1", "y = (x+6)² + 1"],
+                answer: 0,
+                explanation: ["Original vertex: (2, 3).", "Left 4: new x = 2 - 4 = -2.", "Down 2: new y = 3 - 2 = 1.", "New vertex: (-2, 1).", "Equation: y = (x+2)² + 1. Answer A."]
+            },
+            // Q11: Inverse Function
+            {
+                id: 11,
+                question: "If \\(f(x) = 3x - 5\\), what is \\(f^{-1}(7)\\)?",
+                options: ["2", "4", "12", "16", "26"],
+                answer: 1,
+                explanation: ["Find x where f(x) = 7.", "3x - 5 = 7.", "3x = 12, x = 4.", "Verify: f(4) = 12 - 5 = 7 ✓", "The answer is B: 4."]
+            },
+            // Q12: Algebraic Identity
+            {
+                id: 12,
+                question: "Given \\(x^2 + y^2 = 25\\) and \\(xy = 12\\), what is \\((x + y)^2\\)?",
+                options: ["37", "49", "61", "144", "169"],
+                answer: 1,
+                explanation: ["(x+y)² = x² + 2xy + y².", "= (x² + y²) + 2xy.", "= 25 + 2(12) = 25 + 24.", "= 49.", "The answer is B: 49."]
+            },
+            // Q13: Domain of Rational Function
+            {
+                id: 13,
+                question: "For \\(f(x) = \\frac{2x+1}{x-3}\\), which x is NOT in the domain?",
+                options: ["-3", "-1", "0", "3", "All real numbers"],
+                answer: 3,
+                explanation: ["Domain excludes where denominator = 0.", "x - 3 = 0 when x = 3.", "At x = 3, f is undefined.", "All other values are allowed.", "The answer is D: 3."]
+            },
+            // Q14: Function Graph Analysis
+            {
+                id: 14,
+                question: "The graph shows f(x) with roots at x = -2, 0, 2. Which could be f(x)?",
+                hasGraph: true,
+                graphImage: "images/ex5_q21_function_graph.png",
+                options: ["f(x) = x³ - 4x", "f(x) = x² - 4", "f(x) = -x³ + 4x", "f(x) = x³ + 4x", "f(x) = -x² + 4"],
+                answer: 0,
+                explanation: ["Graph has 3 x-intercepts: -2, 0, 2.", "f(x) = x³ - 4x = x(x²-4) = x(x-2)(x+2).", "Roots: 0, 2, -2 ✓", "Cubic with positive leading coefficient.", "The answer is A."]
+            },
+            // Q15: Right Triangle
+            {
+                id: 15,
+                question: "In right triangle ABC with right angle at A, AB = 8 and AC = 6. What is BC?",
+                hasGraph: true,
+                graphImage: "images/ex5_q15_triangle.png",
+                options: ["7", "10", "12", "14", "48"],
+                answer: 1,
+                explanation: ["BC is the hypotenuse (opposite the right angle).", "BC² = AB² + AC² = 64 + 36 = 100.", "BC = √100 = 10.", "This is a 3-4-5 triangle ×2 (6-8-10).", "The answer is B: 10."]
+            },
+            // Q16: Angle Relationships - HARDER
+            {
+                id: 16,
+                question: "In the figure, lines l and m are parallel. If ∠1 = (3x + 10)° and ∠2 = (5x - 30)°, and ∠1 and ∠2 are co-interior angles, what is the measure of ∠1?",
+                options: ["45°", "55°", "65°", "85°", "95°"],
+                answer: 3,
+                explanation: ["Co-interior angles sum to 180°.", "(3x + 10) + (5x - 30) = 180.", "8x - 20 = 180, so 8x = 200, x = 25.", "∠1 = 3(25) + 10 = 85°.", "The answer is D: 85°."]
+            },
+            // Q17: Parallelogram Diagonals
+            {
+                id: 17,
+                question: "In parallelogram PQRS, diagonals intersect at M. If PM = 5 and QM = 7, what is PR?",
+                options: ["5", "7", "10", "12", "14"],
+                answer: 2,
+                explanation: ["Diagonals of parallelogram bisect each other.", "M is midpoint of PR.", "PM = MR = 5.", "PR = PM + MR = 5 + 5 = 10.", "The answer is C: 10."]
+            },
+            // Q18: Regular Hexagon
+            {
+                id: 18,
+                question: "What is the measure of each interior angle of a regular hexagon?",
+                hasGraph: true,
+                graphImage: "images/ex5_q18_hexagon.png",
+                options: ["60°", "90°", "108°", "120°", "135°"],
+                answer: 3,
+                explanation: ["Formula: (n-2)×180°/n.", "For hexagon n = 6.", "(6-2)×180°/6 = 4×180°/6.", "= 720°/6 = 120°.", "The answer is D: 120°."]
+            },
+            // Q19: Circle Circumference to Area
+            {
+                id: 19,
+                question: "If a circle has circumference 12π, what is its area?",
+                options: ["6π", "12π", "24π", "36π", "144π"],
+                answer: 3,
+                explanation: ["C = 2πr = 12π, so r = 6.", "Area = πr² = π(6)² = 36π.", "Relationship: A = C²/(4π).", "A = (12π)²/(4π) = 144π²/4π = 36π.", "The answer is D: 36π."]
+            },
+            // Q20: Tangent Length
+            {
+                id: 20,
+                question: "Circle has center O, radius 5. Point P outside has OP = 13. What is the tangent length from P?",
+                options: ["8", "10", "12", "18", "144"],
+                answer: 2,
+                explanation: ["Tangent ⊥ radius at point of tangency.", "Right triangle: OT = 5, OP = 13, PT = ?", "OP² = OT² + PT².", "169 = 25 + PT², PT² = 144.", "PT = 12. The answer is C."]
+            },
+            // Q21: Perpendicular Slope
+            {
+                id: 21,
+                question: "What is the slope of a line perpendicular to \\(y = \\frac{2}{3}x + 5\\)?",
+                options: ["\\(-\\frac{3}{2}\\)", "\\(-\\frac{2}{3}\\)", "\\(\\frac{2}{3}\\)", "\\(\\frac{3}{2}\\)", "5"],
+                answer: 0,
+                explanation: ["Original slope m = 2/3.", "Perpendicular slope = -1/m.", "= -1/(2/3) = -3/2.", "Product: (2/3)(-3/2) = -1 ✓", "The answer is A: -3/2."]
+            },
+            // Q22: Parallel Line
+            {
+                id: 22,
+                question: "Line l passes through (1, 4) and (3, 10). Which is parallel to l?",
+                options: ["y = 3x + 1", "y = -3x + 5", "y = x/3 + 2", "y = -x/3", "y = 3x - 7"],
+                answer: 0,
+                explanation: ["Slope of l: (10-4)/(3-1) = 6/2 = 3.", "Parallel lines have same slope.", "Options A and E have slope 3.", "Either y = 3x + 1 or y = 3x - 7.", "The answer is A."]
+            },
+            // Q23: Distance Formula
+            {
+                id: 23,
+                question: "What is the distance between A(-2, 3) and B(4, -5)?",
+                options: ["6", "8", "10", "14", "100"],
+                answer: 2,
+                explanation: ["d = √[(x₂-x₁)² + (y₂-y₁)²].", "= √[(4-(-2))² + (-5-3)²].", "= √[36 + 64] = √100.", "= 10.", "The answer is C: 10."]
+            },
+            // Q24: Midpoint
+            {
+                id: 24,
+                question: "What is the midpoint of segment from (2, 8) to (6, -2)?",
+                options: ["(4, 3)", "(8, 6)", "(4, 5)", "(2, 5)", "(8, 3)"],
+                answer: 0,
+                explanation: ["Midpoint = ((x₁+x₂)/2, (y₁+y₂)/2).", "x: (2+6)/2 = 4.", "y: (8+(-2))/2 = 3.", "Midpoint: (4, 3).", "The answer is A."]
+            },
+            // Q25: Parabola x-intercepts
+            {
+                id: 25,
+                question: "The parabola \\(y = x^2 - 4x + 3\\) intersects x-axis at A and B. What is distance AB?",
+                options: ["1", "2", "3", "4", "5"],
+                answer: 1,
+                explanation: ["Set y = 0: x² - 4x + 3 = 0.", "Factor: (x-1)(x-3) = 0.", "x = 1 and x = 3.", "Distance = |3 - 1| = 2.", "The answer is B: 2."]
+            },
+            // Q26: Roman Numeral Format - Statistics
+            {
+                id: 26,
+                question: "For data set S = {2, 4, 4, 6, 8, 10}, which of the following statements is/are true?<br>I. The mean equals the median<br>II. The mode is less than the mean<br>III. The range is twice the mode",
+                options: ["I only", "II only", "I and II only", "II and III only", "I, II, and III"],
+                answer: 3,
+                explanation: ["Mean = (2+4+4+6+8+10)/6 = 34/6 ≈ 5.67. Median = (4+6)/2 = 5. Mode = 4.", "I: Mean ≠ Median (5.67 ≠ 5) → FALSE", "II: Mode (4) < Mean (5.67) → TRUE", "III: Range = 10-2 = 8 = 2×4 = 2×Mode → TRUE", "Answer is D: II and III only."]
+            },
+            // Q27: Roman Numeral Format - Algebra
+            {
+                id: 27,
+                question: "If f(x) = x² - 4x + 3, which of the following is/are true?<br>I. f(1) = 0<br>II. f(x) has a minimum value of -1<br>III. The axis of symmetry is x = 2",
+                options: ["I only", "III only", "I and II only", "I and III only", "I, II, and III"],
+                answer: 4,
+                explanation: ["I: f(1) = 1 - 4 + 3 = 0 ✓ TRUE", "Vertex: x = -b/2a = 4/2 = 2. f(2) = 4 - 8 + 3 = -1.", "II: Minimum = -1 ✓ TRUE", "III: Axis of symmetry x = 2 ✓ TRUE", "All three are true. Answer E."]
+            },
+            // Q28: Permutations
+            {
+                id: 28,
+                question: "How many ways can 5 students be arranged in a row?",
+                options: ["5", "25", "60", "120", "625"],
+                answer: 3,
+                explanation: ["This is 5! (5 factorial).", "5! = 5 × 4 × 3 × 2 × 1.", "= 120.", "Each position has fewer choices.", "The answer is D: 120."]
+            },
+            // Q29: Combinations
+            {
+                id: 29,
+                question: "A committee of 3 is selected from 7 people. How many committees possible?",
+                options: ["21", "35", "42", "210", "343"],
+                answer: 1,
+                explanation: ["C(7,3) = 7!/(3!×4!).", "= (7×6×5)/(3×2×1).", "= 210/6 = 35.", "Order doesn't matter in committee.", "The answer is B: 35."]
+            },
+            // Q30: Probability - Independent Events
+            {
+                id: 30,
+                question: "A fair die is rolled twice. What is P(both even)?",
+                options: ["1/9", "1/6", "1/4", "1/3", "1/2"],
+                answer: 2,
+                explanation: ["Even: 2, 4, 6 → P(even) = 3/6 = 1/2.", "Events are independent.", "P(both even) = (1/2)(1/2).", "= 1/4.", "The answer is C: 1/4."]
+            },
+            // Q31: Word Problem - Real World
+            {
+                id: 31,
+                question: "A store offers a 20% discount on a jacket, then applies an additional 10% discount on the reduced price. If the original price was $80, what is the final price?",
+                options: ["$54.40", "$56.00", "$57.60", "$60.00", "$64.00"],
+                answer: 2,
+                explanation: ["First discount: 80 × 0.80 = $64.", "Second discount: 64 × 0.90 = $57.60.", "Note: 20% + 10% ≠ 30% discount!", "Successive discounts multiply.", "The answer is C: $57.60."]
+            },
+            // Q32: Histogram Mean
+            {
+                id: 32,
+                question: "The histogram shows study hours for 35 students. What is the approximate mean?",
+                hasGraph: true,
+                graphImage: "images/ex5_q32_histogram.png",
+                options: ["18", "20", "22", "25", "28"],
+                answer: 3,
+                explanation: ["Use midpoints: 5, 15, 25, 35, 45.", "Frequencies: 4, 8, 12, 6, 5.", "Sum = 4(5)+8(15)+12(25)+6(35)+5(45).", "= 20+120+300+210+225 = 875.", "Mean = 875/35 = 25. Answer D."]
+            },
+            // Q33: Geometric Sequence
+            {
+                id: 33,
+                question: "In geometric sequence with a₁ = 3 and r = 2, what is a₆?",
+                options: ["48", "64", "96", "128", "192"],
+                answer: 2,
+                explanation: ["aₙ = a₁ × r^(n-1).", "a₆ = 3 × 2^5 = 3 × 32.", "= 96.", "Sequence: 3, 6, 12, 24, 48, 96.", "The answer is C: 96."]
+            },
+            // Q34: Arithmetic Sequence
+            {
+                id: 34,
+                question: "In arithmetic sequence, a₃ = 11 and a₇ = 27. What is the common difference?",
+                options: ["2", "3", "4", "5", "8"],
+                answer: 2,
+                explanation: ["From a₃ to a₇ is 4 steps.", "a₇ - a₃ = 4d.", "27 - 11 = 16 = 4d.", "d = 4.", "The answer is C: 4."]
+            },
+            // Q35: Word Problem - Mixture/Rate
+            {
+                id: 35,
+                question: "A car travels from city A to city B at 60 km/h and returns at 40 km/h. What is the average speed for the entire trip?",
+                options: ["45 km/h", "48 km/h", "50 km/h", "52 km/h", "55 km/h"],
+                answer: 1,
+                explanation: ["Let distance = d. Time₁ = d/60, Time₂ = d/40.", "Total time = d/60 + d/40 = (2d + 3d)/120 = 5d/120.", "Total distance = 2d.", "Average speed = 2d ÷ (5d/120) = 2d × 120/5d = 48.", "The answer is B: 48 km/h. (NOT 50!)"]
+            },
+            // Q36: Work Rate
+            {
+                id: 36,
+                question: "8 workers complete a job in 6 days. How many days for 12 workers?",
+                options: ["3", "4", "8", "9", "12"],
+                answer: 1,
+                explanation: ["Total work = 8 × 6 = 48 worker-days.", "With 12 workers: days = 48/12.", "= 4 days.", "Inverse proportion.", "The answer is B: 4."]
+            },
+            // Q37: Exponent Laws
+            {
+                id: 37,
+                question: "Simplify: \\(\\frac{2^5 \\times 2^3}{2^4}\\)",
+                options: ["2²", "2⁴", "2⁸", "2¹²", "8"],
+                answer: 1,
+                explanation: ["Numerator: 2⁵ × 2³ = 2⁸.", "Divide: 2⁸ ÷ 2⁴ = 2^(8-4).", "= 2⁴.", "Using exponent rules.", "The answer is B: 2⁴."]
+            },
+            // Q38: Tangent Ratio
+            {
+                id: 38,
+                question: "In the right triangle, what is tan θ?",
+                hasGraph: true,
+                graphImage: "images/ex5_q38_trig_triangle.png",
+                options: ["3/5", "3/4", "4/5", "4/3", "5/3"],
+                answer: 0,
+                explanation: ["tan θ = opposite/adjacent.", "Opposite = 3, Adjacent = 5.", "tan θ = 3/5.", "SOH-CAH-TOA.", "The answer is A: 3/5."]
+            },
+            // Q39: Pythagorean Identity
+            {
+                id: 39,
+                question: "If sin θ = 5/13 (θ in Q1), what is cos θ?",
+                options: ["5/13", "8/13", "12/13", "5/12", "13/12"],
+                answer: 2,
+                explanation: ["sin²θ + cos²θ = 1.", "(5/13)² + cos²θ = 1.", "25/169 + cos²θ = 1.", "cos²θ = 144/169, cos θ = 12/13.", "Positive in Q1. Answer C."]
+            },
+            // Q40: Trigonometry - Angle in Triangle (Different from Exam 1)
+            {
+                id: 40,
+                question: "In triangle ABC, if sin A = 3/5 and cos B = 5/13, and both A and B are acute, what is sin(A + B)?",
+                options: ["33/65", "56/65", "63/65", "16/65", "48/65"],
+                answer: 2,
+                explanation: ["sin A = 3/5 → cos A = 4/5 (using sin²+cos²=1).", "cos B = 5/13 → sin B = 12/13 (using sin²+cos²=1).", "sin(A+B) = sinA·cosB + cosA·sinB.", "= (3/5)(5/13) + (4/5)(12/13) = 15/65 + 48/65.", "= 63/65. The answer is C."]
+            }
+        ];
+
+        // State
+        let timeRemaining = 60 * 60;
+        let timerInterval = null;
+        let userAnswers = new Array(40).fill(null);
+        let examSubmitted = false;
+        let reviewMode = false;
+
+        function startExam() {
+            document.getElementById('coverPage').style.display = 'none';
+            document.getElementById('timerBar').style.display = 'flex';
+            document.getElementById('examContainer').classList.add('active');
+            renderQuestions();
+            renderNavigator();
+            startTimer();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                updateTimerDisplay();
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    submitExam();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            document.getElementById('timeDisplay').textContent =
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            if (timeRemaining <= 300) {
+                document.getElementById('timer').classList.add('warning');
+            }
+        }
+
+        function renderGraph(imagePath) {
+            return `<div class="graph-container">
+                <img src="${imagePath}" alt="Graph" onerror="this.style.display='none'">
+            </div>`;
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsSection');
+            let html = '';
+
+            questions.forEach((q, index) => {
+                const graphHtml = q.hasGraph ? renderGraph(q.graphImage) : '';
+                const explanationSteps = q.explanation.map((step, i) =>
+                    `<div class="explanation-step"><span class="step-num">${i + 1}</span><span>${step}</span></div>`
+                ).join('');
+
+                html += `
+                    <div class="question-container" id="question-${q.id}">
+                        <div class="question-header">
+                            <div class="question-number">${q.id}</div>
+                            <div class="question-text">${q.question}</div>
+                        </div>
+                        ${graphHtml}
+                        <ul class="options-list">
+                            ${q.options.map((opt, optIndex) => `
+                                <li class="option-item" data-question="${index}" data-option="${optIndex}" onclick="selectOption(${index}, ${optIndex})">
+                                    <span class="option-letter">${String.fromCharCode(65 + optIndex)}</span>
+                                    <span class="option-text">${opt}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                        <div class="explanation-box" id="explanation-${q.id}">
+                            <div class="explanation-title">✓ Correct Answer: ${String.fromCharCode(65 + q.answer)}</div>
+                            ${explanationSteps}
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `<div class="submit-section">
+                <button class="submit-btn" onclick="submitExam()">Submit Exam</button>
+            </div>`;
+
+            container.innerHTML = html;
+            if (window.MathJax) MathJax.typesetPromise();
+        }
+
+        function renderNavigator() {
+            const container = document.getElementById('navigatorGrid');
+            let html = '';
+            for (let i = 1; i <= 40; i++) {
+                html += `<div class="nav-item" id="nav-${i}" onclick="scrollToQuestion(${i})">${i}</div>`;
+            }
+            container.innerHTML = html;
+        }
+
+        function selectOption(questionIndex, optionIndex) {
+            const question = questions[questionIndex];
+            const options = document.querySelectorAll(`[data-question="${questionIndex}"]`);
+
+            // Check if already answered
+            if (options[0].classList.contains('correct') || options[0].classList.contains('incorrect')) {
+                return; // Already answered, don't allow changing
+            }
+
+            userAnswers[questionIndex] = optionIndex;
+
+            // Mark selected and show correct/incorrect
+            options.forEach((opt, idx) => {
+                opt.classList.remove('selected');
+                opt.style.pointerEvents = 'none'; // Disable further clicks
+
+                if (idx === question.answer) {
+                    opt.classList.add('correct');
+                } else if (idx === optionIndex && idx !== question.answer) {
+                    opt.classList.add('incorrect');
+                }
+            });
+
+            // Update navigator
+            const nav = document.getElementById(`nav-${questionIndex + 1}`);
+            nav.classList.add('answered');
+            if (optionIndex === question.answer) {
+                nav.classList.add('correct-review');
+            } else {
+                nav.classList.add('incorrect-review');
+            }
+
+            // Show explanation immediately
+            const explanation = document.getElementById(`explanation-${question.id}`);
+            explanation.classList.add('show');
+
+            // Re-render MathJax in explanation
+            if (window.MathJax) {
+                MathJax.typesetPromise([explanation]);
+            }
+
+            updateAnsweredCount();
+        }
+
+        function updateAnsweredCount() {
+            document.getElementById('answeredCount').textContent =
+                userAnswers.filter(a => a !== null).length;
+        }
+
+        function scrollToQuestion(id) {
+            document.getElementById(`question-${id}`).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function submitExam() {
+            if (examSubmitted) return;
+            examSubmitted = true;
+            clearInterval(timerInterval);
+
+            let correct = 0, incorrect = 0, unanswered = 0;
+            questions.forEach((q, i) => {
+                if (userAnswers[i] === null) unanswered++;
+                else if (userAnswers[i] === q.answer) correct++;
+                else incorrect++;
+            });
+
+            document.getElementById('examContainer').classList.remove('active');
+            document.getElementById('timerBar').style.display = 'none';
+            document.getElementById('resultsContainer').classList.add('active');
+            document.getElementById('scoreNumber').textContent = correct;
+            document.getElementById('correctCount').textContent = correct;
+            document.getElementById('incorrectCount').textContent = incorrect;
+            document.getElementById('unansweredCount').textContent = unanswered;
+            document.getElementById('percentageScore').textContent = Math.round((correct / 40) * 100) + '%';
+        }
+
+        function reviewAnswers() {
+            reviewMode = true;
+            document.getElementById('resultsContainer').classList.remove('active');
+            document.getElementById('examContainer').classList.add('active');
+            document.getElementById('timerBar').style.display = 'flex';
+            document.getElementById('timeDisplay').textContent = 'Review Mode';
+            document.getElementById('timer').classList.remove('warning');
+
+            questions.forEach((q, index) => {
+                const options = document.querySelectorAll(`[data-question="${index}"]`);
+                options.forEach((opt, optIndex) => {
+                    opt.classList.remove('selected');
+                    if (optIndex === q.answer) opt.classList.add('correct');
+                    else if (userAnswers[index] === optIndex) opt.classList.add('incorrect');
+                });
+                document.getElementById(`explanation-${q.id}`).classList.add('show');
+                const nav = document.getElementById(`nav-${q.id}`);
+                nav.classList.remove('answered');
+                nav.classList.add(userAnswers[index] === q.answer ? 'correct-review' :
+                    userAnswers[index] !== null ? 'incorrect-review' : '');
+            });
+            if (window.MathJax) MathJax.typesetPromise();
+        }
+    </script>
+</body>
+
+</html>
