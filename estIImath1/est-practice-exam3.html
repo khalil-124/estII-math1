@@ -228,6 +228,21 @@
             flex: 1;
         }
 
+        .graph-container {
+            margin: 20px 0;
+            text-align: center;
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .graph-container img {
+            max-width: 100%;
+            height: auto;
+            max-height: 300px;
+        }
+
         .options-list {
             list-style: none;
             margin-top: 15px;
@@ -532,10 +547,12 @@
             // ===== Q1-11: ALGEBRA & FUNCTIONS (27.5%) =====
             {
                 id: 1,
-                question: "If \\(h(x) = 3x + 2\\), what is \\(h(h(1))\\)?",
+                question: "The graph above shows the function \\(h(x) = 3x + 2\\). Based on the graph, what is \\(h(h(1))\\)?",
+                hasGraph: true,
+                graphImage: "images/ex3_q1_composite.png",
                 options: ["11", "14", "17", "20", "23"],
                 answer: 2,
-                explanation: ["First find h(1) = 3(1) + 2 = 5.", "Then h(h(1)) = h(5) = 3(5) + 2.", "= 15 + 2 = 17.", "This is nested function evaluation.", "The answer is C: 17."]
+                explanation: ["From the graph, read h(1) by finding y when x = 1.", "h(1) = 3(1) + 2 = 5 (point (1,5) marked on graph).", "Then find h(5) by reading y when x = 5.", "h(5) = 3(5) + 2 = 17 (point (5,17) marked on graph).", "The answer is C: 17."]
             },
             {
                 id: 2,
@@ -581,10 +598,12 @@
             },
             {
                 id: 8,
-                question: "Solve: \\(3(2x - 1) = 5x + 4\\)",
+                question: "The graph above shows two linear functions. Based on the graph, at what x-value do the lines \\(y = 6x - 3\\) and \\(y = 5x + 4\\) intersect?",
+                hasGraph: true,
+                graphImage: "images/ex3_q8_intersection.png",
                 options: ["x = 5", "x = 7", "x = -7", "x = -5", "x = 1"],
                 answer: 1,
-                explanation: ["Expand: 6x - 3 = 5x + 4.", "6x - 5x = 4 + 3.", "x = 7.", "Combine like terms.", "The answer is B: x = 7."]
+                explanation: ["From the graph, find where the two lines cross.", "The intersection point is at (7, 39).", "Verify: 6(7) - 3 = 39 and 5(7) + 4 = 39.", "Both equations give y = 39 when x = 7.", "The answer is B: x = 7."]
             },
             {
                 id: 9,
@@ -645,17 +664,19 @@
             },
             {
                 id: 17,
-                question: "A rhombus has diagonals 12 and 16. What is its area?",
+                question: "The figure above shows a rhombus with its two diagonals marked. Based on the measurements shown, what is the area of the rhombus?",
+                hasGraph: true,
+                graphImage: "images/ex3_q17_rhombus.png",
                 options: ["48", "64", "96", "128", "192"],
                 answer: 2,
-                explanation: ["Area of rhombus = (1/2) x d1 x d2.", "= (1/2)(12)(16).", "= 96.", "Diagonals formula for rhombus.", "The answer is C: 96."]
+                explanation: ["From the figure, the diagonals are d1 = 12 and d2 = 16.", "Area of rhombus = (1/2) × d1 × d2.", "= (1/2) × 12 × 16 = (1/2) × 192.", "= 96 square units.", "The answer is C: 96."]
             },
             {
                 id: 18,
                 question: "In the figure, quadrilateral ABCD is a parallelogram. Point E is the midpoint of side BC. If the area of triangle ABE is 15, what is the area of parallelogram ABCD?",
                 options: ["30", "45", "60", "75", "90"],
                 answer: 2,
-                explanation: ["E is midpoint of BC, so BE = BC/2.", "Area of ABE = (1/2) × AB × h/2 = (1/4) × area of ABCD... Wait.", "Actually: Triangle ABE has base AB and height h (same as parallelogram).", "Area ABE = (1/2) × AB × h × (1/2) from E being midpoint = (1/4) area ABCD.", "So area ABCD = 15 × 4 = 60. The answer is C: 60."]
+                explanation: ["Let the parallelogram have base AB = b and height h.", "Area of parallelogram ABCD = b × h.", "Triangle ABE has base AB = b and height = h/2 (since E is midpoint of BC).", "Area of triangle ABE = (1/2) × b × (h/2) = (1/4) × b × h = 15.", "Therefore, b × h = 60, so area of ABCD = 60. The answer is C: 60."]
             },
             {
                 id: 19,
@@ -674,10 +695,12 @@
             // ===== Q21-25: COORDINATE GEOMETRY (12.5%) =====
             {
                 id: 21,
-                question: "What is the slope of a line parallel to \\(y = -3x + 7\\)?",
+                question: "The graph above shows three parallel lines. Based on the graph, what is the slope of a line parallel to \\(y = -3x + 7\\)?",
+                hasGraph: true,
+                graphImage: "images/ex3_q21_parallel.png",
                 options: ["-7", "-3", "1/3", "3", "7"],
                 answer: 1,
-                explanation: ["Parallel lines have equal slopes.", "Given line has slope -3.", "Parallel line also has slope -3.", "Same slope = parallel.", "The answer is B: -3."]
+                explanation: ["From the graph, all three lines have the same steepness.", "They are parallel because they have equal slopes.", "The original line y = -3x + 7 has slope m = -3.", "Any parallel line must also have slope -3.", "The answer is B: -3."]
             },
             {
                 id: 22,
@@ -741,7 +764,7 @@
                 question: "A data set has 5 values. Which of the following changes would ALWAYS increase the mean?<br><br>I. Adding a value greater than the current mean<br>II. Removing the smallest value<br>III. Multiplying each value by 2",
                 options: ["I only", "II only", "III only", "I and II only", "I, II, and III"],
                 answer: 0,
-                explanation: ["I: Adding value > mean increases total and count, mean increases. TRUE.", "II: If smallest < mean, removing it increases mean. But if all equal, mean stays same. NOT ALWAYS.", "III: Multiplying by 2 doubles the mean, but increases not just increases. TRUE but changes scale.", "Wait - III doubles it. That's an increase. But I is safest answer.", "The answer is A: I only (most reliable)."]
+                explanation: ["I: Adding a value greater than the mean ALWAYS increases the mean. TRUE.", "II: Removing the smallest value increases mean ONLY if smallest < mean. If all values equal, mean unchanged. NOT ALWAYS.", "III: Multiplying by 2 doubles the mean (changes scale), but the question asks about 'increase' not 'double'. This is technically an increase.", "However, II fails when all values are equal, so I is the ONLY guaranteed option.", "The answer is A: I only."]
             },
             {
                 id: 31,
@@ -752,10 +775,12 @@
             },
             {
                 id: 32,
-                question: "A fair coin is tossed twice. P(at least one head)?",
+                question: "The tree diagram above shows all possible outcomes when a fair coin is tossed twice. Based on the diagram, what is P(at least one head)?",
+                hasGraph: true,
+                graphImage: "images/ex3_q32_tree.png",
                 options: ["1/4", "1/2", "3/4", "2/3", "1"],
                 answer: 2,
-                explanation: ["P(at least one H) = 1 - P(no H).", "P(no H) = P(TT) = 1/4.", "P(at least one H) = 1 - 1/4 = 3/4.", "Complement rule.", "The answer is C: 3/4."]
+                explanation: ["From the tree diagram, there are 4 outcomes: HH, HT, TH, TT.", "'At least one head' means HH, HT, or TH = 3 outcomes.", "P(at least one head) = 3/4.", "Or use complement: 1 - P(TT) = 1 - 1/4 = 3/4.", "The answer is C: 3/4."]
             },
             // ===== Q33-37: NUMERATIONS & OPERATIONS (12.5%) =====
             {
@@ -810,10 +835,12 @@
             },
             {
                 id: 40,
-                question: "In the figure, circle O has radius 10. Chord AB has length 12. Point M is the midpoint of chord AB. Which of the following must be true?<br><br>I. OM = 8<br>II. OM is perpendicular to AB<br>III. Triangle OAM is a right triangle",
+                question: "In the figure above, circle O has radius 10. Chord AB has length 12. Point M is the midpoint of chord AB. Which of the following must be true?<br><br>I. OM = 8<br>II. OM is perpendicular to AB<br>III. Triangle OAM is a right triangle",
+                hasGraph: true,
+                graphImage: "images/ex3_q40_chord.png",
                 options: ["I only", "I and II only", "II and III only", "I, II, and III", "II only"],
                 answer: 3,
-                explanation: ["II: Radius to midpoint of chord is perpendicular. TRUE.", "AM = 6 (half of 12). OA = 10 (radius).", "OM = sqrt(100-36) = sqrt(64) = 8. I is TRUE.", "Triangle OAM has right angle at M. III is TRUE.", "The answer is D: I, II, and III."]
+                explanation: ["From the figure: M is the midpoint of chord AB.", "II: A radius drawn to the midpoint of a chord is perpendicular to the chord. TRUE.", "AM = 6 (half of AB = 12), OA = 10 (radius). By Pythagorean theorem:", "OM = sqrt(OA² - AM²) = sqrt(100 - 36) = sqrt(64) = 8. I is TRUE.", "Since OM ⊥ AB, triangle OAM has a right angle at M. III is TRUE. Answer: D."]
             }
         ];
 
@@ -851,12 +878,14 @@
             let html = '';
             questions.forEach((q, index) => {
                 const explanationSteps = q.explanation.map((step, i) => `<div class="explanation-step"><span class="step-num">${i + 1}</span><span>${step}</span></div>`).join('');
+                const graphHtml = q.hasGraph ? `<div class="graph-container"><img src="${q.graphImage}" alt="Graph for question ${q.id}"></div>` : '';
                 html += `
                     <div class="question-container" id="question-${q.id}">
                         <div class="question-header">
                             <div class="question-number">${q.id}</div>
                             <div class="question-text">${q.question}</div>
                         </div>
+                        ${graphHtml}
                         <ul class="options-list">
                             ${q.options.map((opt, optIndex) => `
                                 <li class="option-item" data-question="${index}" data-option="${optIndex}" onclick="selectOption(${index}, ${optIndex})">
