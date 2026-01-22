@@ -563,340 +563,302 @@
     </footer>
 
     <script>
-        const questions = [
-            // Q1: Quadratic Function Graph Reading
+                const questions = [
+            // ===== Q1-11: ALGEBRA & FUNCTIONS (27.5%) =====
             {
                 id: 1,
-                question: "Based on the graph of the quadratic function f(x) shown above, what is the value of f(-1) + f(3)?",
+                question: "Based on the graph above, at how many points does f(x) cross the x-axis?",
                 hasGraph: true,
-                graphImage: "images/ex5_q1_quadratic.png",
-                options: ["4", "6", "8", "10", "12"],
+                graphImage: "images/ex6_q1_polynomial.png",
+                options: ["1", "2", "3", "4", "5"],
                 answer: 2,
-                explanation: ["From the graph, locate x = -1 and read y-value: f(-1) = 4.", "From the graph, locate x = 3 and read y-value: f(3) = 4.", "Sum: f(-1) + f(3) = 4 + 4 = 8.", "The parabola is symmetric about x = 1.", "The answer is C: 8."]
+                explanation: ["Count where the graph crosses the x-axis.", "The curve crosses at exactly 3 points.", "These are the real zeros of f(x).", "Read carefully from the graph.", "The answer is C: 3."]
             },
-            // Q2: Isosceles Triangle Coordinates
             {
                 id: 2,
-                question: "Triangle XYZ has vertices X(0, 0), Y(a, b), and Z(c, 0). If the triangle is isosceles with XY = YZ, which must be true?",
-                hasGraph: true,
-                graphImage: "images/ex5_q2_isosceles_coord.png",
-                options: ["a = c", "a = c/2", "b = c", "b = c/2", "a = b"],
+                question: "If \(f(x) = x^2 - 5x + 6\), for what values of x is f(x) = 0?",
+                options: ["1 and 6", "2 and 3", "-2 and -3", "-1 and -6", "1 and 5"],
                 answer: 1,
-                explanation: ["Base XZ is on x-axis from 0 to c, length = c.", "For XY = YZ, Y must be on perpendicular bisector of XZ.", "Perpendicular bisector passes through x = c/2.", "Since Y(a,b) is on this line, a = c/2.", "The answer is B: a = c/2."]
+                explanation: ["Factor: x² - 5x + 6 = (x-2)(x-3).", "Set equal to 0: (x-2)(x-3) = 0.", "x = 2 or x = 3.", "Verify: 2² - 5(2) + 6 = 0 ✓", "The answer is B: 2 and 3."]
             },
-            // Q3: Circle Equation
             {
                 id: 3,
-                question: "Which is the equation of a circle with center (2, -3) and radius 5?",
-                options: ["\\((x-2)^2+(y+3)^2=5\\)", "\\((x+2)^2+(y-3)^2=25\\)", "\\((x-2)^2+(y+3)^2=25\\)", "\\((x-2)^2+(y-3)^2=5\\)", "\\((x+2)^2+(y+3)^2=10\\)"],
-                answer: 2,
-                explanation: ["Standard form: (x-h)² + (y-k)² = r².", "Center (2,-3): (x-2)² + (y+3)².", "Radius 5: r² = 25.", "Equation: (x-2)² + (y+3)² = 25.", "The answer is C."]
+                question: "Solve: \(4(x - 3) = 2x + 6\)",
+                options: ["6", "9", "12", "15", "18"],
+                answer: 1,
+                explanation: ["Distribute: 4x - 12 = 2x + 6.", "Subtract 2x: 2x - 12 = 6.", "Add 12: 2x = 18.", "Divide: x = 9.", "The answer is B: 9."]
             },
-            // Q4: Exponent Equation
             {
                 id: 4,
-                question: "If \\(3^{2x} = 81\\), what is the value of \\(3^{x-1}\\)?",
-                options: ["1", "3", "9", "27", "81"],
+                question: "If \(2^{3x} = 64\), what is x?",
+                options: ["1", "2", "3", "4", "6"],
                 answer: 1,
-                explanation: ["81 = 3⁴, so 3^(2x) = 3⁴.", "Therefore 2x = 4, x = 2.", "3^(x-1) = 3^(2-1) = 3¹ = 3.", "Verify: 3^(2×2) = 3⁴ = 81 ✓", "The answer is B: 3."]
+                explanation: ["64 = 2⁶.", "So 2^(3x) = 2⁶.", "3x = 6.", "x = 2.", "The answer is B: 2."]
             },
-            // Q5: Infinitely Many Solutions
             {
                 id: 5,
-                question: "For what value of k does \\(2x + 3 = k(x + 1) + x + 2\\) have infinitely many solutions?",
-                options: ["0", "1", "2", "3", "No such value"],
-                answer: 1,
-                explanation: ["Expand: kx + k + x + 2 = (k+1)x + (k+2).", "For infinite solutions: 2x + 3 ≡ (k+1)x + (k+2).", "Coefficients of x: 2 = k+1, so k = 1.", "Constants: 3 = k+2 = 3 ✓", "The answer is B: k = 1."]
+                question: "What is the y-intercept of \(y = 3x^2 - 6x + 9\)?",
+                options: ["3", "6", "9", "-6", "-9"],
+                answer: 2,
+                explanation: ["Y-intercept occurs when x = 0.", "y = 3(0)² - 6(0) + 9 = 9.", "The constant term is the y-intercept.", "Point: (0, 9).", "The answer is C: 9."]
             },
-            // Q6: Quadratic with Roots Relationship
             {
                 id: 6,
-                question: "The quadratic \\(x^2 - 6x + k = 0\\) has two real roots where one is twice the other. What is k?",
-                options: ["4", "6", "8", "9", "12"],
-                answer: 2,
-                explanation: ["Let roots be r and 2r.", "Sum: r + 2r = 3r = 6, so r = 2.", "Roots are 2 and 4.", "Product: k = 2 × 4 = 8.", "The answer is C: 8."]
+                question: "If \(h(x) = 2x + 1\), what is \(h(h(2))\)?",
+                options: ["5", "7", "9", "11", "13"],
+                answer: 3,
+                explanation: ["First: h(2) = 2(2) + 1 = 5.", "Then: h(h(2)) = h(5) = 2(5) + 1.", "= 10 + 1 = 11.", "Function composition applied twice.", "The answer is D: 11."]
             },
-            // Q7: Simplify Rational Expression
             {
                 id: 7,
-                question: "Simplify \\(\\frac{x^2 - 9}{x + 3}\\) for \\(x \\neq -3\\):",
-                options: ["x + 3", "x - 3", "x² - 3", "x - 9", "x + 9"],
+                question: "Simplify: \(\frac{x^2 - 25}{x + 5}\) for \(x \neq -5\)",
+                options: ["x + 5", "x - 5", "x + 25", "x - 25", "5"],
                 answer: 1,
-                explanation: ["Factor numerator: x² - 9 = (x+3)(x-3).", "Expression = (x+3)(x-3)/(x+3).", "Cancel (x+3): = x - 3.", "Valid since x ≠ -3.", "The answer is B: x - 3."]
+                explanation: ["Factor: x² - 25 = (x+5)(x-5).", "Expression = (x+5)(x-5)/(x+5).", "Cancel (x+5).", "= x - 5.", "The answer is B: x - 5."]
             },
-            // Q8: Absolute Value Equation
             {
                 id: 8,
-                question: "If \\(|2x - 5| = 7\\), what is the sum of all possible values of x?",
-                options: ["-1", "0", "5", "6", "12"],
-                answer: 2,
-                explanation: ["Case 1: 2x - 5 = 7, x = 6.", "Case 2: 2x - 5 = -7, x = -1.", "Sum: 6 + (-1) = 5.", "Both values satisfy the equation.", "The answer is C: 5."]
+                question: "If \(|x + 4| = 9\), what is the sum of all solutions?",
+                options: ["-8", "-4", "0", "4", "8"],
+                answer: 0,
+                explanation: ["Case 1: x + 4 = 9, so x = 5.", "Case 2: x + 4 = -9, so x = -13.", "Sum: 5 + (-13) = -8.", "Both values satisfy the equation.", "The answer is A: -8."]
             },
-            // Q9: Composition of Functions
             {
                 id: 9,
-                question: "If \\(f(x) = 2x + 1\\) and \\(g(x) = x^2\\), what is \\(f(g(3))\\)?",
-                options: ["13", "19", "37", "49", "64"],
+                question: "The quadratic \(x^2 - 8x + k = 0\) has roots that differ by 2. What is k?",
+                options: ["12", "15", "16", "18", "20"],
                 answer: 1,
-                explanation: ["First find g(3) = 3² = 9.", "Then f(g(3)) = f(9) = 2(9) + 1.", "= 18 + 1 = 19.", "This is function composition.", "The answer is B: 19."]
+                explanation: ["Let roots be r and r+2.", "Sum: r + (r+2) = 2r + 2 = 8, so r = 3.", "Roots: 3 and 5.", "Product: k = 3 × 5 = 15.", "The answer is B: 15."]
             },
-            // Q10: Parabola Transformation
             {
                 id: 10,
-                question: "The graph of \\(y = (x-2)^2 + 3\\) is shifted 4 units left and 2 units down. New equation?",
-                options: ["y = (x+2)² + 1", "y = (x-6)² + 1", "y = (x+2)² + 5", "y = (x-2)² - 1", "y = (x+6)² + 1"],
+                question: "Which equation has no real solutions?",
+                options: ["x² + 4 = 0", "x² - 4 = 0", "x² = 4", "x² + 4x + 4 = 0", "x² - 4x + 4 = 0"],
                 answer: 0,
-                explanation: ["Original vertex: (2, 3).", "Left 4: new x = 2 - 4 = -2.", "Down 2: new y = 3 - 2 = 1.", "New vertex: (-2, 1).", "Equation: y = (x+2)² + 1. Answer A."]
+                explanation: ["A: x² = -4, no real solution (negative).", "B: x² = 4, x = ±2 ✓", "C: same as B ✓", "D: (x+2)² = 0, x = -2 ✓", "The answer is A: x² + 4 = 0."]
             },
-            // Q11: Inverse Function
             {
                 id: 11,
-                question: "If \\(f(x) = 3x - 5\\), what is \\(f^{-1}(7)\\)?",
-                options: ["2", "4", "12", "16", "26"],
+                question: "If \(f(x) = \frac{x+3}{2}\), what is \(f^{-1}(5)\)?",
+                options: ["4", "7", "8", "10", "13"],
                 answer: 1,
-                explanation: ["Find x where f(x) = 7.", "3x - 5 = 7.", "3x = 12, x = 4.", "Verify: f(4) = 12 - 5 = 7 ✓", "The answer is B: 4."]
+                explanation: ["Find x where f(x) = 5.", "(x+3)/2 = 5.", "x + 3 = 10.", "x = 7.", "The answer is B: 7."]
             },
-            // Q12: Algebraic Identity
+            // ===== Q12-20: GEOMETRY (22.5%) =====
             {
                 id: 12,
-                question: "Given \\(x^2 + y^2 = 25\\) and \\(xy = 12\\), what is \\((x + y)^2\\)?",
-                options: ["37", "49", "61", "144", "169"],
-                answer: 1,
-                explanation: ["(x+y)² = x² + 2xy + y².", "= (x² + y²) + 2xy.", "= 25 + 2(12) = 25 + 24.", "= 49.", "The answer is B: 49."]
+                question: "What is the perimeter of the triangle shown in the figure?",
+                hasGraph: true,
+                graphImage: "images/ex6_q12_triangle.png",
+                options: ["15", "16", "17", "18", "19"],
+                answer: 3,
+                explanation: ["Read side lengths from figure: 5, 6, 7.", "Perimeter = 5 + 6 + 7 = 18.", "Sum of all sides.", "Simple addition.", "The answer is D: 18."]
             },
-            // Q13: Domain of Rational Function
             {
                 id: 13,
-                question: "For \\(f(x) = \\frac{2x+1}{x-3}\\), which x is NOT in the domain?",
-                options: ["-3", "-1", "0", "3", "All real numbers"],
-                answer: 3,
-                explanation: ["Domain excludes where denominator = 0.", "x - 3 = 0 when x = 3.", "At x = 3, f is undefined.", "All other values are allowed.", "The answer is D: 3."]
+                question: "In a right triangle, the legs are 9 and 12. What is the hypotenuse?",
+                options: ["13", "15", "17", "21", "108"],
+                answer: 1,
+                explanation: ["Use Pythagorean theorem: c² = a² + b².", "c² = 81 + 144 = 225.", "c = √225 = 15.", "This is a 3-4-5 triangle ×3.", "The answer is B: 15."]
             },
-            // Q14: Function Graph Analysis
             {
                 id: 14,
-                question: "The graph shows f(x) with roots at x = -2, 0, 2. Which could be f(x)?",
-                hasGraph: true,
-                graphImage: "images/ex5_q21_function_graph.png",
-                options: ["f(x) = x³ - 4x", "f(x) = x² - 4", "f(x) = -x³ + 4x", "f(x) = x³ + 4x", "f(x) = -x² + 4"],
-                answer: 0,
-                explanation: ["Graph has 3 x-intercepts: -2, 0, 2.", "f(x) = x³ - 4x = x(x²-4) = x(x-2)(x+2).", "Roots: 0, 2, -2 ✓", "Cubic with positive leading coefficient.", "The answer is A."]
+                question: "What is the sum of interior angles of a pentagon?",
+                options: ["360°", "450°", "540°", "720°", "900°"],
+                answer: 2,
+                explanation: ["Formula: (n-2) × 180°.", "For pentagon n = 5.", "(5-2) × 180° = 3 × 180°.", "= 540°.", "The answer is C: 540°."]
             },
-            // Q15: Right Triangle
             {
                 id: 15,
-                question: "In right triangle ABC with right angle at A, AB = 8 and AC = 6. What is BC?",
-                hasGraph: true,
-                graphImage: "images/ex5_q15_triangle.png",
-                options: ["7", "10", "12", "14", "48"],
+                question: "A square has diagonal 10. What is its area?",
+                options: ["25", "50", "100", "200", "400"],
                 answer: 1,
-                explanation: ["BC is the hypotenuse (opposite the right angle).", "BC² = AB² + AC² = 64 + 36 = 100.", "BC = √100 = 10.", "This is a 3-4-5 triangle ×2 (6-8-10).", "The answer is B: 10."]
+                explanation: ["For a square: d² = 2s².", "100 = 2s², so s² = 50.", "Area = s² = 50.", "Or: Area = d²/2 = 100/2 = 50.", "The answer is B: 50."]
             },
-            // Q16: Angle Relationships - HARDER
             {
                 id: 16,
-                question: "In the figure, lines l and m are parallel. If ∠1 = (3x + 10)° and ∠2 = (5x - 30)°, and ∠1 and ∠2 are co-interior angles, what is the measure of ∠1?",
-                options: ["45°", "55°", "65°", "85°", "95°"],
-                answer: 3,
-                explanation: ["Co-interior angles sum to 180°.", "(3x + 10) + (5x - 30) = 180.", "8x - 20 = 180, so 8x = 200, x = 25.", "∠1 = 3(25) + 10 = 85°.", "The answer is D: 85°."]
+                question: "In triangle ABC, ∠A = 50° and ∠B = 70°. What is ∠C?",
+                options: ["40°", "50°", "60°", "70°", "80°"],
+                answer: 2,
+                explanation: ["Sum of angles = 180°.", "∠C = 180° - 50° - 70°.", "= 180° - 120° = 60°.", "Basic triangle property.", "The answer is C: 60°."]
             },
-            // Q17: Parallelogram Diagonals
             {
                 id: 17,
-                question: "In parallelogram PQRS, diagonals intersect at M. If PM = 5 and QM = 7, what is PR?",
-                options: ["5", "7", "10", "12", "14"],
-                answer: 2,
-                explanation: ["Diagonals of parallelogram bisect each other.", "M is midpoint of PR.", "PM = MR = 5.", "PR = PM + MR = 5 + 5 = 10.", "The answer is C: 10."]
+                question: "A circle has diameter 14. What is its circumference?",
+                options: ["7π", "14π", "28π", "49π", "196π"],
+                answer: 1,
+                explanation: ["C = πd.", "C = π × 14 = 14π.", "Or: r = 7, C = 2πr = 14π.", "Simple formula application.", "The answer is B: 14π."]
             },
-            // Q18: Regular Hexagon
             {
                 id: 18,
-                question: "What is the measure of each interior angle of a regular hexagon?",
-                hasGraph: true,
-                graphImage: "images/ex5_q18_hexagon.png",
-                options: ["60°", "90°", "108°", "120°", "135°"],
-                answer: 3,
-                explanation: ["Formula: (n-2)×180°/n.", "For hexagon n = 6.", "(6-2)×180°/6 = 4×180°/6.", "= 720°/6 = 120°.", "The answer is D: 120°."]
+                question: "In a rhombus, the diagonals are 10 and 24. What is the area?",
+                options: ["60", "120", "240", "480", "960"],
+                answer: 1,
+                explanation: ["Area of rhombus = (d₁ × d₂)/2.", "= (10 × 24)/2.", "= 240/2 = 120.", "Diagonals bisect each other at 90°.", "The answer is B: 120."]
             },
-            // Q19: Circle Circumference to Area
             {
                 id: 19,
-                question: "If a circle has circumference 12π, what is its area?",
-                options: ["6π", "12π", "24π", "36π", "144π"],
-                answer: 3,
-                explanation: ["C = 2πr = 12π, so r = 6.", "Area = πr² = π(6)² = 36π.", "Relationship: A = C²/(4π).", "A = (12π)²/(4π) = 144π²/4π = 36π.", "The answer is D: 36π."]
+                question: "Based on the bar chart, how many students scored 80 or above?",
+                hasGraph: true,
+                graphImage: "images/ex6_q19_barchart.png",
+                options: ["10", "13", "15", "18", "20"],
+                answer: 2,
+                explanation: ["Read bars for 80, 90, 100.", "80: 8 students, 90: 5 students, 100: 2 students.", "Total = 8 + 5 + 2 = 15.", "Count from the chart.", "The answer is C: 15."]
             },
-            // Q20: Tangent Length
             {
                 id: 20,
-                question: "Circle has center O, radius 5. Point P outside has OP = 13. What is the tangent length from P?",
-                options: ["8", "10", "12", "18", "144"],
-                answer: 2,
-                explanation: ["Tangent ⊥ radius at point of tangency.", "Right triangle: OT = 5, OP = 13, PT = ?", "OP² = OT² + PT².", "169 = 25 + PT², PT² = 144.", "PT = 12. The answer is C."]
+                question: "A sector has central angle 60° and radius 6. What is the arc length?",
+                options: ["π", "2π", "3π", "6π", "12π"],
+                answer: 1,
+                explanation: ["Arc length = (θ/360°) × 2πr.", "= (60/360) × 2π × 6.", "= (1/6) × 12π = 2π.", "Proportional to angle.", "The answer is B: 2π."]
             },
-            // Q21: Perpendicular Slope
+            // ===== Q21-25: COORDINATE GEOMETRY (12.5%) =====
             {
                 id: 21,
-                question: "What is the slope of a line perpendicular to \\(y = \\frac{2}{3}x + 5\\)?",
-                options: ["\\(-\\frac{3}{2}\\)", "\\(-\\frac{2}{3}\\)", "\\(\\frac{2}{3}\\)", "\\(\\frac{3}{2}\\)", "5"],
-                answer: 0,
-                explanation: ["Original slope m = 2/3.", "Perpendicular slope = -1/m.", "= -1/(2/3) = -3/2.", "Product: (2/3)(-3/2) = -1 ✓", "The answer is A: -3/2."]
+                question: "What is the slope of the line 2x + 3y = 12?",
+                options: ["-3/2", "-2/3", "2/3", "3/2", "4"],
+                answer: 1,
+                explanation: ["Solve for y: 3y = -2x + 12.", "y = (-2/3)x + 4.", "Slope = -2/3.", "Coefficient of x in slope-intercept form.", "The answer is B: -2/3."]
             },
-            // Q22: Parallel Line
             {
                 id: 22,
-                question: "Line l passes through (1, 4) and (3, 10). Which is parallel to l?",
-                options: ["y = 3x + 1", "y = -3x + 5", "y = x/3 + 2", "y = -x/3", "y = 3x - 7"],
+                question: "Line passes through (2, 5) with slope 3. What is the y-intercept?",
+                options: ["-1", "0", "1", "5", "11"],
                 answer: 0,
-                explanation: ["Slope of l: (10-4)/(3-1) = 6/2 = 3.", "Parallel lines have same slope.", "Options A and E have slope 3.", "Either y = 3x + 1 or y = 3x - 7.", "The answer is A."]
+                explanation: ["y - y₁ = m(x - x₁).", "y - 5 = 3(x - 2).", "y = 3x - 6 + 5 = 3x - 1.", "Y-intercept = -1.", "The answer is A: -1."]
             },
-            // Q23: Distance Formula
             {
                 id: 23,
-                question: "What is the distance between A(-2, 3) and B(4, -5)?",
-                options: ["6", "8", "10", "14", "100"],
+                question: "What is the equation of a circle centered at origin with radius 4?",
+                options: ["x² + y² = 4", "x² + y² = 8", "x² + y² = 16", "(x-4)² + (y-4)² = 16", "x² + y² = 64"],
                 answer: 2,
-                explanation: ["d = √[(x₂-x₁)² + (y₂-y₁)²].", "= √[(4-(-2))² + (-5-3)²].", "= √[36 + 64] = √100.", "= 10.", "The answer is C: 10."]
+                explanation: ["Standard form: x² + y² = r².", "r = 4, so r² = 16.", "Equation: x² + y² = 16.", "Center at origin means no shifts.", "The answer is C: x² + y² = 16."]
             },
-            // Q24: Midpoint
             {
                 id: 24,
-                question: "What is the midpoint of segment from (2, 8) to (6, -2)?",
-                options: ["(4, 3)", "(8, 6)", "(4, 5)", "(2, 5)", "(8, 3)"],
-                answer: 0,
-                explanation: ["Midpoint = ((x₁+x₂)/2, (y₁+y₂)/2).", "x: (2+6)/2 = 4.", "y: (8+(-2))/2 = 3.", "Midpoint: (4, 3).", "The answer is A."]
+                question: "Points A(1, 2) and B(7, 10). What is the length of AB?",
+                options: ["8", "10", "12", "14", "100"],
+                answer: 1,
+                explanation: ["d = √[(7-1)² + (10-2)²].", "= √[36 + 64] = √100.", "= 10.", "Distance formula.", "The answer is B: 10."]
             },
-            // Q25: Parabola x-intercepts
             {
                 id: 25,
-                question: "The parabola \\(y = x^2 - 4x + 3\\) intersects x-axis at A and B. What is distance AB?",
-                options: ["1", "2", "3", "4", "5"],
+                question: "The vertex of \(y = (x - 4)^2 - 9\) is at:",
+                options: ["(4, 9)", "(4, -9)", "(-4, 9)", "(-4, -9)", "(9, 4)"],
                 answer: 1,
-                explanation: ["Set y = 0: x² - 4x + 3 = 0.", "Factor: (x-1)(x-3) = 0.", "x = 1 and x = 3.", "Distance = |3 - 1| = 2.", "The answer is B: 2."]
+                explanation: ["Vertex form: y = (x-h)² + k.", "Vertex at (h, k).", "Here h = 4, k = -9.", "Vertex: (4, -9).", "The answer is B: (4, -9)."]
             },
-            // Q26: Roman Numeral Format - Statistics
+            // ===== Q26-32: STATISTICS & PROBABILITY (17.5%) =====
             {
                 id: 26,
-                question: "For data set S = {2, 4, 4, 6, 8, 10}, which of the following statements is/are true?<br>I. The mean equals the median<br>II. The mode is less than the mean<br>III. The range is twice the mode",
-                options: ["I only", "II only", "I and II only", "II and III only", "I, II, and III"],
-                answer: 3,
-                explanation: ["Mean = (2+4+4+6+8+10)/6 = 34/6 ≈ 5.67. Median = (4+6)/2 = 5. Mode = 4.", "I: Mean ≠ Median (5.67 ≠ 5) → FALSE", "II: Mode (4) < Mean (5.67) → TRUE", "III: Range = 10-2 = 8 = 2×4 = 2×Mode → TRUE", "Answer is D: II and III only."]
+                question: "For data {5, 7, 7, 9, 12}, which is/are true?<br>I. Mean = 8<br>II. Median = 7<br>III. Mode = 7",
+                options: ["I only", "II only", "III only", "II and III only", "I, II, and III"],
+                answer: 4,
+                explanation: ["Mean = (5+7+7+9+12)/5 = 40/5 = 8. I: TRUE.", "Median = 7 (middle value). II: TRUE.", "Mode = 7 (appears twice). III: TRUE.", "All three statements are true.", "The answer is E: I, II, and III."]
             },
-            // Q27: Roman Numeral Format - Algebra
             {
                 id: 27,
-                question: "If f(x) = x² - 4x + 3, which of the following is/are true?<br>I. f(1) = 0<br>II. f(x) has a minimum value of -1<br>III. The axis of symmetry is x = 2",
-                options: ["I only", "III only", "I and II only", "I and III only", "I, II, and III"],
-                answer: 4,
-                explanation: ["I: f(1) = 1 - 4 + 3 = 0 ✓ TRUE", "Vertex: x = -b/2a = 4/2 = 2. f(2) = 4 - 8 + 3 = -1.", "II: Minimum = -1 ✓ TRUE", "III: Axis of symmetry x = 2 ✓ TRUE", "All three are true. Answer E."]
+                question: "A bag has 3 red and 5 blue balls. P(red) = ?",
+                options: ["3/8", "5/8", "3/5", "5/3", "8/3"],
+                answer: 0,
+                explanation: ["Total balls = 3 + 5 = 8.", "P(red) = 3/8.", "Favorable over total.", "Simple probability.", "The answer is A: 3/8."]
             },
-            // Q28: Permutations
             {
                 id: 28,
-                question: "How many ways can 5 students be arranged in a row?",
-                options: ["5", "25", "60", "120", "625"],
-                answer: 3,
-                explanation: ["This is 5! (5 factorial).", "5! = 5 × 4 × 3 × 2 × 1.", "= 120.", "Each position has fewer choices.", "The answer is D: 120."]
+                question: "How many 3-letter codes from A, B, C, D, E with no repetition?",
+                options: ["15", "60", "120", "125", "243"],
+                answer: 1,
+                explanation: ["P(5,3) = 5 × 4 × 3.", "= 60.", "Order matters, no repetition.", "Permutation formula.", "The answer is B: 60."]
             },
-            // Q29: Combinations
             {
                 id: 29,
-                question: "A committee of 3 is selected from 7 people. How many committees possible?",
-                options: ["21", "35", "42", "210", "343"],
-                answer: 1,
-                explanation: ["C(7,3) = 7!/(3!×4!).", "= (7×6×5)/(3×2×1).", "= 210/6 = 35.", "Order doesn't matter in committee.", "The answer is B: 35."]
+                question: "A coin is flipped 3 times. P(exactly 2 heads) = ?",
+                options: ["1/8", "1/4", "3/8", "1/2", "5/8"],
+                answer: 2,
+                explanation: ["Favorable: HHT, HTH, THH = 3 outcomes.", "Total: 2³ = 8 outcomes.", "P = 3/8.", "Or: C(3,2) × (1/2)³ = 3/8.", "The answer is C: 3/8."]
             },
-            // Q30: Probability - Independent Events
             {
                 id: 30,
-                question: "A fair die is rolled twice. What is P(both even)?",
-                options: ["1/9", "1/6", "1/4", "1/3", "1/2"],
-                answer: 2,
-                explanation: ["Even: 2, 4, 6 → P(even) = 3/6 = 1/2.", "Events are independent.", "P(both even) = (1/2)(1/2).", "= 1/4.", "The answer is C: 1/4."]
+                question: "The IQR of {2, 5, 7, 9, 12, 15, 18} is:",
+                options: ["7", "10", "13", "16", "18"],
+                answer: 1,
+                explanation: ["Q1 = 5 (median of lower half).", "Q3 = 15 (median of upper half).", "IQR = Q3 - Q1 = 15 - 5 = 10.", "Interquartile range.", "The answer is B: 10."]
             },
-            // Q31: Word Problem - Real World
             {
                 id: 31,
-                question: "A store offers a 20% discount on a jacket, then applies an additional 10% discount on the reduced price. If the original price was $80, what is the final price?",
-                options: ["$54.40", "$56.00", "$57.60", "$60.00", "$64.00"],
-                answer: 2,
-                explanation: ["First discount: 80 × 0.80 = $64.", "Second discount: 64 × 0.90 = $57.60.", "Note: 20% + 10% ≠ 30% discount!", "Successive discounts multiply.", "The answer is C: $57.60."]
+                question: "C(6, 2) = ?",
+                options: ["12", "15", "30", "36", "720"],
+                answer: 1,
+                explanation: ["C(6,2) = 6!/(2! × 4!).", "= (6 × 5)/(2 × 1).", "= 30/2 = 15.", "Combinations formula.", "The answer is B: 15."]
             },
-            // Q32: Histogram Mean
             {
                 id: 32,
-                question: "The histogram shows study hours for 35 students. What is the approximate mean?",
+                question: "Based on the histogram, what is the median class interval?",
                 hasGraph: true,
-                graphImage: "images/ex5_q32_histogram.png",
-                options: ["18", "20", "22", "25", "28"],
-                answer: 3,
-                explanation: ["Use midpoints: 5, 15, 25, 35, 45.", "Frequencies: 4, 8, 12, 6, 5.", "Sum = 4(5)+8(15)+12(25)+6(35)+5(45).", "= 20+120+300+210+225 = 875.", "Mean = 875/35 = 25. Answer D."]
+                graphImage: "images/ex6_q32_histogram.png",
+                options: ["0-5", "5-10", "10-15", "15-20", "20-25"],
+                answer: 2,
+                explanation: ["Count total frequency from all bars.", "Find middle position.", "Median falls in 10-15 class.", "Cumulative frequency method.", "The answer is C: 10-15."]
             },
-            // Q33: Geometric Sequence
+            // ===== Q33-37: NUMERATIONS & OPERATIONS (12.5%) =====
             {
                 id: 33,
-                question: "In geometric sequence with a₁ = 3 and r = 2, what is a₆?",
-                options: ["48", "64", "96", "128", "192"],
-                answer: 2,
-                explanation: ["aₙ = a₁ × r^(n-1).", "a₆ = 3 × 2^5 = 3 × 32.", "= 96.", "Sequence: 3, 6, 12, 24, 48, 96.", "The answer is C: 96."]
+                question: "What is the 8th term of 5, 9, 13, 17, ...?",
+                options: ["29", "33", "37", "41", "45"],
+                answer: 1,
+                explanation: ["a₁ = 5, d = 4.", "aₙ = a₁ + (n-1)d.", "a₈ = 5 + 7(4) = 5 + 28 = 33.", "Arithmetic sequence.", "The answer is B: 33."]
             },
-            // Q34: Arithmetic Sequence
             {
                 id: 34,
-                question: "In arithmetic sequence, a₃ = 11 and a₇ = 27. What is the common difference?",
-                options: ["2", "3", "4", "5", "8"],
-                answer: 2,
-                explanation: ["From a₃ to a₇ is 4 steps.", "a₇ - a₃ = 4d.", "27 - 11 = 16 = 4d.", "d = 4.", "The answer is C: 4."]
+                question: "If x/y = 2/3 and y/z = 4/5, what is x/z?",
+                options: ["8/15", "6/15", "2/5", "10/12", "3/4"],
+                answer: 0,
+                explanation: ["x/z = (x/y) × (y/z).", "= (2/3) × (4/5).", "= 8/15.", "Chain multiplication.", "The answer is A: 8/15."]
             },
-            // Q35: Word Problem - Mixture/Rate
             {
                 id: 35,
-                question: "A car travels from city A to city B at 60 km/h and returns at 40 km/h. What is the average speed for the entire trip?",
-                options: ["45 km/h", "48 km/h", "50 km/h", "52 km/h", "55 km/h"],
-                answer: 1,
-                explanation: ["Let distance = d. Time₁ = d/60, Time₂ = d/40.", "Total time = d/60 + d/40 = (2d + 3d)/120 = 5d/120.", "Total distance = 2d.", "Average speed = 2d ÷ (5d/120) = 2d × 120/5d = 48.", "The answer is B: 48 km/h. (NOT 50!)"]
+                question: "Simplify: \(\frac{4^5}{4^2}\)",
+                options: ["4", "16", "64", "256", "1024"],
+                answer: 2,
+                explanation: ["Same base: subtract exponents.", "4^(5-2) = 4³ = 64.", "Quotient rule.", "Verify: 1024/16 = 64.", "The answer is C: 64."]
             },
-            // Q36: Work Rate
             {
                 id: 36,
-                question: "8 workers complete a job in 6 days. How many days for 12 workers?",
-                options: ["3", "4", "8", "9", "12"],
+                question: "In geometric sequence, a₂ = 6 and a₅ = 162. What is r?",
+                options: ["2", "3", "4", "5", "6"],
                 answer: 1,
-                explanation: ["Total work = 8 × 6 = 48 worker-days.", "With 12 workers: days = 48/12.", "= 4 days.", "Inverse proportion.", "The answer is B: 4."]
+                explanation: ["a₅/a₂ = r³.", "162/6 = 27 = r³.", "r = 3.", "Using aₙ = a₁ × r^(n-1).", "The answer is B: 3."]
             },
-            // Q37: Exponent Laws
             {
                 id: 37,
-                question: "Simplify: \\(\\frac{2^5 \\times 2^3}{2^4}\\)",
-                options: ["2²", "2⁴", "2⁸", "2¹²", "8"],
+                question: "What is 40% of 75?",
+                options: ["25", "30", "35", "40", "45"],
                 answer: 1,
-                explanation: ["Numerator: 2⁵ × 2³ = 2⁸.", "Divide: 2⁸ ÷ 2⁴ = 2^(8-4).", "= 2⁴.", "Using exponent rules.", "The answer is B: 2⁴."]
+                explanation: ["40% = 0.40.", "0.40 × 75 = 30.", "Or: (40/100) × 75 = 30.", "Simple percentage.", "The answer is B: 30."]
             },
-            // Q38: Tangent Ratio
+            // ===== Q38-40: TRIGONOMETRY (7.5%) =====
             {
                 id: 38,
-                question: "In the right triangle, what is tan θ?",
+                question: "In the right triangle shown, what is sin θ?",
                 hasGraph: true,
-                graphImage: "images/ex5_q38_trig_triangle.png",
-                options: ["3/5", "3/4", "4/5", "4/3", "5/3"],
+                graphImage: "images/ex6_q38_triangle.png",
+                options: ["3/5", "4/5", "3/4", "4/3", "5/3"],
                 answer: 0,
-                explanation: ["tan θ = opposite/adjacent.", "Opposite = 3, Adjacent = 5.", "tan θ = 3/5.", "SOH-CAH-TOA.", "The answer is A: 3/5."]
+                explanation: ["sin θ = opposite/hypotenuse.", "From triangle: opposite = 3, hypotenuse = 5.", "sin θ = 3/5.", "SOH-CAH-TOA.", "The answer is A: 3/5."]
             },
-            // Q39: Pythagorean Identity
             {
                 id: 39,
-                question: "If sin θ = 5/13 (θ in Q1), what is cos θ?",
-                options: ["5/13", "8/13", "12/13", "5/12", "13/12"],
-                answer: 2,
-                explanation: ["sin²θ + cos²θ = 1.", "(5/13)² + cos²θ = 1.", "25/169 + cos²θ = 1.", "cos²θ = 144/169, cos θ = 12/13.", "Positive in Q1. Answer C."]
+                question: "If tan θ = 3/4 (θ acute), what is cos θ?",
+                options: ["3/5", "4/5", "3/4", "5/4", "5/3"],
+                answer: 1,
+                explanation: ["tan θ = opp/adj = 3/4.", "Hypotenuse = √(9+16) = 5.", "cos θ = adj/hyp = 4/5.", "Using Pythagorean theorem.", "The answer is B: 4/5."]
             },
-            // Q40: Trigonometry - Angle in Triangle (Different from Exam 1)
             {
                 id: 40,
-                question: "In triangle ABC, if sin A = 3/5 and cos B = 5/13, and both A and B are acute, what is sin(A + B)?",
-                options: ["33/65", "56/65", "63/65", "16/65", "48/65"],
-                answer: 2,
-                explanation: ["sin A = 3/5 → cos A = 4/5 (using sin²+cos²=1).", "cos B = 5/13 → sin B = 12/13 (using sin²+cos²=1).", "sin(A+B) = sinA·cosB + cosA·sinB.", "= (3/5)(5/13) + (4/5)(12/13) = 15/65 + 48/65.", "= 63/65. The answer is C."]
+                question: "For which is sin²θ + cos²θ = 1 directly verified?<br>I. sin 30° = 1/2, cos 30° = √3/2<br>II. sin 45° = cos 45°<br>III. tan θ = sin θ/cos θ",
+                options: ["I only", "II only", "I and II only", "III only", "I, II, and III"],
+                answer: 0,
+                explanation: ["I: (1/2)² + (√3/2)² = 1/4 + 3/4 = 1 ✓ TRUE", "II: True but not directly from identity.", "III: Definition, not from Pythagorean identity.", "Only I directly satisfies the identity.", "The answer is A: I only."]
             }
         ];
 
