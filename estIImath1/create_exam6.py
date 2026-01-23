@@ -23,56 +23,56 @@ new_questions = '''        const questions = [
             },
             {
                 id: 2,
-                question: "If \\\\(f(x) = x^2 - 5x + 6\\\\), for what values of x is f(x) = 0?",
+                question: "If \\\\\\\\(f(x) = x^2 - 5x + 6\\\\), for what values of x is f(x) = 0?",
                 options: ["1 and 6", "2 and 3", "-2 and -3", "-1 and -6", "1 and 5"],
                 answer: 1,
                 explanation: ["Factor: x² - 5x + 6 = (x-2)(x-3).", "Set equal to 0: (x-2)(x-3) = 0.", "x = 2 or x = 3.", "Verify: 2² - 5(2) + 6 = 0 ✓", "The answer is B: 2 and 3."]
             },
             {
                 id: 3,
-                question: "Solve: \\\\(4(x - 3) = 2x + 6\\\\)",
+                question: "Solve: \\\\\\\\(4(x - 3) = 2x + 6\\\\)",
                 options: ["6", "9", "12", "15", "18"],
                 answer: 1,
                 explanation: ["Distribute: 4x - 12 = 2x + 6.", "Subtract 2x: 2x - 12 = 6.", "Add 12: 2x = 18.", "Divide: x = 9.", "The answer is B: 9."]
             },
             {
                 id: 4,
-                question: "If \\\\(2^{3x} = 64\\\\), what is x?",
+                question: "If \\\\\\\\(2^{3x} = 64\\\\), what is x?",
                 options: ["1", "2", "3", "4", "6"],
                 answer: 1,
                 explanation: ["64 = 2⁶.", "So 2^(3x) = 2⁶.", "3x = 6.", "x = 2.", "The answer is B: 2."]
             },
             {
                 id: 5,
-                question: "What is the y-intercept of \\\\(y = 3x^2 - 6x + 9\\\\)?",
+                question: "What is the y-intercept of \\\\\\\\(y = 3x^2 - 6x + 9\\\\)?",
                 options: ["3", "6", "9", "-6", "-9"],
                 answer: 2,
                 explanation: ["Y-intercept occurs when x = 0.", "y = 3(0)² - 6(0) + 9 = 9.", "The constant term is the y-intercept.", "Point: (0, 9).", "The answer is C: 9."]
             },
             {
                 id: 6,
-                question: "If \\\\(h(x) = 2x + 1\\\\), what is \\\\(h(h(2))\\\\)?",
+                question: "If \\\\\\\\(h(x) = 2x + 1\\\\), what is \\\\\\\\(h(h(2))\\\\)?",
                 options: ["5", "7", "9", "11", "13"],
                 answer: 3,
                 explanation: ["First: h(2) = 2(2) + 1 = 5.", "Then: h(h(2)) = h(5) = 2(5) + 1.", "= 10 + 1 = 11.", "Function composition applied twice.", "The answer is D: 11."]
             },
             {
                 id: 7,
-                question: "Simplify: \\\\(\\\\frac{x^2 - 25}{x + 5}\\\\) for \\\\(x \\\\neq -5\\\\)",
+                question: "Simplify: \\\\\\\\(\\\\frac{x^2 - 25}{x + 5}\\\\) for \\\\\\\\(x \\\\neq -5\\\\)",
                 options: ["x + 5", "x - 5", "x + 25", "x - 25", "5"],
                 answer: 1,
                 explanation: ["Factor: x² - 25 = (x+5)(x-5).", "Expression = (x+5)(x-5)/(x+5).", "Cancel (x+5).", "= x - 5.", "The answer is B: x - 5."]
             },
             {
                 id: 8,
-                question: "If \\\\(|x + 4| = 9\\\\), what is the sum of all solutions?",
+                question: "If \\\\\\\\(|x + 4| = 9\\\\), what is the sum of all solutions?",
                 options: ["-8", "-4", "0", "4", "8"],
                 answer: 0,
                 explanation: ["Case 1: x + 4 = 9, so x = 5.", "Case 2: x + 4 = -9, so x = -13.", "Sum: 5 + (-13) = -8.", "Both values satisfy the equation.", "The answer is A: -8."]
             },
             {
                 id: 9,
-                question: "The quadratic \\\\(x^2 - 8x + k = 0\\\\) has roots that differ by 2. What is k?",
+                question: "The quadratic \\\\\\\\(x^2 - 8x + k = 0\\\\) has roots that differ by 2. What is k?",
                 options: ["12", "15", "16", "18", "20"],
                 answer: 1,
                 explanation: ["Let roots be r and r+2.", "Sum: r + (r+2) = 2r + 2 = 8, so r = 3.", "Roots: 3 and 5.", "Product: k = 3 × 5 = 15.", "The answer is B: 15."]
@@ -86,7 +86,7 @@ new_questions = '''        const questions = [
             },
             {
                 id: 11,
-                question: "If \\\\(f(x) = \\\\frac{x+3}{2}\\\\), what is \\\\(f^{-1}(5)\\\\)?",
+                question: "If \\\\\\\\(f(x) = \\\\frac{x+3}{2}\\\\), what is \\\\\\\\(f^{-1}(5)\\\\)?",
                 options: ["4", "7", "8", "10", "13"],
                 answer: 1,
                 explanation: ["Find x where f(x) = 5.", "(x+3)/2 = 5.", "x + 3 = 10.", "x = 7.", "The answer is B: 7."]
@@ -190,7 +190,7 @@ new_questions = '''        const questions = [
             },
             {
                 id: 25,
-                question: "The vertex of \\\\(y = (x - 4)^2 - 9\\\\) is at:",
+                question: "The vertex of \\\\\\\\(y = (x - 4)^2 - 9\\\\) is at:",
                 options: ["(4, 9)", "(4, -9)", "(-4, 9)", "(-4, -9)", "(9, 4)"],
                 answer: 1,
                 explanation: ["Vertex form: y = (x-h)² + k.", "Vertex at (h, k).", "Here h = 4, k = -9.", "Vertex: (4, -9).", "The answer is B: (4, -9)."]
@@ -264,7 +264,7 @@ new_questions = '''        const questions = [
             },
             {
                 id: 35,
-                question: "Simplify: \\\\(\\\\frac{4^5}{4^2}\\\\)",
+                question: "Simplify: \\\\\\\\(\\\\frac{4^5}{4^2}\\\\)",
                 options: ["4", "16", "64", "256", "1024"],
                 answer: 2,
                 explanation: ["Same base: subtract exponents.", "4^(5-2) = 4³ = 64.", "Quotient rule.", "Verify: 1024/16 = 64.", "The answer is C: 64."]
