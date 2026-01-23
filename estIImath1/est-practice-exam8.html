@@ -563,7 +563,7 @@
     </footer>
 
     <script>
-                const questions = [
+                        const questions = [
             // ===== Q1-11: ALGEBRA & FUNCTIONS (27.5%) =====
             {
                 id: 1,
@@ -576,77 +576,56 @@
             },
             {
                 id: 2,
-                question: "If \(f(x) = \\frac{x^2 - 9}{x - 3}\) for x ≠ 3, what is \(\\lim_{x \\to 3} f(x)\)?",
-                options: ["0", "3", "6", "9", "undefined"],
-                answer: 2,
-                explanation: ["Factor: (x²-9)/(x-3) = (x+3)(x-3)/(x-3).", "= x + 3 for x ≠ 3.", "As x → 3: limit = 3 + 3 = 6.", "Removable discontinuity.", "The answer is C: 6."]
+                question: "If \\(f(x) = (x+1)(x-2)(x+3)\\), what is f(0)?",
+                options: ["-6", "-3", "0", "3", "6"],
+                answer: 0,
+                explanation: ["f(0) = (0+1)(0-2)(0+3).", "= (1)(-2)(3).", "= -6.", "Direct substitution.", "The answer is A: -6."]
             },
             {
                 id: 3,
-                question: "If \(3^{2x-1} = 27^{x-2}\), what is x?",
+                question: "If \\(3^{2x-1} = 27^{x-2}\\), what is x?",
                 options: ["3", "5", "7", "9", "11"],
                 answer: 1,
                 explanation: ["27 = 3³, so 3^(2x-1) = 3^(3(x-2)).", "2x - 1 = 3x - 6.", "-1 + 6 = 3x - 2x.", "x = 5.", "The answer is B: 5."]
             },
             {
                 id: 4,
-                question: "The product of roots of \(x^2 - (k+2)x + 2k = 0\) is 6. What is the sum of roots?",
+                question: "The product of roots of \\(x^2 - (k+2)x + 2k = 0\\) is 6. What is the sum of roots?",
                 options: ["3", "4", "5", "6", "8"],
                 answer: 2,
                 explanation: ["Product = c/a = 2k = 6, so k = 3.", "Sum = -b/a = k + 2 = 3 + 2 = 5.", "Using Vieta's formulas.", "Product gives k, then find sum.", "The answer is C: 5."]
             },
             {
                 id: 5,
-                question: "If \(f(x) = 2^x\) and \(g(x) = \\log_2 x\), what is \(f(g(8))\)?",
-                options: ["2", "3", "4", "8", "16"],
-                answer: 3,
-                explanation: ["g(8) = log₂(8) = 3.", "f(g(8)) = f(3) = 2³ = 8.", "Function composition.", "f and g are inverses!", "The answer is D: 8."]
-            },
-            {
-                id: 6,
-                question: "If \(|3x - 6| = |x + 2|\), what is the sum of all solutions?",
-                options: ["1", "2", "4", "6", "8"],
-                answer: 1,
-                explanation: ["Case 1: 3x - 6 = x + 2 → 2x = 8, x = 4.", "Case 2: 3x - 6 = -(x + 2) → 3x - 6 = -x - 2.", "4x = 4, x = 1.", "Sum = 4 + 1... Wait, let me check: 4x = 4, x = 1. But also -2 case.", "Actually: Case 2: 3x-6 = -x-2, 4x = 4, x = 1. Sum = 4 + 1 = 5. Hmm not in options. Let me recalc."]
-            },
-            {
-                id: 6,
-                question: "If \(|2x - 4| = |x + 1|\), what is the sum of all solutions?",
-                options: ["1", "2", "3", "4", "5"],
+                question: "If \\(f(x) = 2^x\\), what is \\(f(3) - f(1)\\)?",
+                options: ["2", "4", "6", "8", "10"],
                 answer: 2,
-                explanation: ["Case 1: 2x - 4 = x + 1 → x = 5.", "Case 2: 2x - 4 = -(x + 1) = -x - 1.", "3x = 3, x = 1.", "Sum = 5 + 1 = 6. Hmm. Let me use x = 5, 1. Sum = 6? Not matching. Actually: 2(5)-4=6, 5+1=6 ✓. 2(1)-4=-2, |−2|=2, 1+1=2 ✓. Sum = 6. Let me fix options."]
+                explanation: ["f(3) = 2³ = 8.", "f(1) = 2¹ = 2.", "f(3) - f(1) = 8 - 2 = 6.", "Simple function evaluation.", "The answer is C: 6."]
             },
             {
                 id: 6,
-                question: "If \(|2x - 4| = |x - 1|\), what is the sum of all solutions?",
-                options: ["1", "2", "3", "5/3", "8/3"],
-                answer: 2,
-                explanation: ["Case 1: 2x - 4 = x - 1 → x = 3.", "Case 2: 2x - 4 = -(x - 1) = -x + 1.", "3x = 5, x = 5/3.", "Sum = 3 + 5/3 = 14/3. Hmm still not matching. Let me just use different question."]
-            },
-            {
-                id: 6,
-                question: "If \(f(x) = x^3 - 3x\), at how many points does the graph of f cross the x-axis?",
+                question: "If \\(f(x) = x^3 - 3x\\), at how many points does the graph of f cross the x-axis?",
                 options: ["0", "1", "2", "3", "4"],
                 answer: 3,
                 explanation: ["f(x) = x³ - 3x = x(x² - 3) = x(x-√3)(x+√3).", "Zeros at x = 0, √3, -√3.", "Three distinct real roots.", "Cubic with 3 x-intercepts.", "The answer is D: 3."]
             },
             {
                 id: 7,
-                question: "If \(f(x) = \\sqrt{x-2}\), what is the domain of f?",
+                question: "If \\(f(x) = \sqrt{x-2}\\), what is the domain of f?",
                 options: ["x ≥ 0", "x ≥ 2", "x > 2", "x ≤ 2", "All real numbers"],
                 answer: 1,
                 explanation: ["Square root requires non-negative radicand.", "x - 2 ≥ 0.", "x ≥ 2.", "Domain: [2, ∞).", "The answer is B: x ≥ 2."]
             },
             {
                 id: 8,
-                question: "The function \(g(x) = x^2 - 6x + k\) has a minimum value of -4. What is k?",
+                question: "The function \\(g(x) = x^2 - 6x + k\\) has a minimum value of -4. What is k?",
                 options: ["1", "3", "5", "7", "9"],
                 answer: 2,
                 explanation: ["Complete square: g(x) = (x-3)² - 9 + k.", "Minimum at x = 3 is -9 + k.", "-9 + k = -4.", "k = 5.", "The answer is C: 5."]
             },
             {
                 id: 9,
-                question: "If \(2^{x+1} + 2^x = 12\), what is x?",
+                question: "If \\(2^{x+1} + 2^x = 12\\), what is x?",
                 options: ["1", "2", "3", "4", "5"],
                 answer: 1,
                 explanation: ["2^(x+1) = 2 × 2^x.", "2 × 2^x + 2^x = 12.", "3 × 2^x = 12.", "2^x = 4 = 2².", "x = 2. The answer is B: 2."]
@@ -660,7 +639,7 @@
             },
             {
                 id: 11,
-                question: "For \(f(x) = \\frac{2x+1}{x-3}\), what is the horizontal asymptote?",
+                question: "For \\(f(x) = \frac{2x+1}{x-3}\\), what is the horizontal asymptote?",
                 options: ["y = 0", "y = 1", "y = 2", "y = 3", "No horizontal asymptote"],
                 answer: 2,
                 explanation: ["For rational functions, if degrees equal...", "Horizontal asymptote = leading coefficients ratio.", "= 2/1 = 2.", "y = 2.", "The answer is C: y = 2."]
@@ -753,7 +732,7 @@
                 question: "The line 3x - y = 4 is perpendicular to ax + 3y = 7. What is a?",
                 options: ["-3", "-1", "1", "3", "9"],
                 answer: 2,
-                explanation: ["Line 1: 3x - y = 4 → y = 3x - 4, m₁ = 3.", "For perpendicular: m₁ × m₂ = -1.", "3 × m₂ = -1, m₂ = -1/3.", "Line 2: ax + 3y = 7 → y = (-a/3)x + 7/3.", "-a/3 = -1/3, a = 1.", "The answer is C: 1."]
+                explanation: ["Line 1: 3x - y = 4 → y = 3x - 4, m₁ = 3.", "For perpendicular: m₁ × m₂ = -1.", "3 × m₂ = -1, m₂ = -1/3.", "Line 2: ax + 3y = 7 → y = (-a/3)x + 7/3.", "-a/3 = -1/3, a = 1. The answer is C: 1."]
             },
             {
                 id: 24,
@@ -831,17 +810,17 @@
             },
             {
                 id: 34,
-                question: "If \(\\sqrt{2x + 3} = x\), what is x?",
+                question: "If \\(\sqrt{2x + 3} = x\\), what is x?",
                 options: ["-1", "1", "3", "-1 and 3", "No solution"],
                 answer: 2,
-                explanation: ["Square both sides: 2x + 3 = x².", "x² - 2x - 3 = 0.", "(x-3)(x+1) = 0, x = 3 or -1.", "Check: √(2(3)+3) = √9 = 3 ✓.", "√(2(-1)+3) = √1 = 1 ≠ -1 ✗.", "The answer is C: 3."]
+                explanation: ["Square both sides: 2x + 3 = x².", "x² - 2x - 3 = 0.", "(x-3)(x+1) = 0, x = 3 or -1.", "Check: √(2(3)+3) = √9 = 3 ✓.", "√(2(-1)+3) = √1 = 1 ≠ -1 ✗. The answer is C: 3."]
             },
             {
                 id: 35,
-                question: "If \(\\log_2 x + \\log_2 (x-2) = 3\), what is x?",
-                options: ["2", "3", "4", "5", "6"],
-                answer: 2,
-                explanation: ["log₂[x(x-2)] = 3.", "x(x-2) = 2³ = 8.", "x² - 2x - 8 = 0.", "(x-4)(x+2) = 0, x = 4 or -2.", "x must be > 2, so x = 4.", "The answer is C: 4."]
+                question: "If \\(3^x = 27\\) and \\(2^y = 16\\), what is xy?",
+                options: ["7", "12", "15", "21", "28"],
+                answer: 1,
+                explanation: ["3^x = 27 = 3³, so x = 3.", "2^y = 16 = 2⁴, so y = 4.", "xy = 3 × 4 = 12.", "Solving exponential equations.", "The answer is B: 12."]
             },
             {
                 id: 36,
@@ -852,7 +831,7 @@
             },
             {
                 id: 37,
-                question: "If \(x^{1/3} = 2\), what is \(x^{2/3} + x^{-1/3}\)?",
+                question: "If \\(x^{1/3} = 2\\), what is \\(x^{2/3} + x^{-1/3}\\)?",
                 options: ["4", "4.5", "5", "5.5", "6"],
                 answer: 1,
                 explanation: ["x^(1/3) = 2.", "x^(2/3) = (x^(1/3))² = 4.", "x^(-1/3) = 1/x^(1/3) = 1/2.", "Sum = 4 + 0.5 = 4.5.", "The answer is B: 4.5."]
